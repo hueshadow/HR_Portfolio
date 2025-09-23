@@ -163,12 +163,6 @@ const AboutPage = ({ active, loaded, onPageChange }: AboutPageProps) => {
         </div>
 
         <Tabs items={tabItems} active={active} />
-
-        <footer>
-          <div className="footer-inner clearfix">
-            <div className="copyright">© 2025 Content update by Ronn Huang. All Rights Reserved.</div>
-          </div>
-        </footer>
     </>
   )
 }

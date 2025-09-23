@@ -23,99 +23,68 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   const navigate = useNavigate()
   const [item, setItem] = useState<PortfolioItem | null>(null)
 
-  // 扩展的作品集数据，包含详细信息
   const portfolioItems: PortfolioItem[] = [
-    { 
-      id: 1, 
-      category: 'image', 
-      title: '华为云', 
-      image: '/assets/img/portfolio/1.jpg', 
+    {
+      id: 1,
+      category: 'image',
+      title: '华为云',
+      image: '/assets/img/portfolio/1.jpg',
       thumb: '/assets/img/portfolio/1_s.jpg',
       description: '华为云官网设计项目，专注于云计算服务的用户体验设计。通过现代化的设计语言和直观的交互界面，为企业用户提供清晰的云服务导航和产品展示。项目涵盖了从信息架构到视觉设计的完整流程。',
       technologies: ['UI/UX Design', 'Figma', 'Prototyping', 'User Research'],
       projectDate: '2024年3月',
       projectUrl: 'https://www.huaweicloud.com'
     },
-    { 
-      id: 2, 
-      category: 'image', 
-      title: '华为分析', 
-      image: '/assets/img/portfolio/2.jpg', 
+    {
+      id: 2,
+      category: 'image',
+      title: '华为分析',
+      image: '/assets/img/portfolio/2.jpg',
       thumb: '/assets/img/portfolio/2_s.jpg',
       description: '华为数据分析平台的界面设计，为企业提供数据可视化和商业智能解决方案。设计重点在于复杂数据的清晰呈现和高效的用户操作流程，确保用户能够快速获取关键业务洞察。',
       technologies: ['Data Visualization', 'Dashboard Design', 'Sketch', 'User Testing'],
       projectDate: '2024年1月',
     },
-    { 
-      id: 3, 
-      category: 'image', 
-      title: '火柴盒', 
-      image: '/assets/img/portfolio/3.jpg', 
+    {
+      id: 3,
+      category: 'image',
+      title: '火柴盒',
+      image: '/assets/img/portfolio/3.jpg',
       thumb: '/assets/img/portfolio/3_s.jpg',
       description: '火柴盒创意设计项目，探索传统物品的现代化设计理念。通过简约而富有创意的视觉表达，重新诠释日常用品的美学价值，体现设计在生活中的无限可能。',
       technologies: ['Creative Design', 'Adobe Creative Suite', 'Concept Development'],
       projectDate: '2023年11月',
     },
-    { 
-      id: 4, 
-      category: 'image', 
-      title: 'Business Connect', 
-      image: '/assets/img/portfolio/4.jpg', 
+    {
+      id: 4,
+      category: 'image',
+      title: 'Business Connect',
+      image: '/assets/img/portfolio/4.jpg',
       thumb: '/assets/img/portfolio/4_s.jpg',
       description: 'Business Connect 是一个企业级协作平台的设计项目，旨在提升团队沟通效率和项目管理能力。设计注重用户体验的连贯性和功能的易用性，为现代企业提供全方位的数字化解决方案。',
       technologies: ['Enterprise UX', 'Collaboration Tools', 'Wireframing', 'Usability Testing'],
       projectDate: '2023年9月',
       githubUrl: 'https://github.com/example/business-connect'
     },
-    { 
-      id: 5, 
-      category: 'video', 
-      title: 'Project Video 1', 
-      image: '/assets/img/portfolio/5.jpg', 
-      thumb: '/assets/img/portfolio/5_s.jpg',
+    {
+      id: 5,
+      category: 'video',
+      title: 'Project Video 1',
+      image: '/assets/img/portfolio/5.jpg',
+      thumb: '/assets/img/portfolio/5_s.mp4',
       description: '品牌宣传视频制作项目，通过动态视觉和创意叙事展示品牌价值。项目涵盖了从概念策划到后期制作的完整视频制作流程，为客户打造具有影响力的视觉内容。',
       technologies: ['Video Production', 'Motion Graphics', 'After Effects', 'Premiere Pro'],
       projectDate: '2023年8月',
     },
-    { 
-      id: 6, 
-      category: 'video', 
-      title: 'Project Video 2', 
-      image: '/assets/img/portfolio/6.jpg', 
-      thumb: '/assets/img/portfolio/6_s.jpg',
+    {
+      id: 6,
+      category: 'video',
+      title: 'Project Video 2',
+      image: '/assets/img/portfolio/6.jpg',
+      thumb: '/assets/img/portfolio/6_s.mp4',
       description: '产品演示视频设计，专注于清晰地展示产品功能和用户操作流程。通过精心设计的动画效果和流畅的镜头语言，帮助用户快速理解产品价值和使用方法。',
       technologies: ['Product Demo', 'Animation', 'Storytelling', 'Video Editing'],
       projectDate: '2023年7月',
-    },
-    { 
-      id: 7, 
-      category: '3d', 
-      title: '3D Project 1', 
-      image: '/assets/img/portfolio/7.jpg', 
-      thumb: '/assets/img/portfolio/7_s.jpg',
-      description: '3D 建模和渲染项目，探索三维空间中的设计可能性。通过先进的建模技术和逼真的渲染效果，创造出具有强烈视觉冲击力的三维作品，展现设计的空间美学。',
-      technologies: ['3D Modeling', 'Blender', 'Cinema 4D', '3D Rendering'],
-      projectDate: '2023年6月',
-    },
-    { 
-      id: 8, 
-      category: '3d', 
-      title: '3D Project 2', 
-      image: '/assets/img/portfolio/8.jpg', 
-      thumb: '/assets/img/portfolio/8_s.jpg',
-      description: '建筑可视化项目，为建筑设计提供逼真的三维展示效果。通过精确的建模和专业的渲染技术，帮助客户更好地理解和展示建筑设计方案，提升设计沟通效率。',
-      technologies: ['Architectural Visualization', '3ds Max', 'V-Ray', 'Photoshop'],
-      projectDate: '2023年5月',
-    },
-    { 
-      id: 9, 
-      category: 'image', 
-      title: 'Additional Project', 
-      image: '/assets/img/portfolio/9.jpg', 
-      thumb: '/assets/img/portfolio/9_s.jpg',
-      description: '综合性设计项目，整合多种设计元素和技术手段。项目展现了从平面设计到数字媒体的全方位设计能力，为客户提供一站式的创意解决方案。',
-      technologies: ['Integrated Design', 'Multi-media', 'Creative Direction', 'Brand Identity'],
-      projectDate: '2023年4月',
     }
   ]
 
@@ -133,79 +102,302 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
   if (!item) {
     return (
-      <div className="portfolio-detail-container">
-        <div className="detail-header">
-          <button className="back-button" onClick={handleBackToPortfolio}>
-            <i className="fas fa-arrow-left"></i> 返回作品集
-          </button>
+      <div className="portfolio-detail-wrapper">
+        <div className="page-header c12">
+          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          <hr />
         </div>
-        <div className="detail-content">
+        <div className="portfolio-detail-content">
           <h1>作品未找到</h1>
           <p>抱歉，您要查看的作品不存在。</p>
+          <a href="#" onClick={(e) => { e.preventDefault(); handleBackToPortfolio() }} className="text-link">
+            ← 返回作品集
+          </a>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="portfolio-detail-container">
-      <div className="detail-header">
-        <button className="back-button" onClick={handleBackToPortfolio}>
-          <i className="fas fa-arrow-left"></i> 返回作品集
-        </button>
-        <div className="detail-meta">
-          <span className="category-badge">{item.category}</span>
-          <span className="project-date">{item.projectDate}</span>
+    <div className="portfolio-detail-wrapper">
+      <div className="page-header c12">
+        <div className="header-with-back">
+          <div className="header-back">
+            <button onClick={handleBackToPortfolio} className="back-button">
+              ← 返回
+            </button>
+          </div>
+          <div className="header-title">
+            <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          </div>
         </div>
+        <hr />
       </div>
 
-      <div className="detail-content">
-        <div className="detail-image">
+      <div className="portfolio-detail-content">
+        <div className="portfolio-detail-image">
           <img src={item.image} alt={item.title} />
         </div>
-        
-        <div className="detail-info">
-          <h1 className="detail-title">{item.title}</h1>
-          
-          <div className="detail-description">
-            <h3>项目描述</h3>
-            <p>{item.description}</p>
+
+        <div className="portfolio-detail-info">
+          <h1 className="portfolio-detail-title">{item.title}</h1>
+
+          <div className="portfolio-detail-meta">
+            <span className="meta-item">{item.category}</span>
+            <span className="meta-item">{item.projectDate}</span>
           </div>
 
-          <div className="detail-technologies">
-            <h3>使用技术</h3>
+          <div className="portfolio-detail-description">
+            <h3>项目描述</h3>
+            <p>{item.description}</p>
+            {(item.projectUrl || item.githubUrl) && (
+              <div className="link-buttons">
+                {item.projectUrl && (
+                  <a
+                    href={item.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-button"
+                  >
+                    <i className="fas fa-external-link-alt"></i> 查看项目
+                  </a>
+                )}
+                {item.githubUrl && (
+                  <a
+                    href={item.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-button"
+                  >
+                    <i className="fab fa-github"></i> GitHub
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="portfolio-detail-technologies">
             <div className="tech-tags">
               {item.technologies.map((tech, index) => (
                 <span key={index} className="tech-tag">{tech}</span>
               ))}
             </div>
           </div>
-
-          {(item.projectUrl || item.githubUrl) && (
-            <div className="detail-links">
-              <h3>相关链接</h3>
-              <div className="link-buttons">
-                {item.projectUrl && (
-                  <a href={item.projectUrl} target="_blank" rel="noopener noreferrer" className="link-button project-link">
-                    <i className="fas fa-external-link-alt"></i> 查看项目
-                  </a>
-                )}
-                {item.githubUrl && (
-                  <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" className="link-button github-link">
-                    <i className="fab fa-github"></i> GitHub
-                  </a>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
-      <footer>
-        <div className="footer-inner clearfix">
-          <div className="copyright">© 2025 Content update by Ronn Huang. All Rights Reserved.</div>
-        </div>
-      </footer>
+      <style jsx>{`
+        .portfolio-detail-wrapper {
+          width: 100%;
+          min-height: 100vh;
+          background: #fff;
+          padding-top: 80px;
+        }
+
+        .page-header.c12 {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          box-sizing: border-box;
+        }
+
+        .header-with-back {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .header-back {
+          flex-shrink: 0;
+          margin-right: 12px;
+        }
+
+        .header-title {
+          flex-grow: 1;
+        }
+
+        .header-title h1 {
+          margin: 0;
+        }
+
+        .back-button {
+          margin-top: 0;
+          min-width: 120px;
+        }
+
+        .portfolio-detail-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 40px 20px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
+          align-items: start;
+        }
+
+        .portfolio-detail-image {
+          width: 100%;
+        }
+
+        .portfolio-detail-image img {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 0;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-detail-info {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .portfolio-detail-title {
+          font-size: 36px;
+          font-weight: 600;
+          color: #333;
+          margin: 0;
+        }
+
+        .portfolio-detail-meta {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 10px;
+        }
+
+        .meta-item {
+          color: #666;
+          font-size: 14px;
+        }
+
+        .portfolio-detail-description h3 {
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 15px;
+          color: #333;
+        }
+
+        .portfolio-detail-description p {
+          font-size: 16px;
+          line-height: 1.6;
+          color: #555;
+          margin: 0;
+        }
+
+        .tech-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .tech-tag {
+          background: rgba(0,0,0,0.05);
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          color: #555;
+        }
+
+        .link-buttons {
+          display: flex;
+          gap: 15px;
+          margin-top: 20px;
+        }
+
+        .portfolio-detail-description .link-button {
+          display: inline-flex !important;
+          align-items: center !important;
+          gap: 8px !important;
+          padding: 0 !important;
+          background: transparent !important;
+          color: #0066cc !important;
+          text-decoration: none !important;
+          border: none !important;
+          font-size: 14px !important;
+          font-weight: 400 !important;
+          cursor: pointer !important;
+          outline: none !important;
+          box-shadow: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+        }
+
+        .portfolio-detail-description .link-button:hover,
+        .portfolio-detail-description .link-button:focus,
+        .portfolio-detail-description .link-button:active {
+          background: transparent !important;
+          color: #555 !important;
+          text-decoration: none !important;
+          outline: none !important;
+          box-shadow: none !important;
+          transform: none !important;
+          opacity: 1 !important;
+        }
+
+        .header-back .back-button {
+          margin: 0 !important;
+          padding: 0 !important;
+          background: transparent !important;
+          color: #0066cc !important;
+          border: none !important;
+          font-size: 16px !important;
+          font-weight: 400 !important;
+          cursor: pointer !important;
+          text-decoration: none !important;
+          display: inline-block !important;
+          outline: none !important;
+          box-shadow: none !important;
+          transition: none !important;
+          opacity: 1 !important;
+        }
+
+        .header-back .back-button:hover,
+        .header-back .back-button:focus,
+        .header-back .back-button:active {
+          background: transparent !important;
+          color: #0052cc !important;
+          text-decoration: none !important;
+          outline: none !important;
+          box-shadow: none !important;
+          transform: none !important;
+          opacity: 1 !important;
+        }
+
+        
+        .text-link {
+          color: #0066cc;
+          text-decoration: none;
+          font-size: 16px;
+          margin-top: 20px;
+          display: inline-block;
+        }
+
+        .text-link:hover {
+          text-decoration: underline;
+        }
+
+        @media (max-width: 968px) {
+          .portfolio-detail-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .portfolio-detail-content {
+            padding: 20px 15px;
+          }
+
+          .portfolio-detail-title {
+            font-size: 28px;
+          }
+
+          .link-buttons {
+            flex-direction: column;
+          }
+        }
+      `}</style>
     </div>
   )
 }

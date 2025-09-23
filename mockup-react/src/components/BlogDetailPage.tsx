@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 interface BlogDetailPageProps {
   active: boolean
@@ -8,6 +8,12 @@ interface BlogDetailPageProps {
 
 const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) => {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+
+  const handleBackToBlog = () => {
+    navigate('/')
+    onPageChange('blog')
+  }
 
   // 模拟博客文章数据（在实际项目中应该从API或数据文件中获取）
   const blogPosts = [
@@ -42,14 +48,15 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
 
   if (!post) {
     return (
-      <div className="content">
+      <div className="blog-detail-wrapper">
         <div className="page-header c12">
-          <h1>文章未找到</h1>
-          <hr className={loaded ? 'enabled' : ''}></hr>
+          <h1 data-value="BLOG DETAIL">BLOG DETAIL</h1>
+          <hr />
         </div>
-        <div className="c12">
+        <div className="blog-detail-content">
+          <h1>文章未找到</h1>
           <p>抱歉，请求的博客文章不存在。</p>
-          <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
+          <a href="#" onClick={(e) => { e.preventDefault(); handleBackToBlog() }} className="text-link">
             返回博客列表
           </a>
         </div>
@@ -58,15 +65,24 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
   }
 
   return (
-    <div className="content">
+    <div className="blog-detail-wrapper">
       <div className="page-header c12">
-        <h1 data-value="Project description">Project description</h1>
-        <hr className={loaded ? 'enabled' : ''}></hr>
+        <div className="header-with-back">
+          <div className="header-back">
+            <button onClick={handleBackToBlog} className="back-button">
+              ← 返回
+            </button>
+          </div>
+          <div className="header-title">
+            <h1 data-value="BLOG DETAIL">BLOG DETAIL</h1>
+          </div>
+        </div>
+        <hr />
       </div>
 
-      <article className="blog-detail-post c12">
+      <article className="blog-detail-post" style={{ paddingLeft: '200px', paddingRight: '200px' }}>
         <div className="blog-post-header">
-          <img src={post.image} alt={post.title} className="blog-detail-image"></img>
+          <img src={post.image} alt={post.title} className="blog-detail-image" style={{ borderRadius: 0 }} />
           <div className="blog-post-meta">
             <h1 className="blog-detail-title">{post.title}</h1>
             <div className="entry-meta">
@@ -81,29 +97,88 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
 
         <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
 
-        <div className="blog-post-footer">
-          <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
-            ← 返回博客列表
-          </a>
-        </div>
+        <style jsx>{`
+          .blog-detail-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            background: #fff;
+            padding-top: 80px;
+          }
+
+          .page-header.c12 {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+          }
+
+          .header-with-back {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+          }
+
+          .header-back {
+            flex-shrink: 0;
+            margin-right: 12px;
+          }
+
+          .header-title {
+            flex-grow: 1;
+          }
+
+          .header-title h1 {
+            margin: 0;
+          }
+
+          .blog-detail-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+          }
+
+          .header-back .back-button {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            color: #0066cc !important;
+            border: none !important;
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            cursor: pointer !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            outline: none !important;
+            box-shadow: none !important;
+            transition: none !important;
+            opacity: 1 !important;
+          }
+
+          .header-back .back-button:hover,
+          .header-back .back-button:focus,
+          .header-back .back-button:active {
+            background: transparent !important;
+            color: #0052cc !important;
+            text-decoration: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+          }
+
+          .text-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+          }
+
+          .text-link:hover {
+            text-decoration: underline;
+          }
+        `}</style>
       </article>
-
-      <div className="content">
-        <footer>
-          <div className="footer-inner clearfix">
-            <div className="copyright">© 2025 Content update by Ronn Huang. All Rights Reserved.</div>
-            <ul className="social-footer">
-              <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i className="fab fa-instagram"></i></a></li>
-            </ul>
-          </div>
-        </footer>
-      </div>
-
-      <section className="page fullwidth active loaded" id="blog-detail">
-        <div id="map" style={{ display: 'none' }}></div>
-      </section>
     </div>
   )
 }

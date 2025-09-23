@@ -989,7 +989,7 @@ hr.enabled{
   z-index: 100;
 }
 .portfolio-container img{
-  border:1px solid var(--px-theme-clr);
+  border:none;
   width: 100%;
 }
 .portfolio-container figure{

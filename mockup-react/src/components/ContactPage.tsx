@@ -136,17 +136,11 @@ const ContactPage = ({ active, loaded, onPageChange }: ContactPageProps) => {
           </div>
         </div>
 
-        <div className="row">
+        {/* <div className="row">
           <div className="c12">
             <div id="map"></div>
           </div>
-        </div>
-
-        <footer>
-          <div className="footer-inner clearfix">
-            <div className="copyright">© 2025 Content update by Ronn Huang. All Rights Reserved.</div>
-          </div>
-        </footer>
+        </div> */}
     </>
   )
 }

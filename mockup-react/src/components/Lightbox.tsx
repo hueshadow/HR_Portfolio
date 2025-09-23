@@ -64,14 +64,15 @@ const Lightbox = ({ isOpen, imageSrc, onClose }: LightboxProps) => {
         <div className="mfp-container mfp-s-ready mfp-image-container">
           <div className="mfp-content">
             <div className="mfp-figure">
-              <div className="mfp-img">
-                <img 
-                  src={imageSrc} 
+              <div className="mfp-img" style={{ opacity: 1 }}>
+                <img
+                  src={imageSrc}
                   alt="Portfolio item"
                   style={{
                     maxWidth: '90vw',
                     maxHeight: '90vh',
-                    objectFit: 'contain'
+                    objectFit: 'contain',
+                    opacity: 1
                   }}
                 />
               </div>
