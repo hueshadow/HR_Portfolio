@@ -42,7 +42,7 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
 
   if (!post) {
     return (
-      <section className={`page active fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog-detail">
+      <section className={`page fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog-detail">
         <div className="content">
           <div className="page-header c12">
             <h1>文章未找到</h1>
@@ -60,7 +60,7 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
   }
 
   return (
-    <section className={`page active fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog-detail">
+    <section className={`page fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog-detail">
       <div id="map" style={{ display: 'none' }}></div>
 
       <div className="content">

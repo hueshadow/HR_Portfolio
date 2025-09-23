@@ -19,7 +19,7 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
   ]
 
   return (
-    <section className={`page active fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog">
+    <section className={`page fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog">
       <div id="map" style={{ display: 'none' }}></div>
 
       <div className="content">
