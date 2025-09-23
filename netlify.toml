@@ -1,9 +1,9 @@
 [build]
   publish = "mockup-react/dist"
-  command = "cd mockup-react && npm install && vite build"
+  command = "cd mockup-react && npm install && npx vite build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
