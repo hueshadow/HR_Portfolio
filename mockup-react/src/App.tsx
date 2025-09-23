@@ -170,7 +170,7 @@ function AppContent() {
                   active={activePageId === page.id} 
                   loaded={activePageId === page.id || isLoaded}
                   onPageChange={handlePageChange}
-                  onToggleSidebar={page.id === 'blog' ? toggleSidebar : undefined}
+                  onToggleSidebar={page.id === 'blog' ? toggleSidebar : () => {}}
                 />
               </div>
             </section>

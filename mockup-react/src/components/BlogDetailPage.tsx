@@ -15,22 +15,22 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
       id: 1,
       title: '用户体验全流程（编辑中）',
       content: `
-        <p>用户体验设计是一个系统的过程，需要从用户的角度出发，全面考虑产品的各个方面。真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。</p>
+<p>用户体验设计是一个系统的过程，需要从用户的角度出发，全面考虑产品的各个方面。真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。</p>
 
-        <h3>用户研究阶段</h3>
-        <p>在设计之初，我们需要深入了解目标用户的需求、行为和痛点。通过用户访谈、问卷调查、用户画像等方式，构建对用户的深入理解。</p>
+<h3>用户研究阶段</h3>
+<p>在设计之初，我们需要深入了解目标用户的需求、行为和痛点。通过用户访谈、问卷调查、用户画像等方式，构建对用户的深入理解。</p>
 
-        <h3>原型设计阶段</h3>
-        <p>基于用户研究的结果，我们开始构建产品原型。从低保真原型到高保真原型，逐步完善设计方案。</p>
+<h3>原型设计阶段</h3>
+<p>基于用户研究的结果，我们开始构建产品原型。从低保真原型到高保真原型，逐步完善设计方案。</p>
 
-        <h3>测试优化阶段</h3>
-        <p>通过可用性测试、A/B测试等方法，不断优化产品体验，确保最终产品能够真正满足用户需求。</p>
+<h3>测试优化阶段</h3>
+<p>通过可用性测试、A/B测试等方法，不断优化产品体验，确保最终产品能够真正满足用户需求。</p>
 
-        <blockquote>
-          <p>"Design is not just what it looks like and feels like. Design is how it works."</p>
-          <cite>— Steve Jobs</cite>
-        </blockquote>
-      `,
+<blockquote>
+  <p>"Design is not just what it looks like and feels like. Design is how it works."</p>
+  <cite>— Steve Jobs</cite>
+</blockquote>
+`,
       date: '2025-08-25',
       author: 'Admin',
       image: '/assets/img/blog1.jpg',
