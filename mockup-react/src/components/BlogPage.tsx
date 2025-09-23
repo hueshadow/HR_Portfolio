@@ -22,18 +22,15 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
     <div className="content">
       <div className="page-header c12">
         <h1 data-value="Project description">Project description</h1>
-        <span className="toggle-sidebar" onClick={onToggleSidebar}>
-          <i></i>
-        </span>
-        <hr className={loaded ? 'enabled' : ''} />
+        <span className="toggle-sidebar"><i></i></span>
+        <hr className={loaded ? 'enabled' : ''}></hr>
       </div>
 
       <div className="blog-recent-post-item row c12 end">
         <a className="recent-post-img" href="#">
-          <img src="/assets/img/blog1.jpg" alt="用户体验全流程（编辑中）" />
+          <img alt="用户体验全流程（编辑中）" src="/assets/img/blog1.jpg"></img>
           <span className="date">
-            <span className="day">25</span>
-            August 2025
+            <span className="day">25</span>August 2025
           </span>
         </a>
         <h2 className="gamma entry-title">
@@ -42,9 +39,7 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
         <p>"真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。" —— Ronn</p>
         <div className="entry-meta">
           <span>By Admin</span>
-          <span>
-            <time className="entry-date">2025/8/25</time>
-          </span>
+          <span><time className="entry-date">2025/8/25</time></span>
           <span className="cat-links">未分类</span>
           <a className="readmore" href="#">Read more</a>
         </div>
@@ -55,9 +50,7 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
           <aside>
             <h6>Recent Posts</h6>
             <ul>
-              <li>
-                <a href="#">用户体验全流程（编辑中）</a>
-              </li>
+              <li><a href="#">用户体验全流程（编辑中）</a></li>
             </ul>
           </aside>
           <aside>
@@ -83,6 +76,10 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
           </div>
         </footer>
       </div>
+
+      <section className="page fullwidth active loaded" id="blog">
+        <div id="map" style={{ display: 'none' }}></div>
+      </section>
     </div>
   )
 }

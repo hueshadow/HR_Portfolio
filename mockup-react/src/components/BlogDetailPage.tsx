@@ -45,7 +45,7 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
       <div className="content">
         <div className="page-header c12">
           <h1>文章未找到</h1>
-          <hr className={loaded ? 'enabled' : ''} />
+          <hr className={loaded ? 'enabled' : ''}></hr>
         </div>
         <div className="c12">
           <p>抱歉，请求的博客文章不存在。</p>
@@ -61,12 +61,12 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
     <div className="content">
       <div className="page-header c12">
         <h1 data-value="Project description">Project description</h1>
-        <hr className={loaded ? 'enabled' : ''} />
+        <hr className={loaded ? 'enabled' : ''}></hr>
       </div>
 
       <article className="blog-detail-post c12">
         <div className="blog-post-header">
-          <img src={post.image} alt={post.title} className="blog-detail-image" />
+          <img src={post.image} alt={post.title} className="blog-detail-image"></img>
           <div className="blog-post-meta">
             <h1 className="blog-detail-title">{post.title}</h1>
             <div className="entry-meta">
@@ -100,6 +100,10 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
           </div>
         </footer>
       </div>
+
+      <section className="page fullwidth active loaded" id="blog-detail">
+        <div id="map" style={{ display: 'none' }}></div>
+      </section>
     </div>
   )
 }
