@@ -69,31 +69,29 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
           <hr className={loaded ? 'enabled' : ''} />
         </div>
 
-        <div className="c12">
-          <article className="blog-detail-post">
-            <div className="blog-post-header">
-              <img src={post.image} alt={post.title} className="blog-detail-image" />
-              <div className="blog-post-meta">
-                <h1 className="blog-detail-title">{post.title}</h1>
-                <div className="entry-meta">
-                  <span>By {post.author}</span>
-                  <span>
-                    <time className="entry-date">{new Date(post.date).toLocaleDateString()}</time>
-                  </span>
-                  <span className="cat-links">{post.category}</span>
-                </div>
+        <article className="blog-detail-post c12">
+          <div className="blog-post-header">
+            <img src={post.image} alt={post.title} className="blog-detail-image" />
+            <div className="blog-post-meta">
+              <h1 className="blog-detail-title">{post.title}</h1>
+              <div className="entry-meta">
+                <span>By {post.author}</span>
+                <span>
+                  <time className="entry-date">{new Date(post.date).toLocaleDateString()}</time>
+                </span>
+                <span className="cat-links">{post.category}</span>
               </div>
             </div>
+          </div>
 
-            <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
 
-            <div className="blog-post-footer">
-              <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
-                ← 返回博客列表
-              </a>
-            </div>
-          </article>
-        </div>
+          <div className="blog-post-footer">
+            <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
+              ← 返回博客列表
+            </a>
+          </div>
+        </article>
 
         <footer>
           <div className="footer-inner clearfix">
