@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "auto-dev": "../auto-dev.sh",
+    "auto-commit": "../auto-commit.sh",
+    "auto-preview": "../auto-preview.sh"
   },
   "dependencies": {
     "@types/jquery": "^3.5.33",
