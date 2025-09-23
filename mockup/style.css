@@ -1,0 +1,370 @@
+/*
+Theme Name: Akordian
+Theme URI: https://shtheme.com/demosd/akordian
+Author: Shtheme
+Author URI: https://themeforest.net/user/shtheme
+Description: Akordian – Portfolio, Personal CV WordPress theme is a single page theme with a unique accordion style layout and stunning mouse effects. It would be perfect for freelancers, small business or agencies and includes a filterable portfolio which supports images video and soundcloud.
+Version: 1.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, three-columns, left-sidebar, right-sidebar, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
+Text Domain: Akordian
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/* ========TABLE OF CONTENTS==========
+00. Body, links, hgroup, paragraphs, general styles
+01. Fixed header & Navigation
+02. Section Intro (Home)
+03. Section About
+04. Section Resume
+05. Section Portfolio
+06. Section Blog
+07. Section Contact
+08. Footer
+09. Loader
+10. Responsive design
+
+/*--------------------------------------------------
+	00. Body, links, hgroup, paragraphs, general styles
+---------------------------------------------------*/
+
+
+
+.page.active.fullwidth{
+	width: 100%;
+}
+.fullwidth .content{
+	padding: 0 80px;
+}
+.logged-in .title{
+	bottom: 76px;
+}
+.post-categories{
+	list-style: none;
+	display: inline-flex;
+	gap: 2px;
+	padding: 0;
+}
+.post-categories > li:after{
+	content: ",";
+}
+.post-categories > li:last-child:after{
+	content: none;
+}
+.entry-meta span:last-child{
+	border-right: 0;
+}
+form.comment-form div.c2.submit button{
+	border: 1px solid var(--px-theme-clr);
+	border-radius: 20px;
+	height: 36px;
+	padding: 0px 25px;
+	display: inline-block;
+	font-size: 10px;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	line-height: 36px;
+	color: #f7f6f1;
+	background: var(--px-theme-clr);
+	transition: all 0.2s ease;
+	text-align: center;
+}
+form.comment-form div.c2.submit button:hover{
+	color: var(--px-theme-clr);
+	background: transparent;
+}
+.comment-form-cookies-consent{
+	display: none;
+}
+.comment-avartar{
+	background-size: cover !important;
+}
+.comment-header cite.fn > a{
+	text-transform: capitalize;
+}
+.logged-in-as{
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+.h-100{
+	height: 100vh;
+}
+.elementor .logo img{
+	max-width: 32px;
+}
+.elementor .col-bottom hr{
+	margin: 20px 0;
+}
+.dialog-lightbox-widget{
+	display: none !important;
+}
+ul.post-categories{
+	margin: 0 !important;
+}
+ul.post-categories, ul.post-categories li{
+	line-height: unset;
+}
+h2.gamma.entry-title:after{
+	box-sizing: unset !important;
+}
+#frmContact div span{
+	position: relative;
+	right: 0;
+	bottom: 0;
+}
+#frmContact div:first-child{
+	margin-top: 15px;
+}
+.wpcf7-not-valid-tip{
+	margin-top: 10px;
+	color: var(--px-theme-clr);
+}
+.wpcf7 form .wpcf7-response-output{
+	border: 0;
+	padding: 0;
+	margin-left: 0;
+}
+.sidebar-open #sidebar{
+	padding-bottom: 50px;
+}
+#sidebar form button[type="submit"]{
+	background: transparent;
+	color: var(--px-theme-clr);
+	position: absolute;
+	right: 0;
+	border: 0;
+	font-size: 20px;
+}
+#sidebar .widget_tag_cloud .tagcloud > a{
+	font-size: 15px !important;
+	margin-right: 10px;
+}
+.notfound{
+	height: 100vh;
+	position: relative;
+	text-align: center;
+}
+.notfound .v-middle{
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	-webkit-transform: translate(0%, -50%);
+	transform: translate(0%, -50%);
+}
+.justify-content-center{
+	justify-content: center;
+}
+.notfound h2:after{
+	content: none;
+}
+.notfound span{
+	margin-top: 50px;
+}
+.notfound h1{
+	font-size: 180px;
+	line-height: 180px;
+}
+.notfound h2{
+	font-size: 45px;
+	line-height: 45px;
+}
+.notfound a{
+	border: 1px solid var(--px-theme-clr);
+	border-radius: 20px;
+	height: 36px;
+	padding: 0px 25px;
+	display: inline-block;
+	font-size: 10px;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	line-height: 36px;
+	color: #f7f6f1;
+	background: var(--px-theme-clr);
+	transition: all 0.2s ease;
+}
+.notfound a:hover{
+	color: var(--px-theme-clr);
+	background: transparent;
+}
+.logo-page{
+	width: 100%;
+	position: relative;
+	cursor: pointer;
+	padding: 30px 15px 15px 15px;
+	text-align: center;
+}
+.logo-page img{
+	transition: transform 0.3s ease;
+	width: 100%;
+	max-width: 32px;
+}
+.elementor-widget:not(:last-child){
+	margin-bottom: 0 !important;
+}
+.comment-reply-title a{
+	text-transform: capitalize;
+}
+.sidebar-open .search_custom{
+	width: 75%;
+}
+.search_custom #searchform{
+	margin-top: 20px;
+}
+.search_custom input[type='text']{
+	border: 1px solid;
+	padding: 14px 50px 14px 14px;
+}
+.search_custom button[type='submit']{
+	position: absolute;
+	right: 0;
+	border: 0;
+	background: transparent;
+	color: #222;
+	font-size: 20px;
+	height: 54px;
+	line-height: 54px;
+}
+.search_custom #searchform i{
+	top: 14px;
+	right: 14px;
+}
+.sidebar-open div.content:has( >div.search_custom) footer{
+	width: 75%;
+}
+.blog-pagination-wrap li > .page-numbers{
+	background: transparent;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #111;
+	font-weight: 400;
+	border: 1px solid #111;
+	font-family: 'Outfit', sans-serif;
+	font-size: 15px;
+	border-radius: 100%;
+	font-weight: bold;
+}
+.blog-pagination-wrap li > .page-numbers.current{
+	background-color: #111;
+	border: 1px solid #111;
+	color: #fff;
+}
+.blog-pagination-wrap li > .page-numbers:hover{
+	background-color: #111;
+	border: 1px solid #111;
+	color: #fff;
+}
+.blog-pagination-wrap li > .page-numbers.dots:hover{
+	background-color: transparent;
+	border: 1px solid #111;
+	color: #111;
+}
+.blog-pagination-wrap li{
+	display: inline-block;
+	margin: 0 5px;
+}
+.text-center{
+	text-align: center !important;
+}
+.mb-60{
+	margin-bottom: 60px;
+}
+ul.blog-pagination-wrap{
+	padding: 0;
+}
+h3.comment-reply-title{
+    font-size: max(1.2vw, 24px);
+    text-transform: none;
+    font-weight: 400;
+    line-height: max(1.8vw, 32px);
+}
+.leaflet-pane.leaflet-map-pane{
+    transform: translate3d(670px, 191px, 0px) !important;
+}
+.leaflet-proxy.leaflet-zoom-animated{
+    transform: translate3d(9.87936e+06px, 1.26158e+07px, 0px) scale(65536) !important;
+}
+.elementor hr{
+	margin: 20px 0!important;
+}
+.tabs-container .row:last-of-type hr{
+	margin-bottom: 0 !important;
+}
+.page-header hr{
+	margin: 0 !important;
+}
+img.feature{
+    line-height: 1.8em;
+    margin: 15px 0;
+	border: 1px solid #222;
+}
+.single-post #sidebar{
+	top: calc(22% + 35px);
+}
+.elementor .portfolio-container img{
+	border: 1px solid var(--px-theme-clr);
+}
+
+
+
+
+
+
+@media only screen and (min-width: 960.02px){
+	.sidebar-open .blog-recent-post-item{
+		display: block;
+	}
+}
+@media only screen and (max-width: 1540px){
+	.fullwidth .content{
+		padding: 0 70px;
+	}
+}
+@media only screen and (max-width: 960px){
+	.fullwidth .content{
+		padding: 35px 40px;
+	}
+	.mobile-nav{
+		z-index: 999;
+	}
+	.page:first-child header{
+		z-index: 999;
+	}
+	.page header{
+		display: none;
+	}
+	.page:first-child header{
+		display: block;
+	}
+	.logo-page{
+		padding: 15px;
+		border-top: 1px solid;
+	}
+	#sidebar{
+		top: 20px;
+	}
+	.sidebar-open .search_custom{
+		display: none;
+	}
+	.sidebar-open div.content:has( >div.search_custom) footer{
+		width: 100%;
+	}
+}
+@media only screen and (max-width: 767px){
+	.fullwidth .content{
+		padding: 35px 30px;
+	}
+}
+@media only screen and (max-width: 480px){
+	.fullwidth .content{
+		padding: 35px 15px;
+	}
+}

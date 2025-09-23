@@ -1,0 +1,1534 @@
+/* React 组件补充样式 */
+
+/* CSS 变量和基础样式 */
+
+/* 清理调试样式 */
+:root {
+  --px-theme-clr: #222;
+  --px-theme-bg: #f7bf00;
+}
+
+/* 确保 body 和 html 样式正确 */
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #fafafa;
+}
+
+/* 主容器样式 */
+main {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 手风琴布局效果 - 严格还原原网站 */
+@media (min-width: 961px) {
+  /* 页面基础样式 */
+  .page {
+    width: 80px;
+    height: 100%;
+    float: left;
+    transition: width 0.4s cubic-bezier(0,-0.06, 0.29, 0.82);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .page.active {
+    width: calc(100% - 320px); /* 4个非激活页面 * 80px = 320px */
+  }
+  
+  /* 页面头部样式 */
+  .page header {
+    position: relative;
+    border-left: 1px solid var(--px-theme-clr);
+    cursor: pointer;
+    height: 100%;
+    float: left;
+    width: 80px;
+    opacity: 0;
+    transition: all 0.8s ease;
+  }
+  
+  .page:first-child header {
+    border-left: none;
+    cursor: default;
+    outline: 1px solid var(--px-theme-clr);
+  }
+  
+  /* 加载完成后显示header */
+  body.hr-loaded .page header {
+    opacity: 1;
+  }
+  
+  /* 统一所有页面的page-title样式 - 设置尺寸为80px宽度，100%高度，title-text右对齐 */
+  .page .page-title {
+    position: absolute !important;
+    top: 10px !important;
+    left: 0 !important;
+    width: 80px !important;
+    height: 100% !important;
+    transform: none !important;
+    transform-origin: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    padding: 20px 10px 20px 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+  }
+  
+  /* 01-06页面的page-title统一尺寸设置 */
+  .page .page-title {
+    width: 80px !important;
+    height: 100% !important;
+    top: 10px !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+  
+  /* 强制所有页面的page-title尺寸和位置完全一致 */
+  .page#home .page-title,
+  .page#about .page-title,
+  .page#resume .page-title,
+  .page#portfolio .page-title,
+  .page#blog .page-title,
+  .page#contact .page-title {
+    width: 80px !important;
+    height: 100% !important;
+    top: 10px !important;
+    left: 0 !important;
+    transform: none !important;
+    position: absolute !important;
+    margin: 0 !important;
+  }
+  
+  /* 确保所有page-title在相同的尺寸 */
+  .page header .page-title {
+    width: 80px !important;
+    height: 100% !important;
+    top: 10px !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+  
+  /* Portfolio页面特殊处理 - 确保尺寸一致 */
+  section.page#portfolio .page-title {
+    width: 80px !important;
+    height: 100% !important;
+    top: 10px !important;
+    left: 0 !important;
+    transform: none !important;
+  }
+  
+  /* 清理调试样式 */
+  
+  /* 统一所有页面的title-number样式 - 适配80px容器，右对齐 */
+  .page .title-number {
+    font-family: 'Space Mono', monospace !important;
+    font-size: 24px !important;
+    font-weight: 300 !important;
+    color: var(--px-theme-clr) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    transition: transform 0.2s ease !important;
+    transform-origin: center !important;
+    line-height: 1 !important;
+    text-align: right !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    text-indent: 0 !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    width: auto !important;
+    align-self: flex-end !important;
+    order: 2 !important;
+  }
+  
+  /* 统一所有页面的title-text样式 - 适配80px容器，右对齐 */
+  .page .title-text {
+    font-size: 12px !important;
+    font-weight: 300 !important;
+    color: var(--px-theme-clr) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    writing-mode: vertical-rl !important;
+    transition: all 0.3s ease !important;
+    transform: rotate(180deg) !important;
+    line-height: 1.2 !important;
+    text-align: right !important;
+    word-spacing: normal !important;
+    text-indent: 0 !important;
+    box-sizing: border-box !important;
+    font-style: normal !important;
+    text-decoration: none !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    align-self: flex-start !important;
+    order: 1 !important;
+  }
+  
+  /* 所有页面标题文字保持水平显示，不需要旋转 */
+
+/* Portfolio页面page-header特殊样式 */
+.page#portfolio .page-header {
+  position: relative !important;
+  min-height: 150px !important;
+}
+
+/* Portfolio页面中portfolio-filter居底居右对齐 */
+.page#portfolio .page-header .portfolio-filter {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  margin: 0 !important;
+}
+
+/* Blog页面page-header特殊样式 - 与Portfolio页面保持一致 */
+.page#blog .page-header {
+  position: relative !important;
+  min-height: 150px !important;
+}
+
+/* Blog详情页样式 */
+.page#blog .page-header .back-to-blog {
+  position: absolute !important;
+  top: 50% !important;
+  right: 100px !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: 1px solid var(--px-theme-clr) !important;
+  color: var(--px-theme-clr) !important;
+  padding: 10px 20px !important;
+  font-size: 13px !important;
+  font-weight: 300 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Space Mono', monospace !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.page#blog .page-header .back-to-blog:hover {
+  background: var(--px-theme-clr) !important;
+  color: #fff !important;
+  transform: translateY(-50%) translateX(-2px) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+}
+
+.page#blog .page-header .back-to-blog:active {
+  background: var(--px-theme-clr) !important;
+  color: #fff !important;
+  transform: translateY(-50%) translateX(0px) scale(0.98) !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+  transition: all 0.1s ease !important;
+}
+
+.blog-detail-content {
+  padding: 20px 0 !important;
+}
+
+.blog-post {
+  width: 60% !important;
+  max-width: 60% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.post-header {
+  margin-bottom: 30px !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  padding-bottom: 20px !important;
+}
+
+.post-title {
+  font-size: 2.5em !important;
+  font-weight: 300 !important;
+  color: var(--px-theme-clr) !important;
+  margin: 0 0 15px 0 !important;
+  line-height: 1.2 !important;
+}
+
+.post-meta {
+  display: flex !important;
+  gap: 20px !important;
+  font-size: 0.9em !important;
+  color: #666 !important;
+  font-family: 'Space Mono', monospace !important;
+}
+
+.post-meta span {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.post-featured-image {
+  margin: 30px 0 !important;
+  text-align: center !important;
+}
+
+.post-featured-image img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 4px !important;
+}
+
+.post-content {
+  font-size: 1.1em !important;
+  line-height: 1.8 !important;
+  color: var(--px-theme-clr) !important;
+}
+
+.post-content h2 {
+  font-size: 1.8em !important;
+  font-weight: 300 !important;
+  color: var(--px-theme-clr) !important;
+  margin: 40px 0 20px 0 !important;
+  border-bottom: 2px solid var(--px-theme-bg) !important;
+  padding-bottom: 10px !important;
+}
+
+.post-content h3 {
+  font-size: 1.4em !important;
+  font-weight: 400 !important;
+  color: var(--px-theme-clr) !important;
+  margin: 30px 0 15px 0 !important;
+}
+
+.post-content p {
+  margin: 0 0 20px 0 !important;
+}
+
+.post-content ul, .post-content ol {
+  margin: 20px 0 !important;
+  padding-left: 30px !important;
+}
+
+.post-content li {
+  margin: 8px 0 !important;
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--px-theme-bg) !important;
+  padding: 20px 30px !important;
+  margin: 30px 0 !important;
+  background: #f9f9f9 !important;
+  font-style: italic !important;
+  color: #666 !important;
+}
+
+.post-content blockquote p {
+  margin: 0 !important;
+}
+
+.post-navigation {
+  margin: 60px 0 40px 0 !important;
+  padding-top: 30px !important;
+  border-top: 1px solid #e0e0e0 !important;
+  text-align: center !important;
+}
+
+.nav-button {
+  background: var(--px-theme-bg) !important;
+  border: 1px solid var(--px-theme-bg) !important;
+  color: var(--px-theme-clr) !important;
+  padding: 14px 28px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Space Mono', monospace !important;
+  border-radius: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.nav-button:hover {
+  background: var(--px-theme-clr) !important;
+  border-color: var(--px-theme-clr) !important;
+  color: #fff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+.nav-button:active {
+  background: var(--px-theme-clr) !important;
+  border-color: var(--px-theme-clr) !important;
+  color: #fff !important;
+  transform: translateY(0px) scale(0.98) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
+  transition: all 0.1s ease !important;
+}
+
+.not-found {
+  text-align: center !important;
+  padding: 60px 20px !important;
+}
+
+.not-found p {
+  font-size: 1.2em !important;
+  color: #666 !important;
+  margin-bottom: 30px !important;
+}
+
+.back-button {
+  background: var(--px-theme-bg) !important;
+  border: none !important;
+  color: var(--px-theme-clr) !important;
+  padding: 12px 24px !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Space Mono', monospace !important;
+}
+
+.back-button:hover {
+  background: var(--px-theme-clr) !important;
+  color: #fff !important;
+}
+
+/* Portfolio页面图片响应式布局 */
+/* 默认布局：屏幕宽度960px以上，一行3张图片 */
+@media (min-width: 961px) {
+  .page#portfolio .portfolio-container li {
+    width: 33.33% !important;
+    float: left !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* 中等屏幕：屏幕宽度960px及以下，一行2张图片 */
+@media (max-width: 960px) and (min-width: 481px) {
+  .page#portfolio .portfolio-container li {
+    width: 50% !important;
+    float: left !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* 移动端：屏幕宽度480px及以下，一行1张图片 */
+@media (max-width: 480px) {
+  .page#portfolio .portfolio-container li {
+    width: 100% !important;
+    float: none !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Portfolio容器基本样式优化 */
+.page#portfolio .portfolio-container {
+  display: block !important;
+  width: 100% !important;
+  overflow: hidden !important; /* 清除浮动 */
+}
+
+.page#portfolio .portfolio-container li {
+  display: block !important;
+  position: relative !important;
+  list-style: none !important;
+  padding: 10px !important;
+  margin: 0 !important;
+}
+
+/* About页面内容可滚动设置 */
+.page#about .content {
+  overflow-y: auto !important;
+  max-height: calc(100vh - 80px) !important; /* 除去页签条高度 */
+  padding-right: 10px !important; /* 为滚动条留出空间 */
+}
+
+/* 自定义滚动条样式 */
+.page#about .content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.page#about .content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.page#about .content::-webkit-scrollbar-thumb {
+  background: var(--px-theme-clr);
+  border-radius: 3px;
+}
+
+.page#about .content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Design Skills部分skill-bar-wrapper垂直均匀分布 */
+.page#about #skills-content .c6:first-child {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+  min-height: 300px !important;
+}
+
+.page#about #skills-content .c6:first-child .skill-bar-wrapper {
+  flex: 1 !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+/* skills-content内的所有c6容器高度设置为100% */
+.page#about #skills-content .c6 {
+  height: 100% !important;
+}
+
+/* Design Skills标题与第一个skill-bar-wrapper的间距 */
+.page#about #skills-content .c6:first-child h4 {
+  margin-bottom: 12px !important;
+}
+
+  /* 02、03、04、05页面编号hover缩放效果 */
+  .page#about:not(.active) header:hover .title-number,
+  .page#portfolio:not(.active) header:hover .title-number,
+  .page#blog:not(.active) header:hover .title-number,
+  .page#contact:not(.active) header:hover .title-number {
+    transform: scale(2) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* 确保非hover状态下的过渡效果 */
+  .page#about .title-number,
+  .page#portfolio .title-number,
+  .page#blog .title-number,
+  .page#contact .title-number {
+    transition: transform 0.3s ease !important;
+  }
+
+/* 打字效果样式 */
+.write {
+  color: var(--px-theme-clr) !important;
+  font-weight: 400 !important;
+  display: inline-block !important;
+  min-width: 1ch !important; /* 确保至少有一个字符的宽度 */
+}
+
+.typed-cursor {
+  color: var(--px-theme-clr) !important;
+  font-weight: 400 !important;
+  animation: blink 1s infinite !important;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* 01页面背景图鼠标圆圈显示效果 */
+#home-background {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: url('/assets/img/background.jpg') center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  z-index: -1 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  
+  /* 创建遮罩层 */
+  mask: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    transparent 0%,
+    transparent 100%,
+    black 100%
+  ) !important;
+  -webkit-mask: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    transparent 0%,
+    transparent 100%,
+    black 100%
+  ) !important;
+}
+
+/* 当Home页面激活时显示背景 */
+.page#home.active #home-background {
+  opacity: 1 !important;
+  
+  /* 鼠标圆圈显示效果 - 优化为更丝滑的跟随效果 */
+  mask: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    black 100%,
+    transparent 100%
+  ) !important;
+  -webkit-mask: radial-gradient(
+    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    black 0%,
+    black 100%,
+    transparent 100%
+  ) !important;
+  
+  /* 启用GPU加速和优化渲染性能 */
+  transform: translateZ(0) !important;
+  will-change: mask, -webkit-mask !important;
+  
+  /* 添加平滑过渡效果，让圆圈跟随更丝滑 */
+  transition: mask 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              -webkit-mask 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  
+  /* 优化渲染层 */
+  backface-visibility: hidden !important;
+  perspective: 1000px !important;
+}
+
+/* 社交媒体图标尺寸设置 - 按照参考网站样式 */
+.page#home .social i.fab {
+  font-size: 25px !important;
+}
+
+/* 具体社交媒体图标尺寸 */
+.page#home .social .fa-facebook-f,
+.page#home .social .fa-twitter,
+.page#home .social .fa-instagram,
+.page#home .social .fa-linkedin-in {
+  font-size: 25px !important;
+}
+
+/* 社交媒体链接统一样式，不需要单独设置 */
+
+/* 社交媒体链接样式已按参考网站https://hueshadow.com/重新设计 */
+
+/* 隐藏01页面的page-title，展示logo */
+.page#home .page-title {
+  display: none !important;
+}
+
+.page#home .logo {
+  display: block !important;
+  position: absolute !important;
+  top: 10px !important; /* 与其他页面page-title的top值保持一致 */
+  left: 50% !important;
+  transform: translate(-50%, 0) !important; /* 只水平居中，不垂直居中 */
+  width: 80px !important;
+  height: 80px !important;
+  padding: 16px !important; /* 所有方向内边距为16px */
+  box-sizing: border-box !important;
+  z-index: 10 !important;
+}
+
+.page#home .logo img {
+  max-width: 100% !important;
+  max-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+  
+  /* 悬停效果 - 取消字符加粗 */
+  .page:not(.active) header:hover .title-number {
+    transform: scale(1.2);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  /* 页面内容 */
+  .page .content {
+    width: calc(100% - 80px);
+    float: right;
+    padding: 0px 80px 0px 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+    display: none;
+  }
+  
+  .page.active .content {
+    display: block;
+  }
+  
+  /* Home页面特殊样式 */
+  .page#home .content {
+    padding: 35px 70px;
+    position: relative;
+  }
+  
+  .page#home .content > div {
+    z-index: 1;
+    position: absolute;
+    bottom: 80px;
+    width: calc(100% - 140px);
+    left: 70px;
+  }
+  
+  /* Home页面背景 */
+  #home-background {
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    width: calc(100% - 160px);
+    height: calc(100% - 200px);
+    background: url('/assets/img/background.jpg') center center;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  
+  /* Home页面header特殊样式 */
+  .page#home header.home-header {
+    cursor: default;
+  }
+  
+  .page#home .logo {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+  }
+  
+  .page#home .logo img {
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .page#home .logo:hover img {
+    transform: scale(1.1);
+  }
+  
+  .page#home .social {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .page#home .social li {
+    font-size: 25px;
+    background-color: rgba(34,34,34,0);
+    text-align: center;
+    border-top: 1px solid var(--px-theme-clr);
+    transition: all 0.25s ease;
+    margin: 0;
+  }
+  
+  .page#home .social a {
+    color: var(--px-theme-clr);
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.25s ease;
+  }
+  
+  /* 社交媒体链接hover效果 - 严格按照参考网站样式 */
+  .page#home .social li:hover {
+    background-color: var(--px-theme-clr);
+  }
+  
+  .page#home .social li:hover a {
+    color: rgba(255,255,255,1);
+  }
+  
+  /* 页面加载延迟动画 */
+  .page:nth-child(1) header {
+    transition-delay: 0.0s;
+  }
+  .page:nth-child(2) header {
+    transition-delay: 0.1s;
+  }
+  .page:nth-child(3) header {
+    transition-delay: 0.2s;
+  }
+  .page:nth-child(4) header {
+    transition-delay: 0.3s;
+  }
+  .page:nth-child(5) header {
+    transition-delay: 0.4s;
+  }
+  .page:nth-child(6) header {
+    transition-delay: 0.5s;
+  }
+  
+  /* Blog页面特殊样式（遵循通用布局，保留页签条可见） */
+  /* blog-header已清除 */
+
+  .page#blog .content {
+    padding-top: 0px;
+  }
+
+  .page#blog.active .content {
+    display: block !important;
+    opacity: 1 !important;
+  }
+}
+
+/* 移动端页面布局 - 全屏上下滚动 */
+@media (max-width: 960px) {
+  /* 移动端：重置html和body以允许滚动 */
+  html {
+    overflow: auto !important;
+    height: auto !important;
+  }
+  
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+  }
+  
+  /* 移动端：所有页面垂直滚动布局 */
+  main {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  .page {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    float: none !important;
+    position: relative !important;
+  }
+  
+  /* 所有页面内容都显示，不再使用active状态控制 */
+  .page .content {
+    display: block !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    float: none !important;
+    padding: 35px 40px !important;
+    min-height: calc(100vh - 70px) !important;
+  }
+  
+  /* 强制显示所有页面，覆盖active状态控制 */
+  .page:not(.active) .content {
+    display: block !important;
+    opacity: 1 !important;
+  }
+  
+  /* 移动端隐藏所有页面header（导航条） */
+  .page header {
+    display: none !important;
+  }
+  
+  /* 移动端隐藏所有page-title */
+  .page .page-title {
+    display: none !important;
+  }
+  
+  /* 首页特殊布局 - 左右分栏 */
+  .page#home {
+    display: flex !important;
+    flex-direction: row !important;
+    min-height: 100vh !important;
+  }
+  
+  /* 首页header在移动端显示，左侧固定定位 */
+  .page#home header {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    width: 80px !important;
+    height: 100vh !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1000 !important;
+    background: #fafafa !important;
+  }
+  
+  /* 其他页面（02-05）移动端样式 */
+  .page#about,
+  .page#portfolio, 
+  .page#blog,
+  .page#contact {
+    border-top: 1px solid #e0e0e0 !important;
+    background: #fff !important;
+  }
+  
+  .page#about .content,
+  .page#portfolio .content,
+  .page#blog .content,
+  .page#contact .content {
+    padding: 40px 20px 40px 100px !important;
+    min-height: 100vh !important;
+  }
+  
+  /* 页面标识已移除，保持简洁的移动端设计 */
+  
+  /* Blog页面特殊处理 */
+  .page#blog .content {
+    padding-top: 40px !important;
+  }
+  
+  /* 移动端blog-post宽度和padding调整 */
+  .blog-post {
+    width: 90% !important;
+    max-width: 90% !important;
+    padding: 0 20px !important;
+  }
+  
+  /* 移动端返回按钮调整 */
+  .page#blog .page-header .back-to-blog {
+    right: 20px !important;
+    top: 20px !important;
+    transform: none !important;
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+  }
+  
+  .page#blog .page-header .back-to-blog:hover {
+    transform: translateX(-1px) !important;
+  }
+  
+  .page#blog .page-header .back-to-blog:active {
+    transform: translateX(0px) scale(0.98) !important;
+  }
+  
+  /* 移动端首页content内容布局调整 - 为固定header留出空间 */
+  .page#home .content {
+    width: calc(100% - 80px) !important;
+    margin-left: 80px !important;
+    padding: 20px !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+    align-items: flex-start !important;
+    overflow-y: auto !important;
+  }
+  
+  .page#home .content > div {
+    position: static !important;
+    width: 100% !important;
+    left: auto !important;
+    bottom: auto !important;
+    z-index: 1 !important;
+    text-align: left !important;
+    padding-bottom: 40px !important;
+  }
+  
+  /* 移动端首页背景调整 */
+  #home-background {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* 移动端首页header内元素定位 - 参考hueshadow.com */
+  .page#home .logo {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 15px 10px !important;
+    text-align: center !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
+    border-top: none !important;
+  }
+  
+  .page#home .logo img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain !important;
+  }
+  
+  .page#home .social {
+    position: static !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+    left: auto !important;
+    bottom: auto !important;
+    list-style: none !important;
+  }
+  
+  /* 移动端社交媒体样式调整 */
+  .page#home .social li {
+    font-size: 16px !important;
+    margin: 0 !important;
+    border-top: 1px solid var(--px-theme-clr) !important;
+    background-color: rgba(34,34,34,0) !important;
+    text-align: center !important;
+    transition: all 0.25s ease !important;
+  }
+  
+  .page#home .social li a {
+    padding: 15px 0 !important;
+    display: block !important;
+    color: var(--px-theme-clr) !important;
+    width: 100% !important;
+    height: 100% !important;
+    transition: all 0.25s ease !important;
+  }
+  
+  .page#home .social i.fab {
+    font-size: 16px !important;
+  }
+  
+  /* 移动端社交媒体hover效果 */
+  .page#home .social li:hover {
+    background-color: var(--px-theme-clr) !important;
+  }
+  
+  .page#home .social li:hover a {
+    color: rgba(255,255,255,1) !important;
+  }
+}
+
+/* 优化鼠标跟踪器性能 */
+.mouse {
+  /* 启用GPU加速 */
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+  
+  /* 优化渲染性能 */
+  backface-visibility: hidden !important;
+  
+  /* 添加平滑过渡效果 */
+  transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.mouse.regular {
+  /* 确保使用transform而不是left/top */
+  left: 0 !important;
+  top: 0 !important;
+}
+
+/* 桌面端导航菜单 - 手风琴布局下隐藏 */
+.desktop-nav {
+  display: none !important;
+}
+
+.desktop-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.desktop-nav li {
+  margin: 15px 0;
+}
+
+.desktop-nav a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  text-indent: -9999px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 1);
+  transform: scale(1.2);
+}
+
+.desktop-nav .nav-text {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  text-indent: 0;
+}
+
+.desktop-nav a:hover .nav-text {
+  opacity: 1;
+}
+
+/* Slider 组件样式 */
+.slider-container {
+  position: relative;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slider-item {
+  min-width: 100%;
+  flex-shrink: 0;
+}
+
+/* About 页面轮播控制按钮 */
+.about-slider-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.about-slider-controls span {
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  float: left;
+  margin-right: 2px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid var(--px-theme-clr);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  color: var(--px-theme-clr);
+}
+
+.about-slider-controls span:hover {
+  background: var(--px-theme-clr);
+  color: #fff;
+}
+
+/* 证言轮播控制按钮 */
+.testomonial-slider-controls {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+}
+
+.testomonial-slider-controls span {
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  float: left;
+  margin-right: 2px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid var(--px-theme-clr);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  color: var(--px-theme-clr);
+}
+
+.testomonial-slider-controls span:hover {
+  background: var(--px-theme-clr);
+  color: #fff;
+}
+
+/* 幻灯片编号样式 */
+.slide-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  position: absolute;
+  bottom: 20px;
+  right: 80px;
+  text-align: right;
+  margin: 0;
+  color: var(--px-theme-clr);
+}
+
+/* Lightbox 补充样式 */
+.mfp-bg {
+  backdrop-filter: blur(2px);
+}
+
+.mfp-close {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.mfp-close:hover {
+  opacity: 1;
+}
+
+/* 技能条动画增强 */
+.skill-bar.enabled {
+  transition: width 1000ms cubic-bezier(0.69, -0.06, 0.29, 0.82);
+}
+
+/* 作品集过滤器增强 */
+.portfolio-filter li {
+  transition: all 0.2s ease;
+}
+
+.portfolio-filter li:hover {
+  transform: translateY(-2px);
+}
+
+/* Portfolio hover 蒙层透明度设置 */
+/* 默认状态 - 85%透明度（15%不透明度） */
+.imghvr-shutter-in-out-diag-2 figcaption {
+  background-color: rgba(34, 34, 34, 0.15) !important;
+}
+
+/* 悬停状态 - 75%透明度（25%不透明度） */
+.imghvr-shutter-in-out-diag-2:hover figcaption {
+  background-color: rgba(34, 34, 34, 0.25) !important;
+}
+
+/* Portfolio 操作按钮样式 */
+.portfolio-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.imghvr-shutter-in-out-diag-2:hover .portfolio-actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.detail-btn,
+.zoom-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1;
+}
+
+.detail-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--px-theme-clr);
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  border-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 移动端优化 */
+@media (max-width: 960px) {
+  .portfolio-actions {
+    opacity: 1;
+    transform: translateY(0);
+    gap: 10px;
+  }
+  
+  .detail-btn,
+  .zoom-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* 小屏幕进一步优化 */
+@media (max-width: 480px) {
+  .portfolio-actions {
+    gap: 8px;
+  }
+  
+  .detail-btn,
+  .zoom-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+}
+
+/* Portfolio 详情页样式 */
+.portfolio-detail-container {
+  padding: 40px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #fafafa;
+  position: relative;
+  z-index: 1000;
+}
+
+/* 详情页时隐藏手风琴布局 */
+body.detail-page main {
+  display: none !important;
+}
+
+body.detail-page .desktop-nav,
+body.detail-page .mobile-nav {
+  display: none !important;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.back-button {
+  background: transparent;
+  border: 1px solid var(--px-theme-clr);
+  color: var(--px-theme-clr);
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-button:hover {
+  background: var(--px-theme-clr);
+  color: #fff;
+}
+
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.category-badge {
+  background: var(--px-theme-clr);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-date {
+  color: #666;
+  font-size: 14px;
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.detail-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.detail-info {
+  padding: 20px 0;
+}
+
+.detail-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--px-theme-clr);
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.detail-info h3 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--px-theme-clr);
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.detail-info h3:first-of-type {
+  margin-top: 0;
+}
+
+.detail-description p {
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 0;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  background: #f0f0f0;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  background: #e0e0e0;
+  border-color: #ccc;
+}
+
+.link-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--px-theme-clr);
+  color: var(--px-theme-clr);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.link-button:hover {
+  background: var(--px-theme-clr);
+  color: #fff;
+}
+
+.github-link {
+  border-color: #333;
+  color: #333;
+}
+
+.github-link:hover {
+  background: #333;
+  color: #fff;
+}
+
+/* 响应式设计 */
+@media (max-width: 960px) {
+  .portfolio-detail-container {
+    padding: 20px;
+  }
+  
+  .detail-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .detail-meta {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+  
+  .detail-title {
+    font-size: 2rem;
+  }
+  
+  .link-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-detail-container {
+    padding: 15px;
+  }
+  
+  .detail-title {
+    font-size: 1.8rem;
+  }
+  
+  .back-button,
+  .link-button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+/* 响应式优化 */
+@media (max-width: 960px) {
+  .about-slider-controls,
+  .slide-number {
+    display: none;
+  }
+  
+  .testomonial-slider-controls {
+    left: 20px;
+    right: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .slider-controls span {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+  }
+}
