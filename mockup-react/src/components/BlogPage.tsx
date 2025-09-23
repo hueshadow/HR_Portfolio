@@ -21,37 +21,6 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
   return (
     <section className={`page active fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog">
       <div id="map" style={{ display: 'none' }}></div>
-      
-      <header>
-        <span className="toggle-nav"><i></i></span>
-        <div className="logo-page">
-          <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('home') }}>
-            <img src="/assets/img/logo.png" alt="Logo" />
-          </a>
-        </div>
-        <ul className="social">
-          <li>
-            <a href="#" aria-label="Facebook">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="Instagram">
-              <i className="fab fa-instagram"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#" aria-label="LinkedIn">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-          </li>
-        </ul>
-      </header>
 
       <div className="content grid">
         <div className="page-header c12">
