@@ -19,51 +19,45 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
   ]
 
   return (
-    <section className={`page fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog">
-      <div id="map" style={{ display: 'none' }}></div>
+    <div className="content">
+      <div className="page-header c12">
+        <h1 data-value="Project description">Project description</h1>
+        <span className="toggle-sidebar" onClick={onToggleSidebar}>
+          <i></i>
+        </span>
+        <hr className={loaded ? 'enabled' : ''} />
+      </div>
+
+      <div className="blog-recent-post-item row c12 end">
+        <a className="recent-post-img" href="#">
+          <img src="/assets/img/blog1.jpg" alt="用户体验全流程（编辑中）" />
+          <span className="date">
+            <span className="day">25</span>
+            August 2025
+          </span>
+        </a>
+        <h2 className="gamma entry-title">
+          <a href="#">用户体验全流程（编辑中）</a>
+        </h2>
+        <p>"真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。" —— Ronn</p>
+        <div className="entry-meta">
+          <span>By Admin</span>
+          <span>
+            <time className="entry-date">2025/8/25</time>
+          </span>
+          <span className="cat-links">未分类</span>
+          <a className="readmore" href="#">Read more</a>
+        </div>
+      </div>
 
       <div className="content">
-        <div className="page-header c12">
-          <h1 data-value="Project description">Project description</h1>
-          <span className="toggle-sidebar" onClick={onToggleSidebar}>
-            <i></i>
-          </span>
-          <hr className={loaded ? 'enabled' : ''} />
-        </div>
-
-        {blogPosts.map(post => (
-          <div key={post.id} className="blog-recent-post-item row c12 end">
-            <a className="recent-post-img" href="#">
-              <img src={post.image} alt={post.title} />
-              <span className="date">
-                <span className="day">{new Date(post.date).getDate()}</span>
-                {new Date(post.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-              </span>
-            </a>
-            <h2 className="gamma entry-title">
-              <a href="#">{post.title}</a>
-            </h2>
-            <p>{post.excerpt}</p>
-            <div className="entry-meta">
-              <span>By {post.author}</span>
-              <span>
-                <time className="entry-date">{new Date(post.date).toLocaleDateString()}</time>
-              </span>
-              <span className="cat-links">{post.category}</span>
-              <a className="readmore" href="#">Read more</a>
-            </div>
-          </div>
-        ))}
-
         <div id="sidebar">
           <aside>
             <h6>Recent Posts</h6>
             <ul>
-              {blogPosts.slice(0, 3).map(post => (
-                <li key={post.id}>
-                  <a href="#">{post.title}</a>
-                </li>
-              ))}
+              <li>
+                <a href="#">用户体验全流程（编辑中）</a>
+              </li>
             </ul>
           </aside>
           <aside>
@@ -89,7 +83,7 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
           </div>
         </footer>
       </div>
-    </section>
+    </div>
   )
 }
 

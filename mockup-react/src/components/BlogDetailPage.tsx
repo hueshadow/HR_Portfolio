@@ -42,57 +42,53 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
 
   if (!post) {
     return (
-      <section className={`page fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog-detail">
-        <div className="content">
-          <div className="page-header c12">
-            <h1>文章未找到</h1>
-            <hr className={loaded ? 'enabled' : ''} />
-          </div>
-          <div className="c12">
-            <p>抱歉，请求的博客文章不存在。</p>
-            <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
-              返回博客列表
-            </a>
-          </div>
+      <div className="content">
+        <div className="page-header c12">
+          <h1>文章未找到</h1>
+          <hr className={loaded ? 'enabled' : ''} />
         </div>
-      </section>
+        <div className="c12">
+          <p>抱歉，请求的博客文章不存在。</p>
+          <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
+            返回博客列表
+          </a>
+        </div>
+      </div>
     )
   }
 
   return (
-    <section className={`page fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog-detail">
-      <div id="map" style={{ display: 'none' }}></div>
+    <div className="content">
+      <div className="page-header c12">
+        <h1 data-value="Project description">Project description</h1>
+        <hr className={loaded ? 'enabled' : ''} />
+      </div>
 
-      <div className="content">
-        <div className="page-header c12">
-          <h1 data-value="Project description">Project description</h1>
-          <hr className={loaded ? 'enabled' : ''} />
-        </div>
-
-        <article className="blog-detail-post c12">
-          <div className="blog-post-header">
-            <img src={post.image} alt={post.title} className="blog-detail-image" />
-            <div className="blog-post-meta">
-              <h1 className="blog-detail-title">{post.title}</h1>
-              <div className="entry-meta">
-                <span>By {post.author}</span>
-                <span>
-                  <time className="entry-date">{new Date(post.date).toLocaleDateString()}</time>
-                </span>
-                <span className="cat-links">{post.category}</span>
-              </div>
+      <article className="blog-detail-post c12">
+        <div className="blog-post-header">
+          <img src={post.image} alt={post.title} className="blog-detail-image" />
+          <div className="blog-post-meta">
+            <h1 className="blog-detail-title">{post.title}</h1>
+            <div className="entry-meta">
+              <span>By {post.author}</span>
+              <span>
+                <time className="entry-date">{new Date(post.date).toLocaleDateString()}</time>
+              </span>
+              <span className="cat-links">{post.category}</span>
             </div>
           </div>
+        </div>
 
-          <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
 
-          <div className="blog-post-footer">
-            <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
-              ← 返回博客列表
-            </a>
-          </div>
-        </article>
+        <div className="blog-post-footer">
+          <a href="#" onClick={(e) => { e.preventDefault(); onPageChange('blog') }} className="readmore">
+            ← 返回博客列表
+          </a>
+        </div>
+      </article>
 
+      <div className="content">
         <footer>
           <div className="footer-inner clearfix">
             <div className="copyright">© 2025 Content update by Ronn Huang. All Rights Reserved.</div>
@@ -104,7 +100,7 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
           </div>
         </footer>
       </div>
-    </section>
+    </div>
   )
 }
 
