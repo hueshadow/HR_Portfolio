@@ -22,7 +22,7 @@ const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPagePro
     <section className={`page active fullwidth ${active ? 'active' : ''} ${loaded ? 'loaded' : ''}`} id="blog">
       <div id="map" style={{ display: 'none' }}></div>
 
-      <div className="content grid">
+      <div className="content">
         <div className="page-header c12">
           <h1 data-value="Project description">Project description</h1>
           <span className="toggle-sidebar" onClick={onToggleSidebar}>
