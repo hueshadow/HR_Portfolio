@@ -1,0 +1,11 @@
+[build]
+  publish = "mockup-react/dist"
+  command = "cd mockup-react && npm install && vite build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
