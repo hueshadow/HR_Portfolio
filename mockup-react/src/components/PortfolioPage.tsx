@@ -162,7 +162,6 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            padding-top: 20px;
           }
 
           .protect-image img {
