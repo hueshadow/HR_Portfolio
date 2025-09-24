@@ -236,8 +236,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: 'flex',
             gap: '40px',
             alignItems: 'center',
-            borderTop: '1px solid #e0e0e0',
-            paddingTop: '40px'
+            borderTop: '1px solid #000000',
+            paddingTop: '16px'
           }}>
             <div style={{
               flex: '4',
@@ -285,8 +285,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               <div style={{
                 display: 'flex',
                 gap: '15px',
-                marginTop: '30px',
-                justifyContent: 'center'
+                marginTop: '30px'
               }}>
                 <button style={{
                   background: '#000000',
@@ -297,7 +296,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                   fontWeight: '500',
                   cursor: 'pointer',
                   borderRadius: '0',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}>
                   查看详情
                 </button>
@@ -311,7 +313,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                   fontWeight: '500',
                   cursor: 'pointer',
                   borderRadius: '0',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}>
                   在线预览
                 </button>
