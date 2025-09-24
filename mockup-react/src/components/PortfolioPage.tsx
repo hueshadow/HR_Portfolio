@@ -158,6 +158,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           .protect-image {
             flex: 4 1 0%;
             text-align: center;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
           .protect-image img {
@@ -165,6 +169,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             max-width: 400px;
             height: 100%;
             border-radius: 0;
+            object-fit: cover;
           }
 
           .protect-discribe {
