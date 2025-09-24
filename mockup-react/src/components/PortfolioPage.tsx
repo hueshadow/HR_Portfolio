@@ -222,23 +222,14 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <h2 style={{
             position: 'relative',
             textAlign: 'left',
-            marginBottom: '60px',
+            marginBottom: '48px',
             fontSize: '32px',
             fontWeight: '600',
-            color: '#333',
+            color: '#000000',
             width: '100%',
-            paddingBottom: '30px'
+            paddingBottom: '24px'
           }}>
             项目介绍
-            <hr style={{
-              position: 'absolute',
-              bottom: '0',
-              left: '0',
-              width: '100%',
-              border: '0',
-              borderTop: '1px solid var(--px-theme-clr)',
-              margin: '0'
-            }} />
           </h2>
 
           <div style={{
