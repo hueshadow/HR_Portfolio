@@ -20,7 +20,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
   const { animateCaption } = usePortfolioCaptionAnimation()
 
   const portfolioItems = [
-    { id: 1, category: 'image', title: '华为云', image: '/assets/img/portfolio/1.jpg', thumb: '/assets/img/portfolio/1_s.jpg' },
+    { id: 1, category: 'image', title: '华为云', image: '/assets/img/portfolio/1.jpg', thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg' },
     { id: 2, category: 'image', title: '华为分析', image: '/assets/img/portfolio/2.jpg', thumb: '/assets/img/portfolio/2_s.jpg' },
     { id: 3, category: 'image', title: '火柴盒', image: '/assets/img/portfolio/3.jpg', thumb: '/assets/img/portfolio/3_s.jpg' },
     { id: 4, category: 'image', title: 'Business Connect', image: '/assets/img/portfolio/4.jpg', thumb: '/assets/img/portfolio/4_s.jpg' },

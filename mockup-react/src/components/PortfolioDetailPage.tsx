@@ -29,7 +29,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       category: 'image',
       title: '华为云',
       image: '/assets/img/portfolio/1.jpg',
-      thumb: '/assets/img/portfolio/1_s.jpg',
+      thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
       description: '华为云官网设计项目，专注于云计算服务的用户体验设计。通过现代化的设计语言和直观的交互界面，为企业用户提供清晰的云服务导航和产品展示。项目涵盖了从信息架构到视觉设计的完整流程。',
       technologies: ['UI/UX Design', 'Figma', 'Prototyping', 'User Research'],
       projectDate: '2024年3月',
