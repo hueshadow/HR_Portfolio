@@ -258,6 +258,15 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               flex: '6',
               color: '#555'
             }}>
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: '600',
+                color: '#000000',
+                marginBottom: '20px',
+                marginTop: '0'
+              }}>
+                设计理念
+              </h3>
               <p style={{
                 fontSize: '16px',
                 lineHeight: '1.8',
