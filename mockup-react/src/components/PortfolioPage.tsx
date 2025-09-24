@@ -232,7 +232,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             PROTECT
           </h2>
 
-          <div style={{
+          <div className="protect-content" style={{
             display: 'flex',
             gap: '40px',
             alignItems: 'center',
