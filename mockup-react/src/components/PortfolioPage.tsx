@@ -166,6 +166,55 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             height: 100%;
             border-radius: 0;
           }
+
+          .protect-discribe {
+            flex: 6 1 0%;
+            color: rgb(85, 85, 85);
+          }
+
+          .protect-discribe h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: rgb(0, 0, 0);
+            margin-bottom: 20px;
+            margin-top: 0px;
+          }
+
+          .protect-discribe p {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+          }
+
+          .protect-discribe .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+          }
+
+          .protect-discribe .detail-btn,
+          .protect-discribe .preview-btn {
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 0px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgb(0, 0, 0);
+          }
+
+          .protect-discribe .detail-btn {
+            background: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+          }
+
+          .protect-discribe .preview-btn {
+            background: transparent;
+            color: rgb(0, 0, 0);
+          }
         `}</style>
         <div className="page-header c12">
           <h1 data-value="PROTECT">PROTECT</h1>
@@ -259,63 +308,20 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               />
             </div>
 
-            <div style={{
-              flex: '6',
-              color: '#555'
-            }}>
-              <h3 style={{
-                fontSize: '24px',
-                fontWeight: '600',
-                color: '#000000',
-                marginBottom: '20px',
-                marginTop: '0'
-              }}>
-                设计理念
+            <div className="protect-discribe">
+              <h3>
+                Design Concept
               </h3>
-              <p style={{
-                fontSize: '24px',
-                lineHeight: '1.6',
-                marginBottom: '20px'
-              }}>
+              <p>
                 This is a comprehensive design project showcase platform that brings together creative works from various fields. Each project has been carefully designed, embodying the perfect combination of modern design concepts and practicality. We are committed to providing clients with innovative visual solutions, transforming abstract concepts into concrete visual expressions through professional design thinking and technical implementation.
               </p>
 
-              <div style={{
-                display: 'flex',
-                gap: '15px',
-                marginTop: '30px'
-              }}>
-                <button style={{
-                  background: '#000000',
-                  color: '#ffffff',
-                  border: '1px solid #000000',
-                  padding: '10px 24px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  borderRadius: '0',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
+              <div className="button-group">
+                <button className="detail-btn">
                   查看详情
                 </button>
 
-                <button style={{
-                  background: 'transparent',
-                  color: '#000000',
-                  border: '1px solid #000000',
-                  padding: '10px 24px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  borderRadius: '0',
-                  transition: 'all 0.3s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
+                <button className="preview-btn">
                   在线预览
                 </button>
               </div>
