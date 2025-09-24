@@ -249,9 +249,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                 style={{
                   width: '100%',
                   maxWidth: '400px',
-                  height: 'auto',
-                  borderRadius: '0',
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                  height: '100%',
+                  borderRadius: '0'
                 }}
               />
             </div>
@@ -286,7 +285,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               <div style={{
                 display: 'flex',
                 gap: '15px',
-                marginTop: '30px'
+                marginTop: '30px',
+                justifyContent: 'center'
               }}>
                 <button style={{
                   background: '#000000',
