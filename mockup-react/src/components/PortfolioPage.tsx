@@ -192,7 +192,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             color: rgb(0, 0, 0);
             margin-bottom: 20px;
             margin-top: 0px;
-            align-self: flex-start;
+            text-align: left;
             padding: 0;
           }
 
@@ -200,7 +200,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             font-size: 14px;
             color: rgb(0, 0, 0);
             margin-top: auto;
-            align-self: flex-end;
+            text-align: left;
           }
 
           .protect-discribe p {
