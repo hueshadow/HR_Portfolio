@@ -263,7 +263,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                 Design Concept
               </h3>
               <p>
-                Each project has been carefully designed, embodying the perfect combination of modern design concepts and practicality.
+                EACH PROJECT HAS BEEN CAREFULLY DESIGNED, EMBODYING THE PERFECT COMBINATION OF MODERN DESIGN CONCEPTS AND PRACTICALITY.
               </p>
 
               <div className="button-group">
