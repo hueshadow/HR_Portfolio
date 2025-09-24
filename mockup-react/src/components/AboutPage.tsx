@@ -92,7 +92,7 @@ const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPagePro
     {
       id: 1,
       content: (
-        <div style={{ width: '500px', height: '500px', margin: '0 auto' }}>
+        <div style={{ width: '500px', aspectRatio: '1/1', margin: '0 auto' }}>
           <video
             src="https://photosave.net/2025/09/39e9be97da2f52a29a639b2d83aed0d9.mp4"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
