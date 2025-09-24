@@ -44,6 +44,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '华为数据分析平台的界面设计，为企业提供数据可视化和商业智能解决方案。设计重点在于复杂数据的清晰呈现和高效的用户操作流程，确保用户能够快速获取关键业务洞察。',
       technologies: ['Data Visualization', 'Dashboard Design', 'Sketch', 'User Testing'],
       projectDate: '2024年1月',
+      projectUrl: 'https://www.huaweicloud.com',
     },
     {
       id: 3,
@@ -54,6 +55,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '火柴盒创意设计项目，探索传统物品的现代化设计理念。通过简约而富有创意的视觉表达，重新诠释日常用品的美学价值，体现设计在生活中的无限可能。',
       technologies: ['Creative Design', 'Adobe Creative Suite', 'Concept Development'],
       projectDate: '2023年11月',
+      projectUrl: 'https://www.huaweicloud.com',
     },
     {
       id: 4,
@@ -64,6 +66,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: 'Business Connect 是一个企业级协作平台的设计项目，旨在提升团队沟通效率和项目管理能力。设计注重用户体验的连贯性和功能的易用性，为现代企业提供全方位的数字化解决方案。',
       technologies: ['Enterprise UX', 'Collaboration Tools', 'Wireframing', 'Usability Testing'],
       projectDate: '2023年9月',
+      projectUrl: 'https://www.huaweicloud.com',
       githubUrl: 'https://github.com/example/business-connect'
     },
     {
@@ -75,6 +78,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '品牌宣传视频制作项目，通过动态视觉和创意叙事展示品牌价值。项目涵盖了从概念策划到后期制作的完整视频制作流程，为客户打造具有影响力的视觉内容。',
       technologies: ['Video Production', 'Motion Graphics', 'After Effects', 'Premiere Pro'],
       projectDate: '2023年8月',
+      projectUrl: 'https://www.huaweicloud.com',
     },
     {
       id: 6,
@@ -85,6 +89,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '产品演示视频设计，专注于清晰地展示产品功能和用户操作流程。通过精心设计的动画效果和流畅的镜头语言，帮助用户快速理解产品价值和使用方法。',
       technologies: ['Product Demo', 'Animation', 'Storytelling', 'Video Editing'],
       projectDate: '2023年7月',
+      projectUrl: 'https://www.huaweicloud.com',
     }
   ]
 
