@@ -286,16 +286,21 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           ))}
         </ul>
 
+        <h2 className="h2-title" style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          paddingLeft: '20px',
+          paddingRight: '20px'
+        }}>
+          PROTECT
+        </h2>
+
         <div className="info-section" style={{
           padding: '0 20px 60px',
           maxWidth: '1200px',
           margin: '0 auto',
           background: '#f8f9fa'
         }}>
-          <h2 className="h2-title">
-            PROTECT
-          </h2>
-
           <div className="protect-content" style={{
             display: 'flex',
             gap: '40px',
