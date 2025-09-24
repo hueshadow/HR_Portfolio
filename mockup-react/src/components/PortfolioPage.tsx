@@ -259,7 +259,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <div className="protect-content" style={{
             display: 'flex',
             gap: '40px',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             paddingTop: '0',
             paddingBottom: '40px',
             borderBottom: '1px solid #000000'
