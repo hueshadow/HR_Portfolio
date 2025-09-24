@@ -248,7 +248,6 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: 'flex',
             gap: '40px',
             alignItems: 'center',
-            borderTop: '1px solid #000000',
             paddingTop: '16px'
           }}>
             <div className="protect-image">
