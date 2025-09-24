@@ -162,6 +162,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: flex;
             align-items: flex-start;
             justify-content: center;
+            margin: 0;
+            padding: 0;
           }
 
           .protect-image img {
@@ -170,11 +172,16 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             height: 100%;
             border-radius: 0;
             object-fit: cover;
+            margin: 0;
+            padding: 0;
+            display: block;
           }
 
           .protect-discribe {
             flex: 6 1 0%;
             color: rgb(85, 85, 85);
+            margin: 0;
+            padding: 0;
           }
 
           .protect-discribe h3 {
@@ -184,6 +191,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             margin-bottom: 20px;
             margin-top: 0px;
             align-self: flex-start;
+            padding: 0;
           }
 
           .protect-discribe p {
