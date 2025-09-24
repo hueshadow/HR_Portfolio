@@ -160,8 +160,9 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             text-align: center;
             height: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            padding-top: 20px;
           }
 
           .protect-image img {
