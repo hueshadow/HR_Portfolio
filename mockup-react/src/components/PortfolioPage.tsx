@@ -262,7 +262,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                 Design Concept
               </h3>
               <p>
-                This is a comprehensive design project showcase platform that brings together creative works from various fields. Each project has been carefully designed, embodying the perfect combination of modern design concepts and practicality. We are committed to providing clients with innovative visual solutions, transforming abstract concepts into concrete visual expressions through professional design thinking and technical implementation.
+                Each project has been carefully designed, embodying the perfect combination of modern design concepts and practicality.
               </p>
 
               <div className="button-group">
