@@ -229,7 +229,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             width: '100%',
             paddingBottom: '24px'
           }}>
-            项目介绍
+            PROTECT
           </h2>
 
           <div style={{
