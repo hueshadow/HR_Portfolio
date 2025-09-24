@@ -93,7 +93,15 @@ const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPagePro
       id: 1,
       content: (
         <div>
-          <img src="/assets/img/slide1.jpg" alt="About slide 1" style={{ width: '100%' }} />
+          <video
+            src="https://photosave.net/2025/09/8051431e72bf64a1547a28aff973b7cc.mp4"
+            style={{ width: '100%' }}
+            muted
+            loop
+            autoPlay
+            playsInline
+            title="About slide 1"
+          />
         </div>
       )
     }
