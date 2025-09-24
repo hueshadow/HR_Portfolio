@@ -260,7 +260,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
 
             <div className="protect-discribe">
               <h3>
-                Design Concept
+                EACH PROJECT HAS BEEN CAREFULLY DESIGNED, EMBODYING THE PERFECT COMBINATION OF MODERN DESIGN CONCEPTS AND PRACTICALITY
               </h3>
             </div>
           </div>
