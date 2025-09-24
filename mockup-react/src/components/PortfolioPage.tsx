@@ -213,6 +213,65 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           ))}
         </ul>
 
+        <div className="info-section" style={{
+          padding: '60px 20px',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          background: '#f8f9fa'
+        }}>
+          <h2 style={{
+            textAlign: 'center',
+            marginBottom: '40px',
+            fontSize: '32px',
+            fontWeight: '600',
+            color: '#333'
+          }}>
+            项目介绍
+          </h2>
+
+          <div style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'center'
+          }}>
+            <div style={{
+              flex: '4',
+              textAlign: 'center'
+            }}>
+              <img
+                src="https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg"
+                alt="项目展示"
+                style={{
+                  width: '100%',
+                  maxWidth: '400px',
+                  height: 'auto',
+                  borderRadius: '8px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                }}
+              />
+            </div>
+
+            <div style={{
+              flex: '6',
+              color: '#555'
+            }}>
+              <p style={{
+                fontSize: '16px',
+                lineHeight: '1.8',
+                marginBottom: '20px'
+              }}>
+                这是一个综合性的设计项目展示平台，汇集了多个领域的创意作品。每个项目都经过精心设计，体现了现代设计理念与实用性的完美结合。我们致力于为客户提供创新的视觉解决方案，通过专业的设计思维和技术实现，将抽象的概念转化为具体的视觉表达。
+              </p>
+              <p style={{
+                fontSize: '16px',
+                lineHeight: '1.8'
+              }}>
+                平台涵盖了企业级应用设计、品牌视觉设计、用户界面设计等多个领域。每个项目都遵循严格的设计标准和质量控制流程，确保最终交付的作品能够满足客户的需求并超越期望。我们相信好的设计不仅美观，更能为企业创造实际价值。
+              </p>
+            </div>
+          </div>
+        </div>
+
       <ImagePreview
         isOpen={previewOpen}
         imageSrc={previewImage}
