@@ -269,17 +269,11 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                 设计理念
               </h3>
               <p style={{
-                fontSize: '16px',
-                lineHeight: '1.8',
+                fontSize: '24px',
+                lineHeight: '1.6',
                 marginBottom: '20px'
               }}>
-                这是一个综合性的设计项目展示平台，汇集了多个领域的创意作品。每个项目都经过精心设计，体现了现代设计理念与实用性的完美结合。我们致力于为客户提供创新的视觉解决方案，通过专业的设计思维和技术实现，将抽象的概念转化为具体的视觉表达。
-              </p>
-              <p style={{
-                fontSize: '16px',
-                lineHeight: '1.8'
-              }}>
-                平台涵盖了企业级应用设计、品牌视觉设计、用户界面设计等多个领域。每个项目都遵循严格的设计标准和质量控制流程，确保最终交付的作品能够满足客户的需求并超越期望。我们相信好的设计不仅美观，更能为企业创造实际价值。
+                This is a comprehensive design project showcase platform that brings together creative works from various fields. Each project has been carefully designed, embodying the perfect combination of modern design concepts and practicality. We are committed to providing clients with innovative visual solutions, transforming abstract concepts into concrete visual expressions through professional design thinking and technical implementation.
               </p>
 
               <div style={{
