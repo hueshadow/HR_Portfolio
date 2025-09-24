@@ -33,7 +33,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '华为云官网设计项目，专注于云计算服务的用户体验设计。通过现代化的设计语言和直观的交互界面，为企业用户提供清晰的云服务导航和产品展示。项目涵盖了从信息架构到视觉设计的完整流程。',
       technologies: ['UI/UX Design', 'Figma', 'Prototyping', 'User Research'],
       projectDate: '2024年3月',
-      projectUrl: 'https://www.huaweicloud.com'
+      projectUrl: 'https://hwcloud.netlify.app/'
     },
     {
       id: 2,
