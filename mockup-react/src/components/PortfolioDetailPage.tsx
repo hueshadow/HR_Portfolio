@@ -66,7 +66,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: 'Business Connect 是一个企业级协作平台的设计项目，旨在提升团队沟通效率和项目管理能力。设计注重用户体验的连贯性和功能的易用性，为现代企业提供全方位的数字化解决方案。',
       technologies: ['Enterprise UX', 'Collaboration Tools', 'Wireframing', 'Usability Testing'],
       projectDate: '2023年9月',
-      projectUrl: 'https://www.huaweicloud.com',
+      projectUrl: 'https://business-connect.netlify.app/',
       githubUrl: 'https://github.com/example/business-connect'
     },
     {
