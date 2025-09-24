@@ -280,6 +280,40 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               }}>
                 平台涵盖了企业级应用设计、品牌视觉设计、用户界面设计等多个领域。每个项目都遵循严格的设计标准和质量控制流程，确保最终交付的作品能够满足客户的需求并超越期望。我们相信好的设计不仅美观，更能为企业创造实际价值。
               </p>
+
+              <div style={{
+                display: 'flex',
+                gap: '15px',
+                marginTop: '30px'
+              }}>
+                <button style={{
+                  background: '#000000',
+                  color: '#ffffff',
+                  border: '1px solid #000000',
+                  padding: '10px 24px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  borderRadius: '0',
+                  transition: 'all 0.3s ease'
+                }}>
+                  查看详情
+                </button>
+
+                <button style={{
+                  background: 'transparent',
+                  color: '#000000',
+                  border: '1px solid #000000',
+                  padding: '10px 24px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  borderRadius: '0',
+                  transition: 'all 0.3s ease'
+                }}>
+                  在线预览
+                </button>
+              </div>
             </div>
           </div>
         </div>
