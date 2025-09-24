@@ -55,7 +55,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '火柴盒创意设计项目，探索传统物品的现代化设计理念。通过简约而富有创意的视觉表达，重新诠释日常用品的美学价值，体现设计在生活中的无限可能。',
       technologies: ['Creative Design', 'Adobe Creative Suite', 'Concept Development'],
       projectDate: '2023年11月',
-      projectUrl: 'https://www.huaweicloud.com',
+      projectUrl: 'https://cheapbox.netlify.app/',
     },
     {
       id: 4,
