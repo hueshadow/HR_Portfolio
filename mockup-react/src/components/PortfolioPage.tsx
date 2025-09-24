@@ -238,15 +238,6 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <PortfolioFilter items={filterItems} onFilterChange={handleFilterChange} />
         </div>
 
-        <h2 className="h2-title" style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '20px',
-          paddingRight: '20px'
-        }}>
-          PROTECT
-        </h2>
-
         <div className="info-section" style={{
           padding: '0 20px 60px',
           maxWidth: '1200px',
@@ -287,6 +278,15 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             </div>
           </div>
         </div>
+
+        <h2 className="h2-title" style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          paddingLeft: '20px',
+          paddingRight: '20px'
+        }}>
+          PICTURE
+        </h2>
 
         <ul className="portfolio-container" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
           {filteredItems.map(item => (
