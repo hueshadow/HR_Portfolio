@@ -215,6 +215,17 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             background: transparent;
             color: rgb(0, 0, 0);
           }
+
+          .h2-title {
+            position: relative;
+            text-align: left;
+            margin-bottom: 0px;
+            font-size: 32px;
+            font-weight: 600;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            padding-bottom: 24px;
+          }
         `}</style>
         <div className="page-header c12">
           <h1 data-value="PROTECT">PROTECT</h1>
@@ -281,16 +292,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           margin: '0 auto',
           background: '#f8f9fa'
         }}>
-          <h2 style={{
-            position: 'relative',
-            textAlign: 'left',
-            marginBottom: '0',
-            fontSize: '32px',
-            fontWeight: '600',
-            color: '#000000',
-            width: '100%',
-            paddingBottom: '24px'
-          }}>
+          <h2 className="h2-title">
             PROTECT
           </h2>
 
