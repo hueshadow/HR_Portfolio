@@ -21,11 +21,11 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
 
   const portfolioItems = [
     { id: 1, category: 'image', title: '华为云', image: '/assets/img/portfolio/1.jpg', thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg' },
-    { id: 2, category: 'image', title: '华为分析', image: '/assets/img/portfolio/2.jpg', thumb: '/assets/img/portfolio/2_s.jpg' },
-    { id: 3, category: 'image', title: '火柴盒', image: '/assets/img/portfolio/3.jpg', thumb: '/assets/img/portfolio/3_s.jpg' },
-    { id: 4, category: 'image', title: 'Business Connect', image: '/assets/img/portfolio/4.jpg', thumb: '/assets/img/portfolio/4_s.jpg' },
-    { id: 5, category: 'video', title: 'Project Video 1', image: '/assets/img/portfolio/5.jpg', thumb: '/assets/img/portfolio/5_s.mp4', isVideo: true },
-    { id: 6, category: 'video', title: 'Project Video 2', image: '/assets/img/portfolio/6.jpg', thumb: '/assets/img/portfolio/6_s.mp4', isVideo: true }
+    { id: 2, category: 'image', title: '华为分析', image: '/assets/img/portfolio/2.jpg', thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg' },
+    { id: 3, category: 'image', title: '火柴盒', image: '/assets/img/portfolio/3.jpg', thumb: 'https://photosave.net/2025/09/f1ba8c79cb2be8df787d2654524aa52c.jpg' },
+    { id: 4, category: 'image', title: 'Business Connect', image: '/assets/img/portfolio/4.jpg', thumb: 'https://photosave.net/2025/09/84a321e2c0c7ceed0367af973157e24b.jpg' },
+    { id: 5, category: 'video', title: 'Project Video 1', image: '/assets/img/portfolio/5.jpg', thumb: 'https://photosave.net/2025/09/56928471b46698ae95c0e94a9b93264b.mp4', isVideo: true },
+    { id: 6, category: 'video', title: 'Project Video 2', image: '/assets/img/portfolio/6.jpg', thumb: 'https://photosave.net/2025/09/508f16cfbbce1e7be93cf7bdc8fffbe9.mp4', isVideo: true }
   ]
 
   const filterItems = [
