@@ -221,7 +221,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
         }}>
           <h2 style={{
             position: 'relative',
-            textAlign: 'center',
+            textAlign: 'left',
             marginBottom: '60px',
             fontSize: '32px',
             fontWeight: '600',
