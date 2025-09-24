@@ -44,7 +44,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       description: '华为数据分析平台的界面设计，为企业提供数据可视化和商业智能解决方案。设计重点在于复杂数据的清晰呈现和高效的用户操作流程，确保用户能够快速获取关键业务洞察。',
       technologies: ['Data Visualization', 'Dashboard Design', 'Sketch', 'User Testing'],
       projectDate: '2024年1月',
-      projectUrl: 'https://www.huaweicloud.com',
+      projectUrl: 'https://analytics-kit.netlify.app/',
     },
     {
       id: 3,
