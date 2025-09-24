@@ -189,6 +189,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             font-size: 24px;
             line-height: 1.6;
             margin-bottom: 20px;
+            display: none;
           }
 
           .protect-discribe .button-group {
