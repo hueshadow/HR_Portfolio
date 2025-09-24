@@ -95,7 +95,7 @@ const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPagePro
         <div>
           <video
             src="https://photosave.net/2025/09/8051431e72bf64a1547a28aff973b7cc.mp4"
-            style={{ width: '100%' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             muted
             loop
             autoPlay
