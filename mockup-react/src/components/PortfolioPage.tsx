@@ -234,6 +234,16 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             width: 100%;
             padding-bottom: 24px;
           }
+
+          .h2-title::after {
+            content: '';
+            display: block;
+            width: auto;
+            height: 12px;
+            margin-top: 0.2rem;
+            border-bottom: 1px solid;
+            border-color: inherit;
+          }
         `}</style>
         <div className="page-header c12">
           <h1 data-value="PROTECT">PROTECT</h1>
