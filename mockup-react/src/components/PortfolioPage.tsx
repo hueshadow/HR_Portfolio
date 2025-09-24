@@ -265,16 +265,6 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               <p>
                 EACH PROJECT HAS BEEN CAREFULLY DESIGNED, EMBODYING THE PERFECT COMBINATION OF MODERN DESIGN CONCEPTS AND PRACTICALITY.
               </p>
-
-              <div className="button-group">
-                <button className="detail-btn">
-                  查看详情
-                </button>
-
-                <button className="preview-btn">
-                  在线预览
-                </button>
-              </div>
             </div>
           </div>
         </div>
