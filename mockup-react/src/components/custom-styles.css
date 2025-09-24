@@ -1104,7 +1104,8 @@ main {
 .slider-item {
   min-width: 100%;
   flex-shrink: 0;
-  aspect-ratio: 1 / 1;
+  width: 500px;
+  height: 500px;
 }
 
 /* About 页面轮播控制按钮 */
