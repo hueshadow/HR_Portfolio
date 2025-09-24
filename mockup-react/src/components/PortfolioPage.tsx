@@ -276,7 +276,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
         </ul>
 
         <div className="info-section" style={{
-          padding: '60px 20px',
+          padding: '0 20px 60px',
           maxWidth: '1200px',
           margin: '0 auto',
           background: '#f8f9fa'
