@@ -10,7 +10,7 @@ interface PortfolioPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const PortfolioPage = ({ active, loaded, onPageChange }: PortfolioPageProps) => {
+const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: PortfolioPageProps) => {
   const navigate = useNavigate()
   const [filteredItems, setFilteredItems] = useState<typeof portfolioItems>([])
   const [previewOpen, setPreviewOpen] = useState(false)
@@ -81,7 +81,7 @@ const PortfolioPage = ({ active, loaded, onPageChange }: PortfolioPageProps) => 
   
   return (
     <>
-        <style jsx>{`
+        <style>{`
           .portfolio-item {
             position: relative;
             overflow: hidden;
@@ -167,12 +167,12 @@ const PortfolioPage = ({ active, loaded, onPageChange }: PortfolioPageProps) => 
                 {item.isVideo ? (
                   <video
                     src={item.thumb}
-                    alt={item.title}
                     muted
                     loop
                     autoPlay
                     playsInline
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    title={item.title}
                   />
                 ) : (
                   <img src={item.thumb} alt={item.title} />

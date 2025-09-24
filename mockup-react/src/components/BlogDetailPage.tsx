@@ -6,7 +6,7 @@ interface BlogDetailPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) => {
+const BlogDetailPage = ({ active: _active, loaded: _loaded, onPageChange }: BlogDetailPageProps) => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
 
@@ -97,7 +97,7 @@ const BlogDetailPage = ({ active, loaded, onPageChange }: BlogDetailPageProps) =
 
         <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: post.content }} />
 
-        <style jsx>{`
+        <style>{`
           .blog-detail-wrapper {
             width: 100%;
             min-height: 100vh;

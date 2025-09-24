@@ -7,7 +7,7 @@ interface HomePageProps {
   onPageChange: (pageId: string) => void
 }
 
-const HomePage = ({ active, loaded, onPageChange }: HomePageProps) => {
+const HomePage = ({ active, loaded: _loaded, onPageChange: _onPageChange }: HomePageProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 })
 

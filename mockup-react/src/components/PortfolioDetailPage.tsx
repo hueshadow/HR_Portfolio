@@ -186,7 +186,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .portfolio-detail-wrapper {
           width: 100%;
           min-height: 100vh;

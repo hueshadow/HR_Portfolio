@@ -52,7 +52,7 @@ export const useHeadingAnimation = () => {
     const interval = setInterval(() => {
       element.textContent = originalText
         .split('')
-        .map((letter, index) => {
+        .map((_letter, index) => {
           if (index < iteration) {
             return originalText[index]
           }
@@ -92,7 +92,7 @@ export const usePortfolioCaptionAnimation = () => {
           captionInterval = setInterval(() => {
             txt.textContent = originalText
               .split('')
-              .map((letter, index) => {
+              .map((_letter, index) => {
                 if (index < iter) {
                   return originalText[index]
                 }

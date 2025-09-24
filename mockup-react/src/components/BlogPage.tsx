@@ -7,7 +7,7 @@ interface BlogPageProps {
   onToggleSidebar: () => void
 }
 
-const BlogPage = ({ active, loaded, onPageChange, onToggleSidebar }: BlogPageProps) => {
+const BlogPage = ({ active: _active, loaded, onPageChange: _onPageChange, onToggleSidebar: _onToggleSidebar }: BlogPageProps) => {
   const navigate = useNavigate()
 
   const handlePostClick = (postId: number) => {
