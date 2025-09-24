@@ -238,59 +238,6 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <PortfolioFilter items={filterItems} onFilterChange={handleFilterChange} />
         </div>
 
-        <ul className="portfolio-container" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
-          {filteredItems.map(item => (
-            <li key={item.id} data-groups={`["${item.category}"]`}>
-              <figure className="portfolio-item">
-                {item.isVideo ? (
-                  <video
-                    src={item.thumb}
-                    muted
-                    loop
-                    autoPlay
-                    playsInline
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    title={item.title}
-                  />
-                ) : (
-                  <img src={item.thumb} alt={item.title} />
-                )}
-                <div className="portfolio-overlay">
-                  <div className="portfolio-content">
-                    <div className="portfolio-title">{item.title}</div>
-                    <div className="portfolio-buttons">
-                      <button
-                        className="portfolio-btn"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          handleDetailClick(item.id)
-                        }}
-                      >
-                        查看详情
-                      </button>
-                      <button
-                        className="portfolio-btn"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          if (item.isVideo) {
-                            handlePreviewClick(item.thumb, true)
-                          } else {
-                            handlePreviewClick(item.image)
-                          }
-                        }}
-                      >
-                        {item.isVideo ? "播放" : "预览"}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </figure>
-            </li>
-          ))}
-        </ul>
-
         <h2 className="h2-title" style={{
           maxWidth: '1200px',
           margin: '0 auto',
