@@ -21,7 +21,7 @@ const BlogPage = ({ active: _active, loaded, onPageChange: _onPageChange, onTogg
       excerpt: '"真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。" —— Ronn',
       date: '2025-08-25',
       author: 'Admin',
-      image: '/assets/img/blog1.jpg',
+      image: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
       category: '未分类'
     }
   ]
