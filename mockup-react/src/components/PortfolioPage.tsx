@@ -179,7 +179,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
 
           .protect-discribe h3 {
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 500;
             color: rgb(0, 0, 0);
             margin-bottom: 20px;
             margin-top: 0px;
