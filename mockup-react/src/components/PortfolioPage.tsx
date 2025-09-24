@@ -248,7 +248,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                   width: '100%',
                   maxWidth: '400px',
                   height: 'auto',
-                  borderRadius: '8px',
+                  borderRadius: '0',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
                 }}
               />
