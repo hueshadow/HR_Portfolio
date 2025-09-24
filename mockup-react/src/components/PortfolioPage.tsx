@@ -154,6 +154,19 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             color: #333;
           }
         `}</style>
+        <style>{`
+          .protect-image {
+            flex: 4 1 0%;
+            text-align: center;
+          }
+
+          .protect-image img {
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            border-radius: 0;
+          }
+        `}</style>
         <div className="page-header c12">
           <h1 data-value="PROTECT">PROTECT</h1>
           <hr className={loaded ? 'enabled' : ''} />
@@ -239,19 +252,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             borderTop: '1px solid #000000',
             paddingTop: '16px'
           }}>
-            <div style={{
-              flex: '4',
-              textAlign: 'center'
-            }}>
+            <div className="protect-image">
               <img
                 src="https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg"
                 alt="项目展示"
-                style={{
-                  width: '100%',
-                  maxWidth: '400px',
-                  height: '100%',
-                  borderRadius: '0'
-                }}
               />
             </div>
 
