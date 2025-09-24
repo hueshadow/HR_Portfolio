@@ -96,22 +96,6 @@ const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPagePro
           <img src="/assets/img/slide1.jpg" alt="About slide 1" style={{ width: '100%' }} />
         </div>
       )
-    },
-    {
-      id: 2,
-      content: (
-        <div>
-          <img src="/assets/img/slide2.jpg" alt="About slide 2" style={{ width: '100%' }} />
-        </div>
-      )
-    },
-    {
-      id: 3,
-      content: (
-        <div>
-          <img src="/assets/img/slide3.jpg" alt="About slide 3" style={{ width: '100%' }} />
-        </div>
-      )
     }
   ]
 
@@ -145,13 +129,12 @@ const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPagePro
             </p>
           </div>
           <div className="c6">
-            <Slider 
+            <Slider
               items={sliderItems}
               className="about-slider about-slider-outer"
-              showControls={true}
-              showSlideNumber={true}
-              autoPlay={true}
-              interval={4000}
+              showControls={false}
+              showSlideNumber={false}
+              autoPlay={false}
             />
           </div>
         </div>
