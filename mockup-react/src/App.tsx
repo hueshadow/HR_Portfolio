@@ -41,7 +41,7 @@ function AppContent() {
         document.body.classList.add('hr-loaded')
       }, 250)
     }
-    image.src = '/assets/img/background.jpg'
+    image.src = 'https://photosave.net/2025/09/fa0d5a10405bfab5931f038d97c545e6.png'
   }, [])
 
   const handlePageChange = (pageId: string) => {
