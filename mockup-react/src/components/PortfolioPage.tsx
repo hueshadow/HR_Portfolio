@@ -235,7 +235,9 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <div style={{
             display: 'flex',
             gap: '40px',
-            alignItems: 'center'
+            alignItems: 'center',
+            borderTop: '1px solid #e0e0e0',
+            paddingTop: '40px'
           }}>
             <div style={{
               flex: '4',
