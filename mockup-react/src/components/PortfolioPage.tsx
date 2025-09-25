@@ -156,7 +156,6 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
         `}</style>
         <style>{`
           .protect-image {
-            flex: 4 1 0%;
             text-align: center;
             height: 100%;
             display: flex;
