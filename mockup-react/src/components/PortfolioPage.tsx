@@ -182,8 +182,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             color: rgb(85, 85, 85);
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
+            display: block;
           }
 
           .protect-discribe h3 {
