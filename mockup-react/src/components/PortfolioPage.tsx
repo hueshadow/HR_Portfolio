@@ -182,17 +182,16 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             color: rgb(85, 85, 85);
             margin: 0;
             padding: 0;
-            display: block;
+            display: flex;
+            flex-direction: column;
             height: 100%;
-            position: relative;
           }
 
-          .protect-discribe h3 {
+          .protect-discribe .protect-title {
             font-size: 24px;
             font-weight: 500;
             color: rgb(0, 0, 0);
-            margin-bottom: 20px;
-            margin-top: 0px;
+            margin: 0;
             text-align: left;
             padding: 0;
             letter-spacing: -0.5px;
@@ -202,11 +201,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           .protect-discribe .year-text {
             font-size: 14px;
             color: rgb(0, 0, 0);
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            margin-top: auto;
             text-align: left;
-            transform: translateY(100%);
           }
 
           .protect-discribe p {
