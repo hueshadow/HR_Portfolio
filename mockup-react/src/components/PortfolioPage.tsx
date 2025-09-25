@@ -295,7 +295,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             </div>
 
             <div className="protect-discribe">
-              <h3>
+              <h3 className="protect-title">
                 EACH PROJECT HAS BEEN CAREFULLY DESIGNED, EMBODYING THE PERFECT COMBINATION OF MODERN DESIGN CONCEPTS AND PRACTICALITY
               </h3>
               <div className="year-text">2023——2025</div>
