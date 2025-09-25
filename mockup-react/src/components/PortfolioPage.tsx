@@ -195,6 +195,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             margin-top: 0px;
             text-align: left;
             padding: 0;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
           }
 
           .protect-discribe .year-text {
