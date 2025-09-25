@@ -319,6 +319,90 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               <i className="fas fa-arrow-right"></i>
             </div>
           </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
+            minHeight: '300px', /* 设置最小高度确保有足够空间 */
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg"
+                alt="华为分析"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                ADVANCED DATA ANALYTICS PLATFORM PROVIDING COMPREHENSIVE INSIGHTS AND BUSINESS INTELLIGENCE SOLUTIONS
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => handleDetailClick(2)} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
+            minHeight: '300px', /* 设置最小高度确保有足够空间 */
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/f1ba8c79cb2be8df787d2654524aa52c.jpg"
+                alt="火柴盒"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                INNOVATIVE MATCHMAKING PLATFORM CONNECTING PEOPLE WITH OPPORTUNITIES THROUGH SMART ALGORITHMS
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => handleDetailClick(3)} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
+            minHeight: '300px', /* 设置最小高度确保有足够空间 */
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/84a321e2c0c7ceed0367af973157e24b.jpg"
+                alt="Business Connect"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                PROFESSIONAL NETWORKING SOLUTION BRIDGING BUSINESSES AND CREATING MEANINGFUL CONNECTIONS
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => handleDetailClick(4)} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
         </div>
 
         <h2 className="h2-title" style={{
