@@ -349,34 +349,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             </div>
           </div>
 
-          <div className="protect-content" style={{
-            display: 'flex',
-            gap: '40px',
-            alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
-            minHeight: '300px', /* 设置最小高度确保有足够空间 */
-            paddingTop: '20px',
-            paddingBottom: '40px',
-            borderBottom: '1px solid #000000'
-          }}>
-            <div className="protect-image">
-              <img
-                src="https://photosave.net/2025/09/84a321e2c0c7ceed0367af973157e24b.jpg"
-                alt="Business Connect"
-              />
-            </div>
-
-            <div className="protect-discribe">
-              <h3 className="protect-title">
-                PROFESSIONAL NETWORKING SOLUTION BRIDGING BUSINESSES AND CREATING MEANINGFUL CONNECTIONS
-              </h3>
-              <div className="year-text">2023——2025</div>
-            </div>
-
-            <div className="protect-details" onClick={() => handleDetailClick(4)} style={{ cursor: 'pointer' }}>
-              <i className="fas fa-arrow-right"></i>
-            </div>
-          </div>
-        </div>
+                </div>
 
         <h2 className="h2-title" style={{
           maxWidth: '1200px',
