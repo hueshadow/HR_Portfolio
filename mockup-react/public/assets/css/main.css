@@ -803,7 +803,7 @@ hr.enabled{
   float: left;
 }
 .about-slider-outer{
-  outline:1px solid var(--px-theme-clr);
+  outline:none;
 }
 .about-slider .tns-item{
   padding-right: 0px !important;
