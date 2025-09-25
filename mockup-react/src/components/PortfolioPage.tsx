@@ -216,6 +216,18 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: none;
           }
 
+          .protect-details {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+          }
+
+          .protect-details i {
+            font-size: 24px;
+            color: rgb(0, 0, 0);
+          }
+
           .protect-discribe .button-group {
             display: flex;
             gap: 15px;
@@ -300,6 +312,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                 EACH PROJECT HAS BEEN CAREFULLY DESIGNED, EMBODYING THE PERFECT COMBINATION OF MODERN DESIGN CONCEPTS AND PRACTICALITY
               </h3>
               <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details">
+              <i className="fas fa-arrow-left"></i>
             </div>
           </div>
         </div>

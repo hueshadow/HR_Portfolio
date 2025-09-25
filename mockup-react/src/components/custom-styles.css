@@ -44,7 +44,12 @@ main {
   .page.active {
     width: calc(100% - 320px); /* 4个非激活页面 * 80px = 320px */
   }
-  
+
+  /* About页面激活状态下的背景色 */
+  .page#about.active {
+    background: #E0DFDA !important;
+  }
+
   /* 页面头部样式 */
   .page header {
     position: relative;
