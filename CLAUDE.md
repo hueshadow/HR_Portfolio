@@ -51,6 +51,10 @@ HR_Portfolio/
 │   │   │   ├── PortfolioPage.tsx # Portfolio page
 │   │   │   ├── BlogPage.tsx # Blog page
 │   │   │   ├── ContactPage.tsx # Contact page
+│   │   │   ├── PortfolioDetailPage.tsx # Project detail page
+│   │   │   ├── BlogDetailPage.tsx # Blog detail page
+│   │   │   ├── PortfolioFilter.tsx # Portfolio filter component
+│   │   │   ├── ImagePreview.tsx # Image preview modal
 │   │   │   ├── MouseTrailer.tsx # Mouse tracking effect
 │   │   │   ├── DesktopNav.tsx # Desktop navigation
 │   │   │   └── MobileNav.tsx # Mobile navigation
@@ -146,11 +150,26 @@ npm run lint       # Run ESLint
   - `usePortfolioCaptionAnimation`: Hover-triggered captions
 - **CSS Variables**: Dynamic mouse position updates `--x`, `--y`, `--size`
 
-#### 4. Performance Optimizations
+#### 4. Detail Page Architecture
+- **Routing**: React Router handles detail pages with dynamic routes
+  - Portfolio details: `/portfolio/:id`
+  - Blog details: `/blog/:id`
+- **Fallback States**: Default pages for missing content
+- **Conditional Rendering**: Detail pages hide accordion layout
+- **Navigation**: Back navigation to parent pages
+
+#### 5. CSS Custom Property System
+- **Dynamic Backgrounds**: `--page-bg-color` controls page backgrounds
+- **Mouse Position**: `--x`, `--y`, `--size` for interactive effects
+- **Theme Variables**: `--px-theme-clr` and `--px-theme-bg` for consistent theming
+- **Runtime Updates**: JavaScript can update CSS variables dynamically
+
+#### 6. Performance Optimizations
 - **Image Preloading**: Background image preloaded before content display
 - **GPU Acceleration**: Mouse trailer uses `transform: translate3d()`
 - **Event Listeners**: Passive event listeners for scroll performance
 - **Lazy Loading**: Components load based on active page state
+- **CSS Containment**: Limits browser reflow/repaint areas
 
 ## Deployment
 
@@ -173,6 +192,8 @@ npm run lint       # Run ESLint
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/App.tsx` - Main routing and layout
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/MouseTrailer.tsx` - Mouse tracking system
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/hooks/useAnimations.ts` - Animation hooks
+- `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/PortfolioDetailPage.tsx` - Detail page implementation
+- `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/PortfolioFilter.tsx` - Portfolio filtering system
 
 ### Configuration Files
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/vite.config.ts` - Vite configuration
@@ -199,6 +220,8 @@ npm run lint       # Run ESLint
 - Breakpoint at 960px for mobile/desktop layouts
 - Touch-friendly interactions on mobile devices
 - Mouse tracking automatically disabled on mobile
+- Navigation adapts to mobile screen sizes
+- Responsive grid layouts for detail pages
 
 ### Browser Support
 - Modern browsers with ES2022+ support
@@ -223,6 +246,8 @@ npm run lint       # Run ESLint
 - Leverage CSS transforms for animations
 - Preload critical images and assets
 - Minimize re-renders in mouse tracking components
+- Use CSS custom properties for dynamic theming
+- Implement proper error boundaries and fallback states
 
 ## Troubleshooting
 
@@ -241,3 +266,9 @@ npm run lint       # Run ESLint
 - Auto-commit pushes to origin/main branch
 - Ensure proper git permissions
 - Manual git workflow always available as fallback
+
+### Common Issues
+- **Detail Page Not Found**: Check route configuration in App.tsx
+- **Mouse Lag**: Verify `requestAnimationFrame` implementation
+- **Style Conflicts**: Check both main.css and component-level styles
+- **Asset Loading**: Verify all paths use `/assets/` prefix
