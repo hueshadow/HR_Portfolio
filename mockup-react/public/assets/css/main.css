@@ -428,7 +428,7 @@ img{max-width:100%;height:auto;display:block;margin-left:auto;margin-right:auto}
 
 .title{
   font-size: 14px;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   color: var(--px-theme-clr);
   display: block;
   position: absolute;
@@ -444,7 +444,7 @@ img{max-width:100%;height:auto;display:block;margin-left:auto;margin-right:auto}
   width: 100%;
   position: absolute;
   top: 30px;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   transition: transform 0.2s ease;
   transform-origin: 46% 46%;
 }
@@ -506,7 +506,7 @@ img{max-width:100%;height:auto;display:block;margin-left:auto;margin-right:auto}
    4. Typography
    ========================================================================== */
 .skill-title, .portfolio-filter li{
-  font-family:'Space Mono', monospace;
+  font-family:'Montserrat', sans-serif;
 }
 html {
   font-size: 18px;
@@ -549,21 +549,21 @@ h1, .alpha {
   letter-spacing: -2px;
 }
 h2, .beta {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 30px;
   text-transform: none;
   letter-spacing: -1.5px;
   font-weight: 700;
 }
 h3, .gamma {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 24px;
   text-transform: none;
   font-weight: 600;
   margin-top: 1.5rem;
 }
 h4, .delta {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: max(1.2vw, 24px);
   text-transform: none;
   font-weight: 400;
@@ -571,7 +571,7 @@ h4, .delta {
   line-height: max(1.8vw, 32px);
 }
 h5, .epsilon {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   text-transform: none;
   font-size: 13px;
   margin-top: 0.2rem;
@@ -1083,7 +1083,7 @@ span.date{
 }
 .day{
   display: block;
-  font-family: 'Space Mono', monospace;
+  font-family: 'Montserrat', sans-serif;
   font-size: 40px;
   line-height: 40px;
   margin-bottom: 10px;

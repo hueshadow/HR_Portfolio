@@ -139,7 +139,7 @@ main {
   
   /* 统一所有页面的title-number样式 - 适配80px容器，右对齐 */
   .page .title-number {
-    font-family: 'Space Mono', monospace !important;
+    font-family: 'Montserrat', sans-serif !important;
     font-size: 24px !important;
     font-weight: 300 !important;
     color: var(--px-theme-clr) !important;
