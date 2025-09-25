@@ -82,6 +82,31 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
   return (
     <>
         <style>{`
+          /* 为Portfolio页面添加特定样式 */
+          .page#portfolio {
+            height: auto !important;
+            min-height: 100vh !important;
+            overflow: visible !important;
+          }
+
+          .page#portfolio .content {
+            height: auto !important;
+            overflow-y: visible !important;
+            min-height: calc(100vh - 150px) !important; /* 减去page-header的高度 */
+          }
+
+          .page#portfolio .page-header {
+            height: auto !important;
+            min-height: 100px !important;
+          }
+
+          .info-section {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            display: block !important;
+            position: relative !important;
+            overflow: visible !important;
+          }
           .portfolio-item {
             position: relative;
             overflow: hidden;
@@ -290,7 +315,11 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           padding: '0 20px 60px',
           maxWidth: '1200px',
           margin: '0 auto',
-          background: '#f8f9fa'
+          background: '#f8f9fa',
+          width: '100%',
+          boxSizing: 'border-box',
+          display: 'block',
+          position: 'relative'
         }}>
           <div className="protect-content" style={{
             display: 'flex',
@@ -400,6 +429,176 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             </div>
 
             <div className="protect-details" onClick={() => handleDetailClick(4)} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch',
+            minHeight: '300px',
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/56928471b46698ae95c0e94a9b93264b.mp4"
+                alt="Project Video 1"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                CREATIVE VIDEO SHOWCASE FEATURING CUTTING-EDGE VISUAL EFFECTS AND DYNAMIC STORYTELLING TECHNIQUES
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => handleDetailClick(5)} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch',
+            minHeight: '300px',
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/508f16cfbbce1e7be93cf7bdc8fffbe9.mp4"
+                alt="Project Video 2"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                INTERACTIVE MULTIMEDIA EXPERIENCE COMBINING MOTION GRAPHICS WITH IMMERSIVE USER INTERFACES
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => handleDetailClick(6)} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch',
+            minHeight: '300px',
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/84a321e2c0c7ceed0367af973157e24b.jpg"
+                alt="Future Project"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                NEXT-GENERATION DIGITAL SOLUTION PUSHING THE BOUNDARIES OF TECHNOLOGY AND USER EXPERIENCE DESIGN
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => alert('Coming soon!')} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch',
+            minHeight: '300px',
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg"
+                alt="Cloud Innovation"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                CLOUD-BASED INNOVATION PLATFORM ENABLING SEAMLESS COLLABORATION AND SCALABLE SOLUTIONS
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => alert('Coming soon!')} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch',
+            minHeight: '300px',
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg"
+                alt="Data Intelligence"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                INTELLIGENT DATA PROCESSING SYSTEM LEVERAGING AI AND MACHINE LEARNING FOR BUSINESS OPTIMIZATION
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => alert('Coming soon!')} style={{ cursor: 'pointer' }}>
+              <i className="fas fa-arrow-right"></i>
+            </div>
+          </div>
+
+          <div className="protect-content" style={{
+            display: 'flex',
+            gap: '40px',
+            alignItems: 'stretch',
+            minHeight: '300px',
+            paddingTop: '0',
+            paddingBottom: '40px',
+            borderBottom: '1px solid #000000'
+          }}>
+            <div className="protect-image">
+              <img
+                src="https://photosave.net/2025/09/f1ba8c79cb2be8df787d2654524aa52c.jpg"
+                alt="Smart Platform"
+              />
+            </div>
+
+            <div className="protect-discribe">
+              <h3 className="protect-title">
+                SMART PLATFORM ECOSYSTEM INTEGRATING IOT DEVICES WITH ADVANCED ANALYTICS AND REAL-TIME MONITORING
+              </h3>
+              <div className="year-text">2023——2025</div>
+            </div>
+
+            <div className="protect-details" onClick={() => alert('Coming soon!')} style={{ cursor: 'pointer' }}>
               <i className="fas fa-arrow-right"></i>
             </div>
           </div>
