@@ -81,7 +81,7 @@ const Slider = ({
       {showControls && items.length > 1 && (
         <div className={`slider-controls ${className.includes('about') ? 'about-slider-controls' : className.includes('testomonial') ? 'testomonial-slider-controls' : ''}`}>
           <span onClick={goToPrev}>
-            <i className="fas fa-chevron-left"></i>
+            <i className="fas fa-chevron-right"></i>
           </span>
           <span onClick={goToNext}>
             <i className="fas fa-chevron-right"></i>
