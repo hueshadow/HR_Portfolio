@@ -185,7 +185,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: flex;
             flex-direction: column;
             height: 100%;
-            justify-content: space-between; /* 让内容在垂直方向均匀分布 */
+            position: relative; /* 添加相对定位 */
           }
 
           .protect-discribe .protect-title {
@@ -206,7 +206,9 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             color: rgb(0, 0, 0);
             text-align: left;
             align-self: flex-start; /* 底部对齐 */
-            margin-top: auto; /* 自动填充剩余空间，实现底部对齐 */
+            position: absolute; /* 使用绝对定位 */
+            bottom: 0; /* 定位到底部 */
+            left: 0; /* 左侧对齐 */
           }
 
           .protect-discribe p {
@@ -309,7 +311,13 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           margin: '0 auto',
           paddingLeft: '20px',
           paddingRight: '20px',
-          fontFamily: "'Montserrat', sans-serif"
+          fontFamily: "'Montserrat', sans-serif",
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          fontSize: '28px',
+          letterSpacing: '-2px',
+          marginBottom: '0',
+          lineHeight: '1.8rem'
         }}>
           PICTURES
         </h2>
