@@ -95,6 +95,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             margin: 0;
             padding: 0;
             background: #000;
+            cursor: pointer;
           }
 
           .portfolio-item img,
@@ -116,6 +117,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            cursor: pointer;
+            z-index: 5;
           }
 
           .portfolio-item:hover .portfolio-overlay {
@@ -154,6 +157,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             align-items: center;
             justify-content: center;
             height: 36px;
+            position: relative;
+            z-index: 10;
           }
 
           .portfolio-btn:hover {
@@ -225,15 +230,28 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
 
           .protect-details {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
             padding: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            z-index: 10;
+            position: relative;
+          }
+
+          .protect-details:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: scale(1.1);
           }
 
           .protect-details i {
             font-size: 24px;
             color: rgb(0, 0, 0);
-            margin-top: 0;
+            margin: 0;
           }
 
           .protect-discribe .button-group {
