@@ -316,7 +316,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             </div>
 
             <div className="protect-details">
-              <i className="fas fa-arrow-left"></i>
+              <i className="fas fa-arrow-right"></i>
             </div>
           </div>
         </div>
