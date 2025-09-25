@@ -326,7 +326,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             gap: '40px',
             alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
             minHeight: '300px', /* 设置最小高度确保有足够空间 */
-            paddingTop: '20px',
+            paddingTop: '0',
             paddingBottom: '40px',
             borderBottom: '1px solid #000000'
           }}>
