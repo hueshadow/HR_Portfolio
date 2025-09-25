@@ -129,7 +129,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         <div className="header-with-back">
           <div className="header-back">
             <button onClick={handleBackToPortfolio} className="back-button">
-              ← 返回
+              <i className="fas fa-arrow-right"></i> 返回
             </button>
           </div>
           <div className="header-title">
@@ -195,7 +195,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         .portfolio-detail-wrapper {
           width: 100%;
           min-height: 100vh;
-          background: #fff;
+          background: #e3e3de;
           padding-top: 80px;
         }
 

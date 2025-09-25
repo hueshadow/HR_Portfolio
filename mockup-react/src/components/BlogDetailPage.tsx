@@ -70,7 +70,7 @@ const BlogDetailPage = ({ active: _active, loaded: _loaded, onPageChange }: Blog
         <div className="header-with-back">
           <div className="header-back">
             <button onClick={handleBackToBlog} className="back-button">
-              ← 返回
+              <i className="fas fa-arrow-right"></i> 返回
             </button>
           </div>
           <div className="header-title">
