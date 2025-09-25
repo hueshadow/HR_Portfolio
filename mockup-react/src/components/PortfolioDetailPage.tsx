@@ -109,15 +109,39 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
     return (
       <div className="portfolio-detail-wrapper">
         <div className="page-header c12">
-          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          <div className="header-with-back">
+            <div className="header-back">
+              <button onClick={handleBackToPortfolio} className="back-button">
+                <i className="fas fa-arrow-left"></i> 返回
+              </button>
+            </div>
+            <div className="header-title">
+              <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+            </div>
+          </div>
           <hr />
         </div>
-        <div className="portfolio-detail-content">
-          <h1>作品未找到</h1>
-          <p>抱歉，您要查看的作品不存在。</p>
-          <a href="#" onClick={(e) => { e.preventDefault(); handleBackToPortfolio() }} className="text-link">
-            ← 返回作品集
-          </a>
+
+        <div className="portfolio-detail-default">
+          <div className="default-image-container">
+            <img
+              src="/assets/img/background.jpg"
+              alt="项目开发中"
+              className="default-image"
+            />
+          </div>
+          <div className="default-content">
+            <h2 className="default-title">当前项目正在开发中</h2>
+            <p className="default-description">
+              该项目目前正在积极开发中，敬请期待更多精彩内容。
+            </p>
+            <button
+              onClick={handleBackToPortfolio}
+              className="back-to-portfolio-btn"
+            >
+              <i className="fas fa-arrow-left"></i> 返回作品集
+            </button>
+          </div>
         </div>
       </div>
     )
@@ -382,6 +406,71 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           text-decoration: underline;
         }
 
+        /* Default Page Styles */
+        .portfolio-detail-default {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 60px 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 60vh;
+          text-align: center;
+        }
+
+        .default-image-container {
+          width: 100%;
+          max-width: 600px;
+          margin-bottom: 40px;
+        }
+
+        .default-image {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 8px;
+          opacity: 0.8;
+        }
+
+        .default-content {
+          max-width: 600px;
+        }
+
+        .default-title {
+          font-size: 32px;
+          font-weight: 600;
+          color: #333;
+          margin: 0 0 20px 0;
+        }
+
+        .default-description {
+          font-size: 18px;
+          line-height: 1.6;
+          color: #666;
+          margin: 0 0 30px 0;
+        }
+
+        .back-to-portfolio-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 30px;
+          background: #333;
+          color: white;
+          border: none;
+          border-radius: 0;
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .back-to-portfolio-btn:hover {
+          background: #555;
+          transform: translateY(-2px);
+        }
+
         @media (max-width: 968px) {
           .portfolio-detail-content {
             grid-template-columns: 1fr;
@@ -400,6 +489,23 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
           .link-buttons {
             flex-direction: column;
+          }
+
+          .portfolio-detail-default {
+            padding: 40px 15px;
+          }
+
+          .default-title {
+            font-size: 24px;
+          }
+
+          .default-description {
+            font-size: 16px;
+          }
+
+          .back-to-portfolio-btn {
+            padding: 10px 24px;
+            font-size: 14px;
           }
         }
       `}</style>
