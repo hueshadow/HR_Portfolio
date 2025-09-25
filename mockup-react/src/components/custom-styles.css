@@ -47,7 +47,7 @@ main {
 
   /* About页面激活状态下的背景色 */
   .page#about.active {
-    background: #E0DFDA !important;
+    background: #e3e3de !important;
   }
 
   /* 页面头部样式 */
