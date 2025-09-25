@@ -88,6 +88,15 @@ function AppContent() {
     if (isLoaded) document.body.classList.add('hr-loaded')
     if (activePageId === 'blog') document.body.classList.add('single-post')
     if (isDetailPage) document.body.classList.add('detail-page')
+
+    // When About page is active, change background color for all pages
+    if (activePageId === 'about') {
+      document.documentElement.style.setProperty('--page-bg-color', '#e3e3de')
+      document.body.style.background = '#e3e3de'
+    } else {
+      document.documentElement.style.setProperty('--page-bg-color', '#f7f6f1')
+      document.body.style.background = '#f7f6f1'
+    }
   }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage])
 
   // 如果在详情页，只显示详情页内容
