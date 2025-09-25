@@ -129,7 +129,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         <div className="header-with-back">
           <div className="header-back">
             <button onClick={handleBackToPortfolio} className="back-button">
-              <i className="fas fa-arrow-right"></i> 返回
+              <i className="fas fa-arrow-left"></i> 返回
             </button>
           </div>
           <div className="header-title">
