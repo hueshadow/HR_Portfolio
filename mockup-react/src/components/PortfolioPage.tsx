@@ -322,7 +322,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           position: 'relative'
         }}>
           <div className="protect-content" style={{
-            display: 'flex',
+            display: 'none',
             gap: '40px',
             alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
             minHeight: '300px', /* 设置最小高度确保有足够空间 */
@@ -362,7 +362,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           fontSize: '28px',
           letterSpacing: '-2px',
           marginBottom: '0',
-          lineHeight: '1.8rem'
+          lineHeight: '1.8rem',
+          display: 'none'
         }}>
           PICTURES
         </h2>
