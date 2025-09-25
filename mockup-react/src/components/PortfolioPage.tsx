@@ -82,30 +82,12 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
   return (
     <>
         <style>{`
-          /* 为Portfolio页面添加特定样式 */
-          .page#portfolio {
-            height: auto !important;
-            min-height: 100vh !important;
-            overflow: visible !important;
-          }
-
-          .page#portfolio .content {
-            height: auto !important;
-            overflow-y: visible !important;
-            min-height: calc(100vh - 150px) !important; /* 减去page-header的高度 */
-          }
-
-          .page#portfolio .page-header {
-            height: auto !important;
-            min-height: 100px !important;
-          }
-
+          /* 确保页面内容可以正常显示 */
           .info-section {
-            width: 100% !important;
-            box-sizing: border-box !important;
-            display: block !important;
-            position: relative !important;
-            overflow: visible !important;
+            width: 100%;
+            box-sizing: border-box;
+            display: block;
+            position: relative;
           }
           .portfolio-item {
             position: relative;
