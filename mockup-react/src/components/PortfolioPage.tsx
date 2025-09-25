@@ -204,6 +204,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             bottom: 0;
             left: 0;
             text-align: left;
+            transform: translateY(100%);
           }
 
           .protect-discribe p {
