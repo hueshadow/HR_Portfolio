@@ -185,6 +185,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: flex;
             flex-direction: column;
             height: 100%;
+            justify-content: space-between; /* 让内容在垂直方向均匀分布 */
           }
 
           .protect-discribe .protect-title {
@@ -196,13 +197,16 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             padding: 0;
             letter-spacing: -0.5px;
             line-height: 1.2;
+            align-self: flex-start; /* 顶部对齐 */
+            font-family: 'Montserrat', sans-serif;
           }
 
           .protect-discribe .year-text {
             font-size: 14px;
             color: rgb(0, 0, 0);
-            margin-top: auto;
             text-align: left;
+            align-self: flex-start; /* 底部对齐 */
+            margin-top: auto; /* 自动填充剩余空间，实现底部对齐 */
           }
 
           .protect-discribe p {
@@ -278,7 +282,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <div className="protect-content" style={{
             display: 'flex',
             gap: '40px',
-            alignItems: 'flex-start',
+            alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
+            minHeight: '300px', /* 设置最小高度确保有足够空间 */
             paddingTop: '0',
             paddingBottom: '40px',
             borderBottom: '1px solid #000000'
@@ -303,9 +308,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           maxWidth: '1200px',
           margin: '0 auto',
           paddingLeft: '20px',
-          paddingRight: '20px'
+          paddingRight: '20px',
+          fontFamily: "'Montserrat', sans-serif"
         }}>
-          PICTURE
+          PICTURES
         </h2>
 
         <ul className="portfolio-container" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
