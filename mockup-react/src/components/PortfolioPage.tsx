@@ -160,7 +160,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             text-align: center;
             height: 100%;
             display: flex;
-            align-items: flex-start;
+            align-items: stretch;
             justify-content: center;
             margin: 0;
             padding: 0;
@@ -169,10 +169,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           .protect-image img {
             width: 100%;
             max-width: 400px;
-            height: 100%;
+            height: auto;
             border-radius: 0;
-            object-fit: cover;
-            margin: 0;
+            object-fit: contain;
+            margin: auto;
             padding: 0;
             display: block;
           }
@@ -183,6 +183,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             margin: 0;
             padding: 0;
             display: block;
+            height: 100%;
+            position: relative;
           }
 
           .protect-discribe h3 {
@@ -198,9 +200,10 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           .protect-discribe .year-text {
             font-size: 14px;
             color: rgb(0, 0, 0);
-            margin-top: auto;
+            position: absolute;
+            bottom: 0;
+            left: 0;
             text-align: left;
-            align-self: flex-end;
           }
 
           .protect-discribe p {
