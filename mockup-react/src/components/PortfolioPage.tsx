@@ -311,46 +311,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           <PortfolioFilter items={filterItems} onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="info-section" style={{
-          padding: '0 20px 60px',
-          maxWidth: '1200px',
-          margin: '0 auto',
-          background: '#f8f9fa',
-          width: '100%',
-          boxSizing: 'border-box',
-          display: 'block',
-          position: 'relative'
-        }}>
-          <div className="protect-content" style={{
-            display: 'none',
-            gap: '40px',
-            alignItems: 'stretch', /* 改为stretch让子元素高度一致 */
-            minHeight: '300px', /* 设置最小高度确保有足够空间 */
-            paddingTop: '0',
-            paddingBottom: '40px',
-            borderBottom: '1px solid #000000'
-          }}>
-            <div className="protect-image">
-              <img
-                src="https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg"
-                alt="项目展示"
-              />
-            </div>
-
-            <div className="protect-discribe">
-              <h3 className="protect-title">
-                EACH PROJECT HAS BEEN CAREFULLY DESIGNED, EMBODYING THE PERFECT COMBINATION OF MODERN DESIGN CONCEPTS AND PRACTICALITY
-              </h3>
-              <div className="year-text">2023——2025</div>
-            </div>
-
-            <div className="protect-details" onClick={() => handleDetailClick(1)} style={{ cursor: 'pointer' }}>
-              <i className="fas fa-arrow-right"></i>
-            </div>
-          </div>
-
-                </div>
-
+        
         <h2 className="h2-title" style={{
           maxWidth: '1200px',
           margin: '0 auto',
