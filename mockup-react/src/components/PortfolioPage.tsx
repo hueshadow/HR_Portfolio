@@ -218,7 +218,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
 
           .protect-details {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             padding: 10px;
           }
@@ -226,6 +226,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           .protect-details i {
             font-size: 24px;
             color: rgb(0, 0, 0);
+            margin-top: 0;
           }
 
           .protect-discribe .button-group {
