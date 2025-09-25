@@ -220,7 +220,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            padding: 10px;
+            padding: 0;
           }
 
           .protect-details i {
@@ -315,7 +315,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
               <div className="year-text">2023——2025</div>
             </div>
 
-            <div className="protect-details">
+            <div className="protect-details" onClick={() => handleDetailClick(1)} style={{ cursor: 'pointer' }}>
               <i className="fas fa-arrow-right"></i>
             </div>
           </div>
