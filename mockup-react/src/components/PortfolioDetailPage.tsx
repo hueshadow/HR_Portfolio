@@ -249,7 +249,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           height: auto;
           display: block;
           border-radius: 0;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          box-shadow: none;
         }
 
         .portfolio-detail-info {
