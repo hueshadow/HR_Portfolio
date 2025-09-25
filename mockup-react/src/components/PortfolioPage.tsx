@@ -169,9 +169,9 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           .protect-image img {
             width: 100%;
             max-width: 400px;
-            height: auto;
+            height: 100%; /* 改为100%填充容器高度 */
             border-radius: 0;
-            object-fit: contain;
+            object-fit: contain; /* 保持图片比例 */
             margin: auto;
             padding: 0;
             display: block;
@@ -184,8 +184,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             padding: 0;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            position: relative; /* 添加相对定位 */
+            justify-content: space-between; /* 使用space-between确保内容分布 */
           }
 
           .protect-discribe .protect-title {
@@ -199,6 +198,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             line-height: 1.2;
             align-self: flex-start; /* 顶部对齐 */
             font-family: 'Montserrat', sans-serif;
+            flex-shrink: 0; /* 防止标题压缩 */
           }
 
           .protect-discribe .year-text {
@@ -206,9 +206,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
             color: rgb(0, 0, 0);
             text-align: left;
             align-self: flex-start; /* 底部对齐 */
-            position: absolute; /* 使用绝对定位 */
-            bottom: 0; /* 定位到底部 */
-            left: 0; /* 左侧对齐 */
+            margin-top: auto; /* 使用auto margin推到容器底部 */
+            flex-shrink: 0; /* 防止年份文本压缩 */
           }
 
           .protect-discribe p {
