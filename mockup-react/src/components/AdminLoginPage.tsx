@@ -26,7 +26,8 @@ const AdminLoginPage: React.FC = () => {
         localStorage.setItem('username', username)
 
         // 登录成功，重定向到管理后台
-        window.location.href = '/admin'
+        // 使用 window.location.replace 而不是 href，避免浏览器历史记录问题
+        window.location.replace('/admin')
       } else {
         setError('密码错误')
       }
