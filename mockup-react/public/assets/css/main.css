@@ -1532,6 +1532,7 @@ input:focus, textarea:focus, input:focus-visible, textarea:focus-visible {
   }
   .page, .page.active{
     width: 100%;
+    background: var(--page-bg-color, #f7f6f1);
   }
   .page{
     height: auto;
@@ -1543,6 +1544,7 @@ input:focus, textarea:focus, input:focus-visible, textarea:focus-visible {
     display: block !important;
     height: auto;
     padding: 35px 40px;
+    background: var(--page-bg-color, #f7f6f1);
   }
   .home .content{
     padding: 35px 60px;
