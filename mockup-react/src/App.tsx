@@ -11,6 +11,7 @@ import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
 import EnhancedAdminDashboard from './components/EnhancedAdminDashboard'
+import AdminLoginPage from './components/AdminLoginPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminLink from './components/AdminLink'
 
@@ -149,6 +150,7 @@ function AppContent() {
         <Routes>
           <Route path="/portfolio/:id" element={<PortfolioDetailPage onPageChange={handlePageChange} />} />
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin/*" element={
             <ProtectedRoute>
               <EnhancedAdminDashboard />
