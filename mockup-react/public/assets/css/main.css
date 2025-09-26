@@ -1530,6 +1530,9 @@ input:focus, textarea:focus, input:focus-visible, textarea:focus-visible {
   .page:first-child header{
     position: fixed;
   }
+  .home-header{
+    background: #e3e3de;
+  }
   .page, .page.active{
     width: 100%;
     background: #e3e3de;
