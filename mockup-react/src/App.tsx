@@ -24,8 +24,8 @@ function AppContent() {
     { id: 'home', title: 'Home', number: '01', component: HomePage },
     { id: 'about', title: 'About', number: '02', component: AboutPage },
     { id: 'portfolio', title: 'Portfolio', number: '03', component: PortfolioPage },
-    { id: 'blog', title: 'Blog', number: '04', component: BlogPage },
-    { id: 'contact', title: 'Contact', number: '05', component: ContactPage }
+    { id: 'contact', title: 'Contact', number: '04', component: ContactPage },
+    { id: 'blog', title: 'Blog', number: '05', component: BlogPage, hidden: true }
   ]
 
   // 检查是否在详情页
@@ -45,10 +45,12 @@ function AppContent() {
   }, [])
 
   const handlePageChange = (pageId: string) => {
-    if (pageId !== activePageId) {
+    // 检查页面是否存在且未隐藏
+    const page = pages.find(p => p.id === pageId && !p.hidden)
+    if (page && pageId !== activePageId) {
       setActivePageId(pageId)
       setIsNavOpen(false)
-      
+
       // 滚动到页面顶部（移动端）
       if (window.innerWidth < 960) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -125,16 +127,16 @@ function AppContent() {
       />
       
       <main style={{ display: isLoaded ? 'block' : 'none' }}>
-        {pages.map((page) => {
+        {pages.filter(page => !page.hidden).map((page) => {
           const PageComponent = page.component
           return (
-            <section 
+            <section
               key={page.id}
-              className={`page ${activePageId === page.id ? 'active' : ''} ${isLoaded ? 'loaded' : ''}`} 
+              className={`page ${activePageId === page.id ? 'active' : ''} ${isLoaded ? 'loaded' : ''}`}
               id={page.id}
             >
               {/* 手风琴页面头部 */}
-              <header 
+              <header
                 onClick={() => handlePageChange(page.id)}
                 className={page.id === 'home' ? 'home-header' : ''}
               >
