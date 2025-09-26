@@ -8,31 +8,33 @@ import {
   Typography,
   Alert,
 } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { authProvider } from '../auth/authProvider'
 
 const AdminLoginPage: React.FC = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
-    try {
-      // 这里使用简单的密码验证
-      if (password === 'admin123') {
-        // 设置认证状态
-        sessionStorage.setItem('isAdminAuthenticated', 'true')
-        localStorage.setItem('username', username)
+    if (isSubmitting) {
+      return
+    }
 
-        // 登录成功，重定向到管理后台
-        // 使用 window.location.replace 而不是 href，避免浏览器历史记录问题
-        window.location.replace('/admin')
-      } else {
-        setError('密码错误')
-      }
+    try {
+      setIsSubmitting(true)
+      await authProvider.login({ username, password })
+      navigate('/admin', { replace: true })
     } catch (err) {
-      setError('登录失败')
+      const message = err instanceof Error ? err.message : '登录失败'
+      setError(message)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -80,6 +82,7 @@ const AdminLoginPage: React.FC = () => {
               type="submit"
               fullWidth
               variant="contained"
+              disabled={isSubmitting}
               sx={{ mt: 3, mb: 2 }}
             >
               登录

@@ -12,6 +12,7 @@ export const authProvider: AuthProvider = {
     if (password === 'admin123') {
       sessionStorage.setItem('isAdminAuthenticated', 'true')
       localStorage.setItem('username', username)
+      localStorage.setItem('role', 'admin')
       return Promise.resolve()
     }
     return Promise.reject(new Error('密码错误'))
@@ -20,6 +21,7 @@ export const authProvider: AuthProvider = {
   logout: () => {
     sessionStorage.removeItem('isAdminAuthenticated')
     localStorage.removeItem('username')
+    localStorage.removeItem('role')
     return Promise.resolve()
   },
 
@@ -40,7 +42,18 @@ export const authProvider: AuthProvider = {
 
   getPermissions: () => {
     const role = localStorage.getItem('role')
-    return role ? Promise.resolve(role) : Promise.reject(new Error('未知角色'))
+    if (role) {
+      return Promise.resolve(role)
+    }
+
+    const isAuthenticated = sessionStorage.getItem('isAdminAuthenticated') === 'true'
+    if (isAuthenticated) {
+      const fallbackRole = 'admin'
+      localStorage.setItem('role', fallbackRole)
+      return Promise.resolve(fallbackRole)
+    }
+
+    return Promise.reject(new Error('未知角色'))
   },
 
   getIdentity: () => {
