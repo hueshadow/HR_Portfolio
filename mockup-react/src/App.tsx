@@ -10,7 +10,7 @@ import BlogPage from './components/BlogPage'
 import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
-import AdminDashboard from './components/AdminDashboard'
+import EnhancedAdminDashboard from './components/EnhancedAdminDashboard'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminLink from './components/AdminLink'
 
@@ -151,7 +151,7 @@ function AppContent() {
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
           <Route path="/admin/*" element={
             <ProtectedRoute>
-              <AdminDashboard />
+              <EnhancedAdminDashboard />
             </ProtectedRoute>
           } />
         </Routes>
