@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Admin,
   Resource,
@@ -402,21 +402,8 @@ const PortfolioCreate = () => {
 
 // 主管理界面
 const EnhancedAdminDashboard: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null)
-
-  React.useEffect(() => {
-    const auth = sessionStorage.getItem('isAdminAuthenticated')
-    setIsAuthenticated(auth === 'true')
-  }, [])
-
-  if (isAuthenticated === null) {
-    return <div>验证中...</div>
-  }
-
-  if (!isAuthenticated) {
-    window.location.href = '/admin/login'
-    return null
-  }
+  // 认证检查现在由 ProtectedRoute 处理
+  // 如果组件被渲染，说明用户已经通过认证
 
   return (
     <Admin
