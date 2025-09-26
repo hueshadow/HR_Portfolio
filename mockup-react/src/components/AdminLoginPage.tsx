@@ -8,7 +8,6 @@ import {
   Typography,
   Alert,
 } from '@mui/material'
-import { authProvider } from '../auth/authProvider'
 
 const AdminLoginPage: React.FC = () => {
   const [username, setUsername] = useState('')
@@ -20,11 +19,19 @@ const AdminLoginPage: React.FC = () => {
     setError('')
 
     try {
-      await authProvider.login({ username, password })
-      // 登录成功，重定向到管理后台
-      window.location.href = '/admin'
+      // 这里使用简单的密码验证
+      if (password === 'admin123') {
+        // 设置认证状态
+        sessionStorage.setItem('isAdminAuthenticated', 'true')
+        localStorage.setItem('username', username)
+
+        // 登录成功，重定向到管理后台
+        window.location.href = '/admin'
+      } else {
+        setError('密码错误')
+      }
     } catch (err) {
-      setError('密码错误')
+      setError('登录失败')
     }
   }
 
