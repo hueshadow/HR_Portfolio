@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import PortfolioFilter from './PortfolioFilter'
 import ImagePreview from './ImagePreview'
 import { usePortfolioCaptionAnimation } from '../hooks/useAnimations'
+import { portfolioManager } from '../data/portfolio'
 
 interface PortfolioPageProps {
   active: boolean
@@ -19,14 +20,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
   const [isVideoPreview, setIsVideoPreview] = useState(false)
   const { animateCaption } = usePortfolioCaptionAnimation()
 
-  const portfolioItems = [
-    { id: 1, category: 'image', title: '华为云', image: '/assets/img/portfolio/1.jpg', thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg' },
-    { id: 2, category: 'image', title: '华为分析', image: '/assets/img/portfolio/2.jpg', thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg' },
-    { id: 3, category: 'image', title: '火柴盒', image: '/assets/img/portfolio/3.jpg', thumb: 'https://photosave.net/2025/09/f1ba8c79cb2be8df787d2654524aa52c.jpg' },
-    { id: 4, category: 'image', title: 'Business Connect', image: '/assets/img/portfolio/4.jpg', thumb: 'https://photosave.net/2025/09/84a321e2c0c7ceed0367af973157e24b.jpg' },
-    { id: 5, category: 'video', title: 'Project Video 1', image: '/assets/img/portfolio/5.jpg', thumb: 'https://photosave.net/2025/09/56928471b46698ae95c0e94a9b93264b.mp4', isVideo: true },
-    { id: 6, category: 'video', title: 'Project Video 2', image: '/assets/img/portfolio/6.jpg', thumb: 'https://photosave.net/2025/09/508f16cfbbce1e7be93cf7bdc8fffbe9.mp4', isVideo: true }
-  ]
+  const [portfolioItems, setPortfolioItems] = useState(portfolioManager.getAll())
 
   const filterItems = [
     { id: 'all', label: 'All', target: '*' },
@@ -36,7 +30,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
   ]
 
   useEffect(() => {
-    setFilteredItems(portfolioItems)
+    setPortfolioItems(portfolioManager.getAll())
+    setFilteredItems(portfolioManager.getAll())
   }, [])
 
   useEffect(() => {
@@ -333,7 +328,7 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           {filteredItems.map(item => (
             <li key={item.id} data-groups={`["${item.category}"]`}>
               <figure className="portfolio-item">
-                {item.isVideo ? (
+                {(item.category === 'video' || item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')) ? (
                   <video
                     src={item.thumb}
                     muted
@@ -365,14 +360,15 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                         onClick={(e) => {
                           e.preventDefault()
                           e.stopPropagation()
-                          if (item.isVideo) {
+                          const isVideo = item.category === 'video' || item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')
+                          if (isVideo) {
                             handlePreviewClick(item.thumb, true)
                           } else {
                             handlePreviewClick(item.image)
                           }
                         }}
                       >
-                        {item.isVideo ? "播放" : "预览"}
+                        {(item.category === 'video' || item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')) ? "播放" : "预览"}
                       </button>
                     </div>
                   </div>

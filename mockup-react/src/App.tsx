@@ -10,6 +10,9 @@ import BlogPage from './components/BlogPage'
 import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
+import AdminDashboard from './components/AdminDashboard'
+import ProtectedRoute from './components/ProtectedRoute'
+import AdminLink from './components/AdminLink'
 
 // 主应用组件
 function AppContent() {
@@ -28,8 +31,9 @@ function AppContent() {
     { id: 'blog', title: 'Blog', number: '05', component: BlogPage, hidden: true }
   ]
 
-  // 检查是否在详情页
+  // 检查是否在详情页或管理页
   const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/')
+  const isAdminPage = location.pathname.startsWith('/admin')
 
   useEffect(() => {
     // 预加载背景图片
@@ -136,14 +140,20 @@ function AppContent() {
     }
   }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage])
 
-  // 如果在详情页，只显示详情页内容
-  if (isDetailPage) {
+  // 如果在详情页或管理页，只显示相应内容
+  if (isDetailPage || isAdminPage) {
     return (
       <>
         <MouseTrailer />
+        {!isAdminPage && <AdminLink />}
         <Routes>
           <Route path="/portfolio/:id" element={<PortfolioDetailPage onPageChange={handlePageChange} />} />
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
+          <Route path="/admin/*" element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
       </>
     )
@@ -152,15 +162,16 @@ function AppContent() {
   return (
     <>
       <MouseTrailer />
-      <MobileNav 
-        activePageId={activePageId} 
+      <MobileNav
+        activePageId={activePageId}
         onPageChange={handlePageChange}
       />
-      <DesktopNav 
-        activePageId={activePageId} 
+      <DesktopNav
+        activePageId={activePageId}
         onPageChange={handlePageChange}
       />
-      
+      <AdminLink />
+
       <main style={{ display: isLoaded ? 'block' : 'none' }}>
         {pages.filter(page => !page.hidden).map((page) => {
           const PageComponent = page.component

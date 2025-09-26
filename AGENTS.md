@@ -1,73 +1,19 @@
-# AGENTS.md
+# Repository Guidelines
 
-This file provides guidance to agents when working with code in this repository.
+## Project Structure & Module Organization
+The WordPress reference theme lives in `mockup/` and remains the source for shared assets. React development happens in `mockup-react/`; page shells sit in `src/components/`, motion logic in `src/hooks/useAnimations.ts`, and theme overrides in `src/components/custom-styles.css`. Static images and legacy scripts are mirrored in `public/assets/`, while root-level `auto-*.sh` scripts coordinate dev, preview, and auto-commit tasks.
 
-## Project Overview
+## Build, Test, and Development Commands
+Inside `mockup-react/`, run `npm install` once per environment. `npm run dev` launches the Vite dev server with hot reload. `npm run build` performs the TypeScript project build plus production bundle; treat it as the release gate. `npm run preview` serves the built assets for manual QA, and `npm run lint` runs ESLint via `eslint.config.js`. Use `./auto-dev.sh`, `./auto-preview.sh`, or `./auto-commit.sh` when you want the scripted workflow from the repo root.
 
-This is a portfolio website project with two implementations:
-- **WordPress Theme** (`mockup/`) - Original HueShadow WordPress theme
-- **React Version** (`mockup-react/`) - React + TypeScript recreation of the WordPress theme
+## Coding Style & Naming Conventions
+Stick to TypeScript with explicit prop and hook typings. Follow the two-space indentation, trailing commas where applicable, and single-quote imports seen across existing files. Components and hooks use PascalCase (`PortfolioPage`, `useSkillBarAnimation`); utility functions stay camelCase. Extend animations or pointer behaviour inside `useAnimations.ts` or dedicated hooks, and keep CSS tweaks in `custom-styles.css` unless they are page-specific.
 
-## Non-Obvious Build Commands
+## Testing Guidelines
+There is no automated test suite yet; rely on `npm run lint` and `npm run build` before every PR. Document manual checks in the PR body—cover desktop (≥960px) and mobile views, the accordion navigation, and mouse trailer responsiveness. When changing motion or media, attach a short screen capture or GIF for reviewers.
 
-### React Version (mockup-react/)
-```bash
-# Custom automation scripts (run from project root)
-./auto-dev.sh      # Auto-commit + start preview server
-./auto-commit.sh   # Git add all, commit with auto-generated message, push
-./auto-preview.sh  # Kill existing vite, start new dev server on :5173
+## Commit & Pull Request Guidelines
+Follow Conventional Commit prefixes such as `feat:`, `fix:`, `chore:`, and `style:`; the auto-commit helpers produce messages in that format. Keep commits focused and rebase or squash noisy iterations before opening a PR. Pull requests should include a concise summary, linked issue or task, any UI screenshots or clips, and notes on the manual verification you completed. Call out Netlify or deployment-impacting adjustments explicitly.
 
-# Standard commands (run from mockup-react/ directory)
-npm run dev        # Standard Vite dev server
-npm run build      # TypeScript check + Vite build
-npm run preview    # Vite preview server
-```
-
-### Deployment
-- **Netlify**: Configured via `netlify.toml` - builds from `mockup-react/` directory
-- **SPA Routing**: All routes redirect to `index.html` for React Router
-
-## Critical Non-Obvious Patterns
-
-### Mouse Tracking System
-- **MouseTrailer Component**: Complex mouse tracking with viewport constraints
-  - Mouse position limited to content area boundaries on homepage
-  - Background parallax effect with `movementStrength = 370`
-  - Uses `requestAnimationFrame` for 60fps performance
-  - Mobile detection disables tracking entirely
-
-### Accordion Layout Architecture
-- **Desktop**: 80px inactive pages, active page = `calc(100% - 320px)`
-- **Mobile**: Switches to vertical scroll layout, all pages visible
-- **Page Activation**: Controlled by `activePageId` state, not CSS classes alone
-- **Detail Pages**: Portfolio/Blog detail routes hide accordion layout completely
-
-### Animation System
-- **Custom Hooks**: `useAnimations.ts` contains specialized animation logic
-  - `useSkillBarAnimation`: Staggered skill bar reveals with 250ms delays
-  - `useHeadingAnimation`: Text scramble effect using random letter cycling
-  - `usePortfolioCaptionAnimation`: Hover-triggered caption text animation
-- **CSS Variables**: Dynamic mouse position updates `--x`, `--y`, `--size` on h1 elements
-
-### Performance Optimizations
-- **Image Preloading**: Background image preloaded before showing content
-- **Transform vs Position**: Mouse trailer uses `transform: translate3d()` for GPU acceleration
-- **Passive Event Listeners**: Mouse events use `{ passive: true }` for scroll performance
-
-### WordPress Theme Integration
-- **Asset Sharing**: React version reuses WordPress theme's CSS, JS, and image assets
-- **Plugin Dependencies**: WordPress theme requires 8 specific plugins including Elementor
-- **Custom Post Types**: Portfolio and blog functionality built into WordPress theme
-
-## Critical File Locations
-- **Main Styles**: `mockup-react/src/components/custom-styles.css` (overrides and React-specific styles)
-- **Mouse Tracking**: `mockup-react/src/components/MouseTrailer.tsx`
-- **Animation Hooks**: `mockup-react/src/hooks/useAnimations.ts`
-- **Build Config**: `mockup-react/vite.config.ts` (minimal React plugin only)
-- **WordPress Functions**: `mockup/functions.php` (theme setup and plugin requirements)
-
-## Environment Requirements
-- **Node.js**: Version 20 (specified in netlify.toml)
-- **TypeScript**: Uses project references with separate configs for app/node
-- **Vite**: Version 4.5+ with React plugin
-- **External Dependencies**: jQuery, Magnific Popup, Shuffle.js, Tiny Slider imported via HTML
+## Environment & Deployment Notes
+Target Node.js 20 (`nvm use 20` is recommended). Netlify builds run from `mockup-react/` using `npm run build`, so confirm asset paths resolve relative to that directory. Third-party libraries (jQuery, Magnific Popup, Shuffle.js, Tiny Slider) are expected at runtime; do not remove their script references from `index.html` without providing an equivalent replacement.
