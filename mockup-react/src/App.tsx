@@ -44,6 +44,29 @@ function AppContent() {
     image.src = 'https://photosave.net/2025/09/fa0d5a10405bfab5931f038d97c545e6.png'
   }, [])
 
+  // 处理窗口大小改变时的背景色更新
+  useEffect(() => {
+    const handleResize = () => {
+      // Update background based on new window size
+      if (activePageId === 'about') {
+        if (window.innerWidth >= 960) {
+          document.body.style.background = '#e3e3de'
+        } else {
+          document.body.style.background = ''
+        }
+      } else {
+        if (window.innerWidth >= 960) {
+          document.body.style.background = '#f7f6f1'
+        } else {
+          document.body.style.background = ''
+        }
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [activePageId])
+
   const handlePageChange = (pageId: string) => {
     // 检查页面是否存在且未隐藏
     const page = pages.find(p => p.id === pageId && !p.hidden)
@@ -94,10 +117,22 @@ function AppContent() {
     // When About page is active, change background color for all pages
     if (activePageId === 'about') {
       document.documentElement.style.setProperty('--page-bg-color', '#e3e3de')
-      document.body.style.background = '#e3e3de'
+      // Only set body background for desktop (not mobile)
+      if (window.innerWidth >= 960) {
+        document.body.style.background = '#e3e3de'
+      } else {
+        // Let CSS handle mobile background
+        document.body.style.background = ''
+      }
     } else {
       document.documentElement.style.setProperty('--page-bg-color', '#f7f6f1')
-      document.body.style.background = '#f7f6f1'
+      // Only set body background for desktop (not mobile)
+      if (window.innerWidth >= 960) {
+        document.body.style.background = '#f7f6f1'
+      } else {
+        // Let CSS handle mobile background
+        document.body.style.background = ''
+      }
     }
   }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage])
 
