@@ -114,6 +114,9 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 - **Manual workflow**: Standard git commands also supported
 - **Important**: Always commit after completing tasks, do not keep dev server running
 
+### Automatic Commit Rule
+**🤖 Claude's Auto-Commit Rule**: After completing any task or making code changes, automatically run `./auto-commit.sh` to push changes to GitHub. Do not wait for the user to remind you. This ensures all changes are properly tracked and versioned.
+
 ### Key Development Patterns
 
 #### 1. Accordion Layout Architecture

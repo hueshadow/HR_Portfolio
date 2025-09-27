@@ -1427,6 +1427,25 @@ body.detail-page .mobile-nav {
   display: none !important;
 }
 
+/* 详情页时启用页面滚动 */
+body.detail-page {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+}
+
+/* 确保详情页包装器可以滚动 */
+.portfolio-detail-wrapper {
+  position: static !important;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+/* 详情页内容区域滚动优化 */
+#portfolio-detail-page {
+  overflow: visible !important;
+}
+
 .detail-header {
   display: flex;
   justify-content: space-between;
