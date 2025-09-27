@@ -1,4 +1,6 @@
-# CLAUDE.md - HR Portfolio Project Guide
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -12,27 +14,17 @@ The React version faithfully recreates the WordPress theme's design and function
 
 ### Primary Stack (React Implementation)
 - **Framework**: React 19.1.1 with TypeScript 5.8.3
-- **Build Tool**: Vite 4.5+ with custom configuration
+- **Build Tool**: Vite 4.5+ with React plugin
 - **Bundler**: ES modules with bundler resolution
 - **Routing**: React Router DOM 7.9.1
 - **Styling**: CSS with custom properties, Font Awesome icons
 - **Animations**: Custom CSS animations + JavaScript animations
 
-### Key Dependencies
-```json
-{
-  "react": "^19.1.1",
-  "react-dom": "^19.1.1",
-  "react-router-dom": "^7.9.1",
-  "typescript": "~5.8.3",
-  "vite": "^4.5.0",
-  "@vitejs/plugin-react": "^4.0.0",
-  "jquery": "^3.7.1",
-  "magnific-popup": "^1.2.0",
-  "shufflejs": "^6.1.2",
-  "tiny-slider": "^2.9.4"
-}
-```
+### Development Environment
+- **TypeScript**: Strict mode with ES2022 target
+- **ESLint**: Modern flat config with React hooks and refresh rules
+- **Node Version**: 20+ (required for Netlify deployment)
+- **Package Manager**: npm with custom script automation
 
 ## Project Structure
 
@@ -81,14 +73,7 @@ HR_Portfolio/
 
 ## Build & Development Commands
 
-### Automation Scripts (from project root)
-```bash
-./auto-dev.sh      # Auto-commit + start preview server
-./auto-commit.sh   # Git add all, commit, push to origin/main
-./auto-preview.sh  # Kill existing vite, start new dev server on :5173
-```
-
-### Standard Commands (from mockup-react/)
+### Core Commands (from mockup-react/)
 ```bash
 npm install        # Install dependencies
 npm run dev        # Start Vite dev server (http://localhost:5173)
@@ -97,17 +82,18 @@ npm run preview    # Preview production build
 npm run lint       # Run ESLint
 ```
 
-### Package.json Scripts
-```json
-{
-  "dev": "vite",
-  "build": "tsc -b && vite build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "auto-dev": "../auto-dev.sh",
-  "auto-commit": "../auto-commit.sh",
-  "auto-preview": "../auto-preview.sh"
-}
+### Automation Scripts (from project root)
+```bash
+./auto-dev.sh      # Auto-commit + start preview server
+./auto-commit.sh   # Git add all, commit, push to origin/main
+./auto-preview.sh  # Kill existing vite, start new dev server on :5173
+```
+
+### Development Workflow Commands (from mockup-react/)
+```bash
+npm run auto-dev      # Auto-commit + start preview server
+npm run auto-commit   # Git add all, commit, push to origin/main
+npm run auto-preview  # Kill existing vite, start new dev server on :5173
 ```
 
 ## Development Workflow
@@ -205,6 +191,31 @@ npm run lint       # Run ESLint
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/custom-styles.css` - React-specific overrides
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/public/assets/` - Shared static assets
 
+## Configuration Files
+
+### TypeScript Configuration
+- **Target**: ES2022 with strict mode enabled
+- **Module Resolution**: Bundler mode with ESNext modules
+- **Linting**: No unused locals/parameters, no unchecked side effects
+- **JSX**: React JSX transform with TypeScript support
+
+### ESLint Configuration
+- **Config Style**: Modern flat config (not legacy .eslintrc)
+- **Rules**: React hooks, react-refresh, TypeScript ESLint
+- **Globals**: Browser environment with ES2020 support
+- **Ignores**: dist/ build directory
+
+### Vite Configuration
+- **Plugin**: @vitejs/plugin-react for React support
+- **Server**: Default development server on port 5173
+- **Build**: Optimized production build with ES modules
+
+### Netlify Deployment
+- **Build Command**: `cd mockup-react && npm install && npx vite build`
+- **Publish Directory**: `mockup-react/dist`
+- **Node Version**: 20
+- **SPA Routing**: All routes redirect to `index.html`
+
 ## Important Notes
 
 ### Asset Sharing
@@ -228,6 +239,43 @@ npm run lint       # Run ESLint
 - Requires CSS Grid and Flexbox support
 - Font Awesome 6+ icon support
 
+## Critical Architecture Patterns
+
+### 1. Accordion Layout System
+- **Desktop Layout**: Horizontal accordion with 80px collapsed pages
+- **Mobile Layout**: Vertical scroll layout below 960px breakpoint
+- **State Management**: Single `activePageId` state controls page expansion
+- **Detail Pages**: Portfolio/Blog detail pages completely hide accordion layout
+- **Performance**: Components lazy-load based on active page state
+
+### 2. Mouse Tracking & Animation System
+- **Component**: `MouseTrailer.tsx` provides complex 60fps mouse tracking
+- **Constraints**: Mouse position limited to content area boundaries
+- **Performance**: Uses `requestAnimationFrame` and GPU acceleration
+- **Mobile**: Automatically disabled on mobile devices
+- **CSS Variables**: Real-time updates to `--x`, `--y`, `--size` for effects
+- **Background Parallax**: Movement strength of 370 pixels
+
+### 3. Animation Architecture
+- **Custom Hooks**: `useAnimations.ts` contains specialized animation logic
+  - `useSkillBarAnimation`: Staggered reveals with 250ms delays
+  - `useHeadingAnimation`: Text scramble effect with letter cycling
+  - `usePortfolioCaptionAnimation`: Hover-triggered captions
+- **Performance**: CSS transforms and GPU acceleration for smooth animations
+
+### 4. Detail Page Routing
+- **Routing**: React Router handles dynamic routes with fallback states
+  - Portfolio details: `/portfolio/:id`
+  - Blog details: `/blog/:id`
+- **Conditional Rendering**: Detail pages hide accordion completely
+- **Navigation**: Back navigation to parent pages with proper state management
+
+### 5. CSS Custom Property System
+- **Dynamic Backgrounds**: `--page-bg-color` controls page backgrounds
+- **Mouse Position**: `--x`, `--y`, `--size` for interactive effects
+- **Theme Variables**: `--px-theme-clr` and `--px-theme-bg` for consistent theming
+- **Runtime Updates**: JavaScript can update CSS variables dynamically
+
 ## Common Development Tasks
 
 ### Adding New Pages
@@ -240,10 +288,11 @@ npm run lint       # Run ESLint
 - Use existing CSS classes from WordPress theme when possible
 - Add React-specific overrides to `custom-styles.css`
 - Maintain consistency with original design system
+- Leverage CSS custom properties for dynamic theming
 
 ### Performance Considerations
 - Use React's built-in optimizations (memo, useCallback, etc.)
-- Leverage CSS transforms for animations
+- Leverage CSS transforms for animations over JavaScript
 - Preload critical images and assets
 - Minimize re-renders in mouse tracking components
 - Use CSS custom properties for dynamic theming
@@ -259,11 +308,12 @@ npm run lint       # Run ESLint
 ### Build Issues
 - Ensure Node.js 20+ is installed
 - Run `npm install` in mockup-react directory
-- Check TypeScript errors before building
+- Check TypeScript errors before building (strict mode enabled)
 - Verify all assets are in public directory
 
 ### Git Automation
 - Auto-commit pushes to origin/main branch
+- Scripts generate commit messages like "feat: update X files"
 - Ensure proper git permissions
 - Manual git workflow always available as fallback
 
@@ -272,3 +322,4 @@ npm run lint       # Run ESLint
 - **Mouse Lag**: Verify `requestAnimationFrame` implementation
 - **Style Conflicts**: Check both main.css and component-level styles
 - **Asset Loading**: Verify all paths use `/assets/` prefix
+- **TypeScript Errors**: Strict mode may require additional type annotations
