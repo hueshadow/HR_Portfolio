@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
@@ -34,20 +34,12 @@ const AdminDashboard: React.FC = () => {
 
   const [techInput, setTechInput] = useState('')
 
-  useEffect(() => {
-    loadPortfolioItems()
-  }, [])
-
-  useEffect(() => {
-    filterItems()
-  }, [portfolioItems, searchTerm, categoryFilter])
-
   const loadPortfolioItems = () => {
     const items = portfolioManager.getAll()
     setPortfolioItems(items)
   }
 
-  const filterItems = () => {
+  const filterItems = useCallback(() => {
     let filtered = portfolioItems
 
     if (searchTerm) {
@@ -62,7 +54,15 @@ const AdminDashboard: React.FC = () => {
     }
 
     setFilteredItems(filtered)
-  }
+  }, [portfolioItems, searchTerm, categoryFilter])
+
+  useEffect(() => {
+    loadPortfolioItems()
+  }, [])
+
+  useEffect(() => {
+    filterItems()
+  }, [filterItems])
 
   const handleLogout = () => {
     localStorage.removeItem('isAdminAuthenticated')
@@ -121,7 +121,7 @@ const AdminDashboard: React.FC = () => {
       } else {
         showNotification('Failed to delete project', 'error')
       }
-    } catch (error) {
+    } catch {
       showNotification('Error deleting project', 'error')
     } finally {
       setIsProcessing(false)
@@ -171,7 +171,7 @@ const AdminDashboard: React.FC = () => {
       } else {
         showNotification('Failed to save project', 'error')
       }
-    } catch (error) {
+    } catch {
       showNotification('Error saving project', 'error')
     } finally {
       setIsProcessing(false)
@@ -241,7 +241,7 @@ const AdminDashboard: React.FC = () => {
         } else {
           showNotification('Failed to import data', 'error')
         }
-      } catch (error) {
+      } catch {
         showNotification('Invalid data format', 'error')
       }
     }

@@ -33,7 +33,7 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onLogin }) => {
         setError('Invalid password')
         onLogin(false)
       }
-    } catch (err) {
+    } catch {
       setError('Login failed. Please try again.')
       onLogin(false)
     } finally {
