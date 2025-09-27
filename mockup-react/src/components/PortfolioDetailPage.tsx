@@ -154,7 +154,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           display: flex;
           align-items: flex-end;
           width: 100%;
-          height: calc(100% - 40px);
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          right: 20px;
         }
 
         .page-header h1 {
