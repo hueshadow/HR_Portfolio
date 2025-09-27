@@ -137,9 +137,11 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .page-header {
-          height: 22%;
+          height: auto;
+          min-height: 120px;
           position: relative;
           margin-bottom: 20px;
+          padding: 20px 0;
         }
 
         .page-header h1 {
