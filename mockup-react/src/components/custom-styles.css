@@ -525,11 +525,11 @@ main {
   }
 }
 
-/* 中等屏幕：屏幕宽度960px及以下，一行2张图片 */
+/* 中等屏幕：屏幕宽度960px及以下，一行1张图片 */
 @media (max-width: 960px) and (min-width: 481px) {
   .page#portfolio .portfolio-container li {
-    width: 50% !important;
-    float: left !important;
+    width: 100% !important;
+    float: none !important;
     box-sizing: border-box !important;
   }
 }
