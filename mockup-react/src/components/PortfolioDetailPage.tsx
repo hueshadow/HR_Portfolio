@@ -28,17 +28,11 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
     return (
       <div className="portfolio-detail-wrapper">
         <div className="page-header c12">
-          <div className="header-with-back">
-            <div className="header-back">
-              <button onClick={handleBackToPortfolio} className="back-button">
-                <i className="fas fa-arrow-left"></i> 返回
-              </button>
-            </div>
-            <div className="header-title">
-              <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
-            </div>
-          </div>
+          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
           <hr />
+          <button onClick={handleBackToPortfolio} className="back-button">
+            <i className="fas fa-arrow-left"></i> 返回
+          </button>
         </div>
 
         <div className="portfolio-detail-default">
@@ -62,17 +56,11 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   return (
     <div className="portfolio-detail-wrapper">
       <div className="page-header c12">
-        <div className="header-with-back">
-          <div className="header-back">
-            <button onClick={handleBackToPortfolio} className="back-button">
-              <i className="fas fa-arrow-left"></i> 返回
-            </button>
-          </div>
-          <div className="header-title">
-            <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
-          </div>
-        </div>
+        <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
         <hr />
+        <button onClick={handleBackToPortfolio} className="back-button">
+          <i className="fas fa-arrow-left"></i> 返回
+        </button>
       </div>
 
       <div className="portfolio-detail-content">
@@ -149,22 +137,33 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .page-header {
-          padding: 40px 20px 20px;
-          max-width: 1200px;
-          margin: 0 auto;
+          height: 22%;
+          position: relative;
+          margin-bottom: 20px;
+          padding: 0;
         }
 
-        .header-with-back {
-          display: flex;
-          align-items: center;
-          gap: 20px;
+        .page-header h1 {
+          position: absolute;
+          bottom: 20px;
+          margin: 0;
+          font-size: clamp(24px, 4vw, 32px);
+          font-weight: 600;
+          line-height: 1.2;
         }
 
-        .header-back {
-          flex-shrink: 0;
+        .page-header hr {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          margin: 0;
+          border-top: 1px solid var(--px-theme-clr);
         }
 
         .back-button {
+          position: absolute;
+          top: 20px;
+          right: 20px;
           background: none;
           border: none;
           color: var(--px-theme-clr, #ff6b6b);
@@ -183,25 +182,8 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           text-decoration: underline;
         }
 
-        .header-title {
-          flex-grow: 1;
-          display: flex;
-          align-items: center;
-        }
-
-        .header-title h1 {
-          margin: 0;
-          font-size: clamp(24px, 4vw, 32px);
-          font-weight: 600;
-          line-height: 1.2;
-        }
-
         @media (max-width: 768px) {
-          .header-with-back {
-            gap: 12px;
-          }
-
-          .header-title h1 {
+          .page-header h1 {
             font-size: clamp(20px, 5vw, 24px);
           }
         }
