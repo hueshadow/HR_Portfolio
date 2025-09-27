@@ -1,24 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  TextField,
+  Card,
+  Form,
+  Input,
   Button,
-  Alert,
-  AlertTitle,
-  InputAdornment,
-  IconButton,
-  CircularProgress
-} from '@mui/material'
+  Message,
+  Typography,
+  Space,
+  ConfigProvider
+} from '@arco-design/web-react'
 import {
-  Visibility,
-  VisibilityOff,
-  Lock,
-  AdminPanelSettings
-} from '@mui/icons-material'
+  IconLock,
+  IconUser
+} from '@arco-design/web-react/icon'
 
 interface AdminAuthProps {
   onLogin: (success: boolean) => void
@@ -28,13 +23,16 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onLogin }) => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [showPassword, setShowPassword] = useState(false)
   const navigate = useNavigate()
 
   const ADMIN_PASSWORD = 'admin123'
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = async () => {
+    if (!password) {
+      setError('请输入密码')
+      return
+    }
+
     setIsLoading(true)
     setError('')
 
@@ -47,11 +45,11 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onLogin }) => {
         onLogin(true)
         navigate('/admin')
       } else {
-        setError('Invalid password')
+        setError('密码错误')
         onLogin(false)
       }
     } catch {
-      setError('Login failed. Please try again.')
+      setError('登录失败，请重试')
       onLogin(false)
     } finally {
       setIsLoading(false)
@@ -59,108 +57,88 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onLogin }) => {
   }
 
   return (
-    <Box
-      sx={{
+    <ConfigProvider>
+      <div style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         display: 'flex',
-        alignItems: 'center'
-      }}
-    >
-      <Container maxWidth="sm">
-        <Paper
-          elevation={24}
-          sx={{
-            p: 4,
-            borderRadius: 2,
-            backdropFilter: 'blur(10px)',
-            backgroundColor: 'rgba(255, 255, 255, 0.95)'
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+      }}>
+        <Card
+          style={{
+            width: '100%',
+            maxWidth: '400px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
           }}
         >
-          <Box textAlign="center" mb={4}>
-            <Box
-              sx={{
+          <Space direction="vertical" size="large" style={{ width: '100%' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{
                 width: 80,
                 height: 80,
-                mx: 'auto',
-                mb: 2,
-                bgcolor: 'primary.main',
+                margin: '0 auto 16px',
+                background: '#667eea',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
-              }}
-            >
-              <AdminPanelSettings sx={{ fontSize: 40, color: 'white' }} />
-            </Box>
-            <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
-              Admin Login
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Portfolio Management System
-            </Typography>
-          </Box>
+              }}>
+                <IconUser style={{ fontSize: 40, color: 'white' }} />
+              </div>
+              <Typography.Title heading={4} style={{ margin: 0 }}>
+                管理员登录
+              </Typography.Title>
+              <Typography.Text type="secondary">
+                项目作品集管理系统
+              </Typography.Text>
+            </div>
 
-          <form onSubmit={handleSubmit}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {error && (
-                <Alert severity="error">
-                  <AlertTitle>Login Failed</AlertTitle>
-                  {error}
-                </Alert>
-              )}
+            {error && (
+              <Message type="error" content={error} style={{ marginBottom: 16 }} />
+            )}
 
-              <TextField
-                fullWidth
-                type={showPassword ? 'text' : 'password'}
-                label="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <Lock />
-                    </InputAdornment>
-                  ),
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  )
-                }}
-              />
+            <Form onSubmit={handleSubmit} layout="vertical">
+              <Form.Item label="密码" field="password" rules={[{ required: true, message: '请输入密码' }]}>
+                <Input.Password
+                  placeholder="请输入密码"
+                  value={password}
+                  onChange={(value) => setPassword(value)}
+                  prefix={<IconLock />}
+                  disabled={isLoading}
+                  onPressEnter={handleSubmit}
+                />
+              </Form.Item>
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                size="large"
-                disabled={isLoading || !password}
-                sx={{ mt: 2, py: 1.5 }}
-                startIcon={isLoading ? <CircularProgress size={20} color="inherit" /> : undefined}
-              >
-                {isLoading ? 'Logging in...' : 'Login to Dashboard'}
-              </Button>
-            </Box>
-          </form>
+              <Form.Item>
+                <Button
+                  type="primary"
+                  long
+                  size="large"
+                  loading={isLoading}
+                  disabled={!password}
+                  onClick={handleSubmit}
+                  style={{ height: '48px' }}
+                >
+                  {isLoading ? '登录中...' : '登录管理后台'}
+                </Button>
+              </Form.Item>
+            </Form>
 
-          <Box mt={4} textAlign="center">
-            <Typography variant="body2" color="text.secondary">
-              Default password: <strong>admin123</strong>
-            </Typography>
-            <Typography variant="caption" color="text.secondary" display="block" mt={1}>
-              For security, change this password in production
-            </Typography>
-          </Box>
-        </Paper>
-      </Container>
-    </Box>
+            <div style={{ textAlign: 'center', marginTop: 16 }}>
+              <Typography.Text type="secondary">
+                默认密码：<strong>admin123</strong>
+              </Typography.Text>
+              <Typography.Text type="secondary" style={{ display: 'block', marginTop: 4, fontSize: 12 }}>
+                生产环境请修改此密码
+              </Typography.Text>
+            </div>
+          </Space>
+        </Card>
+      </div>
+    </ConfigProvider>
   )
 }
 

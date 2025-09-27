@@ -1,106 +1,59 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Box,
-  Container,
-  Typography,
-  Stack,
-  Grid,
-  Paper,
+  Layout,
+  Menu,
   Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Button,
-  TextField,
-  MenuItem,
+  Space,
+  Tag,
+  Modal,
+  Form,
+  Input,
   Select,
-  InputLabel,
-  FormControl,
-  Chip,
-  IconButton,
   Switch,
-  FormControlLabel,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Alert,
-  AlertTitle,
-  Snackbar,
-  Toolbar,
-  AppBar,
-  Badge,
-  CardMedia,
-  Divider,
+  Message,
+  Typography,
+  Card,
+  Grid,
+  Upload,
   Tabs,
-  Tab,
-  InputAdornment,
-  OutlinedInput,
-  FormHelperText,
-  CircularProgress
-} from '@mui/material'
+  Badge,
+  Statistic,
+  Divider,
+  ConfigProvider
+} from '@arco-design/web-react'
 import {
-  Add as AddIcon,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
-  Visibility as ViewIcon,
-  Download as DownloadIcon,
-  Upload as UploadIcon,
-  Logout as LogoutIcon,
-  Search as SearchIcon,
-  Star as StarIcon,
-  StarBorder as StarBorderIcon,
-  Close as CloseIcon,
-  VideoLibrary as VideoIcon,
-  Image as ImageIcon,
-  ViewInAr as ThreeDIcon
-} from '@mui/icons-material'
+  IconPlus,
+  IconEdit,
+  IconDelete,
+  IconEye,
+  IconExport,
+  IconImport,
+  IconPoweroff,
+  IconSearch,
+  IconStar,
+  IconStarFill,
+  IconImage,
+  IconVideoCamera,
+  IconBug
+} from '@arco-design/web-react/icon'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
 import ImageUploadManager from './ImageUploadManager'
 
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  )
-}
+const { Header, Content, Sider } = Layout
+const { Title, Text } = Typography
 
 const AdminDashboard: React.FC = () => {
-  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([])
-  const [filteredItems, setFilteredItems] = useState<PortfolioItem[]>([])
+  const navigate = useNavigate()
+  const [collapsed, setCollapsed] = useState(false)
+  const [activeTab, setActiveTab] = useState('list')
+  const [projects, setProjects] = useState<PortfolioItem[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('all')
   const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null)
-  const [isProcessing, setIsProcessing] = useState(false)
-  const [tabValue, setTabValue] = useState(0)
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
-  const [itemToDelete, setItemToDelete] = useState<PortfolioItem | null>(null)
-  const [snackbar, setSnackbar] = useState({
-    open: false,
-    message: '',
-    severity: 'success' as 'success' | 'error' | 'warning' | 'info'
-  })
-
-  // Form states
+  const [techInput, setTechInput] = useState('')
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -113,69 +66,37 @@ const AdminDashboard: React.FC = () => {
     image: '',
     thumb: ''
   })
-
-  const [techInput, setTechInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+  const [itemToDelete, setItemToDelete] = useState<PortfolioItem | null>(null)
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
-
-  const navigate = useNavigate()
+  const [notification, setNotification] = useState({
+    visible: false,
+    message: '',
+    type: 'success' as 'success' | 'error' | 'warning' | 'info'
+  })
 
   useEffect(() => {
-    loadPortfolioItems()
+    loadProjects()
   }, [])
 
-  useEffect(() => {
-    filterItems()
-  }, [portfolioItems, searchTerm, categoryFilter])
-
-  const loadPortfolioItems = () => {
+  const loadProjects = () => {
     const items = portfolioManager.getAll()
-    setPortfolioItems(items)
+    setProjects(items)
   }
 
-  const filterItems = useCallback(() => {
-    let filtered = portfolioItems
-
-    if (searchTerm) {
-      filtered = filtered.filter(item =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    if (categoryFilter !== 'all') {
-      filtered = filtered.filter(item => item.category === categoryFilter)
-    }
-
-    setFilteredItems(filtered)
-  }, [portfolioItems, searchTerm, categoryFilter])
-
-  useEffect(() => {
-    filterItems()
-  }, [filterItems])
+  const filteredProjects = projects.filter(item => {
+    const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         item.description.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesCategory = categoryFilter === 'all' || item.category === categoryFilter
+    return matchesSearch && matchesCategory
+  })
 
   const handleLogout = () => {
     localStorage.removeItem('isAdminAuthenticated')
     localStorage.removeItem('adminAuthTimestamp')
-    navigate('/')
-  }
-
-  const handleCreate = () => {
-    setFormData({
-      title: '',
-      description: '',
-      category: 'image',
-      technologies: [],
-      projectDate: new Date().toISOString().split('T')[0],
-      featured: false,
-      projectUrl: '',
-      githubUrl: '',
-      image: '',
-      thumb: ''
-    })
-    setTechInput('')
-    setEditingItem(null)
-    setFormErrors({})
-    setTabValue(1)
+    navigate('/admin/login')
   }
 
   const handleEdit = (item: PortfolioItem) => {
@@ -194,62 +115,55 @@ const AdminDashboard: React.FC = () => {
     setTechInput('')
     setEditingItem(item)
     setFormErrors({})
-    setTabValue(1)
+    setModalVisible(true)
   }
 
   const handleDelete = (item: PortfolioItem) => {
     setItemToDelete(item)
-    setDeleteDialogOpen(true)
+    setDeleteModalVisible(true)
   }
 
-  const confirmDelete = async () => {
-    if (!itemToDelete) return
-
-    setIsProcessing(true)
-    try {
-      const success = portfolioManager.delete(itemToDelete.id)
-      if (success) {
-        loadPortfolioItems()
-        showSnackbar('Project deleted successfully', 'success')
-      } else {
-        showSnackbar('Failed to delete project', 'error')
-      }
-    } catch {
-      showSnackbar('Error deleting project', 'error')
-    } finally {
-      setIsProcessing(false)
-      setDeleteDialogOpen(false)
+  const confirmDelete = () => {
+    if (itemToDelete) {
+      portfolioManager.delete(itemToDelete.id)
+      loadProjects()
+      setDeleteModalVisible(false)
       setItemToDelete(null)
+      showNotification('项目已删除', 'success')
     }
   }
 
-  const handleFeatureToggle = (id: number) => {
-    const item = portfolioItems.find(item => item.id === id)
-    if (item) {
-      const success = portfolioManager.update(id, { featured: !item.featured })
-      if (success) {
-        loadPortfolioItems()
-        showSnackbar(
-          !item.featured ? 'Project featured' : 'Project unfeatured',
-          'success'
-        )
-      }
+  const handleAddTech = () => {
+    if (techInput.trim() && !formData.technologies.includes(techInput.trim())) {
+      setFormData({
+        ...formData,
+        technologies: [...formData.technologies, techInput.trim()]
+      })
+      setTechInput('')
     }
+  }
+
+  const handleRemoveTech = (tech: string) => {
+    setFormData({
+      ...formData,
+      technologies: formData.technologies.filter(t => t !== tech)
+    })
   }
 
   const validateForm = () => {
     const errors: Record<string, string> = {}
 
     if (!formData.title.trim()) {
-      errors.title = 'Title is required'
+      errors.title = '请输入项目标题'
     }
-
     if (!formData.description.trim()) {
-      errors.description = 'Description is required'
+      errors.description = '请输入项目描述'
     }
-
-    if (!formData.projectDate) {
-      errors.projectDate = 'Project date is required'
+    if (!formData.image.trim()) {
+      errors.image = '请上传项目图片'
+    }
+    if (!formData.thumb.trim()) {
+      errors.thumb = '请上传项目缩略图'
     }
 
     setFormErrors(errors)
@@ -257,84 +171,65 @@ const AdminDashboard: React.FC = () => {
   }
 
   const handleSubmit = async () => {
-    if (!validateForm()) {
-      return
-    }
+    if (!validateForm()) return
 
-    setIsProcessing(true)
+    setLoading(true)
+
     try {
-      const itemData = {
+      const projectData = {
         ...formData,
-        technologies: formData.technologies.filter(tech => tech.trim() !== '')
+        id: editingItem ? editingItem.id : Date.now(),
+        createdAt: editingItem ? editingItem.createdAt : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
       }
 
-      let success: boolean
       if (editingItem) {
-        const updatedItem = portfolioManager.update(editingItem.id, itemData)
-        success = updatedItem !== null
+        portfolioManager.update(editingItem.id, projectData)
+        showNotification('项目更新成功', 'success')
       } else {
-        portfolioManager.create(itemData)
-        success = true
+        portfolioManager.create(projectData)
+        showNotification('项目创建成功', 'success')
       }
 
-      if (success) {
-        loadPortfolioItems()
-        showSnackbar(
-          editingItem ? 'Project updated successfully' : 'Project created successfully',
-          'success'
-        )
-        setTabValue(0)
-        setEditingItem(null)
-      } else {
-        showSnackbar('Failed to save project', 'error')
-      }
-    } catch {
-      showSnackbar('Error saving project', 'error')
+      loadProjects()
+      setModalVisible(false)
+      resetForm()
+    } catch (error) {
+      showNotification('操作失败，请重试', 'error')
     } finally {
-      setIsProcessing(false)
+      setLoading(false)
     }
   }
 
-  const handleAddTechnology = () => {
-    if (techInput.trim() && !formData.technologies.includes(techInput.trim())) {
-      setFormData(prev => ({
-        ...prev,
-        technologies: [...prev.technologies, techInput.trim()]
-      }))
-      setTechInput('')
-    }
+  const resetForm = () => {
+    setFormData({
+      title: '',
+      description: '',
+      category: 'image',
+      technologies: [],
+      projectDate: '',
+      featured: false,
+      projectUrl: '',
+      githubUrl: '',
+      image: '',
+      thumb: ''
+    })
+    setEditingItem(null)
+    setFormErrors({})
   }
 
-  const handleRemoveTechnology = (tech: string) => {
-    setFormData(prev => ({
-      ...prev,
-      technologies: prev.technologies.filter(t => t !== tech)
-    }))
+  const showNotification = (message: string, type: 'success' | 'error' | 'warning' | 'info') => {
+    setNotification({
+      visible: true,
+      message,
+      type
+    })
+    setTimeout(() => {
+      setNotification(prev => ({ ...prev, visible: false }))
+    }, 3000)
   }
 
-  const handleImageSelect = (_file: File, preview: string) => {
-    setFormData(prev => ({
-      ...prev,
-      image: preview
-    }))
-  }
-
-  const handleThumbSelect = (_file: File, preview: string) => {
-    setFormData(prev => ({
-      ...prev,
-      thumb: preview
-    }))
-  }
-
-  const showSnackbar = (message: string, severity: 'success' | 'error' | 'warning' | 'info') => {
-    setSnackbar({ open: true, message, severity })
-  }
-
-  const handleSnackbarClose = () => {
-    setSnackbar({ ...snackbar, open: false })
-  }
-
-  const handleExportData = () => {
+  const handleExport = () => {
     const data = portfolioManager.exportData()
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
@@ -343,480 +238,483 @@ const AdminDashboard: React.FC = () => {
     a.download = `portfolio-backup-${new Date().toISOString().split('T')[0]}.json`
     a.click()
     URL.revokeObjectURL(url)
-    showSnackbar('Data exported successfully', 'success')
+    showNotification('数据导出成功', 'success')
   }
 
-  const handleImportData = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
+  const handleImport = (file: File) => {
     const reader = new FileReader()
     reader.onload = (e) => {
       try {
         const data = JSON.parse(e.target?.result as string)
-        const success = portfolioManager.importData(data)
-        if (success) {
-          loadPortfolioItems()
-          showSnackbar('Data imported successfully', 'success')
+        if (portfolioManager.importData(data)) {
+          loadProjects()
+          showNotification('数据导入成功', 'success')
         } else {
-          showSnackbar('Failed to import data', 'error')
+          showNotification('数据格式错误', 'error')
         }
       } catch {
-        showSnackbar('Invalid data format', 'error')
+        showNotification('文件解析失败', 'error')
       }
     }
     reader.readAsText(file)
-    event.target.value = ''
+    return false
   }
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'video': return <VideoIcon />
-      case '3d': return <ThreeDIcon />
-      default: return <ImageIcon />
+  const uploadProps = {
+    name: 'file',
+    accept: '.json',
+    showUploadList: false,
+    customRequest: ({ file }: any) => {
+      handleImport(file)
     }
   }
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'image': return 'primary'
-      case 'video': return 'secondary'
-      case '3d': return 'success'
-      default: return 'default'
+  const columns = [
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      width: 80,
+      render: (id: number) => <Text copyable>{id}</Text>
+    },
+    {
+      title: '项目名称',
+      dataIndex: 'title',
+      render: (title: string, record: PortfolioItem) => (
+        <Space direction="vertical" size="mini">
+          <Text style={{ fontWeight: 500 }}>{title}</Text>
+          <Tag size="small" color={record.category === 'image' ? 'blue' : record.category === 'video' ? 'green' : 'purple'}>
+            {record.category === 'image' ? <IconImage style={{ marginRight: 4 }} /> :
+             record.category === 'video' ? <IconVideoCamera style={{ marginRight: 4 }} /> :
+             <IconBug style={{ marginRight: 4 }} />}
+            {record.category}
+          </Tag>
+        </Space>
+      )
+    },
+    {
+      title: '技术栈',
+      dataIndex: 'technologies',
+      render: (techs: string[]) => (
+        <Space wrap size="mini">
+          {techs.slice(0, 3).map(tech => (
+            <Tag key={tech} size="small" color="arcoblue">{tech}</Tag>
+          ))}
+          {techs.length > 3 && <Tag size="small">+{techs.length - 3}</Tag>}
+        </Space>
+      )
+    },
+    {
+      title: '日期',
+      dataIndex: 'projectDate',
+      width: 120,
+      render: (date: string) => <Text type="secondary">{date}</Text>
+    },
+    {
+      title: '状态',
+      dataIndex: 'featured',
+      width: 100,
+      render: (featured: boolean) => (
+        featured ? <Tag color="orange" icon={<IconStarFill />}>精选</Tag> : <Tag>普通</Tag>
+      )
+    },
+    {
+      title: '操作',
+      width: 200,
+      render: (_: any, record: PortfolioItem) => (
+        <Space size="mini">
+          <Button
+            type="text"
+            size="mini"
+            icon={<IconEye />}
+            onClick={() => window.open(`/portfolio/${record.id}`, '_blank')}
+          >
+            查看
+          </Button>
+          <Button
+            type="text"
+            size="mini"
+            icon={<IconEdit />}
+            onClick={() => handleEdit(record)}
+          >
+            编辑
+          </Button>
+          <Button
+            type="text"
+            size="mini"
+            status="danger"
+            icon={<IconDelete />}
+            onClick={() => handleDelete(record)}
+          >
+            删除
+          </Button>
+        </Space>
+      )
     }
-  }
+  ]
+
+  const menuItems = [
+    {
+      key: 'projects',
+      icon: <IconImage />,
+      label: '项目管理'
+    },
+    {
+      key: 'stats',
+      icon: <IconStar />,
+      label: '数据统计'
+    }
+  ]
 
   return (
-    <Box sx={{ flexGrow: 1, bgcolor: 'background.default', minHeight: '100vh' }}>
-      {/* Header */}
-      <AppBar position="static" elevation={1}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Portfolio Admin Dashboard
-          </Typography>
-          <Badge badgeContent={filteredItems.length} color="primary" sx={{ mr: 2 }}>
-            <Typography variant="body2">Projects</Typography>
-          </Badge>
-          <Button
-            color="inherit"
-            startIcon={<DownloadIcon />}
-            onClick={handleExportData}
-            sx={{ mr: 1 }}
-          >
-            Export
-          </Button>
-          <label htmlFor="import-data">
-            <Button
-              component="span"
-              color="inherit"
-              startIcon={<UploadIcon />}
-              sx={{ mr: 1 }}
-            >
-              Import
-            </Button>
-          </label>
-          <input
-            id="import-data"
-            type="file"
-            accept=".json"
-            onChange={handleImportData}
-            style={{ display: 'none' }}
-          />
-          <Button
-            color="inherit"
-            startIcon={<LogoutIcon />}
-            onClick={handleLogout}
-          >
-            Logout
-          </Button>
-        </Toolbar>
-      </AppBar>
-
-      {/* Main Content */}
-      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={tabValue} onChange={(_, newValue) => setTabValue(newValue)}>
-            <Tab label="Projects" />
-            <Tab label={editingItem ? 'Edit Project' : 'New Project'} />
-          </Tabs>
-        </Box>
-
-        {/* Projects List Tab */}
-        <TabPanel value={tabValue} index={0}>
-          <Paper sx={{ mb: 3, p: 2 }}>
-            <Grid container spacing={2} alignItems="center">
-              <Grid size={{ xs: 12, md: 6 }}>
-                <TextField
-                  fullWidth
-                  placeholder="Search projects..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 4 }}>
-                <FormControl fullWidth>
-                  <InputLabel>Category</InputLabel>
-                  <Select
-                    value={categoryFilter}
-                    label="Category"
-                    onChange={(e) => setCategoryFilter(e.target.value)}
-                  >
-                    <MenuItem value="all">All Categories</MenuItem>
-                    <MenuItem value="image">Images</MenuItem>
-                    <MenuItem value="video">Videos</MenuItem>
-                    <MenuItem value="3d">3D Models</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid size={{ xs: 12, md: 2 }}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  startIcon={<AddIcon />}
-                  onClick={handleCreate}
-                >
-                  New
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
-
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Preview</TableCell>
-                  <TableCell>Title</TableCell>
-                  <TableCell>Category</TableCell>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Technologies</TableCell>
-                  <TableCell>Featured</TableCell>
-                  <TableCell align="right">Actions</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredItems.map((item) => (
-                  <TableRow key={item.id} hover>
-                    <TableCell>
-                      {item.category === 'video' ? (
-                        <Box
-                          component="video"
-                          src={item.image}
-                          poster={item.thumb}
-                          sx={{
-                            width: 60,
-                            height: 60,
-                            borderRadius: 1,
-                            objectFit: 'cover'
-                          }}
-                        />
-                      ) : (
-                        <CardMedia
-                          component="img"
-                          image={item.thumb || item.image}
-                          alt={item.title}
-                          sx={{
-                            width: 60,
-                            height: 60,
-                            borderRadius: 1,
-                            objectFit: 'cover'
-                          }}
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <Stack>
-                        <Typography variant="subtitle2" fontWeight="bold">
-                          {item.title}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary" noWrap>
-                          {item.description}
-                        </Typography>
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Chip
-                        icon={getCategoryIcon(item.category)}
-                        label={item.category.toUpperCase()}
-                        color={getCategoryColor(item.category) as any}
-                        size="small"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">
-                        {new Date(item.projectDate).toLocaleDateString()}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Stack direction="row" spacing={0.5} flexWrap="wrap">
-                        {item.technologies.slice(0, 3).map((tech, index) => (
-                          <Chip
-                            key={index}
-                            label={tech}
-                            size="small"
-                            variant="outlined"
-                          />
-                        ))}
-                        {item.technologies.length > 3 && (
-                          <Chip
-                            label={`+${item.technologies.length - 3}`}
-                            size="small"
-                            variant="outlined"
-                          />
-                        )}
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      <Switch
-                        checked={item.featured}
-                        onChange={() => handleFeatureToggle(item.id)}
-                        icon={<StarBorderIcon />}
-                        checkedIcon={<StarIcon />}
-                      />
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton
-                        onClick={() => {
-                          // Here you would typically open a menu
-                          if (window.confirm('View this project?')) {
-                            window.open(`/portfolio/${item.id}`, '_blank')
-                          }
-                        }}
-                      >
-                        <ViewIcon />
-                      </IconButton>
-                      <IconButton onClick={() => handleEdit(item)}>
-                        <EditIcon />
-                      </IconButton>
-                      <IconButton onClick={() => handleDelete(item)} color="error">
-                        <DeleteIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
-          {filteredItems.length === 0 && (
-            <Alert severity="info" sx={{ mt: 2 }}>
-              <AlertTitle>No Projects Found</AlertTitle>
-              Try adjusting your search or category filter, or create a new project.
-            </Alert>
-          )}
-        </TabPanel>
-
-        {/* Form Tab */}
-        <TabPanel value={tabValue} index={1}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h5" gutterBottom>
-              {editingItem ? 'Edit Project' : 'Create New Project'}
-            </Typography>
-            <Divider sx={{ mb: 3 }} />
-
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <TextField
-                  fullWidth
-                  label="Title"
-                  value={formData.title}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                  error={!!formErrors.title}
-                  helperText={formErrors.title}
-                  required
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <FormControl fullWidth required error={!!formErrors.category}>
-                  <InputLabel>Category</InputLabel>
-                  <Select
-                    value={formData.category}
-                    label="Category"
-                    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as any }))}
-                  >
-                    <MenuItem value="image">Image</MenuItem>
-                    <MenuItem value="video">Video</MenuItem>
-                    <MenuItem value="3d">3D Model</MenuItem>
-                  </Select>
-                  {formErrors.category && (
-                    <FormHelperText error>{formErrors.category}</FormHelperText>
-                  )}
-                </FormControl>
-              </Grid>
-              <Grid size={12}>
-                <TextField
-                  fullWidth
-                  multiline
-                  rows={4}
-                  label="Description"
-                  value={formData.description}
-                  onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                  error={!!formErrors.description}
-                  helperText={formErrors.description}
-                  required
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <TextField
-                  fullWidth
-                  type="date"
-                  label="Project Date"
-                  value={formData.projectDate}
-                  onChange={(e) => setFormData(prev => ({ ...prev, projectDate: e.target.value }))}
-                  InputLabelProps={{ shrink: true }}
-                  error={!!formErrors.projectDate}
-                  helperText={formErrors.projectDate}
-                  required
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <FormControlLabel
-                  control={
-                    <Switch
-                      checked={formData.featured}
-                      onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
-                    />
-                  }
-                  label="Featured Project"
-                />
-              </Grid>
-              <Grid size={12}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Technologies
-                </Typography>
-                <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
-                  <OutlinedInput
-                    value={techInput}
-                    onChange={(e) => setTechInput(e.target.value)}
-                    placeholder="Add technology"
-                    onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTechnology())}
-                    endAdornment={
-                      <InputAdornment position="end">
-                        <Button
-                          onClick={handleAddTechnology}
-                          disabled={!techInput.trim()}
-                          size="small"
-                        >
-                          Add
-                        </Button>
-                      </InputAdornment>
-                    }
-                  />
-                </Stack>
-                <Stack direction="row" spacing={1} flexWrap="wrap">
-                  {formData.technologies.map((tech, index) => (
-                    <Chip
-                      key={index}
-                      label={tech}
-                      onDelete={() => handleRemoveTechnology(tech)}
-                      deleteIcon={<CloseIcon />}
-                      color="primary"
-                    />
-                  ))}
-                </Stack>
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <TextField
-                  fullWidth
-                  type="url"
-                  label="Project URL"
-                  value={formData.projectUrl}
-                  onChange={(e) => setFormData(prev => ({ ...prev, projectUrl: e.target.value }))}
-                  placeholder="https://..."
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <TextField
-                  fullWidth
-                  type="url"
-                  label="GitHub URL"
-                  value={formData.githubUrl}
-                  onChange={(e) => setFormData(prev => ({ ...prev, githubUrl: e.target.value }))}
-                  placeholder="https://github.com/..."
-                />
-              </Grid>
-              <Grid size={12}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Images
-                </Typography>
-                <ImageUploadManager
-                  onImageSelect={handleImageSelect}
-                  onThumbSelect={handleThumbSelect}
-                  currentImage={formData.image}
-                  currentThumb={formData.thumb}
-                />
-              </Grid>
-            </Grid>
-
-            <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
-              <Button
-                variant="outlined"
-                onClick={() => setTabValue(0)}
-              >
-                Cancel
-              </Button>
-              <Box sx={{ flexGrow: 1 }} />
-              <Button
-                variant="contained"
-                onClick={handleSubmit}
-                disabled={isProcessing}
-                startIcon={isProcessing ? <CircularProgress size={20} /> : undefined}
-              >
-                {isProcessing ? 'Saving...' : (editingItem ? 'Update' : 'Create')}
-              </Button>
-            </Stack>
-          </Paper>
-        </TabPanel>
-      </Container>
-
-      {/* Delete Confirmation Dialog */}
-      <Dialog
-        open={deleteDialogOpen}
-        onClose={() => setDeleteDialogOpen(false)}
-      >
-        <DialogTitle>Confirm Delete</DialogTitle>
-        <DialogContent>
-          <Typography>
-            Are you sure you want to delete "{itemToDelete?.title}"? This action cannot be undone.
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setDeleteDialogOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            onClick={confirmDelete}
-            color="error"
-            disabled={isProcessing}
-            startIcon={isProcessing ? <CircularProgress size={20} /> : <DeleteIcon />}
-          >
-            {isProcessing ? 'Deleting...' : 'Delete'}
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      {/* Snackbar */}
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert
-          onClose={handleSnackbarClose}
-          severity={snackbar.severity}
-          sx={{ width: '100%' }}
+    <ConfigProvider>
+      <Layout style={{ minHeight: '100vh' }}>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={setCollapsed}
+          style={{
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            bottom: 0
+          }}
+          theme="dark"
         >
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
-    </Box>
+          <div style={{ height: 32, margin: 16, background: 'rgba(255,255,255,0.2)', borderRadius: 4 }} />
+          <Menu
+            theme="dark"
+            mode="vertical"
+            selectedKeys={['projects']}
+          >
+            {menuItems.map(item => (
+              <Menu.Item key={item.key}>
+                {item.icon} {item.label}
+              </Menu.Item>
+            ))}
+          </Menu>
+          <div style={{ position: 'absolute', bottom: 20, left: 0, right: 0, textAlign: 'center' }}>
+            <Button
+              type="text"
+              icon={<IconPoweroff />}
+              onClick={handleLogout}
+              style={{ color: 'white' }}
+            >
+              {collapsed ? '' : '退出登录'}
+            </Button>
+          </div>
+        </Sider>
+        <Layout style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
+          <Header style={{ background: '#fff', padding: '0 24px', boxShadow: '0 1px 4px rgba(0,21,41,.08)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Title heading={5} style={{ margin: 0 }}>
+                项目管理系统
+              </Title>
+              <Space>
+                <Upload {...uploadProps}>
+                  <Button icon={<IconImport />} type="outline">
+                    导入数据
+                  </Button>
+                </Upload>
+                <Button icon={<IconExport />} type="outline" onClick={handleExport}>
+                  导出数据
+                </Button>
+                <Badge count={projects.length} dot>
+                  <Button type="primary" icon={<IconPlus />} onClick={() => setModalVisible(true)}>
+                    新建项目
+                  </Button>
+                </Badge>
+              </Space>
+            </div>
+          </Header>
+          <Content style={{ margin: '24px', minHeight: 280 }}>
+            <Card>
+              <Tabs activeTab={activeTab} onChange={setActiveTab} type="line">
+                <Tabs.TabPane key="list" title="项目列表">
+                  <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                    <Grid.Row gutter={16}>
+                      <Grid.Col xs={24} sm={12} md={8}>
+                        <Input
+                          placeholder="搜索项目..."
+                          prefix={<IconSearch />}
+                          value={searchTerm}
+                          onChange={(value) => setSearchTerm(value)}
+                          allowClear
+                        />
+                      </Grid.Col>
+                      <Grid.Col xs={24} sm={12} md={6}>
+                        <Select
+                          placeholder="选择分类"
+                          value={categoryFilter}
+                          onChange={setCategoryFilter}
+                          style={{ width: '100%' }}
+                        >
+                          <Select.Option value="all">全部分类</Select.Option>
+                          <Select.Option value="image">图片</Select.Option>
+                          <Select.Option value="video">视频</Select.Option>
+                          <Select.Option value="3d">3D</Select.Option>
+                        </Select>
+                      </Grid.Col>
+                    </Grid.Row>
+
+                    <Table
+                      columns={columns}
+                      data={filteredProjects}
+                      rowKey="id"
+                      pagination={{
+                        pageSize: 10,
+                        showTotal: (total, range) => `第 ${range[0]}-${range[1]} 条，共 ${total} 条`
+                      }}
+                      scroll={{ x: 800 }}
+                    />
+                  </Space>
+                </Tabs.TabPane>
+
+                <Tabs.TabPane key="stats" title="数据统计">
+                  <Grid.Row gutter={[16, 16]}>
+                    <Grid.Col xs={24} sm={12} lg={6}>
+                      <Card>
+                        <Statistic
+                          title="项目总数"
+                          value={projects.length}
+                          prefix={<IconImage />}
+                        />
+                      </Card>
+                    </Grid.Col>
+                    <Grid.Col xs={24} sm={12} lg={6}>
+                      <Card>
+                        <Statistic
+                          title="精选项目"
+                          value={projects.filter(p => p.featured).length}
+                          prefix={<IconStarFill />}
+                        />
+                      </Card>
+                    </Grid.Col>
+                    <Grid.Col xs={24} sm={12} lg={6}>
+                      <Card>
+                        <Statistic
+                          title="图片项目"
+                          value={projects.filter(p => p.category === 'image').length}
+                          prefix={<IconImage />}
+                        />
+                      </Card>
+                    </Grid.Col>
+                    <Grid.Col xs={24} sm={12} lg={6}>
+                      <Card>
+                        <Statistic
+                          title="视频项目"
+                          value={projects.filter(p => p.category === 'video').length}
+                          prefix={<IconVideoCamera />}
+                        />
+                      </Card>
+                    </Grid.Col>
+                  </Grid.Row>
+                </Tabs.TabPane>
+              </Tabs>
+            </Card>
+          </Content>
+        </Layout>
+      </Layout>
+
+      {/* Project Form Modal */}
+      <Modal
+        title={editingItem ? '编辑项目' : '新建项目'}
+        visible={modalVisible}
+        onCancel={() => {
+          setModalVisible(false)
+          resetForm()
+        }}
+        footer={
+          <Space>
+            <Button onClick={() => {
+              setModalVisible(false)
+              resetForm()
+            }}>
+              取消
+            </Button>
+            <Button type="primary" loading={loading} onClick={handleSubmit}>
+              {editingItem ? '更新' : '创建'}
+            </Button>
+          </Space>
+        }
+        style={{ top: 20 }}
+      >
+        <Form layout="vertical">
+          <Grid.Row gutter={16}>
+            <Grid.Col span={12}>
+              <Form.Item label="项目标题" required>
+                <Input
+                  placeholder="请输入项目标题"
+                  value={formData.title}
+                  onChange={(value) => setFormData({ ...formData, title: value })}
+                  status={formErrors.title ? 'error' : undefined}
+                />
+                {formErrors.title && <Text type="error">{formErrors.title}</Text>}
+              </Form.Item>
+            </Grid.Col>
+            <Grid.Col span={12}>
+              <Form.Item label="项目分类">
+                <Select
+                  value={formData.category}
+                  onChange={(value) => setFormData({ ...formData, category: value })}
+                >
+                  <Select.Option value="image">图片</Select.Option>
+                  <Select.Option value="video">视频</Select.Option>
+                  <Select.Option value="3d">3D</Select.Option>
+                </Select>
+              </Form.Item>
+            </Grid.Col>
+          </Grid.Row>
+
+          <Form.Item label="项目描述" required>
+            <Input.TextArea
+              placeholder="请输入项目描述"
+              value={formData.description}
+              onChange={(value) => setFormData({ ...formData, description: value })}
+              rows={4}
+              status={formErrors.description ? 'error' : undefined}
+            />
+            {formErrors.description && <Text type="error">{formErrors.description}</Text>}
+          </Form.Item>
+
+          <Grid.Row gutter={16}>
+            <Grid.Col span={12}>
+              <Form.Item label="项目日期">
+                <Input
+                  type="date"
+                  value={formData.projectDate}
+                  onChange={(value) => setFormData({ ...formData, projectDate: value })}
+                />
+              </Form.Item>
+            </Grid.Col>
+            <Grid.Col span={12}>
+              <Form.Item label="是否精选">
+                <Switch
+                  checked={formData.featured}
+                  onChange={(checked) => setFormData({ ...formData, featured: checked })}
+                />
+              </Form.Item>
+            </Grid.Col>
+          </Grid.Row>
+
+          <Form.Item label="技术栈">
+            <Space>
+              <Input
+                placeholder="输入技术名称"
+                value={techInput}
+                onChange={(value) => setTechInput(value)}
+                onPressEnter={handleAddTech}
+                style={{ width: 200 }}
+              />
+              <Button onClick={handleAddTech}>添加</Button>
+            </Space>
+            <div style={{ marginTop: 8 }}>
+              <Space wrap>
+                {formData.technologies.map(tech => (
+                  <Tag
+                    key={tech}
+                    closable
+                    onClose={() => handleRemoveTech(tech)}
+                    color="arcoblue"
+                  >
+                    {tech}
+                  </Tag>
+                ))}
+              </Space>
+            </div>
+          </Form.Item>
+
+          <Grid.Row gutter={16}>
+            <Grid.Col span={12}>
+              <Form.Item label="项目链接">
+                <Input
+                  placeholder="https://example.com"
+                  value={formData.projectUrl}
+                  onChange={(value) => setFormData({ ...formData, projectUrl: value })}
+                />
+              </Form.Item>
+            </Grid.Col>
+            <Grid.Col span={12}>
+              <Form.Item label="GitHub链接">
+                <Input
+                  placeholder="https://github.com/..."
+                  value={formData.githubUrl}
+                  onChange={(value) => setFormData({ ...formData, githubUrl: value })}
+                />
+              </Form.Item>
+            </Grid.Col>
+          </Grid.Row>
+
+          <Grid.Row gutter={16}>
+            <Grid.Col span={12}>
+              <Form.Item label="主图URL" required>
+                <Input
+                  placeholder="/assets/img/projects/..."
+                  value={formData.image}
+                  onChange={(value) => setFormData({ ...formData, image: value })}
+                  status={formErrors.image ? 'error' : undefined}
+                />
+                {formErrors.image && <Text type="error">{formErrors.image}</Text>}
+              </Form.Item>
+            </Grid.Col>
+            <Grid.Col span={12}>
+              <Form.Item label="缩略图URL" required>
+                <Input
+                  placeholder="/assets/img/projects/thumb/..."
+                  value={formData.thumb}
+                  onChange={(value) => setFormData({ ...formData, thumb: value })}
+                  status={formErrors.thumb ? 'error' : undefined}
+                />
+                {formErrors.thumb && <Text type="error">{formErrors.thumb}</Text>}
+              </Form.Item>
+            </Grid.Col>
+          </Grid.Row>
+
+          <Divider />
+
+          <Form.Item label="图片管理">
+            <ImageUploadManager
+              onImageSelect={(_: File, preview: string) => {
+                setFormData({ ...formData, image: preview })
+              }}
+              onThumbSelect={(_: File, preview: string) => {
+                setFormData({ ...formData, thumb: preview })
+              }}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        title="确认删除"
+        visible={deleteModalVisible}
+        onOk={confirmDelete}
+        onCancel={() => {
+          setDeleteModalVisible(false)
+          setItemToDelete(null)
+        }}
+        okText="删除"
+        okButtonProps={{ status: 'danger' }}
+      >
+        确定要删除项目 "{itemToDelete?.title}" 吗？此操作不可恢复。
+      </Modal>
+
+      {/* Notification */}
+      {notification.visible && (
+        <Message
+          type={notification.type}
+          content={notification.message}
+          style={{
+            position: 'fixed',
+            top: 20,
+            right: 20,
+            zIndex: 9999
+          }}
+        />
+      )}
+    </ConfigProvider>
   )
 }
 
