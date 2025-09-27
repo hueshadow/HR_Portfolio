@@ -247,7 +247,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         .project-info {
           background: white;
           padding: 40px;
-          border-radius: 12px;
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
