@@ -28,11 +28,13 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
     return (
       <div className="portfolio-detail-wrapper">
         <div className="page-header c12">
-          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          <div className="header-top">
+            <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+            <button onClick={handleBackToPortfolio} className="back-button">
+              <i className="fas fa-arrow-left"></i> 返回
+            </button>
+          </div>
           <hr className="enabled" />
-          <button onClick={handleBackToPortfolio} className="back-button">
-            <i className="fas fa-arrow-left"></i> 返回
-          </button>
         </div>
 
         <div className="portfolio-detail-default">
@@ -56,11 +58,13 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   return (
     <div className="portfolio-detail-wrapper">
       <div className="page-header c12">
-        <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+        <div className="header-top">
+          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          <button onClick={handleBackToPortfolio} className="back-button">
+            <i className="fas fa-arrow-left"></i> 返回
+          </button>
+        </div>
         <hr className="enabled" />
-        <button onClick={handleBackToPortfolio} className="back-button">
-          <i className="fas fa-arrow-left"></i> 返回
-        </button>
       </div>
 
       <div className="portfolio-detail-content">
@@ -147,9 +151,16 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           margin-right: auto;
         }
 
+        .header-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
         .page-header h1 {
-          position: absolute;
-          bottom: 20px;
+          position: relative;
+          bottom: auto;
           margin: 0;
           font-size: clamp(24px, 4vw, 32px);
           font-weight: 600;
@@ -169,9 +180,9 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .back-button {
-          position: absolute;
-          top: 20px;
-          right: 20px;
+          position: relative;
+          top: auto;
+          right: auto;
           background: none;
           border: none;
           color: var(--px-theme-clr, #ff6b6b);
@@ -191,6 +202,12 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         @media (max-width: 960px) {
+          .header-top {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+          }
+
           .page-header h1 {
             position: relative;
             bottom: auto;
@@ -204,7 +221,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             position: relative;
             top: auto;
             right: auto;
-            margin-bottom: 20px;
           }
         }
 
