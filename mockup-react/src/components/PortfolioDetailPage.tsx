@@ -27,6 +27,14 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   if (!item) {
     return (
       <div className="portfolio-detail-wrapper">
+        <div className="page-header c12">
+          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          <hr className="enabled" />
+          <button onClick={handleBackToPortfolio} className="back-button">
+            <i className="fas fa-arrow-left"></i> 返回
+          </button>
+        </div>
+
         <div className="portfolio-detail-default">
           <div className="not-found">
             <h2>Project Not Found</h2>
@@ -47,6 +55,14 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
   return (
     <div className="portfolio-detail-wrapper">
+      <div className="page-header c12">
+        <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+        <hr className="enabled" />
+        <button onClick={handleBackToPortfolio} className="back-button">
+          <i className="fas fa-arrow-left"></i> 返回
+        </button>
+      </div>
+
       <div className="portfolio-detail-content">
         <div className="project-hero">
           <div className="project-media">
@@ -120,7 +136,79 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           color: #333;
         }
 
-        
+        .page-header {
+          height: 22%;
+          position: relative;
+          margin-bottom: 20px;
+        }
+
+        .page-header h1 {
+          position: absolute;
+          bottom: 20px;
+          margin: 0;
+          font-size: clamp(24px, 4vw, 32px);
+          font-weight: 600;
+          line-height: 1.2;
+        }
+
+        .page-header hr {
+          position: absolute;
+          bottom: 0;
+          width: 0%;
+          margin: 0;
+          border-top: 1px solid var(--px-theme-clr);
+        }
+
+        .page-header hr.enabled {
+          width: calc(100% - 40px);
+        }
+
+        .back-button {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          color: var(--px-theme-clr, #ff6b6b);
+          font-size: 16px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border-radius: 6px;
+          transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+          background: transparent;
+          text-decoration: underline;
+        }
+
+        @media (max-width: 960px) {
+          .page-header h1 {
+            position: relative;
+            bottom: auto;
+          }
+
+          .page-header hr {
+            width: calc(100% - 40px);
+          }
+
+          .back-button {
+            position: relative;
+            top: auto;
+            right: auto;
+            margin-bottom: 20px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .page-header h1 {
+            font-size: clamp(20px, 5vw, 24px);
+          }
+        }
+
         .portfolio-detail-content {
           max-width: 1200px;
           margin: 0 auto;
