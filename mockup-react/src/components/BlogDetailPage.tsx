@@ -116,7 +116,6 @@ const BlogDetailPage = ({ active: _active, loaded: _loaded, onPageChange }: Blog
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 20px;
           }
 
           .header-back {
