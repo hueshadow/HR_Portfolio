@@ -29,10 +29,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       <div className="portfolio-detail-wrapper">
         <div className="page-header c12">
           <div className="header-top">
-            <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
             <button onClick={handleBackToPortfolio} className="back-button">
               <i className="fas fa-arrow-left"></i> 返回
             </button>
+            <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
           </div>
           <hr className="enabled" />
         </div>
@@ -59,10 +59,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
     <div className="portfolio-detail-wrapper">
       <div className="page-header c12">
         <div className="header-top">
-          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
           <button onClick={handleBackToPortfolio} className="back-button">
             <i className="fas fa-arrow-left"></i> 返回
           </button>
+          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
         </div>
         <hr className="enabled" />
       </div>
@@ -221,6 +221,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             position: relative;
             top: auto;
             right: auto;
+            order: -1;
           }
         }
 
