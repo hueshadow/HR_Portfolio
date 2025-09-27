@@ -13,7 +13,6 @@ import BlogDetailPage from './components/BlogDetailPage'
 import AdminAuth from './components/AdminAuth'
 import AdminDashboard from './components/AdminDashboard'
 import ProtectedRoute from './components/ProtectedRoute'
-import AdminLink from './components/AdminLink'
 
 // 主应用组件
 function AppContent() {
@@ -165,16 +164,13 @@ function AppContent() {
           } />
         </Routes>
 
-        {/* Show admin link on detail pages but not admin pages */}
-        {isDetailPage && <AdminLink />}
-      </>
+        </>
     )
   }
 
   return (
     <>
       <MouseTrailer />
-      <AdminLink />
       <MobileNav
         activePageId={activePageId}
         onPageChange={handlePageChange}
