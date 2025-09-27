@@ -26,7 +26,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
   if (!item) {
     return (
-      <div className="portfolio-detail-wrapper">
+      <div className="portfolio-detail-wrapper" id="portfolio-detail-page">
         <div className="page-header c12">
           <div className="header-top">
             <button onClick={handleBackToPortfolio} className="back-button">
@@ -56,7 +56,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                  item.image.toLowerCase().endsWith('.ogg')
 
   return (
-    <div className="portfolio-detail-wrapper">
+    <div className="portfolio-detail-wrapper" id="portfolio-detail-page">
       <div className="page-header c12">
         <div className="header-top">
           <button onClick={handleBackToPortfolio} className="back-button">
@@ -137,6 +137,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           background: var(--page-bg-color, #f7f6f1);
           min-height: 100vh;
           color: #333;
+          overflow-y: auto;
         }
 
         .page-header {
