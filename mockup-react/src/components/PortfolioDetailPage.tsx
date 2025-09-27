@@ -193,7 +193,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           display: flex;
           align-items: center;
           gap: 8px;
-          padding: 8px 16px;
+          padding: 8px 16px 8px 0;
           border-radius: 6px;
           transition: background-color 0.3s ease;
         }
