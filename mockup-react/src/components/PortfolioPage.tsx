@@ -162,6 +162,14 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
           }
         `}</style>
         <style>{`
+          /* 960px以下响应式样式 */
+          @media (max-width: 960px) {
+            .portfolio-item {
+              width: 100% !important;
+            }
+          }
+        `}</style>
+        <style>{`
           .protect-image {
             text-align: center;
             height: 100%;
