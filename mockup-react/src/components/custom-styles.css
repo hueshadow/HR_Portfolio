@@ -1437,7 +1437,7 @@ body.detail-page .mobile-nav {
   border-bottom: 1px solid #e0e0e0;
 }
 
-.back-button {
+.portfolio-detail-container .back-button {
   background: transparent;
   border: none;
   color: var(--px-theme-clr);
@@ -1451,7 +1451,7 @@ body.detail-page .mobile-nav {
   gap: 8px;
 }
 
-.back-button:hover {
+.portfolio-detail-container .back-button:hover {
   background: transparent;
   color: var(--px-theme-clr);
   text-decoration: underline;
