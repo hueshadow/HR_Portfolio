@@ -804,6 +804,9 @@ main {
   /* Home页面header特殊样式 */
   .page#home header.home-header {
     cursor: default;
+    background: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
   }
   
   .page#home .logo {
