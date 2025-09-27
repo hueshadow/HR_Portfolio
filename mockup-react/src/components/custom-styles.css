@@ -913,6 +913,11 @@ main {
     height: auto !important;
     overflow: visible !important;
   }
+
+  /* 移动端：移除home-header的背景 */
+  .home-header {
+    background: none !important;
+  }
   
   .page {
     display: block !important;
