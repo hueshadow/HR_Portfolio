@@ -500,7 +500,6 @@ main {
   background: transparent !important;
   border: none !important;
   color: var(--px-theme-clr) !important;
-  padding: 12px 24px !important;
   font-size: 14px !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
