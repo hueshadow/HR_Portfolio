@@ -153,7 +153,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           display: flex;
           align-items: flex-end;
           width: 100%;
-          margin-bottom: 20px;
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          right: 20px;
         }
 
         .page-header h1 {
@@ -169,6 +172,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           width: 0%;
           margin: 0;
           border-top: 1px solid var(--px-theme-clr);
+          position: absolute;
+          bottom: 0;
+          left: 20px;
+          right: 20px;
         }
 
         .page-header hr.enabled {
@@ -202,6 +209,11 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             flex-direction: column;
             align-items: flex-start;
             gap: 15px;
+            position: static;
+            bottom: auto;
+            left: auto;
+            right: auto;
+            margin-bottom: 20px;
           }
 
           .page-header h1 {
@@ -211,6 +223,11 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
           .page-header hr {
             width: calc(100% - 40px);
+            position: static;
+            bottom: auto;
+            left: auto;
+            right: auto;
+            margin-top: 20px;
           }
 
           .back-button {

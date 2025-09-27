@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import portfolioManager from '../data/portfolio'
-import { PortfolioItem } from '../types/portfolio'
+import { portfolioManager } from '../data/portfolio'
+import type { PortfolioItem } from '../types/portfolio'
 import ImageUploadManager from './ImageUploadManager'
 
 const AdminDashboard: React.FC = () => {
@@ -132,12 +132,11 @@ const AdminDashboard: React.FC = () => {
   const handleFeatureToggle = (id: number) => {
     const item = portfolioItems.find(item => item.id === id)
     if (item) {
-      const updatedItem = { ...item, featured: !item.featured }
-      const success = portfolioManager.update(updatedItem)
+      const success = portfolioManager.update(id, { featured: !item.featured })
       if (success) {
         loadPortfolioItems()
         showNotification(
-          updatedItem.featured ? 'Project featured' : 'Project unfeatured',
+          !item.featured ? 'Project featured' : 'Project unfeatured',
           'success'
         )
       }
@@ -154,14 +153,11 @@ const AdminDashboard: React.FC = () => {
 
       let success: boolean
       if (isEdit && editingItem) {
-        success = portfolioManager.update({
-          ...itemData,
-          id: editingItem.id,
-          createdAt: editingItem.createdAt,
-          updatedAt: new Date().toISOString()
-        })
+        const updatedItem = portfolioManager.update(editingItem.id, itemData)
+        success = updatedItem !== null
       } else {
-        success = portfolioManager.create(itemData)
+        portfolioManager.create(itemData)
+        success = true
       }
 
       if (success) {
@@ -199,11 +195,17 @@ const AdminDashboard: React.FC = () => {
     }))
   }
 
-  const handleImageUpload = (imageUrl: string, thumbnailUrl: string) => {
+  const handleImageSelect = (_file: File, preview: string) => {
     setFormData(prev => ({
       ...prev,
-      image: imageUrl,
-      thumb: thumbnailUrl
+      image: preview
+    }))
+  }
+
+  const handleThumbSelect = (_file: File, preview: string) => {
+    setFormData(prev => ({
+      ...prev,
+      thumb: preview
     }))
   }
 
@@ -427,7 +429,8 @@ const AdminDashboard: React.FC = () => {
               <div className="form-group">
                 <label>Image</label>
                 <ImageUploadManager
-                  onImageUpload={handleImageUpload}
+                  onImageSelect={handleImageSelect}
+                  onThumbSelect={handleThumbSelect}
                   currentImage={formData.image}
                   currentThumb={formData.thumb}
                 />
@@ -551,7 +554,8 @@ const AdminDashboard: React.FC = () => {
               <div className="form-group">
                 <label>Image</label>
                 <ImageUploadManager
-                  onImageUpload={handleImageUpload}
+                  onImageSelect={handleImageSelect}
+                  onThumbSelect={handleThumbSelect}
                   currentImage={formData.image}
                   currentThumb={formData.thumb}
                 />
