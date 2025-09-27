@@ -34,7 +34,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             </button>
             <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
           </div>
-          <div className="header-spacer"></div>
           <hr className="enabled" />
         </div>
 
@@ -65,7 +64,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           </button>
           <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
         </div>
-        <div className="header-spacer"></div>
         <hr className="enabled" />
       </div>
 
@@ -155,12 +153,9 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .header-top {
           display: flex;
-          align-items: center;
+          align-items: flex-end;
           width: 100%;
-        }
-
-        .header-spacer {
-          height: 20px;
+          height: calc(100% - 40px);
         }
 
         .page-header h1 {
