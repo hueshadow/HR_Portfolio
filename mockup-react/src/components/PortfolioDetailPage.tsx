@@ -161,6 +161,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           margin-bottom: 20px;
         }
 
+        .header-back {
+          flex-shrink: 0;
+        }
+
         .back-button {
           background: none;
           border: none;
@@ -178,6 +182,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         .back-button:hover {
           background: transparent;
           text-decoration: underline;
+        }
+
+        .header-title {
+          flex-grow: 1;
         }
 
         .header-title h1 {

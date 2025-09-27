@@ -115,12 +115,12 @@ const BlogDetailPage = ({ active: _active, loaded: _loaded, onPageChange }: Blog
           .header-with-back {
             display: flex;
             align-items: center;
+            gap: 20px;
             margin-bottom: 20px;
           }
 
           .header-back {
             flex-shrink: 0;
-            margin-right: 12px;
           }
 
           .header-title {
