@@ -96,7 +96,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             <h2>{item.title}</h2>
             <div className="project-meta">
               <span className="category">{item.category.toUpperCase()}</span>
-              <span className="date">{new Date(item.projectDate).toLocaleDateString('zh-CN')}</span>
               {item.featured && <span className="featured">⭐ FEATURED</span>}
             </div>
           </div>
