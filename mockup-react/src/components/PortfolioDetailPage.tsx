@@ -239,7 +239,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .project-hero {
-          margin-bottom: 40px;
           border-radius: 0;
           overflow: hidden;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
