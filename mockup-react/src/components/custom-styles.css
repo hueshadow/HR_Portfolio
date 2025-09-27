@@ -1427,23 +1427,52 @@ body.detail-page .mobile-nav {
   display: none !important;
 }
 
-/* 详情页时启用页面滚动 */
-body.detail-page {
+/* 详情页时启用页面滚动 - 高优先级 */
+html body.detail-page {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   height: auto !important;
 }
 
+/* 详情页时html元素也允许滚动 */
+html:has(body.detail-page) {
+  overflow: auto !important;
+  height: auto !important;
+}
+
 /* 确保详情页包装器可以滚动 */
-.portfolio-detail-wrapper {
+body.detail-page .portfolio-detail-wrapper {
   position: static !important;
   min-height: 100vh;
   overflow: visible !important;
 }
 
 /* 详情页内容区域滚动优化 */
-#portfolio-detail-page {
+body.detail-page #portfolio-detail-page {
   overflow: visible !important;
+}
+
+/* 960px以上分辨率的detail-page特殊处理 */
+@media (min-width: 961px) {
+  /* 确保detail-page时允许滚动 */
+  html body.detail-page {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  html:has(body.detail-page) {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+  /* 详情页内容完全显示 */
+  body.detail-page .portfolio-detail-wrapper {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
 }
 
 .detail-header {
