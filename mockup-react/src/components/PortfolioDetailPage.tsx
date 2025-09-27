@@ -141,7 +141,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           min-height: 120px;
           position: relative;
           margin-bottom: 20px;
-          padding: 20px 0;
+          padding: 20px;
           max-width: 1200px;
           margin-left: auto;
           margin-right: auto;
