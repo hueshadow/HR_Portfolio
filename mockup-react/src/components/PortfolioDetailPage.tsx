@@ -213,7 +213,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             bottom: auto;
             left: auto;
             right: auto;
-            margin-bottom: 20px;
           }
 
           .page-header h1 {
