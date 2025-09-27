@@ -185,12 +185,25 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .header-title {
           flex-grow: 1;
+          display: flex;
+          align-items: center;
         }
 
         .header-title h1 {
           margin: 0;
-          font-size: 32px;
+          font-size: clamp(24px, 4vw, 32px);
           font-weight: 600;
+          line-height: 1.2;
+        }
+
+        @media (max-width: 768px) {
+          .header-with-back {
+            gap: 12px;
+          }
+
+          .header-title h1 {
+            font-size: clamp(20px, 5vw, 24px);
+          }
         }
 
         .portfolio-detail-content {

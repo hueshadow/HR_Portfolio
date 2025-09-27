@@ -124,10 +124,24 @@ const BlogDetailPage = ({ active: _active, loaded: _loaded, onPageChange }: Blog
 
           .header-title {
             flex-grow: 1;
+            display: flex;
+            align-items: center;
           }
 
           .header-title h1 {
             margin: 0;
+            font-size: clamp(24px, 4vw, 32px);
+            line-height: 1.2;
+          }
+
+          @media (max-width: 768px) {
+            .header-with-back {
+              gap: 12px;
+            }
+
+            .header-title h1 {
+              font-size: clamp(20px, 5vw, 24px);
+            }
           }
 
           .blog-detail-content {
