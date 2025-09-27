@@ -34,6 +34,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             </button>
             <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
           </div>
+          <div className="header-spacer"></div>
           <hr className="enabled" />
         </div>
 
@@ -64,6 +65,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           </button>
           <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
         </div>
+        <div className="header-spacer"></div>
         <hr className="enabled" />
       </div>
 
@@ -144,7 +146,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           height: auto;
           min-height: 120px;
           position: relative;
-          margin-bottom: 20px;
+          margin-bottom: 0;
           padding: 20px;
           max-width: 1200px;
           margin-left: auto;
@@ -155,6 +157,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           display: flex;
           align-items: center;
           width: 100%;
+        }
+
+        .header-spacer {
+          height: 20px;
         }
 
         .page-header h1 {
