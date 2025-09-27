@@ -497,7 +497,7 @@ main {
 }
 
 .back-button {
-  background: var(--px-theme-clr) !important;
+  background: transparent !important;
   border: none !important;
   color: var(--px-theme-clr) !important;
   padding: 12px 24px !important;
@@ -510,8 +510,9 @@ main {
 }
 
 .back-button:hover {
-  background: var(--px-theme-clr) !important;
-  color: #fff !important;
+  background: transparent !important;
+  color: var(--px-theme-clr) !important;
+  text-decoration: underline !important;
 }
 
 /* Portfolio页面图片响应式布局 */
@@ -1429,7 +1430,7 @@ body.detail-page .mobile-nav {
 
 .back-button {
   background: transparent;
-  border: 1px solid var(--px-theme-clr);
+  border: none;
   color: var(--px-theme-clr);
   padding: 12px 24px;
   cursor: pointer;
@@ -1442,8 +1443,9 @@ body.detail-page .mobile-nav {
 }
 
 .back-button:hover {
-  background: var(--px-theme-clr);
-  color: #fff;
+  background: transparent;
+  color: var(--px-theme-clr);
+  text-decoration: underline;
 }
 
 .detail-meta {

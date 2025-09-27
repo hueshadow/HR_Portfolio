@@ -176,7 +176,8 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .back-button:hover {
-          background: rgba(255, 107, 107, 0.1);
+          background: transparent;
+          text-decoration: underline;
         }
 
         .header-title h1 {
