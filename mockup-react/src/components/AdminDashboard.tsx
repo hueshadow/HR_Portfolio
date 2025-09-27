@@ -1,22 +1,104 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+  Box,
+  Container,
+  Typography,
+  Stack,
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Button,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Chip,
+  IconButton,
+  Switch,
+  FormControlLabel,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Alert,
+  AlertTitle,
+  Snackbar,
+  Toolbar,
+  AppBar,
+  Badge,
+  CardMedia,
+  Divider,
+  Tabs,
+  Tab,
+  InputAdornment,
+  OutlinedInput,
+  FormHelperText,
+  CircularProgress
+} from '@mui/material'
+import {
+  Add as AddIcon,
+  Edit as EditIcon,
+  Delete as DeleteIcon,
+  Visibility as ViewIcon,
+  Download as DownloadIcon,
+  Upload as UploadIcon,
+  Logout as LogoutIcon,
+  Search as SearchIcon,
+  Star as StarIcon,
+  StarBorder as StarBorderIcon,
+  Close as CloseIcon,
+  VideoLibrary as VideoIcon,
+  Image as ImageIcon,
+  ViewInAr as ThreeDIcon
+} from '@mui/icons-material'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
 import ImageUploadManager from './ImageUploadManager'
+
+interface TabPanelProps {
+  children?: React.ReactNode
+  index: number
+  value: number
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  )
+}
 
 const AdminDashboard: React.FC = () => {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>([])
   const [filteredItems, setFilteredItems] = useState<PortfolioItem[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [categoryFilter, setCategoryFilter] = useState('all')
-  const [showCreateModal, setShowCreateModal] = useState(false)
-  const [showEditModal, setShowEditModal] = useState(false)
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState<number | null>(null)
   const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-
-  const navigate = useNavigate()
+  const [tabValue, setTabValue] = useState(0)
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [itemToDelete, setItemToDelete] = useState<PortfolioItem | null>(null)
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success' as 'success' | 'error' | 'warning' | 'info'
+  })
 
   // Form states
   const [formData, setFormData] = useState({
@@ -33,6 +115,17 @@ const AdminDashboard: React.FC = () => {
   })
 
   const [techInput, setTechInput] = useState('')
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    loadPortfolioItems()
+  }, [])
+
+  useEffect(() => {
+    filterItems()
+  }, [portfolioItems, searchTerm, categoryFilter])
 
   const loadPortfolioItems = () => {
     const items = portfolioManager.getAll()
@@ -55,10 +148,6 @@ const AdminDashboard: React.FC = () => {
 
     setFilteredItems(filtered)
   }, [portfolioItems, searchTerm, categoryFilter])
-
-  useEffect(() => {
-    loadPortfolioItems()
-  }, [])
 
   useEffect(() => {
     filterItems()
@@ -84,11 +173,12 @@ const AdminDashboard: React.FC = () => {
       thumb: ''
     })
     setTechInput('')
-    setShowCreateModal(true)
+    setEditingItem(null)
+    setFormErrors({})
+    setTabValue(1)
   }
 
   const handleEdit = (item: PortfolioItem) => {
-    setEditingItem(item)
     setFormData({
       title: item.title,
       description: item.description,
@@ -102,30 +192,34 @@ const AdminDashboard: React.FC = () => {
       thumb: item.thumb
     })
     setTechInput('')
-    setShowEditModal(true)
+    setEditingItem(item)
+    setFormErrors({})
+    setTabValue(1)
   }
 
-  const handleDelete = (id: number) => {
-    setShowDeleteConfirm(id)
+  const handleDelete = (item: PortfolioItem) => {
+    setItemToDelete(item)
+    setDeleteDialogOpen(true)
   }
 
   const confirmDelete = async () => {
-    if (showDeleteConfirm === null) return
+    if (!itemToDelete) return
 
     setIsProcessing(true)
     try {
-      const success = portfolioManager.delete(showDeleteConfirm)
+      const success = portfolioManager.delete(itemToDelete.id)
       if (success) {
         loadPortfolioItems()
-        showNotification('Project deleted successfully', 'success')
+        showSnackbar('Project deleted successfully', 'success')
       } else {
-        showNotification('Failed to delete project', 'error')
+        showSnackbar('Failed to delete project', 'error')
       }
     } catch {
-      showNotification('Error deleting project', 'error')
+      showSnackbar('Error deleting project', 'error')
     } finally {
       setIsProcessing(false)
-      setShowDeleteConfirm(null)
+      setDeleteDialogOpen(false)
+      setItemToDelete(null)
     }
   }
 
@@ -135,7 +229,7 @@ const AdminDashboard: React.FC = () => {
       const success = portfolioManager.update(id, { featured: !item.featured })
       if (success) {
         loadPortfolioItems()
-        showNotification(
+        showSnackbar(
           !item.featured ? 'Project featured' : 'Project unfeatured',
           'success'
         )
@@ -143,7 +237,30 @@ const AdminDashboard: React.FC = () => {
     }
   }
 
-  const handleSubmit = async (isEdit: boolean = false) => {
+  const validateForm = () => {
+    const errors: Record<string, string> = {}
+
+    if (!formData.title.trim()) {
+      errors.title = 'Title is required'
+    }
+
+    if (!formData.description.trim()) {
+      errors.description = 'Description is required'
+    }
+
+    if (!formData.projectDate) {
+      errors.projectDate = 'Project date is required'
+    }
+
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
+  const handleSubmit = async () => {
+    if (!validateForm()) {
+      return
+    }
+
     setIsProcessing(true)
     try {
       const itemData = {
@@ -152,7 +269,7 @@ const AdminDashboard: React.FC = () => {
       }
 
       let success: boolean
-      if (isEdit && editingItem) {
+      if (editingItem) {
         const updatedItem = portfolioManager.update(editingItem.id, itemData)
         success = updatedItem !== null
       } else {
@@ -162,17 +279,17 @@ const AdminDashboard: React.FC = () => {
 
       if (success) {
         loadPortfolioItems()
-        showNotification(
-          isEdit ? 'Project updated successfully' : 'Project created successfully',
+        showSnackbar(
+          editingItem ? 'Project updated successfully' : 'Project created successfully',
           'success'
         )
-        setShowCreateModal(false)
-        setShowEditModal(false)
+        setTabValue(0)
+        setEditingItem(null)
       } else {
-        showNotification('Failed to save project', 'error')
+        showSnackbar('Failed to save project', 'error')
       }
     } catch {
-      showNotification('Error saving project', 'error')
+      showSnackbar('Error saving project', 'error')
     } finally {
       setIsProcessing(false)
     }
@@ -209,9 +326,12 @@ const AdminDashboard: React.FC = () => {
     }))
   }
 
-  const showNotification = (message: string, type: 'success' | 'error') => {
-    setNotification({ message, type })
-    setTimeout(() => setNotification(null), 3000)
+  const showSnackbar = (message: string, severity: 'success' | 'error' | 'warning' | 'info') => {
+    setSnackbar({ open: true, message, severity })
+  }
+
+  const handleSnackbarClose = () => {
+    setSnackbar({ ...snackbar, open: false })
   }
 
   const handleExportData = () => {
@@ -223,7 +343,7 @@ const AdminDashboard: React.FC = () => {
     a.download = `portfolio-backup-${new Date().toISOString().split('T')[0]}.json`
     a.click()
     URL.revokeObjectURL(url)
-    showNotification('Data exported successfully', 'success')
+    showSnackbar('Data exported successfully', 'success')
   }
 
   const handleImportData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -237,379 +357,466 @@ const AdminDashboard: React.FC = () => {
         const success = portfolioManager.importData(data)
         if (success) {
           loadPortfolioItems()
-          showNotification('Data imported successfully', 'success')
+          showSnackbar('Data imported successfully', 'success')
         } else {
-          showNotification('Failed to import data', 'error')
+          showSnackbar('Failed to import data', 'error')
         }
       } catch {
-        showNotification('Invalid data format', 'error')
+        showSnackbar('Invalid data format', 'error')
       }
     }
     reader.readAsText(file)
-    event.target.value = '' // Reset input
+    event.target.value = ''
+  }
+
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'video': return <VideoIcon />
+      case '3d': return <ThreeDIcon />
+      default: return <ImageIcon />
+    }
+  }
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'image': return 'primary'
+      case 'video': return 'secondary'
+      case '3d': return 'success'
+      default: return 'default'
+    }
   }
 
   return (
-    <div className="admin-dashboard">
-      <header className="admin-header">
-        <h1>Portfolio Admin Dashboard</h1>
-        <div className="admin-actions">
-          <button onClick={handleExportData} className="export-btn">
-            Export Data
-          </button>
-          <label className="import-btn">
-            Import Data
-            <input
-              type="file"
-              accept=".json"
-              onChange={handleImportData}
-              style={{ display: 'none' }}
-            />
-          </label>
-          <button onClick={handleLogout} className="logout-btn">
-            Logout
-          </button>
-        </div>
-      </header>
-
-      <div className="admin-controls">
-        <div className="search-filter">
-          <input
-            type="text"
-            placeholder="Search projects..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <select
-            value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="filter-select"
+    <Box sx={{ flexGrow: 1, bgcolor: 'background.default', minHeight: '100vh' }}>
+      {/* Header */}
+      <AppBar position="static" elevation={1}>
+        <Toolbar>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Portfolio Admin Dashboard
+          </Typography>
+          <Badge badgeContent={filteredItems.length} color="primary" sx={{ mr: 2 }}>
+            <Typography variant="body2">Projects</Typography>
+          </Badge>
+          <Button
+            color="inherit"
+            startIcon={<DownloadIcon />}
+            onClick={handleExportData}
+            sx={{ mr: 1 }}
           >
-            <option value="all">All Categories</option>
-            <option value="image">Images</option>
-            <option value="video">Videos</option>
-            <option value="3d">3D Models</option>
-          </select>
-        </div>
-        <button onClick={handleCreate} className="create-btn">
-          Create New Project
-        </button>
-      </div>
+            Export
+          </Button>
+          <label htmlFor="import-data">
+            <Button
+              component="span"
+              color="inherit"
+              startIcon={<UploadIcon />}
+              sx={{ mr: 1 }}
+            >
+              Import
+            </Button>
+          </label>
+          <input
+            id="import-data"
+            type="file"
+            accept=".json"
+            onChange={handleImportData}
+            style={{ display: 'none' }}
+          />
+          <Button
+            color="inherit"
+            startIcon={<LogoutIcon />}
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        </Toolbar>
+      </AppBar>
 
-      <div className="portfolio-grid">
-        {filteredItems.map((item) => (
-          <div key={item.id} className={`portfolio-item ${item.featured ? 'featured' : ''}`}>
-            <div className="item-image">
-              {item.category === 'video' ? (
-                <video src={item.image} poster={item.thumb} />
-              ) : (
-                <img src={item.thumb || item.image} alt={item.title} />
-              )}
-            </div>
-            <div className="item-content">
-              <h3>{item.title}</h3>
-              <p className="item-category">{item.category.toUpperCase()}</p>
-              <p className="item-date">{new Date(item.projectDate).toLocaleDateString()}</p>
-              <div className="item-actions">
-                <button onClick={() => handleEdit(item)} className="edit-btn">
-                  Edit
-                </button>
-                <button onClick={() => handleDelete(item.id)} className="delete-btn">
-                  Delete
-                </button>
-                <button
-                  onClick={() => handleFeatureToggle(item.id)}
-                  className={`feature-btn ${item.featured ? 'featured' : ''}`}
+      {/* Main Content */}
+      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={tabValue} onChange={(_, newValue) => setTabValue(newValue)}>
+            <Tab label="Projects" />
+            <Tab label={editingItem ? 'Edit Project' : 'New Project'} />
+          </Tabs>
+        </Box>
+
+        {/* Projects List Tab */}
+        <TabPanel value={tabValue} index={0}>
+          <Paper sx={{ mb: 3, p: 2 }}>
+            <Grid container spacing={2} alignItems="center">
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  placeholder="Search projects..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FormControl fullWidth>
+                  <InputLabel>Category</InputLabel>
+                  <Select
+                    value={categoryFilter}
+                    label="Category"
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                  >
+                    <MenuItem value="all">All Categories</MenuItem>
+                    <MenuItem value="image">Images</MenuItem>
+                    <MenuItem value="video">Videos</MenuItem>
+                    <MenuItem value="3d">3D Models</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid size={{ xs: 12, md: 2 }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  onClick={handleCreate}
                 >
-                  {item.featured ? 'Unfeature' : 'Feature'}
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+                  New
+                </Button>
+              </Grid>
+            </Grid>
+          </Paper>
 
-      {filteredItems.length === 0 && (
-        <div className="no-items">
-          <p>No projects found</p>
-        </div>
-      )}
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Preview</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>Category</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Technologies</TableCell>
+                  <TableCell>Featured</TableCell>
+                  <TableCell align="right">Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredItems.map((item) => (
+                  <TableRow key={item.id} hover>
+                    <TableCell>
+                      {item.category === 'video' ? (
+                        <Box
+                          component="video"
+                          src={item.image}
+                          poster={item.thumb}
+                          sx={{
+                            width: 60,
+                            height: 60,
+                            borderRadius: 1,
+                            objectFit: 'cover'
+                          }}
+                        />
+                      ) : (
+                        <CardMedia
+                          component="img"
+                          image={item.thumb || item.image}
+                          alt={item.title}
+                          sx={{
+                            width: 60,
+                            height: 60,
+                            borderRadius: 1,
+                            objectFit: 'cover'
+                          }}
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <Stack>
+                        <Typography variant="subtitle2" fontWeight="bold">
+                          {item.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" noWrap>
+                          {item.description}
+                        </Typography>
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        icon={getCategoryIcon(item.category)}
+                        label={item.category.toUpperCase()}
+                        color={getCategoryColor(item.category) as any}
+                        size="small"
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="body2">
+                        {new Date(item.projectDate).toLocaleDateString()}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Stack direction="row" spacing={0.5} flexWrap="wrap">
+                        {item.technologies.slice(0, 3).map((tech, index) => (
+                          <Chip
+                            key={index}
+                            label={tech}
+                            size="small"
+                            variant="outlined"
+                          />
+                        ))}
+                        {item.technologies.length > 3 && (
+                          <Chip
+                            label={`+${item.technologies.length - 3}`}
+                            size="small"
+                            variant="outlined"
+                          />
+                        )}
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      <Switch
+                        checked={item.featured}
+                        onChange={() => handleFeatureToggle(item.id)}
+                        icon={<StarBorderIcon />}
+                        checkedIcon={<StarIcon />}
+                      />
+                    </TableCell>
+                    <TableCell align="right">
+                      <IconButton
+                        onClick={() => {
+                          // Here you would typically open a menu
+                          if (window.confirm('View this project?')) {
+                            window.open(`/portfolio/${item.id}`, '_blank')
+                          }
+                        }}
+                      >
+                        <ViewIcon />
+                      </IconButton>
+                      <IconButton onClick={() => handleEdit(item)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={() => handleDelete(item)} color="error">
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
 
-      {/* Create Modal */}
-      {showCreateModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Create New Project</h2>
-            <form onSubmit={(e) => { e.preventDefault(); handleSubmit(false); }}>
-              <div className="form-group">
-                <label>Title</label>
-                <input
-                  type="text"
+          {filteredItems.length === 0 && (
+            <Alert severity="info" sx={{ mt: 2 }}>
+              <AlertTitle>No Projects Found</AlertTitle>
+              Try adjusting your search or category filter, or create a new project.
+            </Alert>
+          )}
+        </TabPanel>
+
+        {/* Form Tab */}
+        <TabPanel value={tabValue} index={1}>
+          <Paper sx={{ p: 3 }}>
+            <Typography variant="h5" gutterBottom>
+              {editingItem ? 'Edit Project' : 'Create New Project'}
+            </Typography>
+            <Divider sx={{ mb: 3 }} />
+
+            <Grid container spacing={3}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
+                  label="Title"
                   value={formData.title}
                   onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                  error={!!formErrors.title}
+                  helperText={formErrors.title}
                   required
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Description</label>
-                <textarea
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <FormControl fullWidth required error={!!formErrors.category}>
+                  <InputLabel>Category</InputLabel>
+                  <Select
+                    value={formData.category}
+                    label="Category"
+                    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value as any }))}
+                  >
+                    <MenuItem value="image">Image</MenuItem>
+                    <MenuItem value="video">Video</MenuItem>
+                    <MenuItem value="3d">3D Model</MenuItem>
+                  </Select>
+                  {formErrors.category && (
+                    <FormHelperText error>{formErrors.category}</FormHelperText>
+                  )}
+                </FormControl>
+              </Grid>
+              <Grid size={12}>
+                <TextField
+                  fullWidth
+                  multiline
+                  rows={4}
+                  label="Description"
                   value={formData.description}
                   onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                  error={!!formErrors.description}
+                  helperText={formErrors.description}
                   required
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Category</label>
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                >
-                  <option value="image">Image</option>
-                  <option value="video">Video</option>
-                  <option value="3d">3D Model</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>Project Date</label>
-                <input
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
                   type="date"
+                  label="Project Date"
                   value={formData.projectDate}
                   onChange={(e) => setFormData(prev => ({ ...prev, projectDate: e.target.value }))}
+                  InputLabelProps={{ shrink: true }}
+                  error={!!formErrors.projectDate}
+                  helperText={formErrors.projectDate}
                   required
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Technologies</label>
-                <div className="tech-input-group">
-                  <input
-                    type="text"
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={formData.featured}
+                      onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
+                    />
+                  }
+                  label="Featured Project"
+                />
+              </Grid>
+              <Grid size={12}>
+                <Typography variant="subtitle2" gutterBottom>
+                  Technologies
+                </Typography>
+                <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
+                  <OutlinedInput
                     value={techInput}
                     onChange={(e) => setTechInput(e.target.value)}
                     placeholder="Add technology"
+                    onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTechnology())}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Button
+                          onClick={handleAddTechnology}
+                          disabled={!techInput.trim()}
+                          size="small"
+                        >
+                          Add
+                        </Button>
+                      </InputAdornment>
+                    }
                   />
-                  <button type="button" onClick={handleAddTechnology}>Add</button>
-                </div>
-                <div className="tech-list">
+                </Stack>
+                <Stack direction="row" spacing={1} flexWrap="wrap">
                   {formData.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {tech}
-                      <button type="button" onClick={() => handleRemoveTechnology(tech)}>
-                        ×
-                      </button>
-                    </span>
+                    <Chip
+                      key={index}
+                      label={tech}
+                      onDelete={() => handleRemoveTechnology(tech)}
+                      deleteIcon={<CloseIcon />}
+                      color="primary"
+                    />
                   ))}
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Project URL</label>
-                <input
+                </Stack>
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
                   type="url"
+                  label="Project URL"
                   value={formData.projectUrl}
                   onChange={(e) => setFormData(prev => ({ ...prev, projectUrl: e.target.value }))}
                   placeholder="https://..."
                 />
-              </div>
-
-              <div className="form-group">
-                <label>GitHub URL</label>
-                <input
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextField
+                  fullWidth
                   type="url"
+                  label="GitHub URL"
                   value={formData.githubUrl}
                   onChange={(e) => setFormData(prev => ({ ...prev, githubUrl: e.target.value }))}
                   placeholder="https://github.com/..."
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Image</label>
+              </Grid>
+              <Grid size={12}>
+                <Typography variant="subtitle2" gutterBottom>
+                  Images
+                </Typography>
                 <ImageUploadManager
                   onImageSelect={handleImageSelect}
                   onThumbSelect={handleThumbSelect}
                   currentImage={formData.image}
                   currentThumb={formData.thumb}
                 />
-              </div>
+              </Grid>
+            </Grid>
 
-              <div className="form-group checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.featured}
-                    onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
-                  />
-                  Featured Project
-                </label>
-              </div>
-
-              <div className="modal-actions">
-                <button type="button" onClick={() => setShowCreateModal(false)}>
-                  Cancel
-                </button>
-                <button type="submit" disabled={isProcessing}>
-                  {isProcessing ? 'Creating...' : 'Create Project'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Edit Modal (similar structure to Create Modal) */}
-      {showEditModal && editingItem && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Edit Project</h2>
-            <form onSubmit={(e) => { e.preventDefault(); handleSubmit(true); }}>
-              {/* Same form fields as Create Modal */}
-              <div className="form-group">
-                <label>Title</label>
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Description</label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Category</label>
-                <select
-                  value={formData.category}
-                  onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
-                >
-                  <option value="image">Image</option>
-                  <option value="video">Video</option>
-                  <option value="3d">3D Model</option>
-                </select>
-              </div>
-
-              <div className="form-group">
-                <label>Project Date</label>
-                <input
-                  type="date"
-                  value={formData.projectDate}
-                  onChange={(e) => setFormData(prev => ({ ...prev, projectDate: e.target.value }))}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Technologies</label>
-                <div className="tech-input-group">
-                  <input
-                    type="text"
-                    value={techInput}
-                    onChange={(e) => setTechInput(e.target.value)}
-                    placeholder="Add technology"
-                  />
-                  <button type="button" onClick={handleAddTechnology}>Add</button>
-                </div>
-                <div className="tech-list">
-                  {formData.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {tech}
-                      <button type="button" onClick={() => handleRemoveTechnology(tech)}>
-                        ×
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Project URL</label>
-                <input
-                  type="url"
-                  value={formData.projectUrl}
-                  onChange={(e) => setFormData(prev => ({ ...prev, projectUrl: e.target.value }))}
-                  placeholder="https://..."
-                />
-              </div>
-
-              <div className="form-group">
-                <label>GitHub URL</label>
-                <input
-                  type="url"
-                  value={formData.githubUrl}
-                  onChange={(e) => setFormData(prev => ({ ...prev, githubUrl: e.target.value }))}
-                  placeholder="https://github.com/..."
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Image</label>
-                <ImageUploadManager
-                  onImageSelect={handleImageSelect}
-                  onThumbSelect={handleThumbSelect}
-                  currentImage={formData.image}
-                  currentThumb={formData.thumb}
-                />
-              </div>
-
-              <div className="form-group checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.featured}
-                    onChange={(e) => setFormData(prev => ({ ...prev, featured: e.target.checked }))}
-                  />
-                  Featured Project
-                </label>
-              </div>
-
-              <div className="modal-actions">
-                <button type="button" onClick={() => setShowEditModal(false)}>
-                  Cancel
-                </button>
-                <button type="submit" disabled={isProcessing}>
-                  {isProcessing ? 'Updating...' : 'Update Project'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Delete Confirmation Modal */}
-      {showDeleteConfirm !== null && (
-        <div className="modal">
-          <div className="modal-content delete-confirm">
-            <h2>Confirm Delete</h2>
-            <p>Are you sure you want to delete this project? This action cannot be undone.</p>
-            <div className="modal-actions">
-              <button onClick={() => setShowDeleteConfirm(null)}>
+            <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
+              <Button
+                variant="outlined"
+                onClick={() => setTabValue(0)}
+              >
                 Cancel
-              </button>
-              <button onClick={confirmDelete} disabled={isProcessing} className="delete-confirm-btn">
-                {isProcessing ? 'Deleting...' : 'Delete Project'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+              </Button>
+              <Box sx={{ flexGrow: 1 }} />
+              <Button
+                variant="contained"
+                onClick={handleSubmit}
+                disabled={isProcessing}
+                startIcon={isProcessing ? <CircularProgress size={20} /> : undefined}
+              >
+                {isProcessing ? 'Saving...' : (editingItem ? 'Update' : 'Create')}
+              </Button>
+            </Stack>
+          </Paper>
+        </TabPanel>
+      </Container>
 
-      {/* Notification */}
-      {notification && (
-        <div className={`notification ${notification.type}`}>
-          {notification.message}
-        </div>
-      )}
-    </div>
+      {/* Delete Confirmation Dialog */}
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+      >
+        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Are you sure you want to delete "{itemToDelete?.title}"? This action cannot be undone.
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            onClick={confirmDelete}
+            color="error"
+            disabled={isProcessing}
+            startIcon={isProcessing ? <CircularProgress size={20} /> : <DeleteIcon />}
+          >
+            {isProcessing ? 'Deleting...' : 'Delete'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Snackbar */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbar.severity}
+          sx={{ width: '100%' }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
+    </Box>
   )
 }
 
