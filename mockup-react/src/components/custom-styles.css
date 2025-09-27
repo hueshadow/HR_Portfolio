@@ -100,7 +100,6 @@
 }
 :root {
   --px-theme-clr: #222;
-  --px-theme-bg: #f7bf00;
 }
 
 /* 确保 body 和 html 样式正确 */
@@ -407,7 +406,7 @@ main {
   font-weight: 300 !important;
   color: var(--px-theme-clr) !important;
   margin: 40px 0 20px 0 !important;
-  border-bottom: 2px solid var(--px-theme-bg) !important;
+  border-bottom: 2px solid var(--px-theme-clr) !important;
   padding-bottom: 10px !important;
 }
 
@@ -432,7 +431,7 @@ main {
 }
 
 .post-content blockquote {
-  border-left: 4px solid var(--px-theme-bg) !important;
+  border-left: 4px solid var(--px-theme-clr) !important;
   padding: 20px 30px !important;
   margin: 30px 0 !important;
   background: #f9f9f9 !important;
@@ -452,8 +451,8 @@ main {
 }
 
 .nav-button {
-  background: var(--px-theme-bg) !important;
-  border: 1px solid var(--px-theme-bg) !important;
+  background: var(--px-theme-clr) !important;
+  border: 1px solid var(--px-theme-clr) !important;
   color: var(--px-theme-clr) !important;
   padding: 14px 28px !important;
   font-size: 13px !important;
@@ -498,7 +497,7 @@ main {
 }
 
 .back-button {
-  background: var(--px-theme-bg) !important;
+  background: var(--px-theme-clr) !important;
   border: none !important;
   color: var(--px-theme-clr) !important;
   padding: 12px 24px !important;
