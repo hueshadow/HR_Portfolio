@@ -153,7 +153,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .header-top {
           display: flex;
-          justify-content: space-between;
           align-items: center;
           width: 100%;
         }
