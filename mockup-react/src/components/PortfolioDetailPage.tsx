@@ -137,7 +137,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           background: var(--page-bg-color, #f7f6f1);
           min-height: 100vh;
           color: #333;
-          overflow-y: auto;
         }
 
         .page-header {
