@@ -153,10 +153,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           display: flex;
           align-items: flex-end;
           width: 100%;
-          position: absolute;
-          bottom: 20px;
-          left: 20px;
-          right: 20px;
+          margin-bottom: 20px;
         }
 
         .page-header h1 {
@@ -169,8 +166,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .page-header hr {
-          position: absolute;
-          bottom: 0;
           width: 0%;
           margin: 0;
           border-top: 1px solid var(--px-theme-clr);
@@ -219,9 +214,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           }
 
           .back-button {
-            position: relative;
-            top: auto;
-            right: auto;
             order: -1;
           }
         }
