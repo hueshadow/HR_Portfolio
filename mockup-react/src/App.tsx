@@ -10,6 +10,10 @@ import BlogPage from './components/BlogPage'
 import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
+import AdminAuth from './components/AdminAuth'
+import AdminDashboard from './components/AdminDashboard'
+import ProtectedRoute from './components/ProtectedRoute'
+import AdminLink from './components/AdminLink'
 
 // 主应用组件
 function AppContent() {
@@ -28,8 +32,9 @@ function AppContent() {
     { id: 'blog', title: 'Blog', number: '05', component: BlogPage, hidden: true }
   ]
 
-  // 检查是否在详情页
+  // 检查是否在详情页或管理页
   const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/')
+  const isAdminPage = location.pathname.startsWith('/admin')
 
   useEffect(() => {
     // 预加载背景图片
@@ -113,6 +118,7 @@ function AppContent() {
     if (isLoaded) document.body.classList.add('hr-loaded')
     if (activePageId === 'blog') document.body.classList.add('single-post')
     if (isDetailPage) document.body.classList.add('detail-page')
+    if (isAdminPage) document.body.classList.add('admin-page')
 
     // When About page is active, change background color for all pages
     if (activePageId === 'about') {
@@ -134,17 +140,33 @@ function AppContent() {
         document.body.style.background = ''
       }
     }
-  }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage])
+  }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage, isAdminPage])
 
-  // 如果在详情页，只显示相应内容
-  if (isDetailPage) {
+  // 如果在详情页或管理页，只显示相应内容
+  if (isDetailPage || isAdminPage) {
     return (
       <>
         <MouseTrailer />
-          <Routes>
+        <Routes>
+          {/* Detail pages */}
           <Route path="/portfolio/:id" element={<PortfolioDetailPage onPageChange={handlePageChange} />} />
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
+
+          {/* Admin pages */}
+          <Route path="/admin/login" element={<AdminAuth onLogin={(success) => {
+            if (success) {
+              // Authentication successful, will redirect to /admin
+            }
+          }} />} />
+          <Route path="/admin" element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
+
+        {/* Show admin link on detail pages but not admin pages */}
+        {isDetailPage && <AdminLink />}
       </>
     )
   }
@@ -152,6 +174,7 @@ function AppContent() {
   return (
     <>
       <MouseTrailer />
+      <AdminLink />
       <MobileNav
         activePageId={activePageId}
         onPageChange={handlePageChange}
@@ -209,11 +232,11 @@ function AppContent() {
                   </>
                 )}
               </header>
-              
+
               {/* 页面内容 */}
               <div className="content">
-                <PageComponent 
-                  active={activePageId === page.id} 
+                <PageComponent
+                  active={activePageId === page.id}
                   loaded={activePageId === page.id || isLoaded}
                   onPageChange={handlePageChange}
                   onToggleSidebar={page.id === 'blog' ? toggleSidebar : () => {}}

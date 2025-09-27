@@ -1427,15 +1427,22 @@ body.detail-page .mobile-nav {
   display: none !important;
 }
 
-/* 详情页时启用页面滚动 - 高优先级 */
-html body.detail-page {
+/* 详情页时启用页面滚动 - 最高优先级 */
+html:not(.admin-page) body.detail-page {
   overflow-y: auto !important;
   overflow-x: hidden !important;
   height: auto !important;
+  position: static !important;
 }
 
 /* 详情页时html元素也允许滚动 */
-html:has(body.detail-page) {
+html:has(body.detail-page):not(.admin-page) {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+/* 确保详情页时根元素允许滚动 */
+:root:has(body.detail-page) {
   overflow: auto !important;
   height: auto !important;
 }
@@ -1445,6 +1452,20 @@ body.detail-page .portfolio-detail-wrapper {
   position: static !important;
   min-height: 100vh;
   overflow: visible !important;
+}
+
+/* 详情页时禁用mouse-trailer的固定定位 */
+body.detail-page .mouse-trailer {
+  display: none !important;
+}
+
+/* 确保所有父级元素都允许滚动 */
+body.detail-page,
+body.detail-page > div,
+body.detail-page > div > div {
+  overflow: visible !important;
+  height: auto !important;
+  position: static !important;
 }
 
 /* 详情页内容区域滚动优化 */
