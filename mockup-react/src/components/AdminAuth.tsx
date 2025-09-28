@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Card,
@@ -83,7 +82,6 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onLogin }) => {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const navigate = useNavigate()
 
   const ADMIN_PASSWORD = 'admin123'
 
