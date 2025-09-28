@@ -123,6 +123,13 @@ body.detail-page {
   height: auto !important;
 }
 
+/* 关键修复：覆盖HTML元素的overflow设置 */
+html body.detail-page {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+/* 确保详情页面的HTML元素可以滚动 */
 body.detail-page html {
   overflow-y: auto !important;
   height: auto !important;
