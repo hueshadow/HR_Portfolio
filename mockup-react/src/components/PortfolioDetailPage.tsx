@@ -135,8 +135,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       <style>{`
         .portfolio-detail-wrapper {
           background: var(--page-bg-color, #f7f6f1);
-          min-height: 100vh;
+          min-height: auto;
           color: #333;
+          overflow-y: auto;
+          height: auto;
         }
 
         .page-header {
@@ -244,6 +246,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px 60px;
+          min-height: auto;
         }
 
         .project-hero {

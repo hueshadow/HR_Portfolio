@@ -117,6 +117,17 @@ body {
   background: #fafafa;
 }
 
+/* 详情页面启用滚动 */
+body.detail-page {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+body.detail-page html {
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
 /* 主容器样式 */
 main {
   height: 100vh;
@@ -1425,6 +1436,34 @@ body.detail-page main {
 body.detail-page .desktop-nav,
 body.detail-page .mobile-nav {
   display: none !important;
+}
+
+/* 详情页面启用滚动 */
+body.detail-page {
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+/* 详情页面滚动容器优化 */
+body.detail-page .portfolio-detail-wrapper {
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
+/* 移动端详情页面滚动优化 */
+@media (max-width: 960px) {
+  body.detail-page {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  body.detail-page .portfolio-detail-wrapper {
+    overflow-y: visible !important;
+    height: auto !important;
+    min-height: auto;
+  }
 }
 
 .detail-header {
