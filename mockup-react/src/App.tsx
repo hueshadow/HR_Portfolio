@@ -19,7 +19,6 @@ function AppContent() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [adminLoginSuccess, setAdminLoginSuccess] = useState(false)
   const location = useLocation()
   
   // 页面配置数组
@@ -33,7 +32,7 @@ function AppContent() {
 
   // 检查是否在详情页或管理页
   const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/')
-  const isAdminPage = (location.pathname.startsWith('/admin') && location.pathname !== '/admin/login') || adminLoginSuccess
+  const isAdminPage = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login'
   const isAdminLoginPage = location.pathname === '/admin/login'
 
   useEffect(() => {
@@ -159,8 +158,8 @@ function AppContent() {
   if (isAdminLoginPage) {
     return <AdminAuth onLogin={(success) => {
       if (success) {
-        // 登录成功后设置状态，触发重新渲染
-        setAdminLoginSuccess(true)
+        // 登录成功后跳转到管理后台
+        window.location.href = '/admin'
       }
     }} />
   }
