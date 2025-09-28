@@ -10,7 +10,6 @@ import BlogPage from './components/BlogPage'
 import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
-import AdminAuth from './components/AdminAuth'
 import ReactAdminDashboard from './components/ReactAdminDashboard'
 
 // 主应用组件
@@ -140,27 +139,22 @@ function AppContent() {
     }
   }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage, isAdminPage])
 
-  // 如果在详情页或管理页，只显示相应内容
-  if (isDetailPage || isAdminPage) {
+  // 如果在详情页，只显示相应内容
+  if (isDetailPage) {
     return (
       <>
         <MouseTrailer />
         <Routes>
-          {/* Detail pages */}
           <Route path="/portfolio/:id" element={<PortfolioDetailPage onPageChange={handlePageChange} />} />
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
-
-          {/* Admin pages */}
-          <Route path="/admin/login" element={<AdminAuth onLogin={(success) => {
-            if (success) {
-              // Authentication successful, will redirect to /admin
-            }
-          }} />} />
-          <Route path="/admin" element={<ReactAdminDashboard />} />
         </Routes>
-
-        </>
+      </>
     )
+  }
+
+  // 如果在管理页，只显示 React Admin
+  if (isAdminPage) {
+    return <ReactAdminDashboard />
   }
 
   return (

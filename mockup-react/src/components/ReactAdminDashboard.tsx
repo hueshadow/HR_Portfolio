@@ -736,7 +736,6 @@ const validateDescription = (value: string) => {
 const ReactAdminDashboard = () => {
   return (
     <Admin
-      basename="/admin"
       dataProvider={dataProvider}
       authProvider={authProvider}
       theme={theme}
