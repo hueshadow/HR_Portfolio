@@ -11,8 +11,7 @@ import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
 import AdminAuth from './components/AdminAuth'
-import AdminDashboard from './components/AdminDashboard'
-import ProtectedRoute from './components/ProtectedRoute'
+import ReactAdminDashboard from './components/ReactAdminDashboard'
 
 // 主应用组件
 function AppContent() {
@@ -157,11 +156,7 @@ function AppContent() {
               // Authentication successful, will redirect to /admin
             }
           }} />} />
-          <Route path="/admin" element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          } />
+          <Route path="/admin" element={<ReactAdminDashboard />} />
         </Routes>
 
         </>
