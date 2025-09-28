@@ -105,7 +105,7 @@ const AdminAuth: React.FC<AdminAuthProps> = ({ onLogin }) => {
         localStorage.setItem('isAdminAuthenticated', 'true')
         localStorage.setItem('adminAuthTimestamp', Date.now().toString())
         onLogin(true)
-        navigate('/admin')
+        // 不要在这里进行导航，让 App.tsx 处理重定向
       } else {
         setError('密码错误')
         onLogin(false)
