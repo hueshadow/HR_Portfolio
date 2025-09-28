@@ -740,7 +740,6 @@ const ReactAdminDashboard = () => {
       authProvider={authProvider}
       theme={theme}
       loginPage={LoginPage}
-      requireAuth
       dashboard={Dashboard}
     >
       <Resource

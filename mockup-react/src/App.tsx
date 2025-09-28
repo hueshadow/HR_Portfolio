@@ -11,7 +11,6 @@ import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
 import ReactAdminDashboard from './components/ReactAdminDashboard'
-import AdminAuth from './components/AdminAuth'
 
 // 主应用组件
 function AppContent() {
@@ -33,7 +32,6 @@ function AppContent() {
   // 检查是否在详情页或管理页
   const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/')
   const isAdminPage = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login'
-  const isAdminLoginPage = location.pathname === '/admin/login'
 
   useEffect(() => {
     // 预加载背景图片
@@ -154,20 +152,6 @@ function AppContent() {
     )
   }
 
-  // 如果在管理登录页，显示登录组件
-  if (isAdminLoginPage) {
-    return <AdminAuth onLogin={(success) => {
-      if (success) {
-        // 登录成功后跳转到管理后台
-        window.location.href = '/admin'
-      }
-    }} />
-  }
-
-  // 如果在管理页，只显示 React Admin
-  if (isAdminPage) {
-    return <ReactAdminDashboard />
-  }
 
   return (
     <>
@@ -251,6 +235,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/admin/*" element={<ReactAdminDashboard />} />
         <Route path="/*" element={<AppContent />} />
       </Routes>
     </Router>
