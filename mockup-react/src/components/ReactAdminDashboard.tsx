@@ -32,13 +32,151 @@ import {
   SelectColumnsButton,
   BulkDeleteButton,
   BulkExportButton,
-  useLogin
+  useLogin,
+  useCreate,
+  useRefresh
 } from 'react-admin'
 import WorkIcon from '@mui/icons-material/Work'
 import LoginIcon from '@mui/icons-material/Login'
+import AddIcon from '@mui/icons-material/Add'
 import { createTheme } from '@mui/material/styles'
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
+  Alert,
+  Chip,
+  Stack,
+  Grid,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions
+} from '@mui/material'
 import { dataProvider } from '../dataProvider'
 import authProvider from '../authProvider'
+
+// 快速创建项目组件
+const QuickCreateButton = () => {
+  const [create] = useCreate()
+  const [showDialog, setShowDialog] = useState(false)
+  const [formValues, setFormValues] = useState({
+    title: '',
+    description: '',
+    category: 'web'
+  })
+  const notify = useNotify()
+  const refresh = useRefresh()
+
+  const handleClick = () => {
+    setShowDialog(true)
+  }
+
+  const handleClose = () => {
+    setShowDialog(false)
+    setFormValues({ title: '', description: '', category: 'web' })
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!formValues.title.trim()) {
+      notify('请输入项目名称', { type: 'warning' })
+      return
+    }
+
+    create(
+      'projects',
+      {
+        data: {
+          ...formValues,
+          date: new Date().toISOString().split('T')[0],
+          featured: false,
+          tags: [],
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        }
+      },
+      {
+        onSuccess: () => {
+          notify('项目创建成功！', { type: 'success' })
+          refresh()
+          handleClose()
+        },
+        onError: (error: any) => {
+          notify(`创建失败：${error.message}`, { type: 'error' })
+        }
+      }
+    )
+  }
+
+  return (
+    <>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleClick}
+        startIcon={<AddIcon />}
+        sx={{ mr: 1 }}
+      >
+        快速创建
+      </Button>
+
+      <Dialog open={showDialog} onClose={handleClose} maxWidth="sm" fullWidth>
+        <DialogTitle>快速创建项目</DialogTitle>
+        <form onSubmit={handleSubmit}>
+          <DialogContent>
+            <Box sx={{ pt: 1 }}>
+              <TextInput
+                source="title"
+                label="项目名称"
+                value={formValues.title}
+                onChange={(e) => setFormValues({ ...formValues, title: e.target.value })}
+                fullWidth
+                required
+                autoFocus
+              />
+            </Box>
+            <Box sx={{ mt: 2 }}>
+              <TextInput
+                source="description"
+                label="项目描述"
+                value={formValues.description}
+                onChange={(e) => setFormValues({ ...formValues, description: e.target.value })}
+                multiline
+                rows={3}
+                fullWidth
+              />
+            </Box>
+            <Box sx={{ mt: 2 }}>
+              <SelectInput
+                source="category"
+                label="分类"
+                value={formValues.category}
+                onChange={(e) => setFormValues({ ...formValues, category: e.target.value })}
+                choices={[
+                  { id: 'web', name: '网站开发' },
+                  { id: 'app', name: '应用开发' },
+                  { id: 'design', name: 'UI设计' },
+                  { id: 'branding', name: '品牌设计' }
+                ]}
+                fullWidth
+              />
+            </Box>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>取消</Button>
+            <Button type="submit" variant="contained" color="primary">
+              创建
+            </Button>
+          </DialogActions>
+        </form>
+      </Dialog>
+    </>
+  )
+}
 
 // 自定义主题
 const theme = createTheme({
@@ -141,6 +279,7 @@ const ProjectList = () => {
 // 列表操作按钮
 const ListActions = () => (
   <TopToolbar>
+    <QuickCreateButton />
     <SelectColumnsButton />
     <FilterButton />
     <CreateButton />
@@ -230,80 +369,213 @@ const ProjectEdit = () => (
   </Edit>
 )
 
-// 项目创建页面
-const ProjectCreate = () => (
-  <Create title="新建项目">
-    <SimpleForm>
-      <TextInput source="title" label="项目名称" fullWidth validate={required()} />
-      <TextInput source="description" label="项目描述" multiline rows={4} fullWidth validate={required()} />
+// 增强的项目创建页面
+const ProjectCreate = () => {
+  const notify = useNotify()
+  const refresh = useRefresh()
+  const redirect = useRedirect()
 
-      <SelectInput
-        source="category"
-        label="分类"
-        choices={[
-          { id: 'web', name: '网站开发' },
-          { id: 'app', name: '应用开发' },
-          { id: 'design', name: 'UI设计' },
-          { id: 'branding', name: '品牌设计' }
-        ]}
-        validate={required()}
-        defaultValue="web"
-      />
+  const onSuccess = () => {
+    notify('项目创建成功！', { type: 'success' })
+    redirect('/admin/projects')
+    refresh()
+  }
 
-      <DateInput source="date" label="项目日期" defaultValue={new Date().toISOString().split('T')[0]} validate={required()} />
-      <BooleanInput source="featured" label="设为精选" defaultValue={false} />
+  return (
+    <Create title="新建项目" mutationOptions={{ onSuccess }}>
+      <SimpleForm>
+        {/* 基本信息 */}
+        <Card sx={{ mb: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              基本信息
+            </Typography>
+            <Grid container spacing={3}>
+              <Grid size={{ xs: 12, md: 8 }}>
+                <TextInput
+                  source="title"
+                  label="项目名称"
+                  fullWidth
+                  validate={validateProjectTitle}
+                  placeholder="输入项目名称（2-100个字符）"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <SelectInput
+                  source="category"
+                  label="分类"
+                  choices={[
+                    { id: 'web', name: '网站开发' },
+                    { id: 'app', name: '应用开发' },
+                    { id: 'design', name: 'UI设计' },
+                    { id: 'branding', name: '品牌设计' }
+                  ]}
+                  validate={required()}
+                  defaultValue="web"
+                  fullWidth
+                />
+              </Grid>
+            </Grid>
 
-      <TextInput
-        source="projectUrl"
-        label="项目链接"
-        type="url"
-        fullWidth
-        helperText="例如：https://example.com"
-      />
+            <Box sx={{ mt: 2 }}>
+              <TextInput
+                source="description"
+                label="项目描述"
+                multiline
+                rows={4}
+                fullWidth
+                validate={validateDescription}
+                placeholder="详细描述您的项目...（10-1000个字符）"
+              />
+            </Box>
 
-      <TextInput
-        source="githubUrl"
-        label="GitHub链接"
-        type="url"
-        fullWidth
-        helperText="例如：https://github.com/username/project"
-      />
+            <Grid container spacing={3} sx={{ mt: 1 }}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <DateInput
+                  source="date"
+                  label="项目日期"
+                  defaultValue={new Date().toISOString().split('T')[0]}
+                  validate={required()}
+                  fullWidth
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <BooleanInput
+                  source="featured"
+                  label="设为精选项目"
+                  defaultValue={false}
+                  sx={{ mt: 2 }}
+                />
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
 
-      <ImageInput
-        source="image"
-        label="主图"
-                maxSize={5000000}
-        validate={required()}
-      >
-        <ImageField source="src" title="title" />
-      </ImageInput>
+        {/* 链接信息 */}
+        <Card sx={{ mb: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              链接信息
+            </Typography>
+            <Grid container spacing={3}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextInput
+                  source="projectUrl"
+                  label="项目链接"
+                  type="url"
+                  fullWidth
+                  validate={validateUrl}
+                  helperText="例如：https://example.com"
+                  placeholder="https://"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <TextInput
+                  source="githubUrl"
+                  label="GitHub链接"
+                  type="url"
+                  fullWidth
+                  validate={validateUrl}
+                  helperText="例如：https://github.com/username/project"
+                  placeholder="https://github.com/"
+                />
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
 
-      <ImageInput
-        source="thumb"
-        label="缩略图"
-                maxSize={5000000}
-        validate={required()}
-      >
-        <ImageField source="src" title="title" />
-      </ImageInput>
+        {/* 媒体文件 */}
+        <Card sx={{ mb: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              媒体文件
+            </Typography>
+            <Alert severity="info" sx={{ mb: 2 }}>
+              图片大小限制：5MB，视频大小限制：50MB
+            </Alert>
 
-      <FileInput
-        source="video"
-        label="视频文件"
+            <Grid container spacing={3}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <ImageInput
+                  source="image"
+                  label="主图"
+                  maxSize={5000000}
+                  validate={required()}
+                >
+                  <ImageField source="src" title="title" />
+                </ImageInput>
+              </Grid>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <ImageInput
+                  source="thumb"
+                  label="缩略图"
+                  maxSize={5000000}
+                  validate={required()}
+                >
+                  <ImageField source="src" title="title" />
+                </ImageInput>
+              </Grid>
+            </Grid>
+
+            <Box sx={{ mt: 3 }}>
+              <FileInput
+                source="video"
+                label="视频文件（可选）"
                 maxSize={50000000}
-      >
-        <FileField source="src" title="title" />
-      </FileInput>
+              >
+                <FileField source="src" title="title" />
+              </FileInput>
+            </Box>
+          </CardContent>
+        </Card>
 
-      <TextInput
-        source="tags"
-        label="标签"
-        fullWidth
-        helperText="用逗号分隔多个标签"
-      />
-    </SimpleForm>
-  </Create>
-)
+        {/* 标签 */}
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              标签
+            </Typography>
+            <TextInput
+              source="tags"
+              label="标签"
+              fullWidth
+              helperText="用逗号分隔多个标签，如：React, TypeScript, 响应式设计"
+              placeholder="输入标签，用逗号分隔"
+            />
+
+            {/* 常用标签建议 */}
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                常用标签：
+              </Typography>
+              <Stack direction="row" spacing={1} flexWrap="wrap">
+                {['React', 'Vue', 'Angular', 'TypeScript', 'JavaScript', 'Node.js',
+                  '响应式设计', 'UI设计', '前端开发', '全栈开发', '移动端', '小程序'].map(tag => (
+                  <Chip
+                    key={tag}
+                    label={tag}
+                    size="small"
+                    variant="outlined"
+                    clickable
+                    onClick={() => {
+                      const input = document.querySelector('input[name="tags"]') as HTMLInputElement
+                      if (input) {
+                        const currentTags = input.value ? input.value.split(',').map(t => t.trim()) : []
+                        if (!currentTags.includes(tag)) {
+                          input.value = [...currentTags, tag].join(', ')
+                        }
+                      }
+                    }}
+                  />
+                ))}
+              </Stack>
+            </Box>
+          </CardContent>
+        </Card>
+      </SimpleForm>
+    </Create>
+  )
+}
 
 // 自定义登录页面
 const LoginPage = () => {
@@ -430,8 +702,33 @@ const LoginPage = () => {
   )
 }
 
-// 验证函数
-const required = () => (value: string) => value ? undefined : '此字段为必填项'
+// 增强的验证函数
+const required = (message = '此字段为必填项') => (value: string) =>
+  value ? undefined : message
+
+const validateUrl = (value: string) => {
+  if (!value) return undefined
+  try {
+    new URL(value)
+    return undefined
+  } catch {
+    return '请输入有效的URL地址'
+  }
+}
+
+const validateProjectTitle = (value: string) => {
+  if (!value) return '项目名称不能为空'
+  if (value.length < 2) return '项目名称至少需要2个字符'
+  if (value.length > 100) return '项目名称不能超过100个字符'
+  return undefined
+}
+
+const validateDescription = (value: string) => {
+  if (!value) return '项目描述不能为空'
+  if (value.length < 10) return '项目描述至少需要10个字符'
+  if (value.length > 1000) return '项目描述不能超过1000个字符'
+  return undefined
+}
 
 // React Admin 主组件
 const ReactAdminDashboard = () => {
