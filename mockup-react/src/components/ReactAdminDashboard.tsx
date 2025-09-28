@@ -34,7 +34,8 @@ import {
   BulkExportButton,
   useLogin,
   useCreate,
-  useRefresh
+  useRefresh,
+  useGetIdentity
 } from 'react-admin'
 import WorkIcon from '@mui/icons-material/Work'
 import LoginIcon from '@mui/icons-material/Login'
@@ -731,14 +732,17 @@ const validateDescription = (value: string) => {
 }
 
 // React Admin 主组件
+// React Admin 主组件
 const ReactAdminDashboard = () => {
   return (
     <Admin
+      basename="/admin"
       dataProvider={dataProvider}
       authProvider={authProvider}
       theme={theme}
       loginPage={LoginPage}
       requireAuth
+      dashboard={Dashboard}
     >
       <Resource
         name="projects"
@@ -749,6 +753,34 @@ const ReactAdminDashboard = () => {
         recordRepresentation="title"
       />
     </Admin>
+  )
+}
+
+// 简单的仪表板
+const Dashboard = () => {
+  const { data, isLoading } = useGetIdentity()
+
+  if (isLoading) return <div>加载中...</div>
+
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>欢迎使用项目管理系统</h1>
+      <p>你好，{data?.fullName || data?.email}！</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
+        <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+          <h3>项目总数</h3>
+          <p style={{ fontSize: '36px', margin: 0 }}>0</p>
+        </div>
+        <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+          <h3>精选项目</h3>
+          <p style={{ fontSize: '36px', margin: 0 }}>0</p>
+        </div>
+        <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+          <h3>分类数量</h3>
+          <p style={{ fontSize: '36px', margin: 0 }}>4</p>
+        </div>
+      </div>
+    </div>
   )
 }
 

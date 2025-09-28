@@ -32,7 +32,7 @@ function AppContent() {
 
   // 检查是否在详情页或管理页
   const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/')
-  const isAdminPage = location.pathname.startsWith('/admin')
+  const isAdminPage = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login'
 
   useEffect(() => {
     // 预加载背景图片
