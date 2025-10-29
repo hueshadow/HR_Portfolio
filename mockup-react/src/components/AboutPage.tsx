@@ -121,16 +121,16 @@ const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPagePro
             <h5>Freelancer Extraordinaire</h5>
             <hr />
             <p>
-              -精通专业领域的方法论，梳理系统化的理论以供支持日常工作；
+              精通专业方法论，能够梳理并构建系统化理论，为日常工作提供坚实支持；
             </p>
             <p>
-              -可以提出创新性的专业建议，帮助业务达成目标；
+              善于提出创新且可落地的专业建议，助力业务目标达成；
             </p>
             <p>
-              -有能力主导设计原则理念和总体方案，可以有效实施在项目中；
+              具备主导设计原则与总体方案的能力，推动项目高效落地；
             </p>
             <p>
-              -具有成熟的系统思维，与设计上下游高效合作；
+              拥有成熟的系统思维，能与设计上下游高效协同。
             </p>
             <p>
               <a href="https://photosave.net/2025/09/9a9d7bd463f26787c8a97e61e2ccec88.zip" className="button" target="_blank" rel="noopener noreferrer" download="黄蓉_个人简历.pdf.zip">Download PDF <i className="fas fa-download"></i></a>

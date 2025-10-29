@@ -8,7 +8,7 @@ This is a personal portfolio website project with two parallel implementations:
 - **WordPress Theme** (`mockup/`) - Original HueShadow WordPress theme (legacy)
 - **React + TypeScript** (`mockup-react/`) - Modern React recreation (active development)
 
-The React version faithfully recreates the WordPress theme's design and functionality using modern web technologies.
+The React version faithfully recreates the WordPress theme's design and functionality using modern web technologies, including a React Admin dashboard for content management.
 
 ## Technology Stack
 
@@ -19,6 +19,8 @@ The React version faithfully recreates the WordPress theme's design and function
 - **Routing**: React Router DOM 7.9.1
 - **Styling**: CSS with custom properties, Font Awesome icons
 - **Animations**: Custom CSS animations + JavaScript animations
+- **Admin Panel**: React Admin 5.11.4 with Material-UI components
+- **Data Storage**: localStorage for projects and authentication
 
 ### Development Environment
 - **TypeScript**: Strict mode with ES2022 target
@@ -26,57 +28,12 @@ The React version faithfully recreates the WordPress theme's design and function
 - **Node Version**: 20+ (required for Netlify deployment)
 - **Package Manager**: npm with custom script automation
 
-## Project Structure
-
-```
-HR_Portfolio/
-├── mockup/                    # WordPress theme (legacy)
-│   ├── functions.php         # Theme setup and plugin requirements
-│   ├── framework/            # WordPress framework classes
-│   └── assets/              # Shared CSS, JS, images
-├── mockup-react/             # React implementation (active)
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   │   ├── App.tsx      # Main app component with routing
-│   │   │   ├── HomePage.tsx # Homepage component
-│   │   │   ├── AboutPage.tsx # About page component
-│   │   │   ├── PortfolioPage.tsx # Portfolio page
-│   │   │   ├── BlogPage.tsx # Blog page
-│   │   │   ├── ContactPage.tsx # Contact page
-│   │   │   ├── PortfolioDetailPage.tsx # Project detail page
-│   │   │   ├── BlogDetailPage.tsx # Blog detail page
-│   │   │   ├── PortfolioFilter.tsx # Portfolio filter component
-│   │   │   ├── ImagePreview.tsx # Image preview modal
-│   │   │   ├── MouseTrailer.tsx # Mouse tracking effect
-│   │   │   ├── DesktopNav.tsx # Desktop navigation
-│   │   │   └── MobileNav.tsx # Mobile navigation
-│   │   ├── hooks/           # Custom React hooks
-│   │   │   └── useAnimations.ts # Animation hooks
-│   │   ├── main.tsx        # App entry point
-│   │   └── custom-styles.css # React-specific CSS overrides
-│   ├── public/
-│   │   └── assets/         # Static assets (shared with WordPress)
-│   │       ├── css/        # Stylesheets
-│   │       ├── js/         # JavaScript
-│   │       └── img/        # Images
-│   ├── package.json        # Dependencies and scripts
-│   ├── vite.config.ts     # Vite configuration
-│   ├── tsconfig.app.json   # TypeScript config
-│   └── eslint.config.js   # ESLint configuration
-├── src/                    # Additional source files
-├── auto-dev.sh            # Automation scripts
-├── auto-commit.sh         # Git automation
-├── auto-preview.sh        # Dev server automation
-├── netlify.toml          # Netlify deployment config
-└── .npmrc               # npm configuration
-```
-
 ## Build & Development Commands
 
 ### Core Commands (from mockup-react/)
 ```bash
 npm install        # Install dependencies
-npm run dev        # Start Vite dev server (http://localhost:5173)
+npm run dev        # Start Vite dev server (finds available port)
 npm run build      # TypeScript check + Vite build
 npm run preview    # Preview production build
 npm run lint       # Run ESLint
@@ -86,14 +43,14 @@ npm run lint       # Run ESLint
 ```bash
 ./auto-dev.sh      # Auto-commit + start preview server
 ./auto-commit.sh   # Git add all, commit, push to origin/main
-./auto-preview.sh  # Kill existing vite, start new dev server on :5173
+./auto-preview.sh  # Kill existing vite, start new dev server
 ```
 
 ### Development Workflow Commands (from mockup-react/)
 ```bash
 npm run auto-dev      # Auto-commit + start preview server
 npm run auto-commit   # Git add all, commit, push to origin/main
-npm run auto-preview  # Kill existing vite, start new dev server on :5173
+npm run auto-preview  # Kill existing vite, start new dev server
 ```
 
 ## Development Workflow
@@ -117,29 +74,55 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 ### Automatic Commit Rule
 **🤖 Claude's Auto-Commit Rule**: After completing any task or making code changes, automatically run `./auto-commit.sh` to push changes to GitHub. Do not wait for the user to remind you. This ensures all changes are properly tracked and versioned.
 
-### Key Development Patterns
+## Admin System
 
-#### 1. Accordion Layout Architecture
+### Admin Authentication
+- **Default Credentials**: `admin@example.com` / `admin123`
+- **Login URL**: `/admin/login`
+- **Admin Dashboard**: `/admin`
+- **Session Duration**: 24 hours
+- **Storage**: localStorage-based authentication
+
+### Admin Features
+- **Project Management**: Full CRUD operations for portfolio projects
+- **File Upload**: Support for images (5MB max) and videos (50MB max)
+- **Base64 Storage**: Files converted to base64 and stored in localStorage
+- **Quick Create**: Dialog for rapid project creation
+- **Data Validation**: Comprehensive form validation with error handling
+
+### Data Architecture
+- **Projects Data Structure**:
+  - Basic fields: title, description, category, date, featured
+  - Media: image, thumb, video (base64 encoded)
+  - Links: projectUrl, githubUrl
+  - Metadata: tags, createdAt, updatedAt
+- **Storage**: All data stored in localStorage under keys like `projectsData`
+- **Provider**: Custom localStorageDataProvider for React Admin
+
+## Key Development Patterns
+
+### 1. Accordion Layout Architecture
 - **Desktop**: Horizontal accordion with 80px collapsed pages
 - **Mobile**: Vertical scroll layout below 960px breakpoint
 - **State Management**: `activePageId` controls which page is expanded
 - **Detail Pages**: Portfolio/Blog detail pages hide accordion completely
+- **Admin Pages**: Admin routes use separate layout with `ReactAdminDashboard`
 
-#### 2. Mouse Tracking System
+### 2. Mouse Tracking System
 - **Component**: `MouseTrailer.tsx` provides complex mouse tracking
 - **Constraints**: Mouse position limited to content area boundaries
 - **Performance**: Uses `requestAnimationFrame` for 60fps tracking
 - **Mobile**: Automatically disabled on mobile devices
 - **Background Effect**: Parallax movement with `movementStrength = 370`
 
-#### 3. Animation System
+### 3. Animation System
 - **Custom Hooks**: `useAnimations.ts` contains specialized animation logic
   - `useSkillBarAnimation`: Staggered reveals with 250ms delays
   - `useHeadingAnimation`: Text scramble effect with letter cycling
   - `usePortfolioCaptionAnimation`: Hover-triggered captions
 - **CSS Variables**: Dynamic mouse position updates `--x`, `--y`, `--size`
 
-#### 4. Detail Page Architecture
+### 4. Detail Page Architecture
 - **Routing**: React Router handles detail pages with dynamic routes
   - Portfolio details: `/portfolio/:id`
   - Blog details: `/blog/:id`
@@ -147,33 +130,62 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 - **Conditional Rendering**: Detail pages hide accordion layout
 - **Navigation**: Back navigation to parent pages
 
-#### 5. CSS Custom Property System
+### 5. CSS Custom Property System
 - **Dynamic Backgrounds**: `--page-bg-color` controls page backgrounds
 - **Mouse Position**: `--x`, `--y`, `--size` for interactive effects
 - **Theme Variables**: `--px-theme-clr` and `--px-theme-bg` for consistent theming
 - **Runtime Updates**: JavaScript can update CSS variables dynamically
 
-#### 6. Performance Optimizations
-- **Image Preloading**: Background image preloaded before content display
-- **GPU Acceleration**: Mouse trailer uses `transform: translate3d()`
-- **Event Listeners**: Passive event listeners for scroll performance
-- **Lazy Loading**: Components load based on active page state
-- **CSS Containment**: Limits browser reflow/repaint areas
+### 6. Admin System Architecture
+- **Authentication**: localStorage-based with 24-hour sessions
+- **Authorization**: React Admin authProvider with permission system
+- **Data Management**: localStorageDataProvider for full CRUD operations
+- **File Handling**: Base64 conversion with size validation
+- **UI Components**: Material-UI based admin interface
 
-## Deployment
+## Critical Architecture Patterns
 
-### Netlify Configuration
-- **Build Command**: `cd mockup-react && npm install && vite build`
-- **Publish Directory**: `mockup-react/dist`
-- **Node Version**: 20
-- **SPA Routing**: All routes redirect to `index.html`
-- **Configuration File**: `netlify.toml`
+### 1. Accordion Layout System
+- **Desktop Layout**: Horizontal accordion with 80px collapsed pages
+- **Mobile Layout**: Vertical scroll layout below 960px breakpoint
+- **State Management**: Single `activePageId` state controls page expansion
+- **Detail Pages**: Portfolio/Blog detail pages completely hide accordion layout
+- **Performance**: Components lazy-load based on active page state
 
-### Environment Requirements
-- **Node.js**: Version 20+
-- **TypeScript**: 5.8.3 with strict mode enabled
-- **Vite**: 4.5+ with React plugin
-- **ESLint**: Modern flat config with React plugins
+### 2. Mouse Tracking & Animation System
+- **Component**: `MouseTrailer.tsx` provides complex 60fps mouse tracking
+- **Constraints**: Mouse position limited to content area boundaries
+- **Performance**: Uses `requestAnimationFrame` and GPU acceleration
+- **Mobile**: Automatically disabled on mobile devices
+- **CSS Variables**: Real-time updates to `--x`, `--y`, `--size` for effects
+- **Background Parallax**: Movement strength of 370 pixels
+
+### 3. Animation Architecture
+- **Custom Hooks**: `useAnimations.ts` contains specialized animation logic
+  - `useSkillBarAnimation`: Staggered reveals with 250ms delays
+  - `useHeadingAnimation`: Text scramble effect with letter cycling
+  - `usePortfolioCaptionAnimation`: Hover-triggered captions
+- **Performance**: CSS transforms and GPU acceleration for smooth animations
+
+### 4. Detail Page Routing
+- **Routing**: React Router handles dynamic routes with fallback states
+  - Portfolio details: `/portfolio/:id`
+  - Blog details: `/blog/:id`
+- **Conditional Rendering**: Detail pages hide accordion completely
+- **Navigation**: Back navigation to parent pages with proper state management
+
+### 5. CSS Custom Property System
+- **Dynamic Backgrounds**: `--page-bg-color` controls page backgrounds
+- **Mouse Position**: `--x`, `--y`, `--size` for interactive effects
+- **Theme Variables**: `--px-theme-clr` and `--px-theme-bg` for consistent theming
+- **Runtime Updates**: JavaScript can update CSS variables dynamically
+
+### 6. Admin System Architecture
+- **Authentication**: localStorage-based with 24-hour session timeout
+- **Authorization**: React Admin authProvider with role-based permissions
+- **Data Management**: localStorageDataProvider with full CRUD operations
+- **File Storage**: Base64 encoding for images and videos with size limits
+- **UI Framework**: Material-UI components with custom theming
 
 ## Critical Files & Components
 
@@ -183,6 +195,12 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/hooks/useAnimations.ts` - Animation hooks
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/PortfolioDetailPage.tsx` - Detail page implementation
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/PortfolioFilter.tsx` - Portfolio filtering system
+
+### Admin System Files
+- `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/components/ReactAdminDashboard.tsx` - Admin dashboard
+- `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/authProvider.ts` - Authentication provider
+- `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/dataProvider.ts` - Data management provider
+- `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/src/utils/fileUtils.ts` - File handling utilities
 
 ### Configuration Files
 - `/Users/hueshadow/Documents/GitHub/HR_Portfolio/mockup-react/vite.config.ts` - Vite configuration
@@ -242,42 +260,12 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 - Requires CSS Grid and Flexbox support
 - Font Awesome 6+ icon support
 
-## Critical Architecture Patterns
-
-### 1. Accordion Layout System
-- **Desktop Layout**: Horizontal accordion with 80px collapsed pages
-- **Mobile Layout**: Vertical scroll layout below 960px breakpoint
-- **State Management**: Single `activePageId` state controls page expansion
-- **Detail Pages**: Portfolio/Blog detail pages completely hide accordion layout
-- **Performance**: Components lazy-load based on active page state
-
-### 2. Mouse Tracking & Animation System
-- **Component**: `MouseTrailer.tsx` provides complex 60fps mouse tracking
-- **Constraints**: Mouse position limited to content area boundaries
-- **Performance**: Uses `requestAnimationFrame` and GPU acceleration
-- **Mobile**: Automatically disabled on mobile devices
-- **CSS Variables**: Real-time updates to `--x`, `--y`, `--size` for effects
-- **Background Parallax**: Movement strength of 370 pixels
-
-### 3. Animation Architecture
-- **Custom Hooks**: `useAnimations.ts` contains specialized animation logic
-  - `useSkillBarAnimation`: Staggered reveals with 250ms delays
-  - `useHeadingAnimation`: Text scramble effect with letter cycling
-  - `usePortfolioCaptionAnimation`: Hover-triggered captions
-- **Performance**: CSS transforms and GPU acceleration for smooth animations
-
-### 4. Detail Page Routing
-- **Routing**: React Router handles dynamic routes with fallback states
-  - Portfolio details: `/portfolio/:id`
-  - Blog details: `/blog/:id`
-- **Conditional Rendering**: Detail pages hide accordion completely
-- **Navigation**: Back navigation to parent pages with proper state management
-
-### 5. CSS Custom Property System
-- **Dynamic Backgrounds**: `--page-bg-color` controls page backgrounds
-- **Mouse Position**: `--x`, `--y`, `--size` for interactive effects
-- **Theme Variables**: `--px-theme-clr` and `--px-theme-bg` for consistent theming
-- **Runtime Updates**: JavaScript can update CSS variables dynamically
+### Admin System Features
+- Full CRUD operations for portfolio projects
+- File upload with size validation (5MB images, 50MB videos)
+- Base64 encoding for local storage
+- Role-based access control
+- Session management with 24-hour timeout
 
 ## Common Development Tasks
 
@@ -293,6 +281,13 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 - Maintain consistency with original design system
 - Leverage CSS custom properties for dynamic theming
 
+### Admin Development
+- Use React Admin components and patterns
+- Implement proper validation in forms
+- Handle file uploads with size validation
+- Store data using localStorageDataProvider patterns
+- Implement proper error handling and user feedback
+
 ### Performance Considerations
 - Use React's built-in optimizations (memo, useCallback, etc.)
 - Leverage CSS transforms for animations over JavaScript
@@ -304,7 +299,7 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 ## Troubleshooting
 
 ### Port Conflicts
-- Dev server runs on port 5173
+- Dev server automatically finds available port (starts at 5173)
 - Scripts automatically kill existing Vite processes
 - Use `pkill -f vite` to manually stop servers
 
@@ -320,9 +315,16 @@ npm run auto-preview  # Kill existing vite, start new dev server on :5173
 - Ensure proper git permissions
 - Manual git workflow always available as fallback
 
+### Admin System Issues
+- **Login Problems**: Check localStorage auth data and session timeout
+- **Data Persistence**: Verify localStorage is enabled and not cleared
+- **File Upload Issues**: Check file size limits and base64 conversion
+- **Routing Issues**: Verify React Router configuration and admin routes
+
 ### Common Issues
 - **Detail Page Not Found**: Check route configuration in App.tsx
 - **Mouse Lag**: Verify `requestAnimationFrame` implementation
 - **Style Conflicts**: Check both main.css and component-level styles
 - **Asset Loading**: Verify all paths use `/assets/` prefix
 - **TypeScript Errors**: Strict mode may require additional type annotations
+- **Admin Access**: Verify authentication state and localStorage data
