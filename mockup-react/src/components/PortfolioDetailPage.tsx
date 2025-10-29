@@ -19,6 +19,24 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
     }
   }, [id])
 
+  // 关键修复：强制启用滚动
+  useEffect(() => {
+    // 直接在HTML元素上设置样式，覆盖所有CSS规则
+    document.documentElement.style.overflowY = 'auto'
+    document.documentElement.style.height = 'auto'
+    document.body.style.overflowY = 'auto'
+    document.body.style.height = 'auto'
+
+    // 清理函数
+    return () => {
+      // 恢复原始设置
+      document.documentElement.style.overflowY = ''
+      document.documentElement.style.height = ''
+      document.body.style.overflowY = ''
+      document.body.style.height = ''
+    }
+  }, [])
+
   const handleBackToPortfolio = () => {
     navigate('/')
     onPageChange('portfolio')
@@ -133,10 +151,28 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       </div>
 
       <style>{`
+        /* 关键修复：强制HTML和Body元素启用滚动 */
+        html body.detail-page {
+          overflow-y: auto !important;
+          height: auto !important;
+        }
+
+        body.detail-page {
+          overflow-y: auto !important;
+          height: auto !important;
+        }
+
+        html.detail-page {
+          overflow-y: auto !important;
+          height: auto !important;
+        }
+
         .portfolio-detail-wrapper {
           background: var(--page-bg-color, #f7f6f1);
-          min-height: 100vh;
+          min-height: auto;
           color: #333;
+          overflow-y: auto;
+          height: auto;
         }
 
         .page-header {
@@ -244,6 +280,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px 60px;
+          min-height: auto;
         }
 
         .project-hero {
