@@ -12,6 +12,8 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['React', 'TypeScript', 'Node.js', 'CSS3'],
     projectDate: '2024-01-15',
     featured: true,
+    projectUrl: 'https://www.huaweicloud.com/',
+    githubUrl: 'https://github.com/huawei-cloud',
     createdAt: '2024-01-15T00:00:00Z',
     updatedAt: '2024-01-15T00:00:00Z'
   },
@@ -25,6 +27,8 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL'],
     projectDate: '2024-02-20',
     featured: true,
+    projectUrl: 'https://developer.huawei.com/consumer/cn/hms/',
+    githubUrl: 'https://github.com/HMS-Core',
     createdAt: '2024-02-20T00:00:00Z',
     updatedAt: '2024-02-20T00:00:00Z'
   },
@@ -38,6 +42,8 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Photoshop', 'Illustrator', 'Figma', 'Sketch'],
     projectDate: '2024-03-10',
     featured: false,
+    projectUrl: 'https://www.behance.net/gallery/projects/matchbox-design',
+    githubUrl: 'https://github.com/example/matchbox-design',
     createdAt: '2024-03-10T00:00:00Z',
     updatedAt: '2024-03-10T00:00:00Z'
   },
@@ -51,6 +57,8 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Blender', 'Three.js', 'WebGL'],
     projectDate: '2024-04-05',
     featured: true,
+    projectUrl: 'https://sketchfab.com/models/3d-product-showcase',
+    githubUrl: 'https://github.com/example/3d-product-model',
     createdAt: '2024-04-05T00:00:00Z',
     updatedAt: '2024-04-05T00:00:00Z'
   }

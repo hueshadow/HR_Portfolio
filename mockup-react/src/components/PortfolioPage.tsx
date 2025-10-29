@@ -55,15 +55,8 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
     navigate(`/portfolio/${itemId}`)
   }
 
-  const handlePreviewClick = (mediaSrc: string, isVideo = false) => {
-    if (isVideo) {
-      setPreviewVideo(mediaSrc)
-      setIsVideoPreview(true)
-    } else {
-      setPreviewImage(mediaSrc)
-      setIsVideoPreview(false)
-    }
-    setPreviewOpen(true)
+  const handleProjectSourceClick = (projectUrl: string) => {
+    window.open(projectUrl, '_blank')
   }
 
   const closePreview = () => {
@@ -368,15 +361,19 @@ const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: Portfoli
                         onClick={(e) => {
                           e.preventDefault()
                           e.stopPropagation()
-                          const isVideo = item.category === 'video' || item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')
-                          if (isVideo) {
-                            handlePreviewClick(item.thumb, true)
-                          } else {
-                            handlePreviewClick(item.image)
+                          if (item.projectUrl) {
+                            handleProjectSourceClick(item.projectUrl)
+                          } else if (item.githubUrl) {
+                            handleProjectSourceClick(item.githubUrl)
                           }
                         }}
+                        disabled={!item.projectUrl && !item.githubUrl}
+                        style={{
+                          opacity: (item.projectUrl || item.githubUrl) ? 1 : 0.6,
+                          cursor: (item.projectUrl || item.githubUrl) ? 'pointer' : 'not-allowed'
+                        }}
                       >
-                        {(item.category === 'video' || item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')) ? "播放" : "预览"}
+                        项目来源
                       </button>
                     </div>
                   </div>
