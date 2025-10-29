@@ -57,7 +57,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Blender', 'Three.js', 'WebGL'],
     projectDate: '2024-04-05',
     featured: true,
-    projectUrl: 'https://sketchfab.com/models/3d-product-showcase',
+    projectUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
     githubUrl: 'https://github.com/example/3d-product-model',
     createdAt: '2024-04-05T00:00:00Z',
     updatedAt: '2024-04-05T00:00:00Z'
