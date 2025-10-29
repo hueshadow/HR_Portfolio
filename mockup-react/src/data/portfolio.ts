@@ -12,7 +12,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['React', 'TypeScript', 'Node.js', 'CSS3'],
     projectDate: '2024-01-15',
     featured: true,
-    projectUrl: 'https://www.huaweicloud.com/',
+    projectUrl: 'https://account.huaweicloud.com/usercenter/?locale=zh-cn&agencyId=a7e5b38327a7403eb21839f01cb9cd86&region=cn-north-4#/userindex/consumeTab',
     githubUrl: 'https://github.com/huawei-cloud',
     createdAt: '2024-01-15T00:00:00Z',
     updatedAt: '2024-01-15T00:00:00Z'
