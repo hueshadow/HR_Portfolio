@@ -50,7 +50,7 @@ const initialPortfolioItems: PortfolioItem[] = [
   {
     id: 4,
     category: '3d',
-    title: '3D产品模型',
+    title: 'Business Connect',
     description: '产品的3D建模和渲染，支持360度查看和交互操作。',
     image: '/assets/img/portfolio/4.jpg',
     thumb: '/assets/img/portfolio/4_s.jpg',
