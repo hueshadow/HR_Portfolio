@@ -6,7 +6,7 @@ interface BlogDetailPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const BlogDetailPage = ({ active: _active, loaded: _loaded, onPageChange }: BlogDetailPageProps) => {
+const BlogDetailPage = ({ onPageChange }: BlogDetailPageProps) => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
 

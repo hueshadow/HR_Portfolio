@@ -11,7 +11,7 @@ interface PortfolioPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const PortfolioPage = ({ active, loaded, onPageChange: _onPageChange }: PortfolioPageProps) => {
+const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const navigate = useNavigate()
   const [filteredItems, setFilteredItems] = useState<typeof portfolioItems>([])
   const [previewOpen, setPreviewOpen] = useState(false)

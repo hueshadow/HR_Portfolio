@@ -1,9 +1,14 @@
 /**
  * 将文件转换为 Base64 字符串
  */
-export const convertFileToBase64 = (file: any): Promise<string> => {
+interface FileObject {
+  rawFile: File
+  src?: string
+}
+
+export const convertFileToBase64 = (file: FileObject): Promise<string> => {
   if (!(file.rawFile instanceof File)) {
-    return Promise.resolve(file.src || file)
+    return Promise.resolve(file.src || '')
   }
 
   return new Promise((resolve, reject) => {

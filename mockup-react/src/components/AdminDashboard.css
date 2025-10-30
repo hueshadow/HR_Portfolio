@@ -168,7 +168,7 @@
   background: rgba(226, 74, 74, 0.9);
 }
 
-.category-badge['3d'] {
+.category-badge[data-category="3d"] {
   background: rgba(74, 226, 144, 0.9);
 }
 

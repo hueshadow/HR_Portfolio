@@ -214,7 +214,7 @@ const AdminDashboard: React.FC = () => {
     showSnackbar('添加项目功能正在开发中', 'success')
   }
 
-  const handleEditProject = (_project: Project) => {
+  const handleEditProject = () => {
     // Placeholder for edit project functionality
     showSnackbar('编辑项目功能正在开发中', 'success')
     handleCloseMenu()
@@ -279,7 +279,7 @@ const AdminDashboard: React.FC = () => {
         try {
           const importedProjects = JSON.parse(e.target?.result as string)
           saveProjects(importedProjects)
-        } catch (error) {
+        } catch {
           showSnackbar('导入失败：文件格式错误', 'error')
         }
       }
@@ -605,7 +605,7 @@ const AdminDashboard: React.FC = () => {
           open={Boolean(menuAnchor)}
           onClose={handleCloseMenu}
         >
-          <MenuItem onClick={() => selectedProject && handleEditProject(selectedProject)}>
+          <MenuItem onClick={() => selectedProject && handleEditProject()}>
             <ListItemIcon>
               <EditIcon fontSize="small" />
             </ListItemIcon>

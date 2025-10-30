@@ -107,8 +107,9 @@ const QuickCreateButton = () => {
           refresh()
           handleClose()
         },
-        onError: (error: any) => {
-          notify(`创建失败：${error.message}`, { type: 'error' })
+        onError: (error: unknown) => {
+          const errorMessage = error instanceof Error ? error.message : '未知错误'
+          notify(`创建失败：${errorMessage}`, { type: 'error' })
         }
       }
     )

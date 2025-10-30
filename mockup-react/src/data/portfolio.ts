@@ -150,7 +150,7 @@ class PortfolioManager {
         try {
           const parsed = JSON.parse(saved)
           this.items = parsed
-          this.nextId = Math.max(...parsed.map((item: any) => item.id), 0) + 1
+          this.nextId = Math.max(...parsed.map((item: { id: number }) => item.id), 0) + 1
         } catch (error) {
           console.error('Failed to load portfolio data from localStorage:', error)
         }
@@ -169,7 +169,7 @@ class PortfolioManager {
       const parsed = JSON.parse(jsonData)
       if (Array.isArray(parsed)) {
         this.items = parsed
-        this.nextId = Math.max(...parsed.map((item: any) => item.id), 0) + 1
+        this.nextId = Math.max(...parsed.map((item: { id: number }) => item.id), 0) + 1
         this.saveToLocalStorage()
         return true
       }

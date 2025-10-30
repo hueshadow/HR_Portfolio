@@ -6,7 +6,7 @@ interface ContactPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const ContactPage = ({ active: _active, loaded, onPageChange: _onPageChange }: ContactPageProps) => {
+const ContactPage = ({ loaded }: ContactPageProps) => {
   const [formData, setFormData] = useState({
     userName: '',
     userEmail: '',

@@ -138,7 +138,7 @@ const localStorageDataProvider: DataProvider = {
     const storedData = JSON.parse(localStorage.getItem(`${resource}Data`) || '[]')
 
     // 处理文件上传
-    let processedData = { ...data }
+    const processedData = { ...data }
 
     // 处理图片文件
     if (data.image && data.image.rawFile) {
@@ -189,7 +189,7 @@ const localStorageDataProvider: DataProvider = {
     const { data } = params
 
     // 处理文件上传
-    let processedData = { ...data }
+    const processedData = { ...data }
 
     // 处理图片文件
     if (data.image && data.image.rawFile) {

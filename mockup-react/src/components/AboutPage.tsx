@@ -8,7 +8,7 @@ interface AboutPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const AboutPage = ({ active, loaded, onPageChange: _onPageChange }: AboutPageProps) => {
+const AboutPage = ({ active, loaded }: AboutPageProps) => {
   const tabItems = [
     {
       id: 'experience',
