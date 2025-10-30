@@ -6,7 +6,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     id: 1,
     category: 'image',
     title: '华为云',
-    description: '华为云平台的设计与开发，包括用户界面优化、用户体验提升和性能优化。',
+    description: '华为云Web前端平台，实现浏览器兼容性检查、主题切换（浅色/深色模式）、加载动画和骨架屏、资源错误监控和日志记录等功能。项目采用响应式设计，支持多设备访问，提供良好的用户体验和性能优化，并集成Splunk进行错误监控。',
     image: '/assets/img/portfolio/1.jpg',
     thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
     technologies: ['React', 'TypeScript', 'Node.js', 'CSS3'],
