@@ -394,17 +394,37 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           width: 100%;
           border-collapse: collapse;
           margin: 20px 0;
+          font-size: 14px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          border-radius: 8px;
+          overflow: hidden;
         }
 
         .markdown-content th,
         .markdown-content td {
-          padding: 12px;
+          padding: 16px 14px;
           text-align: left;
           border-bottom: 1px solid #e0e0e0;
+          vertical-align: top;
         }
 
         .markdown-content th {
           background: #f8f9fa;
+          font-weight: 600;
+          color: #555;
+          border-bottom: 2px solid #dee2e6;
+        }
+
+        .markdown-content tr:last-child td {
+          border-bottom: none;
+        }
+
+        .markdown-content tr:hover {
+          background: #f8f9fa;
+        }
+
+        .markdown-content td strong {
+          color: #2563eb;
           font-weight: 600;
         }
 
@@ -415,6 +435,32 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .markdown-content em {
           font-style: italic;
+          color: #666;
+        }
+
+        .markdown-content h1 {
+          border-bottom: 3px solid var(--px-theme-clr, #ff6b6b);
+          padding-bottom: 8px;
+          margin-bottom: 24px;
+        }
+
+        .markdown-content h2 {
+          border-bottom: 2px solid #e5e7eb;
+          padding-bottom: 6px;
+          margin-bottom: 20px;
+        }
+
+        .markdown-content h3 {
+          border-bottom: 1px solid #f3f4f6;
+          padding-bottom: 4px;
+          margin-bottom: 16px;
+        }
+
+        .markdown-content hr {
+          border: none;
+          height: 2px;
+          background: linear-gradient(to right, transparent, var(--px-theme-clr, #ff6b6b), transparent);
+          margin: 32px 0;
         }
 
         .markdown-content code {
@@ -423,6 +469,16 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           border-radius: 4px;
           font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
           font-size: 0.9em;
+        }
+
+        .markdown-content p > strong {
+          display: inline-block;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-weight: 500;
+          margin: 8px 0;
         }
 
         .markdown-content pre {

@@ -1,0 +1,740 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Huawei Cloud 费用中心 · 多维度账单体验重构（2024重点项目）</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2372d787-465b-8040-9eb6-ddf3db67908c" class="page sans"><header><h1 class="page-title">Huawei Cloud 费用中心 · 多维度账单体验重构（2024重点项目）</h1><p class="page-description"></p></header><div class="page-body"><p id="2482d787-465b-807f-84fc-d7291600b3d4" class="">
+</p><p id="2482d787-465b-80ca-85de-d3bd47f05dea" class="">
+</p><p id="23b2d787-465b-801d-a72b-d6c4ca9dde33" class=""><strong>角色</strong>：UED 设计负责人（全流程：洞察、策略、视觉、交互、测试、落地）<br/><strong>周期</strong>：2023.12 – 2025.03</p><p id="23b2d787-465b-80bd-afa1-d9050e77b1cc" class="">
+</p><p id="23b2d787-465b-806d-8796-c90e9faddb3e" class="">
+</p><p id="23b2d787-465b-80e0-9d81-dec256f9f273" class=""><em>• 本文仅用于求职作品展示，禁止商用转载</em></p><hr id="23b2d787-465b-80b3-af74-c4c6efb8ed9d"/><p id="2412d787-465b-809f-8442-d37d4a469460" class="">
+</p><h3 id="2372d787-465b-804d-916e-fd3590e4a22f" class=""><strong>KPI Highlights</strong></h3><div id="23b2d787-465b-80cc-b3a4-c712d9809f01" class="column-list"><div id="23b2d787-465b-801b-a0ea-c1aab69fea84" style="width:33.33333333333333%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-8059-81ff-c4fddb59faa6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="23b2d787-465b-809b-a8dc-da0d75e34ed3" class="">费用中心工单量<br/><strong>↓42%</strong></p></div></figure></div><div id="23b2d787-465b-80e8-918f-e82352520993" style="width:33.33333333333335%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-8054-8cdc-cabc67f6f034"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="23b2d787-465b-8052-80be-f801e8ab3328" class="">账单导出平均耗时<br/><strong>2’13’’ </strong> <strong>→ 46’’</strong></p></div></figure></div><div id="23b2d787-465b-80b5-8290-c675e6dd066c" style="width:33.33333333333334%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-8018-a445-d8ee0e96402b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="23b2d787-465b-80d7-9646-efd689600fd8" class="">路径深度均值<br/>4.2 <strong>→ 1.8</strong></p></div></figure></div></div><div id="23b2d787-465b-803d-9a65-cada1375a34f" class="column-list"><div id="23b2d787-465b-80dc-8379-fc5879888f19" style="width:33.33333333333333%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-8035-8e4d-ca4a455f7093"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="23b2d787-465b-80d8-bdc2-f070a128bd0c" class="">功能采用率<strong>30天留存58%）</strong><br/><strong>↑3.4x</strong></p></div></figure></div><div id="23b2d787-465b-801f-b5e3-feeb1d0cde94" style="width:33.33333333333333%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-80ff-a0e9-cf885fd441f4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="23b2d787-465b-8060-a46a-ce08a88cf1a7" class=""><strong>成本侧影响（人工核对成本下降）</strong><br/>csv频次<strong>↑</strong></p></div></figure><p id="23b2d787-465b-806b-8ab9-d3f6e0d5e90a" class="">
+</p></div><div id="23b2d787-465b-8025-852f-c4e121102007" style="width:33.33333333333335%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-8035-b3ab-c1f89eca0916"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="23b2d787-465b-8000-982e-e6d59341182f" class="">满意度</p><p id="23b2d787-465b-80c0-88bc-ddf7b39aae97" class="">SUS <strong> 62 → 78 | </strong>SEQ  <strong>4.1 → 5.6</strong></p></div></figure></div></div><hr id="23b2d787-465b-803f-ba09-e3d40dfd8cae"/><p id="23b2d787-465b-8015-b637-f957614750e9" class="">
+</p><h3 id="2392d787-465b-808f-b765-ee956c4f4df9" class=""><strong>用户声音</strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23a2d787-465b-80ab-a692-e59540bb41eb"><div style="width:100%"><blockquote id="2392d787-465b-80c9-b789-c19d0c291724" class=""><em><mark class="highlight-gray">“我就想看一个最简单的总览，</mark></em><em><mark class="highlight-gray"><strong>为什么要让我先选一堆我看不懂的维度？</strong></mark></em><em><mark class="highlight-gray"><br/>” — 个人用户A</mark></em></blockquote></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23a2d787-465b-8001-b6e8-f6067edc6b13"><div style="width:100%"><blockquote id="23a2d787-465b-8047-a6f7-f5996f3b31a1" class=""><em><mark class="highlight-gray">“……</mark></em><mark class="highlight-gray"> 我知道系统能看，但</mark><mark class="highlight-gray"><strong>我找不到在哪里改统计口径</strong></mark><mark class="highlight-gray">，每次只能截屏问同事。<br/></mark><em><mark class="highlight-gray">……” — 运维人员B</mark></em></blockquote></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23a2d787-465b-80bc-bc60-feea4a9d4c59"><div style="width:100%"><blockquote id="2392d787-465b-8052-a3c1-d9a2ef1af55f" class=""><em><mark class="highlight-gray">“我们每月要对上百台资源账单进行成本核算，</mark></em><em><mark class="highlight-gray"><strong>以前筛维度特别难，导出来还要补手工字段</strong></mark></em><em><mark class="highlight-gray">……<br/>” — 企业主C大客户经理</mark></em></blockquote></div></figure><p id="23a2d787-465b-801d-b95c-d6e489cba3d5" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>用户洞察</strong></summary><div class="indented"><ul id="2482d787-465b-80b5-bffb-f8a108c0171f" class="bulleted-list"><li style="list-style-type:disc"><strong>工单分析</strong></li></ul><p id="2482d787-465b-80b2-ad0c-f1ab3b88ae3a" class=""><em>样本量、14k，时间窗口：2023.01–2023.12，账单相关工单 2,357 条</em></p><div id="23a2d787-465b-8060-a7a6-cc75d092faa9" class="column-list"><div id="23a2d787-465b-800f-a79f-c256e497c9ae" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23a2d787-465b-8059-9dfc-ec122a1f35e4"><div style="width:100%"><p id="2392d787-465b-8045-a543-e3e6d07b2c34" class="">
+</p><p id="23a2d787-465b-805a-92b6-eb872b154fa5" class=""><strong>TOP5工单类型</strong></p><ul id="23b2d787-465b-804e-b992-e54b028ce862" class="bulleted-list"><li style="list-style-type:disc">账单页面复杂难懂</li></ul><ul id="23b2d787-465b-80ee-8c8d-cb84129b0da1" class="bulleted-list"><li style="list-style-type:disc">多为筛选功能不够灵活</li></ul><ul id="23b2d787-465b-80ce-8b2b-fcc78aa08846" class="bulleted-list"><li style="list-style-type:disc">费用中心功能逻辑混乱</li></ul><ul id="23b2d787-465b-8097-9182-db482150d255" class="bulleted-list"><li style="list-style-type:disc">计费规则不透明</li></ul><ul id="23b2d787-465b-80b8-87c6-e7803551daab" class="bulleted-list"><li style="list-style-type:disc">缺少拆帐功能</li></ul><p id="23b2d787-465b-8023-a6e9-fa53ddd970ed" class="">
+</p></div></figure><p id="23b2d787-465b-809a-8ee7-fe197dd9784b" class="">
+</p></div><div id="23a2d787-465b-8062-9f21-e2b90b0bae85" style="width:50%" class="column"><div id="23a2d787-465b-80f9-a6fe-efd9dfd55dbe" class="collection-content"><h4 class="collection-title"></h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><img src="https://www.notion.so/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>占比</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>编码类目</th></tr></thead><tbody><tr id="23a2d787-465b-8017-80ef-ed7ee31d61bf"><td class="cell-title"><a href="https://www.notion.so/23-23a2d787465b801780efed7ee31d61bf?pvs=21">23%</a></td><td class="cell-aE__"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>费用中心功能逻辑混乱</span></td></tr><tr id="23a2d787-465b-805e-958b-f6f3f380c8d3"><td class="cell-title"><a href="https://www.notion.so/17-23a2d787465b805e958bf6f3f380c8d3?pvs=21">17%</a></td><td class="cell-aE__"><span class="status-value"><div class="status-dot"></div>账单页面复杂难懂</span></td></tr><tr id="23a2d787-465b-8092-8163-cecacd0105ed"><td class="cell-title"><a href="https://www.notion.so/16-23a2d787465b80928163cecacd0105ed?pvs=21">16%</a></td><td class="cell-aE__"><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>多维筛选功能不够灵活</span></td></tr><tr id="23b2d787-465b-8082-8bfe-fa30a464ea1e"><td class="cell-title"><a href="https://www.notion.so/33-23b2d787465b80828bfefa30a464ea1e?pvs=21">33%</a></td><td class="cell-aE__"><span class="status-value select-value-color-yellow"><div class="status-dot status-dot-color-yellow"></div>计费规则不透明</span></td></tr><tr id="23b2d787-465b-8095-b1c8-f9203d0ebf2f"><td class="cell-title"><a href="https://www.notion.so/1-23b2d787465b8095b1c8f9203d0ebf2f?pvs=21">1%</a></td><td class="cell-aE__"><span class="status-value select-value-color-orange"><div class="status-dot status-dot-color-orange"></div>缺少拆帐功能</span></td></tr></tbody></table><br/><br/></div><p id="23b2d787-465b-8089-a373-f67646a0795e" class="">
+</p></div></div><ul id="2392d787-465b-80db-9d12-f789cb480263" class="bulleted-list"><li style="list-style-type:disc"><strong>埋点数据分析</strong></li></ul><p id="23a2d787-465b-808b-a9e2-f13685a94f2d" class="">目标：量化对账流程的使用率、成功率、时长、阻断点，为优化导出体验、提高对账效率提供数据依据。</p><p id="2412d787-465b-8091-bb4d-e9692977931d" class="">例，对账用户路径：进入费用中心 &gt; 选择账期 &gt; 切到“账单概览 &gt; 点击“导出账单” &gt; 选择类型：月账单/明细/流水/账单包 &gt; 提交导出任务 &gt; 查看导出记录 &gt; 下载文件 &gt; 下载字段说明 &gt; 跳转内部系统/离开</p><p id="2582d787-465b-80b4-a54b-d932d9db3116" class="">
+</p><figure id="2582d787-465b-8043-a42f-d56d08819f2d" class="image"><a href="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E6%88%AA%E5%B1%8F2025-08-23_20.48.11.png"><img style="width:624px" src="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E6%88%AA%E5%B1%8F2025-08-23_20.48.11.png"/></a></figure><p id="2482d787-465b-8074-a68b-f7576a38cd29" class="">
+</p><ul id="23a2d787-465b-8070-93a2-c8963bb566fd" class="bulleted-list"><li style="list-style-type:disc"><strong>用户访谈</strong></li></ul><p id="23a2d787-465b-80fc-85dd-c7e2808af463" class="">招募与样本</p><p id="23a2d787-465b-80f5-8e45-f4655d9ac197" class="">访谈大纲 &amp; 技巧（例：先任务回放再谈理想状态，避免直接问需求）</p><p id="23a2d787-465b-8037-9526-dcc45989e03d" class="">关键洞察（按角色差异/任务差异）</p><p id="23a2d787-465b-80c3-8c3d-d2adc1917240" class="">矛盾与冲突点：如头部客户要求“极细维度</p><p id="23b2d787-465b-80ac-8bd8-f8e78945969d" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-80c8-b345-ee9d26c717f3"><div style="font-size:1.5em"><span class="icon">🧑🏼‍💻</span></div><div style="width:100%"><p id="23b2d787-465b-8038-a89a-c23f33a59479" class=""><strong>长尾用户</strong></p><p id="23b2d787-465b-80e0-9997-e563f1e67c18" class="block-color-gray"><em>反馈主要集中在账单界面复杂难懂、信息过载且不直观。他们希望账单能“傻瓜式”呈现消费概况。</em></p><p id="23b2d787-465b-80c1-8afe-ec5ab3fc6ad3" class="block-color-gray"><em>过去导出账单需等待且常失败，部分人因无法获取自己所有消费记录而不满。</em></p></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-8079-9b21-f6b1fe940764"><div style="font-size:1.5em"><span class="icon">👩🏼‍💼</span></div><div style="width:100%"><p id="23b2d787-465b-80d7-bf35-f5736981152a" class=""><strong>腰部用户</strong></p><p id="23b2d787-465b-804e-b3e0-fd5e509c6dc3" class="block-color-gray"><em>他们意账单对账和成本控制功能。他们反馈旧版费用中心功能逻辑混乱：月账单、明细账单、资源用量等入口分散，按需与包年费用、代金券抵扣等要自行汇总核对，增加了财务对账工作量。不少团队用户过去要求</em><em><strong>每日费用监控</strong></em><em>功能，以便及时发现异常消耗。</em></p><p id="23b2d787-465b-809f-bda5-d78485bca33d" class="">
+</p></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="23b2d787-465b-808d-a544-fee7514ed648"><div style="font-size:1.5em"><span class="icon">🤵🏼‍♂️</span></div><div style="width:100%"><p id="23b2d787-465b-807a-acd4-c9b08a1923ff" class=""><strong>头部用户</strong></p><p id="23b2d787-465b-80fb-8adc-d987cc7ae515" class="block-color-gray"><em>大客户群体关注账单的准确性、透明度以及与内部财务系统的对接。头部用户还要求</em><em><strong>成本分摊</strong></em><em>支持，将公共云资源费用按部门/项目分配。华为云随后推出“成本中心”，提供基于成本单元的费用分摊、成本分析和预算管理等，企业客户反馈这些工具有助于内部结算和成本治理  。</em></p></div></figure><p id="2482d787-465b-8017-a7f8-f481d12ec8cd" class="">
+</p><ul id="2482d787-465b-8017-8390-f12e41d8bf02" class="bulleted-list"><li style="list-style-type:disc">用户体验旅程地图</li></ul><figure id="2482d787-465b-800e-9777-eae571f444a7" class="image"><a href="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E7%94%A8%E6%88%B7%E6%97%85%E7%A8%8B.png"><img style="width:671px" src="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E7%94%A8%E6%88%B7%E6%97%85%E7%A8%8B.png"/></a></figure><p id="23b2d787-465b-80c5-bb0f-f2262fc79425" class="">
+</p><ul id="2392d787-465b-80eb-a38b-f2089562db2e" class="bulleted-list"><li style="list-style-type:disc"><strong>竞品分析</strong></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2412d787-465b-8096-a194-e96a11f4831b"><div style="font-size:1.5em"><span class="icon">🧑🏼‍💻</span></div><div style="width:100%"><p id="2412d787-465b-80d5-bc0a-e43e296fdad1" class=""><strong>华为云、阿里云和AWS在对账功能上差异对比：</strong></p><ol type="1" id="2482d787-465b-80cf-953a-f86aa49eb75c" class="numbered-list" start="1"><li><strong>华为云</strong>优势在于本地合规和清晰的账单结构，提供盖章账单和高精度明细，对政府及国企等严谨财务场景友好；多账号托管功能新兴却不完善。</li></ol><ol type="1" id="2482d787-465b-806f-8d88-dad2edc62198" class="numbered-list" start="2"><li><strong>阿里云</strong>对账体系最完善全面，从账单层级、合并结算到灵活开票均领先，适合大型集团精细化财务管理；其本地化服务和国际化结算并举，满足国内外业务需求。</li></ol><ol type="1" id="2482d787-465b-80ae-80f7-f557b20314d7" class="numbered-list" start="3"><li><strong>AWS Cloud</strong>则以全球化和高度定制化见长，账单数据详实适合深入分析，但对普通财务直接使用不够友好；在国内发票和本地支持上相对欠缺，但不断改进中（如推出发票单元功能）。</li></ol><p id="2412d787-465b-8068-b38c-c981173693fa" class="">
+</p></div></figure><p id="2402d787-465b-80da-b961-da8a838c5aef" class="">对账流程信息架构分析</p><figure id="2482d787-465b-80bb-8a2e-eae5725dc69f" class="image"><a href="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E7%AB%9E%E5%93%81%E5%88%86%E6%9E%90.png"><img style="width:681.9921875px" src="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E7%AB%9E%E5%93%81%E5%88%86%E6%9E%90.png"/></a></figure><table id="2482d787-465b-800b-b90b-d068693bf18e" class="simple-table"><thead class="simple-table-header"><tr id="2482d787-465b-80cb-86e4-f6f221edf8cd"><th id="qbSi" class="simple-table-header-color simple-table-header" style="width:275.5px"><strong>观察</strong></th><th id="~PeR" class="simple-table-header-color simple-table-header" style="width:178px"><strong>影响</strong></th><th id="AW&lt;b" class="simple-table-header-color simple-table-header" style="width:201.5px"><strong>建议</strong></th></tr></thead><tbody><tr id="2482d787-465b-800b-ac66-d29b47a6112f"><td id="qbSi" class="" style="width:275.5px">主要 KPI 卡片 + 单选 tag 切换多账期视图</td><td id="~PeR" class="" style="width:178px">快速对比便捷</td><td id="AW&lt;b" class="" style="width:201.5px">tag 样式与筛选器区分度低，可用色块或 icon</td></tr><tr id="2482d787-465b-8089-8c51-f985f8998420"><td id="qbSi" class="" style="width:275.5px">折线统计默认拉满整月，<strong>空值折线很突兀</strong></td><td id="~PeR" class="" style="width:178px">视觉噪点/误判</td><td id="AW&lt;b" class="" style="width:201.5px">空值灰化 or 用虚线占位</td></tr><tr id="2482d787-465b-8018-a7c9-fb67fc93926f"><td id="qbSi" class="" style="width:275.5px">右侧提醒/概览混堆，优先级模糊</td><td id="~PeR" class="" style="width:178px">信息杂糅</td><td id="AW&lt;b" class="" style="width:201.5px">拆成「提醒」「快捷入口」分区，或顶部 toast 动态提示</td></tr></tbody></table><p id="2482d787-465b-801c-99da-d2766738f7bb" class=""><strong>可用改进思路</strong></p><ol type="1" id="2482d787-465b-8005-b9bc-c43784a2db95" class="numbered-list" start="1"><li><strong>导航一致化 + 路径显性</strong><ul id="2482d787-465b-8035-82dc-ddd6a0463fa3" class="bulleted-list"><li style="list-style-type:disc">全局「对账」路由：Billing → Reconciliation，保持同一级深度</li></ul></li></ol><ol type="1" id="2482d787-465b-80f0-9dcd-d664070b5e04" class="numbered-list" start="2"><li><strong>数据-动作聚合</strong><ul id="2482d787-465b-80ec-83fd-ef59f8d42442" class="bulleted-list"><li style="list-style-type:disc">摆脱散落按钮 → 建立固定 <strong>Action Bar</strong>（时间过滤 + 导出 + 批量操作）</li></ul><ul id="2482d787-465b-80ef-9c34-f30aee0914cc" class="bulleted-list"><li style="list-style-type:disc">关键 KPI 卡与关联动作配对（如“应付金额”卡旁放「去支付」）</li></ul></li></ol><ol type="1" id="2482d787-465b-80ca-a192-c2572a91b12e" class="numbered-list" start="3"><li><strong>信息层级渐进披露（Progressive Disclosure）</strong><ul id="2482d787-465b-80a7-b0af-feb544f1aa50" class="bulleted-list"><li style="list-style-type:disc">首页只保留关键指标 &amp; 异常告警</li></ul><ul id="2482d787-465b-8099-a61c-d6fee3359c9d" class="bulleted-list"><li style="list-style-type:disc">二级页或折叠区承载 Top-N 产品 / 详细图表</li></ul><ul id="2482d787-465b-80d3-b590-d16376914384" class="bulleted-list"><li style="list-style-type:disc">高阶探索入口明显（“去 Cost Explorer 🔍”）</li></ul></li></ol><p id="2482d787-465b-8095-aa3b-d6547ef697e2" class="">
+</p><p id="2482d787-465b-806e-9afb-d7ca9b808e70" class=""><strong>用户体验目标</strong></p><p id="2482d787-465b-805e-af24-f5753995c2f3" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">设计与评估</summary><div class="indented"><p id="2392d787-465b-80f5-831d-ed8a4ab7a22d" class="">信息架构设计</p><figure id="2552d787-465b-804f-aebb-cc4ce9a24b24" class="image"><a href="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E4%BF%A1%E6%81%AF%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1.png"><img style="width:681.9921875px" src="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E4%BF%A1%E6%81%AF%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1.png"/></a></figure><p id="2392d787-465b-8051-a1c6-f7b9e15291da" class="">4.高保真交互原型设计：<em>（操作video）含可用性测试用例</em></p><figure id="2552d787-465b-800a-8801-c02f3e0c05ac" class="image"><a href="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E6%88%AA%E5%B1%8F2025-08-20_14.26.20.png"><img style="width:682px" src="Huawei%20Cloud%20%E8%B4%B9%E7%94%A8%E4%B8%AD%E5%BF%83%20%C2%B7%20%E5%A4%9A%E7%BB%B4%E5%BA%A6%E8%B4%A6%E5%8D%95%E4%BD%93%E9%AA%8C%E9%87%8D%E6%9E%84%EF%BC%882024%E9%87%8D%E7%82%B9%E9%A1%B9%E7%9B%AE%EF%BC%89%202372d787465b80409eb6ddf3db67908c/%E6%88%AA%E5%B1%8F2025-08-20_14.26.20.png"/></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2392d787-465b-80b8-b941-ef690faa2d47"><div style="width:100%"><p id="2392d787-465b-80d6-b218-ee3334c19c79" class=""><strong>设计论点</strong></p><ol type="1" id="2392d787-465b-80b7-8fc0-fc373f89f3f3" class="numbered-list" start="1"><li><strong>可视化 = 信任</strong>：费用本质是数字游戏，图形化能直击理解成本。</li></ol><ol type="1" id="2392d787-465b-80e3-ab9e-de2c84f8bb15" class="numbered-list" start="2"><li><strong>渐进披露</strong> <em>(Progressive Disclosure)</em>：先给宏观，再给细节，减少认知负荷。</li></ol><ol type="1" id="2392d787-465b-8029-94f7-d1b3da034a30" class="numbered-list" start="3"><li><strong>术语一致性</strong>：同一概念只用一个名字，减少“翻译”成本。</li></ol></div></figure><p id="2392d787-465b-8012-80fb-e0ecbf0764bb" class="">
+</p><p id="2392d787-465b-80a4-b7e3-e93102b38a9e" class="">
+</p><p id="2392d787-465b-80ff-ae14-e3eab5dbff3b" class="">
+</p></div></details><p id="2412d787-465b-8057-b550-c79c26f2a173" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">可用性评估</summary><div class="indented"><p id="2562d787-465b-8084-9eaf-f8dd7ea5b81c" class="">
+</p></div></details><p id="2482d787-465b-8004-aaff-d09238440005" class="">
+</p><p id="2482d787-465b-8040-8310-ccb6ec65d3d4" class="">
+</p><p id="2482d787-465b-8097-b26f-f13b13df0dc0" class="">
+</p><h3 id="2382d787-465b-8059-9379-d945f146c4a3" class="">结果与影响</h3><table id="2382d787-465b-808c-ae1f-e0ba1ac9168b" class="simple-table"><tbody><tr id="2382d787-465b-8067-8819-e0b82723458c"><td id="cb:W" class="">指标</td><td id="?\uC" class="">旧版</td><td id="CHcD" class="">新版</td><td id="NyFq" class="">Δ</td></tr><tr id="2382d787-465b-80b1-a1cf-db1c08608ac9"><td id="cb:W" class="">NPS</td><td id="?\uC" class="">48</td><td id="CHcD" class=""><strong>66</strong></td><td id="NyFq" class="">+18</td></tr><tr id="2382d787-465b-805c-948d-f369d54595b2"><td id="cb:W" class="">自助账单下载率</td><td id="?\uC" class="">38%</td><td id="CHcD" class=""><strong>83%</strong></td><td id="NyFq" class="">+45pp</td></tr><tr id="2382d787-465b-800f-ab2e-fb111d230600"><td id="cb:W" class="">平均任务时长</td><td id="?\uC" class="">4&#x27;20&#x27;&#x27;</td><td id="CHcD" class=""><strong>2&#x27;05&#x27;&#x27;</strong></td><td id="NyFq" class="">-52%</td></tr><tr id="2382d787-465b-8095-a69e-e64a029ab350"><td id="cb:W" class="">客服工单 (月)</td><td id="?\uC" class="">856</td><td id="CHcD" class=""><strong>491</strong></td><td id="NyFq" class="">-365</td></tr></tbody></table><p id="2382d787-465b-80e9-a307-fd789a9fb490" class=""><strong>业务价值</strong>：每月节省 ~3.8 人/天 客服成本；提升续费转化 ≈ 1.2M CNY/Q。</p><h3 id="2382d787-465b-8011-9fb1-d02e5f16c26a" class="">复盘与反思</h3><blockquote id="2382d787-465b-8012-a5d6-cb100cdb333a" class="">“体验不是改了就好，还得让数据证明。”</blockquote><ul id="2382d787-465b-805d-b9ba-e7f3f05e5f6d" class="bulleted-list"><li style="list-style-type:disc"><strong>失败案例</strong>：首版使用折线图展示月度成本，用户更想看柱状累计 ➜ 第二版修正。</li></ul><ul id="2382d787-465b-806f-a77a-c375f2679d4d" class="bulleted-list"><li style="list-style-type:disc"><strong>遗留问题</strong>：跨账号汇总仍依赖离线报表，计划与 Data Lake 打通。</li></ul><p id="23a2d787-465b-80db-aade-fec864e9fa54" class="">
+</p><p id="23a2d787-465b-8016-9574-e9e5167cd0ac" class="">附录文件：</p><p id="23a2d787-465b-8010-8676-d818b23986d6" class="">
+</p><blockquote id="2392d787-465b-809d-9376-f9a8d778aff0" class=""><em>“真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。”</em> —— Ronn</blockquote><hr id="2392d787-465b-8029-8550-cc8e56356390"/><p id="2392d787-465b-80c1-a3bc-d033ae4a6f27" class=""><em>© 2025 Ronn · All rights reserved. 本文使用公开可查询资料与自研设计图示，涉及敏感数据已做脱敏处理。</em></p><p id="2392d787-465b-80e8-a5e5-edec7d35a42b" class="">
+</p><p id="2392d787-465b-8049-8b9a-d93813f83d1c" class="">
+</p><p id="2392d787-465b-80f5-9f9e-cca8293d6e95" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2392d787-465b-8053-a107-e45936251220"><div style="width:100%"></div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
