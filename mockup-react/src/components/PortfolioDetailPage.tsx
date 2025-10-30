@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
 
@@ -120,7 +121,9 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
           <div className="project-description">
             <h3>Project Description</h3>
-            <p>{item.description}</p>
+            <div className="markdown-content">
+              <ReactMarkdown>{item.description}</ReactMarkdown>
+            </div>
           </div>
 
           <div className="project-technologies">
@@ -342,6 +345,108 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         .project-description p {
           line-height: 1.8;
           color: #555;
+        }
+
+        .markdown-content {
+          line-height: 1.8;
+          color: #555;
+        }
+
+        .markdown-content h1,
+        .markdown-content h2,
+        .markdown-content h3,
+        .markdown-content h4,
+        .markdown-content h5,
+        .markdown-content h6 {
+          margin: 24px 0 16px 0;
+          font-weight: 600;
+          line-height: 1.4;
+        }
+
+        .markdown-content h1 { font-size: 28px; }
+        .markdown-content h2 { font-size: 24px; }
+        .markdown-content h3 { font-size: 20px; }
+        .markdown-content h4 { font-size: 18px; }
+
+        .markdown-content p {
+          margin: 16px 0;
+        }
+
+        .markdown-content ul,
+        .markdown-content ol {
+          margin: 16px 0;
+          padding-left: 32px;
+        }
+
+        .markdown-content li {
+          margin: 8px 0;
+        }
+
+        .markdown-content blockquote {
+          margin: 20px 0;
+          padding: 16px 20px;
+          background: #f8f9fa;
+          border-left: 4px solid var(--px-theme-clr, #ff6b6b);
+          font-style: italic;
+        }
+
+        .markdown-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px 0;
+        }
+
+        .markdown-content th,
+        .markdown-content td {
+          padding: 12px;
+          text-align: left;
+          border-bottom: 1px solid #e0e0e0;
+        }
+
+        .markdown-content th {
+          background: #f8f9fa;
+          font-weight: 600;
+        }
+
+        .markdown-content strong {
+          font-weight: 600;
+          color: #333;
+        }
+
+        .markdown-content em {
+          font-style: italic;
+        }
+
+        .markdown-content code {
+          background: #f4f4f4;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+          font-size: 0.9em;
+        }
+
+        .markdown-content pre {
+          background: #f8f9fa;
+          padding: 16px;
+          border-radius: 8px;
+          overflow-x: auto;
+          margin: 20px 0;
+        }
+
+        .markdown-content pre code {
+          background: none;
+          padding: 0;
+        }
+
+        @media (max-width: 768px) {
+          .markdown-content {
+            font-size: 16px;
+          }
+
+          .markdown-content h1 { font-size: 24px; }
+          .markdown-content h2 { font-size: 22px; }
+          .markdown-content h3 { font-size: 18px; }
+          .markdown-content h4 { font-size: 16px; }
         }
 
         .project-technologies {
