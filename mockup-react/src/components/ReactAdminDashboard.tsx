@@ -58,6 +58,7 @@ import {
 } from '@mui/material'
 import { dataProvider } from '../dataProvider'
 import authProvider from '../authProvider'
+import RichTextInput from './RichTextInput'
 
 // 快速创建项目组件
 const QuickCreateButton = () => {
@@ -301,7 +302,13 @@ const ProjectEdit = () => (
   <Edit title="编辑项目">
     <SimpleForm>
       <TextInput source="title" label="项目名称" fullWidth validate={required()} />
-      <TextInput source="description" label="项目描述" multiline rows={4} fullWidth validate={required()} />
+      <RichTextInput
+        source="description"
+        label="项目描述"
+        validate={validateDescription}
+        placeholder="请详细描述您的项目，支持 Markdown 格式，可以包含表格、列表、代码块等丰富内容..."
+        helperText="支持 Markdown 语法，可以创建专业的项目展示内容"
+      />
 
       <SelectInput
         source="category"
@@ -419,14 +426,12 @@ const ProjectCreate = () => {
             </Grid>
 
             <Box sx={{ mt: 2 }}>
-              <TextInput
+              <RichTextInput
                 source="description"
                 label="项目描述"
-                multiline
-                rows={4}
-                fullWidth
                 validate={validateDescription}
-                placeholder="详细描述您的项目...（10-1000个字符）"
+                placeholder="请详细描述您的项目，支持 Markdown 格式，可以包含表格、列表、代码块等丰富内容..."
+                helperText="支持 Markdown 语法，可以创建专业的项目展示内容（10-5000个字符）"
               />
             </Box>
 
@@ -727,7 +732,7 @@ const validateProjectTitle = (value: string) => {
 const validateDescription = (value: string) => {
   if (!value) return '项目描述不能为空'
   if (value.length < 10) return '项目描述至少需要10个字符'
-  if (value.length > 1000) return '项目描述不能超过1000个字符'
+  if (value.length > 5000) return '项目描述不能超过5000个字符'
   return undefined
 }
 

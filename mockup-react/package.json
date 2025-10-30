@@ -19,6 +19,7 @@
     "@mui/material": "^7.3.2",
     "@types/jquery": "^3.5.33",
     "@types/react-router-dom": "^5.3.3",
+    "@uiw/react-md-editor": "^4.0.8",
     "jquery": "^3.7.1",
     "magnific-popup": "^1.2.0",
     "ra-data-local-storage": "^5.11.4",
