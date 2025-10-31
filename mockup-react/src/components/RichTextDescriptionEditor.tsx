@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react'
 import MDEditor from '@uiw/react-md-editor'
+import ReactMarkdown from 'react-markdown'
 import {
   Box,
   Card,
@@ -12,18 +13,13 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  useTheme,
-  useMediaQuery,
-  Tabs,
-  Tab
+  useTheme
 } from '@mui/material'
 import {
   HelpOutline,
-  Preview,
   Edit,
   Code
 } from '@mui/icons-material'
-import ReactMarkdown from 'react-markdown'
 
 interface RichTextDescriptionEditorProps {
   value: string
@@ -47,9 +43,7 @@ const RichTextDescriptionEditor: React.FC<RichTextDescriptionEditorProps> = ({
   placeholder = '请输入项目描述，支持 Markdown 格式...'
 }) => {
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [showHelp, setShowHelp] = useState(false)
-  const [activeTab, setActiveTab] = useState(0)
 
   // Markdown help content
   const markdownHelp = useMemo(() => `
@@ -164,75 +158,6 @@ console.log('Hello World');
     onChange(newValue || '')
   }, [onChange])
 
-  // Tab 切换处理
-  const handleTabChange = useCallback((_event: React.SyntheticEvent, newValue: number) => {
-    setActiveTab(newValue)
-  }, [])
-
-  // 移动端标签页内容
-  const renderMobileContent = () => {
-    switch (activeTab) {
-      case 0: // 编辑
-        return (
-          <Box sx={{ height: 400 }}>
-            <MDEditor
-              value={value}
-              onChange={handleChange}
-              preview="edit"
-              hideToolbar={false}
-              visibleDragbar={false}
-              height={400}
-              textareaProps={{
-                placeholder,
-                disabled
-              }}
-              data-color-mode={theme.palette.mode}
-            />
-          </Box>
-        )
-      case 1: // 预览
-        return (
-          <Box sx={{
-            height: 400,
-            overflow: 'auto',
-            p: 2,
-            border: 1,
-            borderColor: 'divider',
-            borderRadius: 1,
-            bgcolor: 'background.paper'
-          }}>
-            {value ? (
-              <div className="markdown-content">
-                <ReactMarkdown>{value}</ReactMarkdown>
-              </div>
-            ) : (
-              <Typography color="text.secondary" align="center" sx={{ mt: 4 }}>
-                暂无内容预览
-              </Typography>
-            )}
-          </Box>
-        )
-      case 2: // 帮助
-        return (
-          <Box sx={{
-            height: 400,
-            overflow: 'auto',
-            p: 2,
-            border: 1,
-            borderColor: 'divider',
-            borderRadius: 1,
-            bgcolor: 'background.paper'
-          }}>
-            <div className="markdown-help">
-              <ReactMarkdown>{markdownHelp}</ReactMarkdown>
-            </div>
-          </Box>
-        )
-      default:
-        return null
-    }
-  }
-
   return (
     <Card sx={{ mb: 2 }}>
       <CardContent>
@@ -251,69 +176,28 @@ console.log('Hello World');
           </IconButton>
         </Box>
 
-        {/* 桌面版：并排显示 */}
-        {!isMobile ? (
-          <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-            <Box sx={{ flex: 1 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <Edit sx={{ mr: 1, fontSize: 20, color: 'text.secondary' }} />
-                <Typography variant="subtitle2" color="text.secondary">
-                  编辑
-                </Typography>
-              </Box>
-              <MDEditor
-                value={value}
-                onChange={handleChange}
-                preview="edit"
-                hideToolbar={false}
-                visibleDragbar={false}
-                height={300}
-                textareaProps={{
-                  placeholder,
-                  disabled
-                }}
-                data-color-mode={theme.palette.mode}
-              />
-            </Box>
-            <Box sx={{ flex: 1 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <Preview sx={{ mr: 1, fontSize: 20, color: 'text.secondary' }} />
-                <Typography variant="subtitle2" color="text.secondary">
-                  预览
-                </Typography>
-              </Box>
-              <Box sx={{
-                height: 300,
-                overflow: 'auto',
-                border: 1,
-                borderColor: 'divider',
-                borderRadius: 1,
-                p: 2,
-                bgcolor: 'background.paper'
-              }}>
-                {value ? (
-                  <div className="markdown-content">
-                    <ReactMarkdown>{value}</ReactMarkdown>
-                  </div>
-                ) : (
-                  <Typography color="text.secondary" align="center" sx={{ mt: 8 }}>
-                    暂无内容预览
-                  </Typography>
-                )}
-              </Box>
-            </Box>
+        {/* 编辑器 */}
+        <Box sx={{ mb: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+            <Edit sx={{ mr: 1, fontSize: 20, color: 'text.secondary' }} />
+            <Typography variant="subtitle2" color="text.secondary">
+              编辑内容
+            </Typography>
           </Box>
-        ) : (
-          /* 移动版：标签页 */
-          <Box>
-            <Tabs value={activeTab} onChange={handleTabChange} sx={{ mb: 2 }}>
-              <Tab icon={<Edit />} label="编辑" />
-              <Tab icon={<Preview />} label="预览" />
-              <Tab icon={<HelpOutline />} label="帮助" />
-            </Tabs>
-            {renderMobileContent()}
-          </Box>
-        )}
+          <MDEditor
+            value={value}
+            onChange={handleChange}
+            preview="edit"
+            hideToolbar={false}
+            visibleDragbar={false}
+            height={400}
+            textareaProps={{
+              placeholder,
+              disabled
+            }}
+            data-color-mode={theme.palette.mode}
+          />
+        </Box>
 
         {/* 验证和提示信息 */}
         {errors.length > 0 && (
@@ -406,28 +290,28 @@ console.log('Hello World');
 
       {/* 内部样式 */}
       <style>{`
-        .markdown-content {
+        .markdown-help {
           font-family: inherit;
           line-height: 1.6;
         }
 
-        .markdown-content h1,
-        .markdown-content h2,
-        .markdown-content h3,
-        .markdown-content h4,
-        .markdown-content h5,
-        .markdown-content h6 {
+        .markdown-help h1,
+        .markdown-help h2,
+        .markdown-help h3,
+        .markdown-help h4,
+        .markdown-help h5,
+        .markdown-help h6 {
           margin-top: 24px;
           margin-bottom: 16px;
           font-weight: 600;
           line-height: 1.4;
         }
 
-        .markdown-content h1 { font-size: 28px; border-bottom: 3px solid; padding-bottom: 8px; }
-        .markdown-content h2 { font-size: 24px; border-bottom: 2px solid; padding-bottom: 6px; }
-        .markdown-content h3 { font-size: 20px; border-bottom: 1px solid; padding-bottom: 4px; }
+        .markdown-help h1 { font-size: 28px; border-bottom: 3px solid; padding-bottom: 8px; }
+        .markdown-help h2 { font-size: 24px; border-bottom: 2px solid; padding-bottom: 6px; }
+        .markdown-help h3 { font-size: 20px; border-bottom: 1px solid; padding-bottom: 4px; }
 
-        .markdown-content table {
+        .markdown-help table {
           width: 100%;
           border-collapse: collapse;
           margin: 16px 0;
@@ -437,51 +321,25 @@ console.log('Hello World');
           overflow: hidden;
         }
 
-        .markdown-content th,
-        .markdown-content td {
+        .markdown-help th,
+        .markdown-help td {
           padding: 12px;
           text-align: left;
           border-bottom: 1px solid #e0e0e0;
         }
 
-        .markdown-content th {
+        .markdown-help th {
           background: #f8f9fa;
           font-weight: 600;
           color: #555;
         }
 
-        .markdown-content blockquote {
+        .markdown-help blockquote {
           margin: 16px 0;
           padding: 16px;
           background: #f8f9fa;
           border-left: 4px solid;
           font-style: italic;
-        }
-
-        .markdown-content code {
-          background: #f4f4f4;
-          padding: 2px 6px;
-          border-radius: 4px;
-          font-family: monospace;
-          font-size: 0.9em;
-        }
-
-        .markdown-content pre {
-          background: #f8f9fa;
-          padding: 16px;
-          border-radius: 8px;
-          overflow-x: auto;
-          margin: 16px 0;
-        }
-
-        .markdown-content pre code {
-          background: none;
-          padding: 0;
-        }
-
-        .markdown-help {
-          font-family: inherit;
-          line-height: 1.6;
         }
 
         .markdown-help code {

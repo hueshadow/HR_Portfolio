@@ -56,10 +56,18 @@ import {
   DialogContent,
   DialogActions
 } from '@mui/material'
+import {
+  Drafts as DraftIcon,
+  Save as SaveIcon,
+  Publish as PublishIcon
+} from '@mui/icons-material'
 import { dataProvider } from '../dataProvider'
 import authProvider from '../authProvider'
 import RichTextInput from './RichTextInput'
 import PortfolioSync from './PortfolioSync'
+import FormActions from './FormActions'
+import CreateFormActions from './CreateFormActions'
+import { RecordContext } from 'react-admin'
 
 // 快速创建项目组件
 const QuickCreateButton = () => {
@@ -224,11 +232,77 @@ const theme = createTheme({
   }
 })
 
+// 状态字段组件
+const StatusField = ({ record }: any) => {
+  if (!record) return null
+
+  const status = record.status || 'published'
+  const getStatusInfo = (status: string) => {
+    switch (status) {
+      case 'draft':
+        return {
+          label: '草稿',
+          icon: <DraftIcon sx={{ fontSize: 16 }} />,
+          color: '#ff9800',
+          bgColor: '#fff3e0'
+        }
+      case 'saved':
+        return {
+          label: '已保存',
+          icon: <SaveIcon sx={{ fontSize: 16 }} />,
+          color: '#2196f3',
+          bgColor: '#e3f2fd'
+        }
+      case 'published':
+        return {
+          label: '已发布',
+          icon: <PublishIcon sx={{ fontSize: 16 }} />,
+          color: '#4caf50',
+          bgColor: '#e8f5e8'
+        }
+      default:
+        return {
+          label: '未知',
+          icon: <SaveIcon sx={{ fontSize: 16 }} />,
+          color: '#9e9e9e',
+          bgColor: '#f5f5f5'
+        }
+    }
+  }
+
+  const statusInfo = getStatusInfo(status)
+
+  return (
+    <Chip
+      icon={statusInfo.icon}
+      label={statusInfo.label}
+      size="small"
+      sx={{
+        backgroundColor: statusInfo.bgColor,
+        color: statusInfo.color,
+        fontWeight: 500,
+        '& .MuiChip-icon': {
+          color: statusInfo.color
+        }
+      }}
+    />
+  )
+}
+
 // 项目列表页面
 const ProjectList = () => {
 
   const ProjectFilters = [
     <SearchInput source="q" alwaysOn />,
+    <SelectInput
+      source="status"
+      label="状态"
+      choices={[
+        { id: 'draft', name: '草稿' },
+        { id: 'saved', name: '已保存' },
+        { id: 'published', name: '已发布' }
+      ]}
+    />,
     <SelectInput
       source="category"
       label="分类"
@@ -257,6 +331,7 @@ const ProjectList = () => {
           }}
         />
         <TextField source="title" label="项目名称" />
+        <StatusField source="status" label="状态" />
         <ChipField
           source="category"
           label="分类"
@@ -300,84 +375,108 @@ const BulkActions = () => (
 )
 
 // 项目编辑页面
-const ProjectEdit = () => (
-  <Edit title="编辑项目">
-    <SimpleForm>
-      <TextInput source="title" label="项目名称" fullWidth validate={required()} />
-      <RichTextInput
-        source="description"
-        label="项目描述"
-        validate={validateDescription}
-        placeholder="请详细描述您的项目，支持 Markdown 格式，可以包含表格、列表、代码块等丰富内容..."
-        helperText="支持 Markdown 语法，可以创建专业的项目展示内容"
-      />
+const ProjectEdit = () => {
+  return (
+    <Edit title="编辑项目">
+      <SimpleForm>
+        <TextInput source="title" label="项目名称" fullWidth validate={required()} />
+        <RichTextInput
+          source="description"
+          label="项目描述"
+          validate={validateDescription}
+          placeholder="请详细描述您的项目，支持 Markdown 格式，可以包含表格、列表、代码块等丰富内容..."
+          helperText="支持 Markdown 语法，可以创建专业的项目展示内容"
+        />
 
-      <SelectInput
-        source="category"
-        label="分类"
-        choices={[
-          { id: 'web', name: '网站开发' },
-          { id: 'app', name: '应用开发' },
-          { id: 'design', name: 'UI设计' },
-          { id: 'branding', name: '品牌设计' }
-        ]}
-        validate={required()}
-      />
+        <SelectInput
+          source="category"
+          label="分类"
+          choices={[
+            { id: 'web', name: '网站开发' },
+            { id: 'app', name: '应用开发' },
+            { id: 'design', name: 'UI设计' },
+            { id: 'branding', name: '品牌设计' }
+          ]}
+          validate={required()}
+        />
 
-      <DateInput source="date" label="项目日期" validate={required()} />
-      <BooleanInput source="featured" label="设为精选" />
+        <DateInput source="date" label="项目日期" validate={required()} />
+        <BooleanInput source="featured" label="设为精选" />
 
-      <TextInput
-        source="projectUrl"
-        label="项目链接"
-        type="url"
-        fullWidth
-        helperText="例如：https://example.com"
-      />
+        <TextInput
+          source="projectUrl"
+          label="项目链接"
+          type="url"
+          fullWidth
+          helperText="例如：https://example.com"
+        />
 
-      <TextInput
-        source="githubUrl"
-        label="GitHub链接"
-        type="url"
-        fullWidth
-        helperText="例如：https://github.com/username/project"
-      />
+        <TextInput
+          source="githubUrl"
+          label="GitHub链接"
+          type="url"
+          fullWidth
+          helperText="例如：https://github.com/username/project"
+        />
 
-      <ImageInput
-        source="image"
-        label="主图"
-                maxSize={5000000}
-        validate={required()}
-      >
-        <ImageField source="src" title="title" />
-      </ImageInput>
+        <ImageInput
+          source="image"
+          label="主图"
+                  maxSize={5000000}
+          validate={required()}
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
 
-      <ImageInput
-        source="thumb"
-        label="缩略图"
-                maxSize={5000000}
-        validate={required()}
-      >
-        <ImageField source="src" title="title" />
-      </ImageInput>
+        <ImageInput
+          source="thumb"
+          label="缩略图"
+                  maxSize={5000000}
+          validate={required()}
+        >
+          <ImageField source="src" title="title" />
+        </ImageInput>
 
-      <FileInput
-        source="video"
-        label="视频文件"
-                maxSize={50000000}
-      >
-        <FileField source="src" title="title" />
-      </FileInput>
+        <FileInput
+          source="video"
+          label="视频文件"
+                  maxSize={50000000}
+        >
+          <FileField source="src" title="title" />
+        </FileInput>
 
-      <TextInput
-        source="tags"
-        label="标签"
-        fullWidth
-        helperText="用逗号分隔多个标签"
-      />
-    </SimpleForm>
-  </Edit>
-)
+        <TextInput
+          source="tags"
+          label="标签"
+          fullWidth
+          helperText="用逗号分隔多个标签"
+        />
+
+        {/* 添加保存操作按钮组 */}
+        <RecordContext.Consumer>
+          {(record) => (
+            <FormActions
+              record={record}
+              resource="projects"
+              onSaveDraft={() => {
+                // 自定义保存草稿逻辑
+                console.log('保存草稿')
+              }}
+              onSave={() => {
+                // 自定义保存逻辑
+                console.log('保存')
+              }}
+              onPublish={() => {
+                // 自定义发布逻辑
+                console.log('发布')
+              }}
+            />
+          )}
+        </RecordContext.Consumer>
+      </SimpleForm>
+    </Edit>
+  )
+}
 
 // 增强的项目创建页面
 const ProjectCreate = () => {
@@ -580,6 +679,11 @@ const ProjectCreate = () => {
             </Box>
           </CardContent>
         </Card>
+
+        {/* 添加创建操作按钮组 */}
+        <CreateFormActions
+          disabled={false}
+        />
       </SimpleForm>
     </Create>
   )

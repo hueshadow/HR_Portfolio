@@ -1,6 +1,13 @@
 import type { DataProvider } from 'react-admin'
 import { convertFileToBase64 } from './utils/fileUtils'
 
+// 项目状态枚举
+export enum ProjectStatus {
+  DRAFT = 'draft',
+  SAVED = 'saved',
+  PUBLISHED = 'published'
+}
+
 // 项目类型定义
 export interface Project {
   id?: string
@@ -15,6 +22,7 @@ export interface Project {
   thumb?: string
   video?: string
   tags?: string[]
+  status?: ProjectStatus
   createdAt?: string
   updatedAt?: string
 }
@@ -27,7 +35,13 @@ const localStorageDataProvider: DataProvider = {
     const { field, order } = sort
 
     // 从 localStorage 获取数据
-    const data = JSON.parse(localStorage.getItem(`${resource}Data`) || '[]')
+    let data = JSON.parse(localStorage.getItem(`${resource}Data`) || '[]')
+
+    // 为没有status的现有项目设置默认状态（向后兼容）
+    data = data.map((project: Project) => ({
+      ...project,
+      status: project.status || ProjectStatus.PUBLISHED
+    }))
 
     // 过滤
     let filteredData = data
@@ -68,7 +82,12 @@ const localStorageDataProvider: DataProvider = {
   // 获取单个资源
   getOne: async (resource, params) => {
     const data = JSON.parse(localStorage.getItem(`${resource}Data`) || '[]')
-    const record = data.find((item: Project) => item.id === params.id)
+    // 为没有status的现有项目设置默认状态（向后兼容）
+    const normalizedData = data.map((project: Project) => ({
+      ...project,
+      status: project.status || ProjectStatus.PUBLISHED
+    }))
+    const record = normalizedData.find((item: Project) => item.id === params.id)
 
     if (!record) {
       return Promise.reject(new Error('记录未找到'))
@@ -227,6 +246,7 @@ const localStorageDataProvider: DataProvider = {
     const newData = {
       id: newId,
       ...processedData,
+      status: processedData.status || ProjectStatus.DRAFT,
       createdAt: now,
       updatedAt: now
     }
