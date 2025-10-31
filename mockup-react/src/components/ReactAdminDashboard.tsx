@@ -747,6 +747,7 @@ const ReactAdminDashboard = () => {
       theme={theme}
       loginPage={LoginPage}
       dashboard={Dashboard}
+      basename="/admin"
     >
       <Resource
         name="projects"
