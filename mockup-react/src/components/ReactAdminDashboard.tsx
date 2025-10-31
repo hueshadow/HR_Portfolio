@@ -847,6 +847,21 @@ const validateDescription = (value: string) => {
 const ReactAdminDashboard = () => {
   // 添加管理后台页面样式类
   useEffect(() => {
+    const htmlElement = document.documentElement
+    const previousHtmlOverflow = htmlElement.style.overflow
+    const previousHtmlOverflowY = htmlElement.style.overflowY
+    const previousHtmlHeight = htmlElement.style.height
+    const previousBodyOverflow = document.body.style.overflow
+    const previousBodyOverflowY = document.body.style.overflowY
+    const previousBodyHeight = document.body.style.height
+
+    htmlElement.style.overflow = 'auto'
+    htmlElement.style.overflowY = 'auto'
+    htmlElement.style.height = 'auto'
+    document.body.style.overflow = 'auto'
+    document.body.style.overflowY = 'auto'
+    document.body.style.height = 'auto'
+
     // 清除所有可能的冲突类
     document.body.className = ''
     // 添加admin-page类以应用管理后台专用样式
@@ -855,6 +870,12 @@ const ReactAdminDashboard = () => {
     // 清理函数：组件卸载时移除admin-page类
     return () => {
       document.body.classList.remove('admin-page')
+      htmlElement.style.overflow = previousHtmlOverflow
+      htmlElement.style.overflowY = previousHtmlOverflowY
+      htmlElement.style.height = previousHtmlHeight
+      document.body.style.overflow = previousBodyOverflow
+      document.body.style.overflowY = previousBodyOverflowY
+      document.body.style.height = previousBodyHeight
     }
   }, [])
 

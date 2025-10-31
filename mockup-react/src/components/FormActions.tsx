@@ -2,12 +2,10 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import {
   Box,
   Button,
-  ButtonGroup,
   Typography,
   Alert,
   Snackbar,
-  CircularProgress,
-  useTheme
+  CircularProgress
 } from '@mui/material'
 import {
   Save as SaveIcon,
@@ -15,8 +13,8 @@ import {
   Publish as PublishIcon,
   CloudUpload as CloudUploadIcon
 } from '@mui/icons-material'
-import { useNotify, useRefresh, useDataProvider, useRecordContext } from 'react-admin'
-import { ProjectStatus } from '../dataProvider'
+import { useNotify, useRefresh, useDataProvider } from 'react-admin'
+import { PROJECT_STATUS, type ProjectStatus } from '../dataProvider'
 
 interface FormActionsProps {
   onSaveDraft?: () => void
@@ -38,7 +36,7 @@ const FormActions: React.FC<FormActionsProps> = ({
   const notify = useNotify()
   const refresh = useRefresh()
   const dataProvider = useDataProvider()
-  const [loading, setLoading] = useState<string | null>(null)
+  const [loading, setLoading] = useState<ProjectStatus | null>(null)
   const [lastSaved, setLastSaved] = useState<Date | null>(null)
   const [autoSaving, setAutoSaving] = useState(false)
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
@@ -49,8 +47,7 @@ const FormActions: React.FC<FormActionsProps> = ({
   }>({ open: false, message: '', severity: 'success' })
 
   // 获取当前记录状态
-  const currentStatus = record?.status || 'draft'
-  const recordContext = useRecordContext()
+  const currentStatus: ProjectStatus = (record?.status as ProjectStatus) || PROJECT_STATUS.DRAFT
 
   // 用于防抖的ref
   const autoSaveTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -137,7 +134,7 @@ const FormActions: React.FC<FormActionsProps> = ({
       autoSaveTimeoutRef.current = null
     }
 
-    setLoading(operation)
+    setLoading(status)
 
     try {
       const updatedData = {
@@ -162,13 +159,13 @@ const FormActions: React.FC<FormActionsProps> = ({
 
       // 调用相应的回调
       switch (status) {
-        case 'draft':
+        case PROJECT_STATUS.DRAFT:
           onSaveDraft?.()
           break
-        case 'saved':
+        case PROJECT_STATUS.SAVED:
           onSave?.()
           break
-        case 'published':
+        case PROJECT_STATUS.PUBLISHED:
           onPublish?.()
           break
       }
@@ -192,10 +189,10 @@ const FormActions: React.FC<FormActionsProps> = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.ctrlKey || event.metaKey) && event.key === 's') {
         event.preventDefault()
-        if (currentStatus === 'draft') {
-          handleSave('saved', '保存')
+        if (currentStatus === PROJECT_STATUS.DRAFT) {
+          handleSave(PROJECT_STATUS.SAVED, '保存')
         } else {
-          handleSave('saved', '保存')
+          handleSave(PROJECT_STATUS.SAVED, '保存')
         }
       }
     }
@@ -237,11 +234,11 @@ const FormActions: React.FC<FormActionsProps> = ({
 
   const getStatusColor = (status: ProjectStatus) => {
     switch (status) {
-      case 'draft':
+      case PROJECT_STATUS.DRAFT:
         return 'warning'
-      case 'saved':
+      case PROJECT_STATUS.SAVED:
         return 'info'
-      case 'published':
+      case PROJECT_STATUS.PUBLISHED:
         return 'success'
       default:
         return 'default'
@@ -250,11 +247,11 @@ const FormActions: React.FC<FormActionsProps> = ({
 
   const getStatusIcon = (status: ProjectStatus) => {
     switch (status) {
-      case 'draft':
+      case PROJECT_STATUS.DRAFT:
         return <DraftIcon />
-      case 'saved':
+      case PROJECT_STATUS.SAVED:
         return <SaveIcon />
-      case 'published':
+      case PROJECT_STATUS.PUBLISHED:
         return <PublishIcon />
       default:
         return <SaveIcon />
@@ -278,14 +275,14 @@ const FormActions: React.FC<FormActionsProps> = ({
                 px: 1,
                 py: 0.5,
                 borderRadius: 1,
-                bgcolor: `${getStatusColor(currentStatus)}.main}15`,
-                color: `${getStatusColor(currentStatus)}.main}`
+                bgcolor: `${getStatusColor(currentStatus)}.main`,
+                color: `${getStatusColor(currentStatus)}.contrastText`
               }}
             >
               {getStatusIcon(currentStatus)}
               <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                {currentStatus === 'draft' ? '草稿' :
-                 currentStatus === 'saved' ? '已保存' : '已发布'}
+                {currentStatus === PROJECT_STATUS.DRAFT ? '草稿' :
+                 currentStatus === PROJECT_STATUS.SAVED ? '已保存' : '已发布'}
               </Typography>
             </Box>
             <Typography variant="caption" color="text.secondary">
@@ -315,8 +312,8 @@ const FormActions: React.FC<FormActionsProps> = ({
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
           <Button
             variant="outlined"
-            startIcon={loading === 'draft' ? <CircularProgress size={16} /> : <DraftIcon />}
-            onClick={() => handleSave('draft', '保存草稿')}
+            startIcon={loading === PROJECT_STATUS.DRAFT ? <CircularProgress size={16} /> : <DraftIcon />}
+            onClick={() => handleSave(PROJECT_STATUS.DRAFT, '保存草稿')}
             disabled={disabled || loading !== null}
             color="warning"
             size="large"
@@ -326,8 +323,8 @@ const FormActions: React.FC<FormActionsProps> = ({
 
           <Button
             variant="outlined"
-            startIcon={loading === 'saved' ? <CircularProgress size={16} /> : <SaveIcon />}
-            onClick={() => handleSave('saved', '保存')}
+            startIcon={loading === PROJECT_STATUS.SAVED ? <CircularProgress size={16} /> : <SaveIcon />}
+            onClick={() => handleSave(PROJECT_STATUS.SAVED, '保存')}
             disabled={disabled || loading !== null}
             color="info"
             size="large"
@@ -337,8 +334,8 @@ const FormActions: React.FC<FormActionsProps> = ({
 
           <Button
             variant="contained"
-            startIcon={loading === 'published' ? <CircularProgress size={16} /> : <CloudUploadIcon />}
-            onClick={() => handleSave('published', '发布')}
+            startIcon={loading === PROJECT_STATUS.PUBLISHED ? <CircularProgress size={16} /> : <CloudUploadIcon />}
+            onClick={() => handleSave(PROJECT_STATUS.PUBLISHED, '发布')}
             disabled={disabled || loading !== null}
             color="success"
             size="large"

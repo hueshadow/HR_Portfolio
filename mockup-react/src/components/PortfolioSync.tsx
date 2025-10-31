@@ -15,9 +15,9 @@ import {
   ListItemText,
   Divider,
   Card,
-  CardContent,
-  Grid
+  CardContent
 } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import {
   Sync as SyncIcon,
   Warning as WarningIcon,

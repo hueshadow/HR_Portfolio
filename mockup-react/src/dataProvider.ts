@@ -1,16 +1,24 @@
-import type { DataProvider } from 'react-admin'
+import type {
+  DataProvider,
+  CreateResult,
+  DeleteResult,
+  DeleteManyResult,
+  Identifier,
+  RaRecord
+} from 'react-admin'
 import { convertFileToBase64 } from './utils/fileUtils'
 
-// 项目状态枚举
-export enum ProjectStatus {
-  DRAFT = 'draft',
-  SAVED = 'saved',
-  PUBLISHED = 'published'
-}
+// 项目状态定义
+export const PROJECT_STATUS = {
+  DRAFT: 'draft',
+  SAVED: 'saved',
+  PUBLISHED: 'published'
+} as const
+
+export type ProjectStatus = typeof PROJECT_STATUS[keyof typeof PROJECT_STATUS]
 
 // 项目类型定义
-export interface Project {
-  id?: string
+export interface Project extends RaRecord {
   title: string
   description: string
   category: string
@@ -27,6 +35,23 @@ export interface Project {
   updatedAt?: string
 }
 
+const toComparableString = (value: Project[keyof Project] | undefined): string => {
+  if (value === undefined || value === null) return ''
+  if (Array.isArray(value)) {
+    return value.join(',').toLowerCase()
+  }
+  if (typeof value === 'string') {
+    return value.toLowerCase()
+  }
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return String(value)
+  }
+  if (value instanceof Date) {
+    return value.toISOString().toLowerCase()
+  }
+  return JSON.stringify(value).toLowerCase()
+}
+
 const localStorageDataProvider: DataProvider = {
   // 获取资源列表
   getList: async (resource, params) => {
@@ -40,7 +65,7 @@ const localStorageDataProvider: DataProvider = {
     // 为没有status的现有项目设置默认状态（向后兼容）
     data = data.map((project: Project) => ({
       ...project,
-      status: project.status || ProjectStatus.PUBLISHED
+      status: project.status || PROJECT_STATUS.PUBLISHED
     }))
 
     // 过滤
@@ -60,11 +85,9 @@ const localStorageDataProvider: DataProvider = {
     if (field) {
       const orderMultiplier = order === 'ASC' ? 1 : -1
       filteredData.sort((a: Project, b: Project) => {
-        const aValue = a[field as keyof Project]
-        const bValue = b[field as keyof Project]
-        if (aValue < bValue) return -1 * orderMultiplier
-        if (aValue > bValue) return 1 * orderMultiplier
-        return 0
+        const aValue = toComparableString(a[field as keyof Project])
+        const bValue = toComparableString(b[field as keyof Project])
+        return aValue.localeCompare(bValue) * orderMultiplier
       })
     }
 
@@ -85,7 +108,7 @@ const localStorageDataProvider: DataProvider = {
     // 为没有status的现有项目设置默认状态（向后兼容）
     const normalizedData = data.map((project: Project) => ({
       ...project,
-      status: project.status || ProjectStatus.PUBLISHED
+      status: project.status || PROJECT_STATUS.PUBLISHED
     }))
     const record = normalizedData.find((item: Project) => item.id === params.id)
 
@@ -134,11 +157,9 @@ const localStorageDataProvider: DataProvider = {
     if (field) {
       const orderMultiplier = order === 'ASC' ? 1 : -1
       filteredData.sort((a: Project, b: Project) => {
-        const aValue = a[field as keyof Project]
-        const bValue = b[field as keyof Project]
-        if (aValue < bValue) return -1 * orderMultiplier
-        if (aValue > bValue) return 1 * orderMultiplier
-        return 0
+        const aValue = toComparableString(a[field as keyof Project])
+        const bValue = toComparableString(b[field as keyof Project])
+        return aValue.localeCompare(bValue) * orderMultiplier
       })
     }
 
@@ -246,7 +267,7 @@ const localStorageDataProvider: DataProvider = {
     const newData = {
       id: newId,
       ...processedData,
-      status: processedData.status || ProjectStatus.DRAFT,
+      status: processedData.status || PROJECT_STATUS.DRAFT,
       createdAt: now,
       updatedAt: now
     }
@@ -260,7 +281,7 @@ const localStorageDataProvider: DataProvider = {
 
     return Promise.resolve({
       data: newData as Project
-    })
+    } as CreateResult<Project>)
   },
 
   // 删除资源
@@ -284,7 +305,7 @@ const localStorageDataProvider: DataProvider = {
 
     return Promise.resolve({
       data: deletedRecord as Project
-    })
+    } as DeleteResult<Project>)
   },
 
   // 更新多个资源
@@ -328,9 +349,13 @@ const localStorageDataProvider: DataProvider = {
     // 保存到 localStorage
     localStorage.setItem(`${resource}Data`, JSON.stringify(remainingData))
 
+    const deletedIds = deletedRecords
+      .map(record => record.id)
+      .filter((id): id is Identifier => Boolean(id))
+
     return Promise.resolve({
-      data: deletedRecords as Project[]
-    })
+      data: deletedIds
+    } as DeleteManyResult<Project>)
   }
 }
 

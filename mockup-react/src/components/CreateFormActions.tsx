@@ -4,16 +4,14 @@ import {
   Button,
   Typography,
   Alert,
-  CircularProgress,
-  useTheme
+  CircularProgress
 } from '@mui/material'
 import {
   Save as SaveIcon,
   Drafts as DraftIcon,
   Publish as PublishIcon
 } from '@mui/icons-material'
-import { useNotify, useRefresh } from 'react-admin'
-import { ProjectStatus } from '../dataProvider'
+import { PROJECT_STATUS, type ProjectStatus } from '../dataProvider'
 
 interface CreateFormActionsProps {
   disabled?: boolean
@@ -22,18 +20,11 @@ interface CreateFormActionsProps {
 const CreateFormActions: React.FC<CreateFormActionsProps> = ({
   disabled = false
 }) => {
-  const notify = useNotify()
-  const refresh = useRefresh()
-  const [loading, setLoading] = useState<string | null>(null)
+  const [loading, setLoading] = useState<ProjectStatus | null>(null)
 
   // 创建操作
-  const handleCreate = (status: ProjectStatus, operation: string) => {
-    setLoading(operation)
-
-    // 准备表单数据，包含状态
-    const formData = {
-      status: status
-    }
+  const handleCreate = (status: ProjectStatus) => {
+    setLoading(status)
 
     // 触发表单提交
     const form = document.querySelector('form') as HTMLFormElement
@@ -45,11 +36,11 @@ const CreateFormActions: React.FC<CreateFormActionsProps> = ({
 
   const getStatusIcon = (status: ProjectStatus) => {
     switch (status) {
-      case 'draft':
+      case PROJECT_STATUS.DRAFT:
         return <DraftIcon />
-      case 'saved':
+      case PROJECT_STATUS.SAVED:
         return <SaveIcon />
-      case 'published':
+      case PROJECT_STATUS.PUBLISHED:
         return <PublishIcon />
       default:
         return <SaveIcon />
@@ -69,8 +60,8 @@ const CreateFormActions: React.FC<CreateFormActionsProps> = ({
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
         <Button
           variant="outlined"
-          startIcon={loading === 'draft' ? <CircularProgress size={16} /> : <DraftIcon />}
-          onClick={() => handleCreate('draft', '创建草稿')}
+          startIcon={loading === PROJECT_STATUS.DRAFT ? <CircularProgress size={16} /> : <DraftIcon />}
+          onClick={() => handleCreate(PROJECT_STATUS.DRAFT)}
           disabled={disabled || loading !== null}
           color="warning"
           size="large"
@@ -80,8 +71,8 @@ const CreateFormActions: React.FC<CreateFormActionsProps> = ({
 
         <Button
           variant="outlined"
-          startIcon={loading === 'saved' ? <CircularProgress size={16} /> : <SaveIcon />}
-          onClick={() => handleCreate('saved', '创建并保存')}
+          startIcon={loading === PROJECT_STATUS.SAVED ? <CircularProgress size={16} /> : <SaveIcon />}
+          onClick={() => handleCreate(PROJECT_STATUS.SAVED)}
           disabled={disabled || loading !== null}
           color="info"
           size="large"
@@ -91,8 +82,8 @@ const CreateFormActions: React.FC<CreateFormActionsProps> = ({
 
         <Button
           variant="contained"
-          startIcon={loading === 'published' ? <CircularProgress size={16} /> : <PublishIcon />}
-          onClick={() => handleCreate('published', '创建并发布')}
+          startIcon={loading === PROJECT_STATUS.PUBLISHED ? <CircularProgress size={16} /> : <PublishIcon />}
+          onClick={() => handleCreate(PROJECT_STATUS.PUBLISHED)}
           disabled={disabled || loading !== null}
           color="success"
           size="large"
