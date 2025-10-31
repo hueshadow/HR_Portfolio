@@ -1685,4 +1685,51 @@ body.detail-page .portfolio-detail-wrapper {
     font-size: 14px;
   }
 }
+
 /* Thu Sep 25 16:11:32 +08 2025: 强制更新以触发git更改 */
+
+/* 管理后台页面专用样式 - 修复编辑页面显示问题 */
+body.admin-page {
+  overflow: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+}
+
+body.admin-page html {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+body.admin-page main {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* 确保React Admin组件正常显示 */
+body.admin-page .ra-layout,
+body.admin-page .ra-main {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* 修复表单容器滚动 */
+body.admin-page .RaForm-card,
+body.admin-page .MuiCard-root {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* 响应式管理后台样式 */
+@media (min-width: 961px) {
+  body.admin-page {
+    overflow: auto !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 960px) {
+  body.admin-page {
+    overflow: auto !important;
+    height: auto !important;
+  }
+}
