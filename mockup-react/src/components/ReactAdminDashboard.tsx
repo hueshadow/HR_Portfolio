@@ -845,6 +845,19 @@ const validateDescription = (value: string) => {
 // React Admin 主组件
 // React Admin 主组件
 const ReactAdminDashboard = () => {
+  // 添加管理后台页面样式类
+  useEffect(() => {
+    // 清除所有可能的冲突类
+    document.body.className = ''
+    // 添加admin-page类以应用管理后台专用样式
+    document.body.classList.add('admin-page')
+
+    // 清理函数：组件卸载时移除admin-page类
+    return () => {
+      document.body.classList.remove('admin-page')
+    }
+  }, [])
+
   return (
     <Admin
       dataProvider={dataProvider}
