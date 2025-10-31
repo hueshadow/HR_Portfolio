@@ -102,7 +102,7 @@ function AppContent() {
     return () => {
       document.removeEventListener('click', handleClick)
     }
-  }, [isNavOpen])
+  }, [isNavOpen, toggleNav])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)

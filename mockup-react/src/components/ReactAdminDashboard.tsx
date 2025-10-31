@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Admin,
   Resource,
@@ -761,8 +761,48 @@ const ReactAdminDashboard = () => {
 }
 
 // 简单的仪表板
+interface Project {
+  id: string
+  title: string
+  description?: string
+  category: string
+  date?: string
+  featured?: boolean
+  tags?: string[]
+  createdAt?: string
+  updatedAt?: string
+}
+
 const Dashboard = () => {
   const { data, isLoading } = useGetIdentity()
+  const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    // 从localStorage加载项目数据
+    const loadProjects = () => {
+      try {
+        const saved = localStorage.getItem('projectsData')
+        if (saved) {
+          const parsed = JSON.parse(saved)
+          setProjects(parsed)
+        }
+      } catch (error) {
+        console.error('Failed to load projects:', error)
+        setProjects([])
+      }
+    }
+
+    loadProjects()
+  }, [])
+
+  // 计算统计数据
+  const totalProjects = projects.length
+  const featuredProjects = projects.filter(p => p.featured).length
+  const categories = [...new Set(projects.map(p => p.category))].length
+  const webProjects = projects.filter(p => p.category === 'web').length
+  const mobileProjects = projects.filter(p => p.category === 'mobile').length
+  const designProjects = projects.filter(p => p.category === 'design').length
+  const videoProjects = projects.filter(p => p.category === 'video').length
 
   if (isLoading) return <div>加载中...</div>
 
@@ -770,20 +810,160 @@ const Dashboard = () => {
     <div style={{ padding: '20px' }}>
       <h1>欢迎使用项目管理系统</h1>
       <p>你好，{data?.fullName || data?.email}！</p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginTop: '20px' }}>
-        <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-          <h3>项目总数</h3>
-          <p style={{ fontSize: '36px', margin: 0 }}>0</p>
-        </div>
-        <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-          <h3>精选项目</h3>
-          <p style={{ fontSize: '36px', margin: 0 }}>0</p>
-        </div>
-        <div style={{ background: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-          <h3>分类数量</h3>
-          <p style={{ fontSize: '36px', margin: 0 }}>4</p>
-        </div>
+
+      {/* 统计卡片网格 */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '20px' }}>
+        {/* 项目总数卡片 */}
+        <Card sx={{
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          color: 'white',
+          borderRadius: 3,
+          boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+        }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" justifyContent="space-between">
+              <Box>
+                <Typography variant="h6" component="div">
+                  项目总数
+                </Typography>
+                <Typography variant="h3" component="div" sx={{ fontSize: '48px', fontWeight: 'bold' }}>
+                  {totalProjects}
+                </Typography>
+              </Box>
+              <WorkIcon sx={{ fontSize: 48, opacity: 0.3 }} />
+            </Box>
+          </CardContent>
+        </Card>
+
+        {/* 精选项目卡片 */}
+        <Card sx={{
+          background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          color: 'white',
+          borderRadius: 3,
+          boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+        }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" justifyContent="space-between">
+              <Box>
+                <Typography variant="h6" component="div">
+                  精选项目
+                </Typography>
+                <Typography variant="h3" component="div" sx={{ fontSize: '48px', fontWeight: 'bold' }}>
+                  {featuredProjects}
+                </Typography>
+              </Box>
+              <AddIcon sx={{ fontSize: 48, opacity: 0.3 }} />
+            </Box>
+          </CardContent>
+        </Card>
+
+        {/* 分类统计卡片 */}
+        <Card sx={{
+          background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+          color: 'white',
+          borderRadius: 3,
+          boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+        }}>
+          <CardContent>
+            <Box display="flex" alignItems="center" justifyContent="space-between">
+              <Box>
+                <Typography variant="h6" component="div">
+                  项目分类
+                </Typography>
+                <Typography variant="h3" component="div" sx={{ fontSize: '48px', fontWeight: 'bold' }}>
+                  {categories}
+                </Typography>
+              </Box>
+              <Typography variant="h4" component="div" sx={{ opacity: 0.8 }}>
+                种类
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
       </div>
+
+      {/* 分类详细统计 */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginTop: '24px' }}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" color="primary" gutterBottom>
+              Web 应用
+            </Typography>
+            <Typography variant="h4" component="div">
+              {webProjects}
+            </Typography>
+            <Box sx={{ mt: 2, height: 4, backgroundColor: 'primary.main', borderRadius: 2 }} />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <Typography variant="h6" color="secondary" gutterBottom>
+              移动应用
+            </Typography>
+            <Typography variant="h4" component="div">
+              {mobileProjects}
+            </Typography>
+            <Box sx={{ mt: 2, height: 4, backgroundColor: 'secondary.main', borderRadius: 2 }} />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <Typography variant="h6" color="success.main" gutterBottom>
+              设计作品
+            </Typography>
+            <Typography variant="h4" component="div">
+              {designProjects}
+            </Typography>
+            <Box sx={{ mt: 2, height: 4, backgroundColor: 'success.main', borderRadius: 2 }} />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+            <Typography variant="h6" color="warning.main" gutterBottom>
+              视频项目
+            </Typography>
+            <Typography variant="h4" component="div">
+              {videoProjects}
+            </Typography>
+            <Box sx={{ mt: 2, height: 4, backgroundColor: 'warning.main', borderRadius: 2 }} />
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* 最近活动 */}
+      <Card sx={{ marginTop: 4 }}>
+        <CardContent>
+          <Typography variant="h6" gutterBottom>
+            最近项目更新
+          </Typography>
+          {projects.slice(0, 5).map((project, index) => (
+            <Box key={project.id} sx={{ py: 1, borderBottom: index < 4 ? 1 : 0, borderColor: 'divider' }}>
+              <Box display="flex" justifyContent="space-between" alignItems="center">
+                <Typography variant="body1" fontWeight={project.featured ? 'bold' : 'normal'}>
+                  {project.title}
+                </Typography>
+                <Box display="flex" alignItems="center" gap={1}>
+                  {project.featured && (
+                    <Chip size="small" label="精选" color="primary" />
+                  )}
+                  <Chip size="small" label={project.category} variant="outlined" />
+                </Box>
+              </Box>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                {project.date && `更新于 ${new Date(project.date).toLocaleDateString('zh-CN')}`}
+              </Typography>
+            </Box>
+          ))}
+          {projects.length === 0 && (
+            <Typography color="text.secondary" sx={{ textAlign: 'center', py: 4 }}>
+              暂无项目数据
+            </Typography>
+          )}
+        </CardContent>
+      </Card>
     </div>
   )
 }

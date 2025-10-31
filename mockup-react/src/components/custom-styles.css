@@ -10,8 +10,6 @@
 /* Image Upload Manager Styles */
 @import './ImageUploadManager.css';
 
-/* Admin Dashboard Styles */
-@import './AdminDashboard.css';
 
 /* Admin Authentication Styles */
 @import './AdminAuth.css';
@@ -20,7 +18,6 @@
 @import './ProtectedRoute.css';
 
 /* Admin Link Styles */
-@import './AdminLink.css';
 
 /* Rich Text Editor Styles */
 .ProseMirror {
