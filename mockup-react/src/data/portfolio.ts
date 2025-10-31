@@ -1,4 +1,6 @@
 import type { PortfolioItem } from '../types/portfolio'
+import type { Project } from '../dataProvider'
+import { hasPortfolioBeenSynced, getExistingProjects } from '../utils/portfolioSync'
 
 // Initial portfolio data - can be expanded/modified through admin interface
 const initialPortfolioItems: PortfolioItem[] = [
@@ -68,24 +70,69 @@ class PortfolioManager {
   private items: PortfolioItem[] = [...initialPortfolioItems]
   private nextId: number = Math.max(...initialPortfolioItems.map(item => item.id)) + 1
 
+  /**
+   * Convert Project to PortfolioItem format
+   */
+  private projectToPortfolioItem(project: Project): PortfolioItem {
+    return {
+      id: parseInt(project.id || '0'),
+      title: project.title,
+      description: project.description,
+      category: project.category,
+      image: project.image || '',
+      thumb: project.thumb || '',
+      video: project.video || '',
+      technologies: project.tags || [],
+      projectDate: project.date,
+      featured: project.featured || false,
+      projectUrl: project.projectUrl || '',
+      githubUrl: project.githubUrl || '',
+      createdAt: project.createdAt || new Date().toISOString(),
+      updatedAt: project.updatedAt || new Date().toISOString()
+    }
+  }
+
+  /**
+   * Load data from admin system if synced, otherwise use original data
+   */
+  private loadFromDataSource(): PortfolioItem[] {
+    if (typeof window !== 'undefined' && hasPortfolioBeenSynced()) {
+      try {
+        const adminProjects = getExistingProjects()
+        if (adminProjects.length > 0) {
+          return adminProjects.map(project => this.projectToPortfolioItem(project))
+        }
+      } catch (error) {
+        console.error('Failed to load from admin system:', error)
+      }
+    }
+
+    // Fallback to original data
+    return [...this.items]
+  }
+
   // Get all portfolio items
   getAll(): PortfolioItem[] {
-    return [...this.items]
+    const data = this.loadFromDataSource()
+    return [...data]
   }
 
   // Get item by ID
   getById(id: number): PortfolioItem | undefined {
-    return this.items.find(item => item.id === id)
+    const data = this.loadFromDataSource()
+    return data.find(item => item.id === id)
   }
 
   // Get items by category
   getByCategory(category: string): PortfolioItem[] {
-    return this.items.filter(item => item.category === category)
+    const data = this.loadFromDataSource()
+    return data.filter(item => item.category === category)
   }
 
   // Get featured items
   getFeatured(): PortfolioItem[] {
-    return this.items.filter(item => item.featured)
+    const data = this.loadFromDataSource()
+    return data.filter(item => item.featured)
   }
 
   // Create new portfolio item

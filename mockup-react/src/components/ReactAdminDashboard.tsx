@@ -59,6 +59,7 @@ import {
 import { dataProvider } from '../dataProvider'
 import authProvider from '../authProvider'
 import RichTextInput from './RichTextInput'
+import PortfolioSync from './PortfolioSync'
 
 // 快速创建项目组件
 const QuickCreateButton = () => {
@@ -776,25 +777,31 @@ interface Project {
 
 const Dashboard = () => {
   const { data, isLoading } = useGetIdentity()
+  const refresh = useRefresh()
   const [projects, setProjects] = useState<Project[]>([])
 
-  useEffect(() => {
-    // 从localStorage加载项目数据
-    const loadProjects = () => {
-      try {
-        const saved = localStorage.getItem('projectsData')
-        if (saved) {
-          const parsed = JSON.parse(saved)
-          setProjects(parsed)
-        }
-      } catch (error) {
-        console.error('Failed to load projects:', error)
-        setProjects([])
+  const loadProjects = () => {
+    try {
+      const saved = localStorage.getItem('projectsData')
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        setProjects(parsed)
       }
+    } catch (error) {
+      console.error('Failed to load projects:', error)
+      setProjects([])
     }
+  }
 
+  useEffect(() => {
     loadProjects()
   }, [])
+
+  const handleSyncComplete = () => {
+    // 同步完成后刷新项目数据
+    loadProjects()
+    refresh()
+  }
 
   // 计算统计数据
   const totalProjects = projects.length
@@ -811,6 +818,9 @@ const Dashboard = () => {
     <div style={{ padding: '20px' }}>
       <h1>欢迎使用项目管理系统</h1>
       <p>你好，{data?.fullName || data?.email}！</p>
+
+      {/* 作品集同步组件 */}
+      <PortfolioSync onSyncComplete={handleSyncComplete} />
 
       {/* 统计卡片网格 */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '20px' }}>

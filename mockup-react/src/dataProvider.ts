@@ -45,9 +45,11 @@ const localStorageDataProvider: DataProvider = {
     // 排序
     if (field) {
       const orderMultiplier = order === 'ASC' ? 1 : -1
-      filteredData.sort((a: any, b: any) => {
-        if (a[field] < b[field]) return -1 * orderMultiplier
-        if (a[field] > b[field]) return 1 * orderMultiplier
+      filteredData.sort((a: Project, b: Project) => {
+        const aValue = a[field as keyof Project]
+        const bValue = b[field as keyof Project]
+        if (aValue < bValue) return -1 * orderMultiplier
+        if (aValue > bValue) return 1 * orderMultiplier
         return 0
       })
     }
@@ -100,21 +102,23 @@ const localStorageDataProvider: DataProvider = {
     const data = JSON.parse(localStorage.getItem(`${resource}Data`) || '[]')
 
     // 过滤
-    let filteredData = data.filter((item: any) => item[target] === id)
+    let filteredData = data.filter((item: Project) => item[target as keyof Project] === id)
 
     // 应用额外的过滤器
     Object.keys(filter).forEach(key => {
       if (key !== target) {
-        filteredData = filteredData.filter((item: any) => item[key] === filter[key])
+        filteredData = filteredData.filter((item: Project) => item[key as keyof Project] === filter[key])
       }
     })
 
     // 排序
     if (field) {
       const orderMultiplier = order === 'ASC' ? 1 : -1
-      filteredData.sort((a: any, b: any) => {
-        if (a[field] < b[field]) return -1 * orderMultiplier
-        if (a[field] > b[field]) return 1 * orderMultiplier
+      filteredData.sort((a: Project, b: Project) => {
+        const aValue = a[field as keyof Project]
+        const bValue = b[field as keyof Project]
+        if (aValue < bValue) return -1 * orderMultiplier
+        if (aValue > bValue) return 1 * orderMultiplier
         return 0
       })
     }
@@ -235,7 +239,7 @@ const localStorageDataProvider: DataProvider = {
     localStorage.setItem(`${resource}Data`, JSON.stringify(storedData))
 
     return Promise.resolve({
-      data: newData as any
+      data: newData as Project
     })
   },
 
@@ -259,7 +263,7 @@ const localStorageDataProvider: DataProvider = {
     localStorage.setItem(`${resource}Data`, JSON.stringify(storedData))
 
     return Promise.resolve({
-      data: deletedRecord as any
+      data: deletedRecord as Project
     })
   },
 
@@ -305,7 +309,7 @@ const localStorageDataProvider: DataProvider = {
     localStorage.setItem(`${resource}Data`, JSON.stringify(remainingData))
 
     return Promise.resolve({
-      data: deletedRecords as any
+      data: deletedRecords as Project[]
     })
   }
 }
