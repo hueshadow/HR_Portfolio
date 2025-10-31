@@ -1703,6 +1703,20 @@ body.admin-page html {
 body.admin-page main {
   height: auto !important;
   overflow: visible !important;
+  min-height: auto !important;
+}
+
+/* 强制覆盖原始的main元素样式 */
+body.admin-page main {
+  height: auto !important;
+  overflow: visible !important;
+  min-height: auto !important;
+}
+
+/* 确保在所有情况下都能滚动 */
+body.admin-page > * {
+  height: auto !important;
+  min-height: auto !important;
 }
 
 /* 确保React Admin组件正常显示 */
@@ -1710,6 +1724,7 @@ body.admin-page .ra-layout,
 body.admin-page .ra-main {
   height: auto !important;
   overflow: visible !important;
+  min-height: auto !important;
 }
 
 /* 修复表单容器滚动 */
@@ -1719,9 +1734,87 @@ body.admin-page .MuiCard-root {
   height: auto !important;
 }
 
+/* 修复所有可能的容器约束 */
+body.admin-page .MuiBox-root,
+body.admin-page .MuiContainer-root,
+body.admin-page .MuiGrid-root,
+body.admin-page .MuiPaper-root {
+  overflow: visible !important;
+}
+
+/* 强制React Admin页面可以滚动 */
+body[class*="ra-"] {
+  overflow: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+}
+
+body[class*="ra-"] html {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+body[class*="ra-"] main {
+  height: auto !important;
+  overflow: visible !important;
+  min-height: auto !important;
+}
+
+/* 确保所有React Admin组件容器可以滚动 */
+body[class*="ra-"] .ra-layout,
+body[class*="ra-"] .ra-main,
+body[class*="ra-"] .RaForm-card,
+body[class*="ra-"] .MuiCard-root,
+body[class*="ra-"] .MuiBox-root {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* 管理后台页面通用修复 - 确保所有元素都能正常滚动 */
+body.admin-page,
+body[class*="ra-"] {
+  overflow: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+}
+
+body.admin-page *,
+body[class*="ra-"] * {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* 强制覆盖所有可能的滚动限制 */
+body.admin-page div,
+body.admin-page section,
+body.admin-page main,
+body.admin-page article,
+body.admin-page header,
+body.admin-page footer,
+body.admin-page aside,
+body.admin-page nav,
+body[class*="ra-"] div,
+body[class*="ra-"] section,
+body[class*="ra-"] main,
+body[class*="ra-"] article,
+body[class*="ra-"] header,
+body[class*="ra-"] footer,
+body[class*="ra-"] aside,
+body[class*="ra-"] nav {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
 /* 响应式管理后台样式 */
 @media (min-width: 961px) {
   body.admin-page {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+  body[class*="ra-"] {
     overflow: auto !important;
     height: auto !important;
   }
@@ -1729,6 +1822,11 @@ body.admin-page .MuiCard-root {
 
 @media (max-width: 960px) {
   body.admin-page {
+    overflow: auto !important;
+    height: auto !important;
+  }
+
+  body[class*="ra-"] {
     overflow: auto !important;
     height: auto !important;
   }
