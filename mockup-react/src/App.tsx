@@ -14,7 +14,7 @@ import ReactAdminDashboard from './components/ReactAdminDashboard'
 
 // 主应用组件
 function AppContent() {
-  const [activePageId, setActivePageId] = useState<string>('home')
+  const [activePageId, setActivePageId] = useState<string>('portfolio')
   const [isLoaded, setIsLoaded] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -22,9 +22,9 @@ function AppContent() {
   
   // 页面配置数组
   const pages = [
-    { id: 'home', title: 'Home', number: '01', component: HomePage },
-    { id: 'about', title: 'About', number: '02', component: AboutPage },
-    { id: 'portfolio', title: 'Portfolio', number: '03', component: PortfolioPage },
+    { id: 'portfolio', title: 'Portfolio', number: '01', component: PortfolioPage },
+    { id: 'home', title: 'Home', number: '02', component: HomePage },
+    { id: 'about', title: 'About', number: '03', component: AboutPage },
     { id: 'contact', title: 'Contact', number: '04', component: ContactPage },
     { id: 'blog', title: 'Blog', number: '05', component: BlogPage, hidden: true }
   ]

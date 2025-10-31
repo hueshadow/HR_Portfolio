@@ -5,11 +5,11 @@ interface DesktopNavProps {
 
 const DesktopNav = ({ activePageId, onPageChange }: DesktopNavProps) => {
   const navItems = [
+    { id: 'portfolio', label: 'Portfolio' },
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'portfolio', label: 'Portfolio' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
+    { id: 'blog', label: 'Blog' }
   ]
 
   return (

@@ -5,11 +5,11 @@ interface MobileNavProps {
 
 const MobileNav = ({ activePageId, onPageChange }: MobileNavProps) => {
   const navItems = [
+    { id: 'portfolio', label: 'Portfolio' },
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'portfolio', label: 'Portfolio' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
+    { id: 'blog', label: 'Blog' }
   ]
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, itemId: string) => {
