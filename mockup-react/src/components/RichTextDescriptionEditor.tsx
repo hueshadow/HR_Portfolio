@@ -13,13 +13,16 @@ import {
   DialogContent,
   DialogActions,
   Button,
-  useTheme
+  useTheme,
+  Tooltip
 } from '@mui/material'
 import {
   HelpOutline,
   Edit,
-  Code
+  Code,
+  UploadFile as UploadIcon
 } from '@mui/icons-material'
+import MarkdownImportDialog from './MarkdownImportDialog'
 
 interface RichTextDescriptionEditorProps {
   value: string
@@ -44,6 +47,7 @@ const RichTextDescriptionEditor: React.FC<RichTextDescriptionEditorProps> = ({
 }) => {
   const theme = useTheme()
   const [showHelp, setShowHelp] = useState(false)
+  const [showImportDialog, setShowImportDialog] = useState(false)
 
   // Markdown help content
   const markdownHelp = useMemo(() => `
@@ -158,6 +162,26 @@ console.log('Hello World');
     onChange(newValue || '')
   }, [onChange])
 
+  // 处理Markdown导入
+  const handleImportClick = useCallback(() => {
+    setShowImportDialog(true)
+  }, [])
+
+  const handleImport = useCallback((content: string, filename: string) => {
+    // 询问用户是替换还是追加内容
+    if (value.trim()) {
+      // 如果当前有内容，直接替换（可以根据需要添加追加选项）
+      onChange(content)
+    } else {
+      // 如果当前为空，直接导入
+      onChange(content)
+    }
+  }, [value, onChange])
+
+  const handleImportDialogClose = useCallback(() => {
+    setShowImportDialog(false)
+  }, [])
+
   return (
     <Card sx={{ mb: 2 }}>
       <CardContent>
@@ -167,13 +191,27 @@ console.log('Hello World');
             {label}
             {required && <span style={{ color: 'red' }}> *</span>}
           </Typography>
-          <IconButton
-            onClick={() => setShowHelp(true)}
-            size="small"
-            title="Markdown 语法帮助"
-          >
-            <HelpOutline />
-          </IconButton>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Tooltip title="导入 Markdown 文件" arrow>
+              <IconButton
+                onClick={handleImportClick}
+                size="small"
+                disabled={disabled}
+                aria-label="导入Markdown文件"
+              >
+                <UploadIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Markdown 语法帮助" arrow>
+              <IconButton
+                onClick={() => setShowHelp(true)}
+                size="small"
+                aria-label="Markdown语法帮助"
+              >
+                <HelpOutline />
+              </IconButton>
+            </Tooltip>
+          </Box>
         </Box>
 
         {/* 编辑器 */}
@@ -358,6 +396,13 @@ console.log('Hello World');
           margin: 16px 0;
         }
       `}</style>
+
+      {/* Markdown Import Dialog */}
+      <MarkdownImportDialog
+        open={showImportDialog}
+        onClose={handleImportDialogClose}
+        onImport={handleImport}
+      />
     </Card>
   )
 }
