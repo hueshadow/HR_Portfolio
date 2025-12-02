@@ -4,6 +4,7 @@ import PortfolioFilter from './PortfolioFilter'
 import ImagePreview from './ImagePreview'
 import { usePortfolioCaptionAnimation } from '../hooks/useAnimations'
 import { portfolioManager } from '../data/portfolio'
+import type { PortfolioItem } from '../types/portfolio'
 
 interface PortfolioPageProps {
   active: boolean
@@ -51,8 +52,14 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
     }
   }
 
-  const handleDetailClick = (itemId: number) => {
-    navigate(`/portfolio/${itemId}`)
+  const handleDetailClick = (item: PortfolioItem) => {
+    // If project is marked as external-only, open in new tab
+    if (item.externalOnly && item.projectUrl) {
+      window.open(item.projectUrl, '_blank', 'noopener,noreferrer')
+    } else {
+      // Standard behavior: navigate to detail page
+      navigate(`/portfolio/${item.id}`)
+    }
   }
 
   const handleProjectSourceClick = (projectUrl: string) => {
@@ -351,7 +358,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                         onClick={(e) => {
                           e.preventDefault()
                           e.stopPropagation()
-                          handleDetailClick(item.id)
+                          handleDetailClick(item)
                         }}
                       >
                         查看详情

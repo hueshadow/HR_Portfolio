@@ -63,6 +63,68 @@ const initialPortfolioItems: PortfolioItem[] = [
     githubUrl: 'https://github.com/example/3d-product-model',
     createdAt: '2024-04-05T00:00:00Z',
     updatedAt: '2024-04-05T00:00:00Z'
+  },
+  {
+    id: 5,
+    category: 'image',
+    title: 'Nail Designs',
+    description: `# Nail Designs - AI-Powered Nail Art Studio
+
+**Project Type**: AI-Powered SaaS Platform
+**Role**: Full-Stack Product Development
+**Launch Date**: 2024
+
+## Overview
+
+Nail Designs is an innovative AI-powered platform that revolutionizes the nail art industry by providing:
+- 24K+ AI-generated nail design inspirations
+- Virtual try-on technology for previewing designs
+- Custom design generator with AI assistance
+- 50+ distinct nail art styles
+- 10K+ active users community
+
+## Key Features
+
+### AI Design Generation
+Advanced AI algorithms create unique, personalized nail art designs based on user preferences, color palettes, and style inputs.
+
+### Virtual Try-On
+Revolutionary AR technology allows users to visualize nail designs on their own hands before committing to a salon visit.
+
+### Extensive Design Library
+Curated collection of 24,000+ professionally designed nail art patterns, regularly updated with trending styles.
+
+### User-Friendly Tools
+Intuitive interface for exploring, saving, and sharing favorite designs with integrated social features.
+
+## Technology Stack
+
+- AI/ML models for design generation
+- Computer Vision for virtual try-on
+- Real-time rendering engine
+- Cloud-based image processing
+- Responsive web application
+
+## Impact
+
+- 10,000+ active users
+- 24,000+ unique designs generated
+- 50+ nail art styles supported
+- High user engagement and satisfaction rates
+
+---
+
+*Visit the live platform to explore thousands of AI-generated nail art designs.*`,
+    image: '/assets/img/portfolio/5.jpg',
+    thumb: '/assets/img/portfolio/5_s.jpg',
+    technologies: ['AI/ML', 'React', 'Computer Vision', 'Cloud Computing', 'AR Technology'],
+    projectDate: '2024-11-15',
+    featured: true,
+    projectUrl: 'https://www.nail-designs.ai/',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2024-11-15T00:00:00Z',
+    updatedAt: '2024-12-02T00:00:00Z'
   }
 ]
 
@@ -75,7 +137,7 @@ class PortfolioManager {
    */
   private projectToPortfolioItem(project: Project): PortfolioItem {
     return {
-      id: parseInt(project.id || '0'),
+      id: parseInt(String(project.id || '0')),
       title: project.title,
       description: project.description,
       category: project.category,

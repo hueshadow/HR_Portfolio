@@ -11,6 +11,7 @@ export interface PortfolioItem {
   featured: boolean
   projectUrl?: string
   githubUrl?: string
+  externalOnly?: boolean
   createdAt: string
   updatedAt: string
 }
