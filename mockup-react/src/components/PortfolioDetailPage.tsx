@@ -112,7 +112,14 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         <div className="project-info">
           <div className="project-description">
-            <h3>Project Description</h3>
+            <div className="description-header">
+              <h3>Project Description</h3>
+              {item.projectUrl && (
+                <a href={item.projectUrl} target="_blank" rel="noopener noreferrer" className="view-project-link">
+                  <i className="fas fa-external-link-alt"></i> View Project
+                </a>
+              )}
+            </div>
             {item.id === 1 ? (
               <div className="notion-embed-container">
                 <iframe
@@ -133,21 +140,16 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             )}
           </div>
 
-          <div className="project-links">
-            <h3>Project Links</h3>
-            <div className="links">
-              {item.projectUrl && (
-                <a href={item.projectUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                  <i className="fas fa-external-link-alt"></i> View Project
-                </a>
-              )}
-              {item.githubUrl && (
+          {item.githubUrl && (
+            <div className="project-links">
+              <h3>Project Links</h3>
+              <div className="links">
                 <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link">
                   <i className="fab fa-github"></i> View Code
                 </a>
-              )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -334,10 +336,38 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           margin-bottom: 30px;
         }
 
+        .description-header {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 15px;
+        }
+
         .project-description h3 {
-          margin: 0 0 15px 0;
+          margin: 0;
           font-size: 20px;
           font-weight: 600;
+        }
+
+        .view-project-link {
+          color: var(--px-theme-clr, #ff6b6b);
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.3s ease;
+          border-bottom: 1px solid transparent;
+        }
+
+        .view-project-link:hover {
+          border-bottom: 1px solid var(--px-theme-clr, #ff6b6b);
+          color: #ff5252;
+        }
+
+        .view-project-link i {
+          font-size: 12px;
         }
 
         .project-description p {
