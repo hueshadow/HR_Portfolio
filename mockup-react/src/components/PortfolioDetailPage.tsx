@@ -362,8 +362,8 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         .view-project-link:hover {
-          border-bottom: 1px solid var(--px-theme-clr, #ff6b6b);
-          color: #ff5252;
+          border-bottom: 1px solid #2563eb;
+          color: #2563eb;
         }
 
         .view-project-link i {
