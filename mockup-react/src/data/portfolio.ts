@@ -216,7 +216,7 @@ Clean, minimalist interface with gradient backgrounds that create an immersive r
     githubUrl: '',
     externalOnly: true,
     createdAt: '2024-10-01T00:00:00Z',
-    updatedAt: '2024-12-03T00:00:00Z'
+    updatedAt: '2025-12-03T13:50:00Z'
   }
 ]
 
