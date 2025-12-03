@@ -121,9 +121,25 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
           <div className="project-description">
             <h3>Project Description</h3>
-            <div className="markdown-content">
-              <ReactMarkdown>{item.description}</ReactMarkdown>
-            </div>
+            {item.id === 1 ? (
+              <div className="notion-embed-container">
+                <iframe
+                  src="https://enchanted-durian-d95.notion.site/Huawei-Cloud-2024-2372d787465b80409eb6ddf3db67908c"
+                  style={{
+                    width: '100%',
+                    height: '800px',
+                    border: 'none',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                  }}
+                  title="Huawei Cloud Project Details"
+                />
+              </div>
+            ) : (
+              <div className="markdown-content">
+                <ReactMarkdown>{item.description}</ReactMarkdown>
+              </div>
+            )}
           </div>
 
           <div className="project-technologies">
