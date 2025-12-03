@@ -23,7 +23,11 @@ const initialPortfolioItems: PortfolioItem[] = [
     id: 2,
     category: 'image',
     title: '华为分析',
-    description: '数据分析平台的可视化界面，提供实时数据监控和分析功能。',
+    description: `![华为分析界面1](/assets/img/portfolio/analytics/1.jpg)
+
+![华为分析界面2](/assets/img/portfolio/analytics/2.jpg)
+
+![华为分析界面3](/assets/img/portfolio/analytics/3.jpg)`,
     image: '/assets/img/portfolio/2.jpg',
     thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
     technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL'],
@@ -32,7 +36,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     projectUrl: 'https://analytics-kit.netlify.app/?id=mv71dg&p=landing',
     githubUrl: 'https://developer.huawei.com/consumer/cn/doc/HMSCore-Guides/introduction-0000001050745149',
     createdAt: '2024-02-20T00:00:00Z',
-    updatedAt: '2024-02-20T00:00:00Z'
+    updatedAt: '2024-12-03T00:00:00Z'
   },
   {
     id: 3,
