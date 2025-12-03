@@ -111,10 +111,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         </div>
 
         <div className="project-info">
-          <div className="project-header">
-            <h2>{item.title}</h2>
-          </div>
-
           <div className="project-description">
             <h3>Project Description</h3>
             {item.id === 1 ? (
