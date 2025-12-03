@@ -30,7 +30,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     projectDate: '2024-02-20',
     featured: true,
     projectUrl: 'https://analytics-kit.netlify.app/?id=mv71dg&p=landing',
-    githubUrl: 'https://github.com/HMS-Core',
+    githubUrl: 'https://developer.huawei.com/consumer/cn/doc/HMSCore-Guides/introduction-0000001050745149',
     createdAt: '2024-02-20T00:00:00Z',
     updatedAt: '2024-02-20T00:00:00Z'
   },
