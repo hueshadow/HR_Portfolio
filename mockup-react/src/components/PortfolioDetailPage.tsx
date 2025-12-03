@@ -133,15 +133,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             )}
           </div>
 
-          <div className="project-technologies">
-            <h3>Technologies Used</h3>
-            <div className="tech-tags">
-              {item.technologies.map((tech, index) => (
-                <span key={index} className="tech-tag">{tech}</span>
-              ))}
-            </div>
-          </div>
-
           <div className="project-links">
             <h3>Project Links</h3>
             <div className="links">
