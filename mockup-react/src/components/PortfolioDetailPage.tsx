@@ -144,9 +144,9 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                         style={{
                           width: '100%',
                           height: 'auto',
-                          borderRadius: '8px',
+                          borderRadius: item.id === 3 ? '0' : '8px',
                           marginBottom: '20px',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                          boxShadow: item.id === 3 ? 'none' : '0 2px 8px rgba(0,0,0,0.1)'
                         }}
                       />
                     )
