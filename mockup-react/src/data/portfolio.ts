@@ -56,9 +56,7 @@ const initialPortfolioItems: PortfolioItem[] = [
 
 ![社区功能2](/assets/img/portfolio/matchbox/9.jpg)
 
-![内容分享1](/assets/img/portfolio/matchbox/10.jpg)
-
-![内容分享2](/assets/img/portfolio/matchbox/11.jpg)`,
+![内容分享](/assets/img/portfolio/matchbox/10.jpg)`,
     image: '/assets/img/portfolio/3_s.jpg',
     thumb: '/assets/img/portfolio/3_s.jpg',
     technologies: ['iOS', 'Android', 'UI/UX Design', 'Social Network', 'Content Platform'],
