@@ -368,10 +368,10 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                         onClick={(e) => {
                           e.preventDefault()
                           e.stopPropagation()
-                          if (item.projectUrl) {
-                            handleProjectSourceClick(item.projectUrl)
-                          } else if (item.githubUrl) {
+                          if (item.githubUrl) {
                             handleProjectSourceClick(item.githubUrl)
+                          } else if (item.projectUrl) {
+                            handleProjectSourceClick(item.projectUrl)
                           }
                         }}
                         disabled={!item.projectUrl && !item.githubUrl}
