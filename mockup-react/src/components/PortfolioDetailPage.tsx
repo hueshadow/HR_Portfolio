@@ -135,7 +135,25 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
               </div>
             ) : (
               <div className="markdown-content">
-                <ReactMarkdown>{item.description}</ReactMarkdown>
+                <ReactMarkdown
+                  components={{
+                    img: ({node, ...props}) => (
+                      <img
+                        {...props}
+                        loading="lazy"
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          borderRadius: '8px',
+                          marginBottom: '20px',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                        }}
+                      />
+                    )
+                  }}
+                >
+                  {item.description}
+                </ReactMarkdown>
               </div>
             )}
           </div>
