@@ -53,6 +53,14 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   }
 
   const handleDetailClick = (item: PortfolioItem) => {
+    // If item is a video, open video preview directly
+    if (item.category === 'video' && item.video) {
+      setPreviewVideo(item.video)
+      setIsVideoPreview(true)
+      setPreviewOpen(true)
+      return
+    }
+
     // If project is marked as external-only, open in new tab
     if (item.externalOnly && item.projectUrl) {
       window.open(item.projectUrl, '_blank', 'noopener,noreferrer')

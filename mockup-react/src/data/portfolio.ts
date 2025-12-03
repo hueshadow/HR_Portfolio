@@ -217,6 +217,54 @@ Clean, minimalist interface with gradient backgrounds that create an immersive r
     externalOnly: true,
     createdAt: '2024-10-01T00:00:00Z',
     updatedAt: '2025-12-03T13:50:00Z'
+  },
+  {
+    id: 7,
+    category: 'video',
+    title: '华为分析 - 事件分析',
+    description: '华为分析服务的事件分析和行为分析功能介绍，通过控制台操作指南演示如何使用事件分析功能进行数据分析。',
+    image: '/assets/video/analytics/event-analysis.mp4',
+    thumb: '/assets/img/portfolio/analytics-video-1.jpg',
+    video: '/assets/video/analytics/event-analysis.mp4',
+    technologies: ['Huawei Analytics', 'Event Analysis', 'Data Analysis'],
+    projectDate: '2023-12-02',
+    featured: false,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2023-12-02T00:00:00Z',
+    updatedAt: '2024-12-03T00:00:00Z'
+  },
+  {
+    id: 8,
+    category: 'video',
+    title: '华为分析 - 用户分群',
+    description: '华为分析服务的用户分群和人群洞察功能介绍，详细演示如何通过控制台进行用户分群操作和人群洞察分析。',
+    image: '/assets/video/analytics/user-segmentation.mp4',
+    thumb: '/assets/img/portfolio/analytics-video-2.jpg',
+    video: '/assets/video/analytics/user-segmentation.mp4',
+    technologies: ['Huawei Analytics', 'User Segmentation', 'Audience Insights'],
+    projectDate: '2023-12-02',
+    featured: false,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2023-12-02T00:00:00Z',
+    updatedAt: '2024-12-03T00:00:00Z'
+  },
+  {
+    id: 9,
+    category: 'video',
+    title: '华为分析 - 自定义概览',
+    description: '华为分析服务的自定义概览功能介绍，展示如何通过控制台操作自定义概览面板，实现个性化的数据展示。',
+    image: '/assets/video/analytics/custom-overview.mp4',
+    thumb: '/assets/img/portfolio/analytics-video-3.jpg',
+    video: '/assets/video/analytics/custom-overview.mp4',
+    technologies: ['Huawei Analytics', 'Custom Dashboard', 'Data Visualization'],
+    projectDate: '2023-12-02',
+    featured: false,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2023-12-02T00:00:00Z',
+    updatedAt: '2024-12-03T00:00:00Z'
   }
 ]
 
