@@ -38,52 +38,24 @@ const initialPortfolioItems: PortfolioItem[] = [
     id: 3,
     category: 'image',
     title: '火柴盒项目',
-    description: `# 火柴盒 - 兴趣社交平台
+    description: `![项目概览](/assets/img/portfolio/matchbox/1.jpg)
 
-## 项目简介
-
-火柴盒是一款由南京极山文化传播有限公司开发的，以话题和兴趣为导向的陌生人社交产品。作为一款文艺青年的必备社交App，里面分享的歌、语录和文章质量都很高，还有一个隐藏的话题社区，在这里你可以找到志同道合的伙伴。
-
-### 发展历程
-
-- **2014年3月** - 火柴盒登录 App Store
-- **2014年5月** - 在无刷榜无推广的情况下，进入App Store音乐类排行的第7名
-- **2014年11月** - 火柴盒2.0版本上线，在上线不到24小时的时候产生近5000条UGC，平均每30秒产生一条新内容
-- **累计下载** - 用户近百万，并拿到了200万的天使轮融资
-
-### 融资历史
-
-| 融资轮次 | 融资时间 | 融资金额 | 投资方 |
-|---------|---------|---------|--------|
-| Pre-A轮 | 2016-01 | 数千万人民币 | 未披露 |
-| 天使轮 | 2014-11 | 200万人民币 | 未披露 |
-
-## 产品截图
-
-### 项目概览
-![项目概览](/assets/img/portfolio/matchbox/1.jpg)
-
-### 项目介绍
 ![项目介绍](/assets/img/portfolio/matchbox/2.jpg)
 
-### 主要功能界面
 ![功能界面1](/assets/img/portfolio/matchbox/3.jpg)
 
 ![功能界面2](/assets/img/portfolio/matchbox/4.jpg)
 
-### 用户体验设计
 ![设计界面1](/assets/img/portfolio/matchbox/5.jpg)
 
 ![设计界面2](/assets/img/portfolio/matchbox/6.jpg)
 
 ![设计界面3](/assets/img/portfolio/matchbox/7.jpg)
 
-### 社区功能
 ![社区功能1](/assets/img/portfolio/matchbox/8.jpg)
 
 ![社区功能2](/assets/img/portfolio/matchbox/9.jpg)
 
-### 内容分享
 ![内容分享1](/assets/img/portfolio/matchbox/10.jpg)
 
 ![内容分享2](/assets/img/portfolio/matchbox/11.jpg)`,
