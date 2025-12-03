@@ -44,7 +44,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Photoshop', 'Illustrator', 'Figma', 'Sketch'],
     projectDate: '2024-03-10',
     featured: false,
-    projectUrl: 'https://cheapbox.netlify.app/',
+    projectUrl: 'https://pitchhub.36kr.com/project/2317012556007685',
     githubUrl: 'https://github.com/example/matchbox-design',
     createdAt: '2024-03-10T00:00:00Z',
     updatedAt: '2024-03-10T00:00:00Z'
