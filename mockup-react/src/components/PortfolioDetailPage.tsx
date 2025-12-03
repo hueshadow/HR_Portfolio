@@ -122,16 +122,18 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           <div className="project-description">
             <h3>Project Description</h3>
             {item.id === 1 ? (
-              <div className="notion-embed-container">
+              <div className="notion-embed-container" style={{ width: '100%', overflow: 'hidden' }}>
                 <iframe
                   src="https://enchanted-durian-d95.notion.site/ebd/2372d787465b80409eb6ddf3db67908c"
                   style={{
                     width: '100%',
-                    height: '2000px',
+                    height: '8000px',
                     border: 'none',
                     borderRadius: '8px',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                    overflow: 'hidden'
                   }}
+                  scrolling="no"
                   allowFullScreen
                   title="Huawei Cloud Project Details"
                 />
