@@ -81,7 +81,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           <button onClick={handleBackToPortfolio} className="back-button">
             <i className="fas fa-arrow-left"></i> 返回
           </button>
-          <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+          <h1 data-value={`${item.title} PROJECT DETAIL`}>{item.title} PROJECT DETAIL</h1>
         </div>
         <hr className="enabled" />
       </div>
