@@ -371,25 +371,27 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                       >
                         查看详情
                       </button>
-                      <button
-                        className="portfolio-btn"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          if (item.githubUrl) {
-                            handleProjectSourceClick(item.githubUrl)
-                          } else if (item.projectUrl) {
-                            handleProjectSourceClick(item.projectUrl)
-                          }
-                        }}
-                        disabled={!item.projectUrl && !item.githubUrl}
-                        style={{
-                          opacity: (item.projectUrl || item.githubUrl) ? 1 : 0.6,
-                          cursor: (item.projectUrl || item.githubUrl) ? 'pointer' : 'not-allowed'
-                        }}
-                      >
-                        项目来源
-                      </button>
+                      {item.category !== 'video' && (
+                        <button
+                          className="portfolio-btn"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            if (item.githubUrl) {
+                              handleProjectSourceClick(item.githubUrl)
+                            } else if (item.projectUrl) {
+                              handleProjectSourceClick(item.projectUrl)
+                            }
+                          }}
+                          disabled={!item.projectUrl && !item.githubUrl}
+                          style={{
+                            opacity: (item.projectUrl || item.githubUrl) ? 1 : 0.6,
+                            cursor: (item.projectUrl || item.githubUrl) ? 'pointer' : 'not-allowed'
+                          }}
+                        >
+                          项目来源
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
