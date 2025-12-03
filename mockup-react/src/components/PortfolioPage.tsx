@@ -344,7 +344,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           {filteredItems.map(item => (
             <li key={item.id} data-groups={`["${item.category}"]`}>
               <figure className="portfolio-item">
-                {(item.category === 'video' || item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')) ? (
+                {(item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')) ? (
                   <video
                     src={item.thumb}
                     muted
