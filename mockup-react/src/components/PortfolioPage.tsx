@@ -332,7 +332,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           PICTURES
         </h2>
 
-        <ul className="portfolio-container" style={{ paddingLeft: '20px', paddingRight: '20px' }}>
+        <ul className="portfolio-container" style={{ paddingLeft: '20px', paddingRight: '20px', paddingBottom: '80px' }}>
           {filteredItems.map(item => (
             <li key={item.id} data-groups={`["${item.category}"]`}>
               <figure className="portfolio-item">
