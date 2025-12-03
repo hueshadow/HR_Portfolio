@@ -113,10 +113,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         <div className="project-info">
           <div className="project-header">
             <h2>{item.title}</h2>
-            <div className="project-meta">
-              <span className="category">{item.category.toUpperCase()}</span>
-              {item.featured && <span className="featured">⭐ FEATURED</span>}
-            </div>
           </div>
 
           <div className="project-description">
