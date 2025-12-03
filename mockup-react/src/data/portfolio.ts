@@ -125,6 +125,76 @@ Intuitive interface for exploring, saving, and sharing favorite designs with int
     externalOnly: true,
     createdAt: '2024-11-15T00:00:00Z',
     updatedAt: '2024-12-02T00:00:00Z'
+  },
+  {
+    id: 6,
+    category: 'image',
+    title: 'FridayQuote',
+    description: `# FridayQuote - 每日智慧语录
+
+**Project Type**: Daily Quote Platform
+**Role**: Full-Stack Product Development
+**Launch Date**: 2024
+
+## Overview
+
+FridayQuote is a beautifully designed daily inspiration platform that delivers wisdom and thoughtful quotes to users every day. The platform features:
+- Curated collection of inspirational quotes
+- Daily quote updates
+- Multiple category support (comprehensive, learning, life, work)
+- Beautiful gradient backgrounds
+- Social sharing capabilities
+- Dark mode support
+
+## Key Features
+
+### Daily Inspiration
+Fresh, carefully selected quotes delivered daily to inspire and motivate users throughout their day.
+
+### Multi-Category Support
+Browse quotes across different themes:
+- Comprehensive collection
+- Learning and education
+- Life wisdom
+- Professional development
+
+### Social Sharing
+One-click sharing to:
+- Twitter
+- Weibo
+- Copy to clipboard
+
+### Beautiful Design
+Clean, minimalist interface with gradient backgrounds that create an immersive reading experience.
+
+## Technology Stack
+
+- Modern web application
+- Responsive design
+- Social media integration
+- Category-based quote organization
+- Dark/Light mode toggle
+
+## User Experience
+
+- Keyboard shortcuts (Space/Enter for new quotes)
+- Smooth animations and transitions
+- Mobile-friendly responsive design
+- Clean typography for optimal readability
+
+---
+
+*Explore wisdom and share inspiration every day with FridayQuote.*`,
+    image: '/assets/img/portfolio/6.jpg',
+    thumb: '/assets/img/portfolio/6_s.jpg',
+    technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Responsive Design'],
+    projectDate: '2024-10-01',
+    featured: true,
+    projectUrl: 'https://fridayquote.com/',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2024-10-01T00:00:00Z',
+    updatedAt: '2024-12-03T00:00:00Z'
   }
 ]
 
