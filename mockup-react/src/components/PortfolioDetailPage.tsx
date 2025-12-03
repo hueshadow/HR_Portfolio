@@ -139,17 +139,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
               </div>
             )}
           </div>
-
-          {item.githubUrl && (
-            <div className="project-links">
-              <h3>Project Links</h3>
-              <div className="links">
-                <a href={item.githubUrl} target="_blank" rel="noopener noreferrer" className="project-link">
-                  <i className="fab fa-github"></i> View Code
-                </a>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
@@ -557,33 +546,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           font-size: 14px;
         }
 
-        .project-links h3 {
-          margin: 0 0 15px 0;
-          font-size: 20px;
-          font-weight: 600;
-        }
-
-        .links {
-          display: flex;
-          gap: 15px;
-        }
-
-        .project-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 10px 20px;
-          background: var(--px-theme-clr, #ff6b6b);
-          color: white;
-          text-decoration: none;
-          border-radius: 6px;
-          transition: background-color 0.3s ease;
-        }
-
-        .project-link:hover {
-          background: #ff5252;
-          color: white;
-        }
 
         .not-found {
           text-align: center;
