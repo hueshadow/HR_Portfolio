@@ -82,7 +82,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     projectDate: '2024-04-05',
     featured: true,
     projectUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
-    githubUrl: 'https://github.com/example/3d-product-model',
+    githubUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
     createdAt: '2024-04-05T00:00:00Z',
     updatedAt: '2024-04-05T00:00:00Z'
   },
