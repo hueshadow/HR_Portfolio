@@ -81,7 +81,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Blender', 'Three.js', 'WebGL'],
     projectDate: '2024-04-05',
     featured: true,
-    projectUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
+    projectUrl: 'https://business-connect.netlify.app/?id=940iaf&p=%E5%B7%B2%E8%AE%A4%E9%A2%86_userid%E4%B8%8D%E6%98%AF%E8%87%AA%E5%B7%B1&g=1&view=default',
     githubUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
     createdAt: '2024-04-05T00:00:00Z',
     updatedAt: '2024-04-05T00:00:00Z'
