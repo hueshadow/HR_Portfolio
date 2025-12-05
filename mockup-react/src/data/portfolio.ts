@@ -15,7 +15,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     projectDate: '2024-01-15',
     featured: true,
     projectUrl: 'https://business-connect.netlify.app/?id=l5lp6f&p=%E8%AE%A4%E9%A2%86_%E5%AE%A1%E6%A0%B8%E4%B8%AD_userid%E6%98%AF%E8%87%AA%E5%B7%B1&g=1',
-    githubUrl: 'https://github.com/huawei-cloud',
+    githubUrl: 'https://support.huaweicloud.com/usermanual-billing/bills-topic_new_1000101.html',
     createdAt: '2024-01-15T00:00:00Z',
     updatedAt: '2024-01-15T00:00:00Z'
   },
