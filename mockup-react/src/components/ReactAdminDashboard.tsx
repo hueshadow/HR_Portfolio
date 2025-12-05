@@ -233,10 +233,11 @@ const theme = createTheme({
 })
 
 // 状态字段组件
-const StatusField = ({ record }: any) => {
+const StatusField = (props: { record?: any; source?: string }) => {
+  const { record, source } = props
   if (!record) return null
 
-  const status = record.status || 'published'
+  const status = source ? record[source] || 'published' : 'published'
   const getStatusInfo = (status: string) => {
     switch (status) {
       case 'draft':
@@ -331,7 +332,7 @@ const ProjectList = () => {
           }}
         />
         <TextField source="title" label="项目名称" />
-        <StatusField source="status" label="状态" />
+        <StatusField source="status" />
         <ChipField
           source="category"
           label="分类"
@@ -456,7 +457,7 @@ const ProjectEdit = () => {
         <RecordContext.Consumer>
           {(record) => (
             <FormActions
-              record={record}
+              record={record as Project}
               resource="projects"
               onSaveDraft={() => {
                 // 自定义保存草稿逻辑

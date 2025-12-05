@@ -277,6 +277,7 @@ class PortfolioManager {
    */
   private projectToPortfolioItem(project: Project): PortfolioItem {
     return {
+<<<<<<< HEAD
       id: parseInt(String(project.id || '0')),
       title: project.title,
       description: project.description,

@@ -133,7 +133,7 @@ export const readMarkdownFile = (file: File): Promise<string> => {
       try {
         const content = reader.result as string
         resolve(content)
-      } catch (error) {
+      } catch {
         reject(new Error('读取文件内容失败'))
       }
     }

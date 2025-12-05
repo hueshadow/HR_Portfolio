@@ -14,14 +14,14 @@ import {
   CloudUpload as CloudUploadIcon
 } from '@mui/icons-material'
 import { useNotify, useRefresh, useDataProvider } from 'react-admin'
-import { PROJECT_STATUS, type ProjectStatus } from '../dataProvider'
+import { PROJECT_STATUS, type ProjectStatus, type Project } from '../dataProvider'
 
 interface FormActionsProps {
   onSaveDraft?: () => void
   onSave?: () => void
   onPublish?: () => void
   disabled?: boolean
-  record?: any
+  record?: Partial<Project>
   resource?: string
 }
 
@@ -79,7 +79,7 @@ const FormActions: React.FC<FormActionsProps> = ({
       // 异步保存到localStorage
       setTimeout(() => {
         const storedData = JSON.parse(localStorage.getItem(`${resource}Data`) || '[]')
-        const index = storedData.findIndex((item: any) => item.id === record.id)
+        const index = storedData.findIndex((item: Project) => item.id === record.id)
         if (index !== -1) {
           storedData[index] = { ...storedData[index], ...updatedData }
           localStorage.setItem(`${resource}Data`, JSON.stringify(storedData))

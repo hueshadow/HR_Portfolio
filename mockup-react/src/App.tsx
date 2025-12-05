@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import MouseTrailer from './components/MouseTrailer'
 import MobileNav from './components/MobileNav'
@@ -83,9 +83,9 @@ function AppContent() {
     }
   }
 
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen)
-  }
+  const toggleNav = useCallback(() => {
+    setIsNavOpen(prev => !prev)
+  }, [])
 
   useEffect(() => {
     // 添加移动导航切换按钮的事件监听
@@ -102,7 +102,7 @@ function AppContent() {
     return () => {
       document.removeEventListener('click', handleClick)
     }
-  }, [isNavOpen, toggleNav])
+  }, [isNavOpen])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)

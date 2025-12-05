@@ -13,8 +13,7 @@ import {
   Tab,
   CircularProgress,
   Chip,
-  IconButton,
-  useTheme
+  IconButton
 } from '@mui/material'
 import {
   Close as CloseIcon,
@@ -26,10 +25,9 @@ import {
 import ReactMarkdown from 'react-markdown'
 import {
   processMarkdownFile,
-  MarkdownValidationResult,
-  ProcessedMarkdownFile,
   formatFileSize
 } from '../utils/fileUtils'
+import type { ProcessedMarkdownFile } from '../utils/fileUtils'
 
 interface MarkdownImportDialogProps {
   open: boolean
@@ -66,7 +64,6 @@ const MarkdownImportDialog: React.FC<MarkdownImportDialogProps> = ({
   onImport,
   maxSize = 1 * 1024 * 1024 // 1MB
 }) => {
-  const theme = useTheme()
   const [tabValue, setTabValue] = useState(0)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [processedFile, setProcessedFile] = useState<ProcessedMarkdownFile | null>(null)
@@ -279,7 +276,7 @@ const MarkdownImportDialog: React.FC<MarkdownImportDialogProps> = ({
                         {children}
                       </Typography>
                     ),
-                    code: ({ inline, children }) => (
+                    code: ({ inline, children }: { inline?: boolean; children?: React.ReactNode; className?: string }) => (
                       inline ? (
                         <Chip
                           label={children}
