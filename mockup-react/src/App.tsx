@@ -11,6 +11,7 @@ import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
 import ReactAdminDashboard from './components/ReactAdminDashboard'
+import PortfolioOverview from './components/PortfolioOverview'
 
 // 主应用组件
 function AppContent() {
@@ -236,6 +237,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/admin/*" element={<ReactAdminDashboard />} />
+        <Route path="/work" element={<PortfolioOverview />} />
         <Route path="/*" element={<AppContent />} />
       </Routes>
     </Router>
