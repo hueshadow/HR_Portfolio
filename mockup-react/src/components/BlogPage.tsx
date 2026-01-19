@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom'
+import TwitterCard from './TwitterCard'
+import { sampleTwitterPosts } from '../types/twitter'
 
 interface BlogPageProps {
   active: boolean
@@ -78,6 +80,19 @@ const BlogPage = ({ loaded }: BlogPageProps) => {
             </a>
           </div>
         </div>
+      ))}
+
+      {/* Twitter 推文分区 */}
+      <div className="section-divider">
+        <span>Twitter 动态</span>
+      </div>
+
+      {sampleTwitterPosts.map(post => (
+        <TwitterCard
+          key={post.id}
+          post={post}
+          onClick={() => window.open(post.tweetUrl, '_blank')}
+        />
       ))}
     </>
   )
