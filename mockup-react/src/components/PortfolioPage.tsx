@@ -110,7 +110,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .portfolio-grid li {
-            aspect-ratio: 1 / 1 !important;
+            aspect-ratio: 3 / 2 !important;
             list-style: none;
             margin: 0 !important;
             padding: 0 !important;
