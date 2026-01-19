@@ -299,8 +299,8 @@ Ecosystem Dashboard 是一个专业的生态系统数据监控和分析平台，
 ---
 
 *Visit the live platform: https://ecosystem-dashboard.netlify.app*`,
-    image: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
-    thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
+    image: '/assets/img/portfolio/10.jpg',
+    thumb: '/assets/img/portfolio/10.jpg',
     technologies: ['React', 'TypeScript', 'Data Visualization', 'Dashboard'],
     projectDate: '2025-01-10',
     featured: true,
@@ -343,8 +343,8 @@ RailPulse 是一个专业的铁路监控和数据分析平台，为铁路运营�
 ---
 
 *Visit the live platform: https://railpulse.netlify.app*`,
-    image: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
-    thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
+    image: '/assets/img/portfolio/11.jpg',
+    thumb: '/assets/img/portfolio/11.jpg',
     technologies: ['React', 'TypeScript', 'IoT', 'Real-time Monitoring', 'Data Analytics'],
     projectDate: '2025-01-15',
     featured: true,
