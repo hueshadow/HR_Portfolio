@@ -26,8 +26,8 @@ function AppContent() {
     { id: 'home', title: 'Home', number: '01', component: HomePage },
     { id: 'about', title: 'About', number: '02', component: AboutPage },
     { id: 'portfolio', title: 'Portfolio', number: '03', component: PortfolioPage },
-    { id: 'contact', title: 'Contact', number: '04', component: ContactPage },
-    { id: 'blog', title: 'Blog', number: '05', component: BlogPage }
+    { id: 'blog', title: 'Blog', number: '04', component: BlogPage },
+    { id: 'contact', title: 'Contact', number: '05', component: ContactPage }
   ]
 
   // 检查是否在详情页或管理页
