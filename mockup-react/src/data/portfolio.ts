@@ -265,6 +265,94 @@ Clean, minimalist interface with gradient backgrounds that create an immersive r
     githubUrl: '',
     createdAt: '2023-12-02T00:00:00Z',
     updatedAt: '2024-12-03T00:00:00Z'
+  },
+  {
+    id: 10,
+    category: 'image',
+    title: 'Ecosystem Dashboard',
+    description: `# Ecosystem Dashboard - 生态系统监控平台
+
+**Project Type**: Data Visualization Dashboard
+**Role**: Full-Stack Development
+**Launch Date**: 2025
+
+## Overview
+
+Ecosystem Dashboard 是一个专业的生态系统数据监控和分析平台，提供实时的环境数据可视化功能。
+
+## Key Features
+
+- Real-time data monitoring
+- Interactive charts and graphs
+- Multi-source data integration
+- Customizable dashboard layouts
+- Alert and notification system
+
+## Technology Stack
+
+- React
+- TypeScript
+- D3.js / Chart.js
+- Node.js
+- PostgreSQL
+
+---
+
+*Visit the live platform: https://ecosystem-dashboard.netlify.app*`,
+    image: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
+    thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
+    technologies: ['React', 'TypeScript', 'Data Visualization', 'Dashboard'],
+    projectDate: '2025-01-10',
+    featured: true,
+    projectUrl: 'https://ecosystem-dashboard.netlify.app',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2025-01-10T00:00:00Z',
+    updatedAt: '2025-01-19T00:00:00Z'
+  },
+  {
+    id: 11,
+    category: 'image',
+    title: 'RailPulse',
+    description: `# RailPulse - 铁路监控系统
+
+**Project Type**: Industrial IoT Monitoring System
+**Role**: Full-Stack Development
+**Launch Date**: 2025
+
+## Overview
+
+RailPulse 是一个专业的铁路监控和数据分析平台，为铁路运营提供实时的监控和预警功能。
+
+## Key Features
+
+- Real-time train tracking
+- Predictive maintenance alerts
+- Performance analytics
+- Route optimization
+- Safety monitoring systems
+
+## Technology Stack
+
+- React
+- TypeScript
+- WebSocket
+- IoT Data Processing
+- Machine Learning
+
+---
+
+*Visit the live platform: https://railpulse.netlify.app*`,
+    image: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
+    thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
+    technologies: ['React', 'TypeScript', 'IoT', 'Real-time Monitoring', 'Data Analytics'],
+    projectDate: '2025-01-15',
+    featured: true,
+    projectUrl: 'https://railpulse.netlify.app',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2025-01-15T00:00:00Z',
+    updatedAt: '2025-01-19T00:00:00Z'
   }
 ]
 
