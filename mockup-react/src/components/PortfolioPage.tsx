@@ -85,20 +85,34 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   return (
     <>
         <style>{`
-          /* 网格布局样式 */
+          /* 拼贴画风格布局 */
           .portfolio-wrapper {
-            padding: 20px;
+            padding: 0;
           }
 
           .portfolio-container {
-            position: relative;
-            width: 100%;
+            display: block !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
           }
 
-          .portfolio-container li {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+          .portfolio-row {
+            display: flex !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+
+          .portfolio-row li {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            width: auto !important;
+            flex: 1 !important;
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
           }
 
           .portfolio-item {
@@ -106,18 +120,19 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             overflow: hidden;
             background: #fff;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            height: 100%;
           }
 
           .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            transform: scale(1.02);
           }
 
           .portfolio-item img,
           .portfolio-item video {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
           }
 
@@ -127,7 +142,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,19 +159,18 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-content {
             text-align: center;
             color: white;
-            padding: 20px;
+            padding: 15px;
           }
 
           .portfolio-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
-            margin-bottom: 15px;
-            letter-spacing: 0.5px;
+            margin-bottom: 10px;
           }
 
           .portfolio-buttons {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
             flex-wrap: wrap;
           }
@@ -164,18 +178,12 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-btn {
             background: transparent;
             color: white;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border: 1px solid white;
-            border-radius: 4px;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 12px;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 10;
+            font-size: 11px;
+            transition: all 0.2s ease;
           }
 
           .portfolio-btn:hover {
@@ -184,83 +192,116 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
         `}</style>
         <style>{`
-          /* 网格布局 */
-          .portfolio-container {
-            display: grid !important;
-            grid-template-columns: repeat(4, 1fr) !important;
-            gap: 30px !important;
-            padding: 40px !important;
-            width: 100% !important;
-            max-width: 1600px !important;
-            margin: 0 auto !important;
+          /* 拼贴画布局 - 每行自定义宽高 */
+          .portfolio-row-1 {
+            height: 320px;
+          }
+          .portfolio-row-1 li {
+            aspect-ratio: 16/9 !important;
           }
 
-          .portfolio-container li {
-            position: relative !important;
-            left: auto !important;
-            top: auto !important;
-            width: 100% !important;
+          .portfolio-row-2 {
+            height: 280px;
+          }
+          .portfolio-row-2 li:nth-child(1) { /* 华为云 */
+            flex: 1.2 !important;
+            aspect-ratio: 16/9 !important;
+          }
+          .portfolio-row-2 li:nth-child(2) { /* Business Connect */
+            flex: 1 !important;
+            aspect-ratio: 1/1 !important;
+          }
+          .portfolio-row-2 li:nth-child(3) { /* FridayQuote */
+            flex: 0.6 !important;
+            aspect-ratio: 9/16 !important;
           }
 
-          /* 各项目大小 */
-          .portfolio-container li[data-groups*="10"] { /* RailPulse */
-            grid-column: span 2;
-            grid-row: span 2;
+          .portfolio-row-3 {
+            height: 300px;
+          }
+          .portfolio-row-3 li {
+            aspect-ratio: 16/10 !important;
           }
 
-          .portfolio-container li[data-groups*="11"] { /* Ecosystem Dashboard */
-            grid-column: span 2;
-            grid-row: span 2;
+          .portfolio-row-4 {
+            height: 340px;
+          }
+          .portfolio-row-4 li {
+            flex: 1 !important;
+            aspect-ratio: 16/9 !important;
           }
 
-          .portfolio-container li[data-groups*="1"], /* 华为云 */
-          .portfolio-container li[data-groups*="2"], /* 华为分析 */
-          .portfolio-container li[data-groups*="3"], /* 火柴盒 */
-          .portfolio-container li[data-groups*="4"], /* Business Connect */
-          .portfolio-container li[data-groups*="5"], /* Nail Designs */
-          .portfolio-container li[data-groups*="6"] { /* FridayQuote */
-            grid-column: span 1;
-            grid-row: span 1;
+          .portfolio-row-5 {
+            height: 300px;
+          }
+          .portfolio-row-5 li {
+            flex: 1 !important;
+            aspect-ratio: 16/9 !important;
           }
 
           /* 视频项目隐藏 */
-          .portfolio-container li[data-groups*="7"],
-          .portfolio-container li[data-groups*="8"],
-          .portfolio-container li[data-groups*="9"] {
-            display: none;
+          .portfolio-row-1 li[data-groups*="7"],
+          .portfolio-row-1 li[data-groups*="8"],
+          .portfolio-row-1 li[data-groups*="9"],
+          .portfolio-row-2 li[data-groups*="7"],
+          .portfolio-row-2 li[data-groups*="8"],
+          .portfolio-row-2 li[data-groups*="9"],
+          .portfolio-row-3 li[data-groups*="7"],
+          .portfolio-row-3 li[data-groups*="8"],
+          .portfolio-row-3 li[data-groups*="9"],
+          .portfolio-row-4 li[data-groups*="7"],
+          .portfolio-row-4 li[data-groups*="8"],
+          .portfolio-row-4 li[data-groups*="9"],
+          .portfolio-row-5 li[data-groups*="7"],
+          .portfolio-row-5 li[data-groups*="8"],
+          .portfolio-row-5 li[data-groups*="9"] {
+            display: none !important;
           }
 
-          /* 响应式网格 */
-          @media (max-width: 1200px) {
-            .portfolio-container {
-              grid-template-columns: repeat(3, 1fr) !important;
-            }
-            .portfolio-container li[data-groups*="10"],
-            .portfolio-container li[data-groups*="11"] {
-              grid-column: span 2;
-              grid-row: span 2;
-            }
-          }
-
+          /* 响应式 */
           @media (max-width: 960px) {
-            .portfolio-container {
-              grid-template-columns: repeat(2, 1fr) !important;
-              gap: 20px !important;
-              padding: 20px !important;
+            .portfolio-row-1,
+            .portfolio-row-2,
+            .portfolio-row-3,
+            .portfolio-row-4,
+            .portfolio-row-5 {
+              height: auto !important;
+              flex-wrap: wrap !important;
             }
-            .portfolio-container li[data-groups*="10"],
-            .portfolio-container li[data-groups*="11"] {
-              grid-column: span 2;
-              grid-row: span 1;
+            .portfolio-row-1 li,
+            .portfolio-row-3 li,
+            .portfolio-row-4 li,
+            .portfolio-row-5 li {
+              flex: 1 1 45% !important;
+              aspect-ratio: 4/3 !important;
+              margin: 4px !important;
+            }
+            .portfolio-row-2 li:nth-child(1) {
+              flex: 1 1 100% !important;
+              aspect-ratio: 16/9 !important;
+            }
+            .portfolio-row-2 li:nth-child(2),
+            .portfolio-row-2 li:nth-child(3) {
+              flex: 1 1 45% !important;
+              aspect-ratio: 1/1 !important;
             }
           }
 
           @media (max-width: 600px) {
-            .portfolio-container {
-              grid-template-columns: 1fr !important;
+            .portfolio-row-1 li,
+            .portfolio-row-3 li,
+            .portfolio-row-4 li,
+            .portfolio-row-5 li {
+              flex: 1 1 100% !important;
+              aspect-ratio: 3/2 !important;
             }
-            .portfolio-container li {
-              grid-column: span 1 !important;
+            .portfolio-row-2 li:nth-child(1) {
+              aspect-ratio: 3/2 !important;
+            }
+            .portfolio-row-2 li:nth-child(2),
+            .portfolio-row-2 li:nth-child(3) {
+              flex: 1 1 100% !important;
+              aspect-ratio: 3/4 !important;
             }
           }
         `}</style>
@@ -409,65 +450,149 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
         </div>
 
         <div className="portfolio-wrapper">
-          <ul className="portfolio-container">
-          {filteredItems.map(item => (
-            <li key={item.id} data-groups={`["${item.category}"]`}>
-              <figure className="portfolio-item">
-                {(item.thumb.toLowerCase().endsWith('.mp4') || item.thumb.toLowerCase().endsWith('.webm') || item.thumb.toLowerCase().endsWith('.ogg')) ? (
-                  <video
-                    src={item.thumb}
-                    muted
-                    loop
-                    autoPlay
-                    playsInline
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    title={item.title}
-                  />
-                ) : (
+          {/* Row 1: Ecosystem Dashboard + RailPulse */}
+          <ul className="portfolio-row portfolio-row-1">
+            {filteredItems.filter(item => item.id === 11).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
                   <img src={item.thumb} alt={item.title} />
-                )}
-                <div className="portfolio-overlay">
-                  <div className="portfolio-content">
-                    <div className="portfolio-title">{item.title}</div>
-                    <div className="portfolio-buttons">
-                      <button
-                        className="portfolio-btn"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          handleDetailClick(item)
-                        }}
-                      >
-                        查看详情
-                      </button>
-                      {item.category !== 'video' && (
-                        <button
-                          className="portfolio-btn"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            e.stopPropagation()
-                            if (item.githubUrl) {
-                              handleProjectSourceClick(item.githubUrl)
-                            } else if (item.projectUrl) {
-                              handleProjectSourceClick(item.projectUrl)
-                            }
-                          }}
-                          disabled={!item.projectUrl && !item.githubUrl}
-                          style={{
-                            opacity: (item.projectUrl || item.githubUrl) ? 1 : 0.6,
-                            cursor: (item.projectUrl || item.githubUrl) ? 'pointer' : 'not-allowed'
-                          }}
-                        >
-                          项目来源
-                        </button>
-                      )}
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </figure>
-            </li>
-          ))}
-        </ul>
+                </figure>
+              </li>
+            ))}
+            {filteredItems.filter(item => item.id === 10).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+          </ul>
+
+          {/* Row 2: 华为云 + Business Connect + FridayQuote */}
+          <ul className="portfolio-row portfolio-row-2">
+            {filteredItems.filter(item => item.id === 1).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+            {filteredItems.filter(item => item.id === 4).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+            {filteredItems.filter(item => item.id === 6).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+          </ul>
+
+          {/* Row 3: 华为分析 + 火柴盒 */}
+          <ul className="portfolio-row portfolio-row-3">
+            {filteredItems.filter(item => item.id === 2).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+            {filteredItems.filter(item => item.id === 3).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+          </ul>
+
+          {/* Row 4: Nail Designs */}
+          <ul className="portfolio-row portfolio-row-4">
+            {filteredItems.filter(item => item.id === 5).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
 
       <ImagePreview
