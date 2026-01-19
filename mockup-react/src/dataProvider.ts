@@ -1,8 +1,5 @@
 import type {
   DataProvider,
-  CreateResult,
-  DeleteResult,
-  DeleteManyResult,
   Identifier,
   RaRecord
 } from 'react-admin'
@@ -264,8 +261,13 @@ const localStorageDataProvider: DataProvider = {
     const newId = Date.now().toString()
     const now = new Date().toISOString()
 
-    const newData = {
+    const newData: Project = {
       id: newId,
+      title: processedData.title || '',
+      description: processedData.description || '',
+      category: processedData.category || '',
+      date: processedData.date || now,
+      featured: processedData.featured || false,
       ...processedData,
       status: processedData.status || PROJECT_STATUS.DRAFT,
       createdAt: now,
@@ -280,8 +282,8 @@ const localStorageDataProvider: DataProvider = {
     localStorage.setItem(`${resource}Data`, JSON.stringify(storedData))
 
     return Promise.resolve({
-      data: newData as Project
-    } as CreateResult<Project>)
+      data: newData as any
+    })
   },
 
   // 删除资源
@@ -304,8 +306,8 @@ const localStorageDataProvider: DataProvider = {
     localStorage.setItem(`${resource}Data`, JSON.stringify(storedData))
 
     return Promise.resolve({
-      data: deletedRecord as Project
-    } as DeleteResult<Project>)
+      data: deletedRecord
+    })
   },
 
   // 更新多个资源
@@ -350,12 +352,12 @@ const localStorageDataProvider: DataProvider = {
     localStorage.setItem(`${resource}Data`, JSON.stringify(remainingData))
 
     const deletedIds = deletedRecords
-      .map(record => record.id)
-      .filter((id): id is Identifier => Boolean(id))
+      .map((record: Project) => record.id)
+      .filter((id: Identifier | undefined): id is Identifier => Boolean(id))
 
     return Promise.resolve({
       data: deletedIds
-    } as DeleteManyResult<Project>)
+    })
   }
 }
 

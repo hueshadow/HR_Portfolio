@@ -174,7 +174,7 @@ const PortfolioSync: React.FC<PortfolioSyncProps> = ({ onSyncComplete }) => {
             </Typography>
             <Grid container spacing={2}>
               {portfolioItems.map((item) => (
-                <Grid item xs={12} sm={6} key={item.id}>
+                <Grid size={{ xs: 12, sm: 6 }} key={item.id}>
                   <Card variant="outlined" sx={{ height: '100%' }}>
                     <CardContent sx={{ pb: 1 }}>
                       <Box display="flex" justifyContent="space-between" alignItems="start" mb={1}>

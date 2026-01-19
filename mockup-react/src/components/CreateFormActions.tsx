@@ -34,19 +34,6 @@ const CreateFormActions: React.FC<CreateFormActionsProps> = ({
     }
   }
 
-  const getStatusIcon = (status: ProjectStatus) => {
-    switch (status) {
-      case PROJECT_STATUS.DRAFT:
-        return <DraftIcon />
-      case PROJECT_STATUS.SAVED:
-        return <SaveIcon />
-      case PROJECT_STATUS.PUBLISHED:
-        return <PublishIcon />
-      default:
-        return <SaveIcon />
-    }
-  }
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 3, mb: 2 }}>
       {/* 操作说明 */}

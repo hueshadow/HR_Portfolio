@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import MouseTrailer from './components/MouseTrailer'
 import MobileNav from './components/MobileNav'
@@ -11,6 +11,7 @@ import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
 import ReactAdminDashboard from './components/ReactAdminDashboard'
+import PortfolioOverview from './components/PortfolioOverview'
 
 // 主应用组件
 function AppContent() {
@@ -83,9 +84,9 @@ function AppContent() {
     }
   }
 
-  const toggleNav = () => {
-    setIsNavOpen(!isNavOpen)
-  }
+  const toggleNav = useCallback(() => {
+    setIsNavOpen(prev => !prev)
+  }, [])
 
   useEffect(() => {
     // 添加移动导航切换按钮的事件监听
@@ -102,7 +103,7 @@ function AppContent() {
     return () => {
       document.removeEventListener('click', handleClick)
     }
-  }, [isNavOpen, toggleNav])
+  }, [isNavOpen])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
@@ -236,6 +237,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/admin/*" element={<ReactAdminDashboard />} />
+        <Route path="/work" element={<PortfolioOverview />} />
         <Route path="/*" element={<AppContent />} />
       </Routes>
     </Router>

@@ -167,7 +167,7 @@ console.log('Hello World');
     setShowImportDialog(true)
   }, [])
 
-  const handleImport = useCallback((content: string, filename: string) => {
+  const handleImport = useCallback((content: string) => {
     // 询问用户是替换还是追加内容
     if (value.trim()) {
       // 如果当前有内容，直接替换（可以根据需要添加追加选项）

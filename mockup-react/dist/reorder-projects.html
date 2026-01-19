@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调整项目顺序 - Portfolio Admin Tool</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .project-list {
+            list-style: none;
+            padding: 0;
+        }
+        .project-item {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            cursor: move;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .project-item:hover {
+            background: #f0f0f0;
+        }
+        .project-info {
+            flex: 1;
+        }
+        .project-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .project-id {
+            color: #666;
+            font-size: 12px;
+        }
+        .buttons {
+            display: flex;
+            gap: 5px;
+        }
+        button {
+            padding: 5px 10px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #555;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .save-btn {
+            background: #4CAF50;
+            padding: 12px 24px;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .save-btn:hover {
+            background: #45a049;
+        }
+        .message {
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 4px;
+            display: none;
+        }
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 调整 Portfolio 项目顺序</h1>
+
+        <div class="info">
+            <strong>说明：</strong>使用上下箭头按钮调整项目顺序，调整完成后点击"保存顺序"按钮。
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <ul id="projectList" class="project-list"></ul>
+
+        <button class="save-btn" onclick="saveOrder()">💾 保存顺序</button>
+    </div>
+
+    <script>
+        let projects = [];
+
+        // 加载项目数据
+        function loadProjects() {
+            const projectsData = localStorage.getItem('projectsData');
+            if (projectsData) {
+                projects = JSON.parse(projectsData);
+                renderProjects();
+            } else {
+                showMessage('未找到项目数据。请先访问网站主页加载数据。', 'error');
+            }
+        }
+
+        // 渲染项目列表
+        function renderProjects() {
+            const list = document.getElementById('projectList');
+            list.innerHTML = '';
+
+            projects.forEach((project, index) => {
+                const li = document.createElement('li');
+                li.className = 'project-item';
+                li.innerHTML = `
+                    <div class="project-info">
+                        <div class="project-title">${index + 1}. ${project.title}</div>
+                        <div class="project-id">ID: ${project.id} | Category: ${project.category}</div>
+                    </div>
+                    <div class="buttons">
+                        <button onclick="moveUp(${index})" ${index === 0 ? 'disabled' : ''}>↑</button>
+                        <button onclick="moveDown(${index})" ${index === projects.length - 1 ? 'disabled' : ''}>↓</button>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        // 上移项目
+        function moveUp(index) {
+            if (index > 0) {
+                [projects[index], projects[index - 1]] = [projects[index - 1], projects[index]];
+                renderProjects();
+            }
+        }
+
+        // 下移项目
+        function moveDown(index) {
+            if (index < projects.length - 1) {
+                [projects[index], projects[index + 1]] = [projects[index + 1], projects[index]];
+                renderProjects();
+            }
+        }
+
+        // 保存顺序
+        function saveOrder() {
+            try {
+                localStorage.setItem('projectsData', JSON.stringify(projects));
+                showMessage('✅ 项目顺序已保存！请刷新网站主页查看效果。', 'success');
+
+                // 3秒后自动关闭当前页面
+                setTimeout(() => {
+                    window.close();
+                }, 3000);
+            } catch (error) {
+                showMessage('❌ 保存失败：' + error.message, 'error');
+            }
+        }
+
+        // 显示消息
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = 'message ' + type;
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // 页面加载时初始化
+        window.onload = loadProjects;
+    </script>
+</body>
+</html>
