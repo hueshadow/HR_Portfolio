@@ -85,21 +85,17 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   return (
     <>
         <style>{`
-          /* 大留白非对称布局 - 无限画布风格 */
+          /* 网格布局样式 */
           .portfolio-wrapper {
-            position: relative;
-            min-height: 100vh;
-            padding: 40px 60px 100px;
+            padding: 20px;
           }
 
           .portfolio-container {
             position: relative;
             width: 100%;
-            min-height: 100vh;
           }
 
           .portfolio-container li {
-            position: absolute;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -110,12 +106,12 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             overflow: hidden;
             background: #fff;
             cursor: pointer;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
           }
 
           .portfolio-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
           }
 
           .portfolio-item img,
@@ -148,19 +144,19 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-content {
             text-align: center;
             color: white;
-            padding: 30px;
+            padding: 20px;
           }
 
           .portfolio-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 500;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
           }
 
           .portfolio-buttons {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
           }
@@ -168,11 +164,11 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-btn {
             background: transparent;
             color: white;
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: 1px solid white;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 400;
             transition: all 0.3s ease;
             display: flex;
@@ -186,89 +182,86 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             background: white;
             color: #333;
           }
-
-          /* 响应式 - 手机端恢复正常流式布局 */
-          @media (max-width: 960px) {
-            .portfolio-wrapper {
-              padding: 20px;
-            }
-            .portfolio-container {
-              position: relative !important;
-              height: auto !important;
-            }
-            .portfolio-container li {
-              position: relative !important;
-              width: 100% !important;
-              margin-bottom: 40px !important;
-              left: auto !important;
-              top: auto !important;
-            }
-          }
         `}</style>
         <style>{`
-          /* 项目卡片位置和大小 - 非对称布局 */
-
-          /* RailPulse - 左下，大方块 */
-          .portfolio-container li[data-groups*="10"] {
-            left: 5%;
-            top: 60%;
-            width: 42%;
+          /* 网格布局 */
+          .portfolio-container {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 30px !important;
+            padding: 40px !important;
+            width: 100% !important;
+            max-width: 1600px !important;
+            margin: 0 auto !important;
           }
 
-          /* Ecosystem Dashboard - 右上，高长方形 */
-          .portfolio-container li[data-groups*="11"] {
-            left: 55%;
-            top: 15%;
-            width: 38%;
+          .portfolio-container li {
+            position: relative !important;
+            left: auto !important;
+            top: auto !important;
+            width: 100% !important;
           }
 
-          /* 华为云 - 左侧中等 */
-          .portfolio-container li[data-groups*="1"] {
-            left: 8%;
-            top: 5%;
-            width: 28%;
+          /* 各项目大小 */
+          .portfolio-container li[data-groups*="10"] { /* RailPulse */
+            grid-column: span 2;
+            grid-row: span 2;
           }
 
-          /* 华为分析 - 左中 */
-          .portfolio-container li[data-groups*="2"] {
-            left: 40%;
-            top: 35%;
-            width: 30%;
+          .portfolio-container li[data-groups*="11"] { /* Ecosystem Dashboard */
+            grid-column: span 2;
+            grid-row: span 2;
           }
 
-          /* 火柴盒 - 右中 */
-          .portfolio-container li[data-groups*="3"] {
-            left: 60%;
-            top: 55%;
-            width: 25%;
+          .portfolio-container li[data-groups*="1"], /* 华为云 */
+          .portfolio-container li[data-groups*="2"], /* 华为分析 */
+          .portfolio-container li[data-groups*="3"], /* 火柴盒 */
+          .portfolio-container li[data-groups*="4"], /* Business Connect */
+          .portfolio-container li[data-groups*="5"], /* Nail Designs */
+          .portfolio-container li[data-groups*="6"] { /* FridayQuote */
+            grid-column: span 1;
+            grid-row: span 1;
           }
 
-          /* Business Connect - 右下 */
-          .portfolio-container li[data-groups*="4"] {
-            left: 52%;
-            top: 75%;
-            width: 28%;
-          }
-
-          /* Nail Designs - 左下角小 */
-          .portfolio-container li[data-groups*="5"] {
-            left: 3%;
-            top: 85%;
-            width: 18%;
-          }
-
-          /* FridayQuote - 右下角小 */
-          .portfolio-container li[data-groups*="6"] {
-            left: 85%;
-            top: 80%;
-            width: 12%;
-          }
-
-          /* 视频项目 - 隐藏或移到角落 */
+          /* 视频项目隐藏 */
           .portfolio-container li[data-groups*="7"],
           .portfolio-container li[data-groups*="8"],
           .portfolio-container li[data-groups*="9"] {
             display: none;
+          }
+
+          /* 响应式网格 */
+          @media (max-width: 1200px) {
+            .portfolio-container {
+              grid-template-columns: repeat(3, 1fr) !important;
+            }
+            .portfolio-container li[data-groups*="10"],
+            .portfolio-container li[data-groups*="11"] {
+              grid-column: span 2;
+              grid-row: span 2;
+            }
+          }
+
+          @media (max-width: 960px) {
+            .portfolio-container {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 20px !important;
+              padding: 20px !important;
+            }
+            .portfolio-container li[data-groups*="10"],
+            .portfolio-container li[data-groups*="11"] {
+              grid-column: span 2;
+              grid-row: span 1;
+            }
+          }
+
+          @media (max-width: 600px) {
+            .portfolio-container {
+              grid-template-columns: 1fr !important;
+            }
+            .portfolio-container li {
+              grid-column: span 1 !important;
+            }
           }
         `}</style>
         <style>{`
