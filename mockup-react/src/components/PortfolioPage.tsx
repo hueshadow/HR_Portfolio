@@ -85,20 +85,37 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   return (
     <>
         <style>{`
-          /* 确保页面内容可以正常显示 */
-          .info-section {
-            width: 100%;
-            box-sizing: border-box;
-            display: block;
+          /* 大留白非对称布局 - 无限画布风格 */
+          .portfolio-wrapper {
             position: relative;
+            min-height: 100vh;
+            padding: 40px 60px 100px;
           }
+
+          .portfolio-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+          }
+
+          .portfolio-container li {
+            position: absolute;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+          }
+
           .portfolio-item {
             position: relative;
             overflow: hidden;
-            margin: 0;
-            padding: 0;
-            background: #000;
+            background: #fff;
             cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+          }
+
+          .portfolio-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
           }
 
           .portfolio-item img,
@@ -114,7 +131,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -131,35 +148,36 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-content {
             text-align: center;
             color: white;
-            padding: 20px;
+            padding: 30px;
           }
 
           .portfolio-title {
-            font-size: 18px;
-            font-weight: 400;
-            margin-bottom: 40px;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
           }
 
           .portfolio-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
+            flex-wrap: wrap;
           }
 
           .portfolio-btn {
             background: transparent;
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 1px solid white;
-            border-radius: 0;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 36px;
             position: relative;
             z-index: 10;
           }
@@ -168,13 +186,89 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             background: white;
             color: #333;
           }
+
+          /* 响应式 - 手机端恢复正常流式布局 */
+          @media (max-width: 960px) {
+            .portfolio-wrapper {
+              padding: 20px;
+            }
+            .portfolio-container {
+              position: relative !important;
+              height: auto !important;
+            }
+            .portfolio-container li {
+              position: relative !important;
+              width: 100% !important;
+              margin-bottom: 40px !important;
+              left: auto !important;
+              top: auto !important;
+            }
+          }
         `}</style>
         <style>{`
-          /* 960px以下响应式样式 */
-          @media (max-width: 960px) {
-            .portfolio-item {
-              width: 100% !important;
-            }
+          /* 项目卡片位置和大小 - 非对称布局 */
+
+          /* RailPulse - 左下，大方块 */
+          .portfolio-container li[data-groups*="10"] {
+            left: 5%;
+            top: 60%;
+            width: 42%;
+          }
+
+          /* Ecosystem Dashboard - 右上，高长方形 */
+          .portfolio-container li[data-groups*="11"] {
+            left: 55%;
+            top: 15%;
+            width: 38%;
+          }
+
+          /* 华为云 - 左侧中等 */
+          .portfolio-container li[data-groups*="1"] {
+            left: 8%;
+            top: 5%;
+            width: 28%;
+          }
+
+          /* 华为分析 - 左中 */
+          .portfolio-container li[data-groups*="2"] {
+            left: 40%;
+            top: 35%;
+            width: 30%;
+          }
+
+          /* 火柴盒 - 右中 */
+          .portfolio-container li[data-groups*="3"] {
+            left: 60%;
+            top: 55%;
+            width: 25%;
+          }
+
+          /* Business Connect - 右下 */
+          .portfolio-container li[data-groups*="4"] {
+            left: 52%;
+            top: 75%;
+            width: 28%;
+          }
+
+          /* Nail Designs - 左下角小 */
+          .portfolio-container li[data-groups*="5"] {
+            left: 3%;
+            top: 85%;
+            width: 18%;
+          }
+
+          /* FridayQuote - 右下角小 */
+          .portfolio-container li[data-groups*="6"] {
+            left: 85%;
+            top: 80%;
+            width: 12%;
+          }
+
+          /* 视频项目 - 隐藏或移到角落 */
+          .portfolio-container li[data-groups*="7"],
+          .portfolio-container li[data-groups*="8"],
+          .portfolio-container li[data-groups*="9"] {
+            display: none;
           }
         `}</style>
         <style>{`
@@ -319,28 +413,10 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
         <div className="page-header c12" style={{ paddingBottom: '40px' }}>
           <h1 data-value="PROTECT">PROTECT</h1>
           <hr className={loaded ? 'enabled' : ''} />
-          <PortfolioFilter items={filterItems} onFilterChange={handleFilterChange} />
         </div>
 
-        
-        <h2 className="h2-title" style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          paddingLeft: '20px',
-          paddingRight: '20px',
-          fontFamily: "'Montserrat', sans-serif",
-          textTransform: 'uppercase',
-          fontWeight: 700,
-          fontSize: '28px',
-          letterSpacing: '-2px',
-          marginBottom: '0',
-          lineHeight: '1.8rem',
-          display: 'none'
-        }}>
-          PICTURES
-        </h2>
-
-        <ul className="portfolio-container" style={{ paddingLeft: '20px', paddingRight: '20px', marginBottom: '80px' }}>
+        <div className="portfolio-wrapper">
+          <ul className="portfolio-container">
           {filteredItems.map(item => (
             <li key={item.id} data-groups={`["${item.category}"]`}>
               <figure className="portfolio-item">
@@ -399,6 +475,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             </li>
           ))}
         </ul>
+        </div>
 
       <ImagePreview
         isOpen={previewOpen}
