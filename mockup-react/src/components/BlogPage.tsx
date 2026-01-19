@@ -19,10 +19,10 @@ const BlogPage = ({ loaded }: BlogPageProps) => {
   const blogPosts = [
     {
       id: 1,
-      title: '用户体验全流程（编辑中）',
-      excerpt: '"真正出色的体验，从来不是把信息塞进页面，而是把焦虑从脑海里拿走。" —— Ronn',
-      date: '2025-08-25',
-      author: 'Admin',
+      title: 'UI/UX 设计风格的演变史',
+      excerpt: 'UI/UX 设计风格的演变史，其实不是"审美升级"，而是人和技术的博弈史。从拟物化到扁平化，从沉浸式设计到极简主义，每一次转变都是技术进步与用户需求博弈的结果。',
+      date: '2026-01-19',
+      author: 'HueShadow (@hueshadow989)',
       image: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
       category: '未分类'
     }
