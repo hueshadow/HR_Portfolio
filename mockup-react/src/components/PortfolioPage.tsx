@@ -316,7 +316,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             border-color: inherit;
           }
         `}</style>
-        <div className="page-header c12">
+        <div className="page-header c12" style={{ paddingBottom: '40px' }}>
           <h1 data-value="PROTECT">PROTECT</h1>
           <hr className={loaded ? 'enabled' : ''} />
           <PortfolioFilter items={filterItems} onFilterChange={handleFilterChange} />

@@ -579,22 +579,33 @@ main {
   padding-right: 10px !important; /* 为滚动条留出空间 */
 }
 
+/* Portfolio页面内容可滚动设置 */
+.page#portfolio .content {
+  overflow-y: auto !important;
+  max-height: calc(100vh - 80px) !important; /* 除去页签条高度 */
+  padding-right: 10px !important; /* 为滚动条留出空间 */
+}
+
 /* 自定义滚动条样式 */
-.page#about .content::-webkit-scrollbar {
+.page#about .content::-webkit-scrollbar,
+.page#portfolio .content::-webkit-scrollbar {
   width: 6px;
 }
 
-.page#about .content::-webkit-scrollbar-track {
+.page#about .content::-webkit-scrollbar-track,
+.page#portfolio .content::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
 }
 
-.page#about .content::-webkit-scrollbar-thumb {
+.page#about .content::-webkit-scrollbar-thumb,
+.page#portfolio .content::-webkit-scrollbar-thumb {
   background: var(--px-theme-clr);
   border-radius: 3px;
 }
 
-.page#about .content::-webkit-scrollbar-thumb:hover {
+.page#about .content::-webkit-scrollbar-thumb:hover,
+.page#portfolio .content::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.8);
 }
 
