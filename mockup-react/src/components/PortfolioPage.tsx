@@ -194,48 +194,38 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
         <style>{`
           /* 拼贴画布局 - 每行自定义宽高 */
           .portfolio-row-1 {
-            height: 320px;
+            height: 280px;
           }
           .portfolio-row-1 li {
+            flex: 1 !important;
             aspect-ratio: 16/9 !important;
           }
 
           .portfolio-row-2 {
-            height: 280px;
+            height: 320px;
           }
-          .portfolio-row-2 li:nth-child(1) { /* 华为云 */
-            flex: 1.2 !important;
+          .portfolio-row-2 li:nth-child(1) { /* Nail Designs */
+            flex: 1.5 !important;
             aspect-ratio: 16/9 !important;
           }
-          .portfolio-row-2 li:nth-child(2) { /* Business Connect */
-            flex: 1 !important;
-            aspect-ratio: 1/1 !important;
-          }
-          .portfolio-row-2 li:nth-child(3) { /* FridayQuote */
-            flex: 0.6 !important;
+          .portfolio-row-2 li:nth-child(2) { /* FridayQuote */
+            flex: 0.8 !important;
             aspect-ratio: 9/16 !important;
           }
 
           .portfolio-row-3 {
-            height: 300px;
+            height: 360px;
           }
           .portfolio-row-3 li {
-            aspect-ratio: 16/10 !important;
-          }
-
-          .portfolio-row-4 {
-            height: 340px;
-          }
-          .portfolio-row-4 li {
-            flex: 1 !important;
+            width: 100% !important;
             aspect-ratio: 16/9 !important;
           }
 
-          .portfolio-row-5 {
-            height: 300px;
+          .portfolio-row-4 {
+            height: 360px;
           }
-          .portfolio-row-5 li {
-            flex: 1 !important;
+          .portfolio-row-4 li {
+            width: 100% !important;
             aspect-ratio: 16/9 !important;
           }
 
@@ -251,10 +241,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-row-3 li[data-groups*="9"],
           .portfolio-row-4 li[data-groups*="7"],
           .portfolio-row-4 li[data-groups*="8"],
-          .portfolio-row-4 li[data-groups*="9"],
-          .portfolio-row-5 li[data-groups*="7"],
-          .portfolio-row-5 li[data-groups*="8"],
-          .portfolio-row-5 li[data-groups*="9"] {
+          .portfolio-row-4 li[data-groups*="9"] {
             display: none !important;
           }
 
@@ -263,45 +250,50 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             .portfolio-row-1,
             .portfolio-row-2,
             .portfolio-row-3,
-            .portfolio-row-4,
-            .portfolio-row-5 {
+            .portfolio-row-4 {
               height: auto !important;
               flex-wrap: wrap !important;
             }
-            .portfolio-row-1 li,
-            .portfolio-row-3 li,
-            .portfolio-row-4 li,
-            .portfolio-row-5 li {
+            .portfolio-row-1 li {
               flex: 1 1 45% !important;
               aspect-ratio: 4/3 !important;
               margin: 4px !important;
             }
+            .portfolio-row-2 {
+              height: auto !important;
+            }
             .portfolio-row-2 li:nth-child(1) {
               flex: 1 1 100% !important;
               aspect-ratio: 16/9 !important;
+              margin: 4px !important;
             }
-            .portfolio-row-2 li:nth-child(2),
-            .portfolio-row-2 li:nth-child(3) {
+            .portfolio-row-2 li:nth-child(2) {
               flex: 1 1 45% !important;
-              aspect-ratio: 1/1 !important;
+              aspect-ratio: 9/16 !important;
+              margin: 4px !important;
+            }
+            .portfolio-row-3 li,
+            .portfolio-row-4 li {
+              aspect-ratio: 16/10 !important;
+              margin: 4px !important;
             }
           }
 
           @media (max-width: 600px) {
-            .portfolio-row-1 li,
-            .portfolio-row-3 li,
-            .portfolio-row-4 li,
-            .portfolio-row-5 li {
+            .portfolio-row-1 li {
               flex: 1 1 100% !important;
               aspect-ratio: 3/2 !important;
             }
             .portfolio-row-2 li:nth-child(1) {
               aspect-ratio: 3/2 !important;
             }
-            .portfolio-row-2 li:nth-child(2),
-            .portfolio-row-2 li:nth-child(3) {
+            .portfolio-row-2 li:nth-child(2) {
               flex: 1 1 100% !important;
               aspect-ratio: 3/4 !important;
+            }
+            .portfolio-row-3 li,
+            .portfolio-row-4 li {
+              aspect-ratio: 3/2 !important;
             }
           }
         `}</style>
@@ -450,9 +442,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
         </div>
 
         <div className="portfolio-wrapper">
-          {/* Row 1: Ecosystem Dashboard + RailPulse */}
+          {/* Row 1: 华为云 + 华为分析 + 火柴盒 + Business Connect */}
           <ul className="portfolio-row portfolio-row-1">
-            {filteredItems.filter(item => item.id === 11).map(item => (
+            {filteredItems.filter(item => item.id === 1).map(item => (
               <li key={item.id} data-groups={`["${item.category}"]`}>
                 <figure className="portfolio-item">
                   <img src={item.thumb} alt={item.title} />
@@ -468,7 +460,39 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                 </figure>
               </li>
             ))}
-            {filteredItems.filter(item => item.id === 10).map(item => (
+            {filteredItems.filter(item => item.id === 2).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+            {filteredItems.filter(item => item.id === 3).map(item => (
+              <li key={item.id} data-groups={`["${item.category}"]`}>
+                <figure className="portfolio-item">
+                  <img src={item.thumb} alt={item.title} />
+                  <div className="portfolio-overlay">
+                    <div className="portfolio-content">
+                      <div className="portfolio-title">{item.title}</div>
+                      <div className="portfolio-buttons">
+                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
+                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </li>
+            ))}
+            {filteredItems.filter(item => item.id === 4).map(item => (
               <li key={item.id} data-groups={`["${item.category}"]`}>
                 <figure className="portfolio-item">
                   <img src={item.thumb} alt={item.title} />
@@ -486,25 +510,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             ))}
           </ul>
 
-          {/* Row 2: 华为云 + Business Connect + FridayQuote */}
+          {/* Row 2: Nail Designs + FridayQuote */}
           <ul className="portfolio-row portfolio-row-2">
-            {filteredItems.filter(item => item.id === 1).map(item => (
-              <li key={item.id} data-groups={`["${item.category}"]`}>
-                <figure className="portfolio-item">
-                  <img src={item.thumb} alt={item.title} />
-                  <div className="portfolio-overlay">
-                    <div className="portfolio-content">
-                      <div className="portfolio-title">{item.title}</div>
-                      <div className="portfolio-buttons">
-                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
-                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
-                      </div>
-                    </div>
-                  </div>
-                </figure>
-              </li>
-            ))}
-            {filteredItems.filter(item => item.id === 4).map(item => (
+            {filteredItems.filter(item => item.id === 5).map(item => (
               <li key={item.id} data-groups={`["${item.category}"]`}>
                 <figure className="portfolio-item">
                   <img src={item.thumb} alt={item.title} />
@@ -538,25 +546,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             ))}
           </ul>
 
-          {/* Row 3: 华为分析 + 火柴盒 */}
+          {/* Row 3: Ecosystem Dashboard */}
           <ul className="portfolio-row portfolio-row-3">
-            {filteredItems.filter(item => item.id === 2).map(item => (
-              <li key={item.id} data-groups={`["${item.category}"]`}>
-                <figure className="portfolio-item">
-                  <img src={item.thumb} alt={item.title} />
-                  <div className="portfolio-overlay">
-                    <div className="portfolio-content">
-                      <div className="portfolio-title">{item.title}</div>
-                      <div className="portfolio-buttons">
-                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
-                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
-                      </div>
-                    </div>
-                  </div>
-                </figure>
-              </li>
-            ))}
-            {filteredItems.filter(item => item.id === 3).map(item => (
+            {filteredItems.filter(item => item.id === 11).map(item => (
               <li key={item.id} data-groups={`["${item.category}"]`}>
                 <figure className="portfolio-item">
                   <img src={item.thumb} alt={item.title} />
@@ -574,9 +566,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             ))}
           </ul>
 
-          {/* Row 4: Nail Designs */}
+          {/* Row 4: RailPulse */}
           <ul className="portfolio-row portfolio-row-4">
-            {filteredItems.filter(item => item.id === 5).map(item => (
+            {filteredItems.filter(item => item.id === 10).map(item => (
               <li key={item.id} data-groups={`["${item.category}"]`}>
                 <figure className="portfolio-item">
                   <img src={item.thumb} alt={item.title} />
