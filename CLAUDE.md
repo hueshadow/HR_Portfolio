@@ -294,6 +294,32 @@ npm run auto-preview  # Kill existing vite, start new dev server
 3. Update navigation components if needed
 4. Add corresponding route for detail pages if applicable
 
+### Enabling Scroll for Accordion Pages
+To enable vertical scrolling on a page in the accordion layout (e.g., Portfolio, Blog):
+
+**1. Add CSS to `custom-styles.css`:**
+```css
+.page#<page-id> .content {
+  overflow-y: auto !important;
+  max-height: calc(100vh - 80px) !important;
+  padding-right: 10px !important;
+}
+
+/* Custom scrollbar styles */
+.page#<page-id> .content::-webkit-scrollbar {
+  width: 6px;
+}
+.page#<page-id> .content::-webkit-scrollbar-thumb {
+  background: var(--px-theme-clr);
+  border-radius: 3px;
+}
+```
+
+**2. Add padding to page header in component:**
+```jsx
+<div className="page-header c12" style={{ paddingBottom: '40px' }}>
+```
+
 ### Styling Guidelines
 - Use existing CSS classes from WordPress theme when possible
 - Add React-specific overrides to `custom-styles.css`
