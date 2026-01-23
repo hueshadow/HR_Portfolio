@@ -472,8 +472,8 @@ Business Connect 商家入口平台，为商家提供地图定位、店铺展示
 ---
 
 *Business Connect - 连接商业价值*`,
-    image: '/assets/img/portfolio/Business Connect商家入口.png',
-    thumb: '/assets/img/portfolio/Business Connect商家入口.png',
+    image: '/assets/img/portfolio/Business Connect 地图商家入口.png',
+    thumb: '/assets/img/portfolio/Business Connect 地图商家入口.png',
     technologies: ['React', 'TypeScript', 'Map APIs', 'Data Visualization', 'REST API'],
     projectDate: '2024-08-20',
     featured: true,
