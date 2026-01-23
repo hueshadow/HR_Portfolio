@@ -91,7 +91,8 @@ const ComponentsPreview: React.FC<ComponentsPreviewProps> = ({ isEmbedded = fals
 
   const cardClass = "break-inside-avoid mb-6 w-full";
 
-  const content = (
+  // 直接渲染组件内容
+  const renderContent = () => (
     <>
       {/* Formatting Toolbar Card */}
       <div className={`${cardClass} design-card overflow-hidden transform transition-all hover:scale-[1.02] hover:shadow-md`}>
@@ -433,13 +434,15 @@ const ComponentsPreview: React.FC<ComponentsPreviewProps> = ({ isEmbedded = fals
     </>
   );
 
-  if (isEmbedded) return content;
+  if (isEmbedded) {
+    return renderContent();
+  }
 
   return (
     <div className="w-full h-screen snap-start shrink-0 overflow-y-auto bg-[var(--background-light)] dark:bg-[var(--background-dark)] relative py-20 lg:py-32">
       <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-          {content}
+          {renderContent()}
         </div>
       </div>
     </div>

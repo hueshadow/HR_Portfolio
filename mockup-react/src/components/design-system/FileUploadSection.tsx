@@ -15,7 +15,8 @@ const FileUploadSection: React.FC<FileUploadSectionProps> = ({ isEmbedded = fals
 
   const cardClass = "bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 break-inside-avoid mb-6 transition-all hover:shadow-md";
 
-  const content = (
+  // 直接渲染组件内容
+  const renderContent = () => (
     <>
       {!isEmbedded && (
         <header className="mb-12 text-center col-span-full">
@@ -170,12 +171,12 @@ const FileUploadSection: React.FC<FileUploadSectionProps> = ({ isEmbedded = fals
     </>
   );
 
-  if (isEmbedded) return content;
+  if (isEmbedded) { return renderContent(); }
 
   return (
     <div className={containerClass}>
       <div className={innerWrapperClass}>
-        {content}
+        {renderContent()}
       </div>
     </div>
   );

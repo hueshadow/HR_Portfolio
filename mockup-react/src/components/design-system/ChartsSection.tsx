@@ -77,7 +77,8 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ isEmbedded = false }) => 
     return null;
   };
 
-  const content = (
+  // 直接渲染组件内容
+  const renderContent = () => (
     <>
       {/* Line Chart */}
       <div className={cardClass}>
@@ -218,13 +219,13 @@ const ChartsSection: React.FC<ChartsSectionProps> = ({ isEmbedded = false }) => 
     </>
   );
 
-  if (isEmbedded) return content;
+  if (isEmbedded) { return renderContent(); }
 
   return (
     <div className={containerClass}>
       <div className={innerContainerClass}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {content}
+          {renderContent()}
         </div>
       </div>
     </div>

@@ -7,7 +7,8 @@ interface MosaicDesignSectionProps {
 const MosaicDesignSection: React.FC<MosaicDesignSectionProps> = ({ isEmbedded = false }) => {
   const mosaicCardClass = "design-card p-4 transition-all hover:shadow-md break-inside-avoid mb-6 w-full";
 
-  const content = (
+  // 直接渲染组件内容
+  const renderContent = () => (
     <>
       {/* Table Card - Full Width if embedded, or just part of flow */}
       <div className="w-full design-card overflow-hidden break-inside-avoid mb-6">
@@ -252,13 +253,13 @@ const MosaicDesignSection: React.FC<MosaicDesignSectionProps> = ({ isEmbedded = 
     </>
   );
 
-  if (isEmbedded) return content;
+  if (isEmbedded) { return renderContent(); }
 
   return (
     <div className="w-full min-h-screen snap-start shrink-0 overflow-y-auto bg-[var(--background-light)] dark:bg-[var(--background-dark)] relative">
       <div className="container mx-auto relative z-10 w-full max-w-[1600px] px-6 lg:px-8 pt-20 lg:pt-32">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-          {content}
+          {renderContent()}
         </div>
       </div>
     </div>
