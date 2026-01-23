@@ -23,11 +23,57 @@ const initialPortfolioItems: PortfolioItem[] = [
     id: 2,
     category: 'image',
     title: '华为分析',
-    description: `![华为分析界面1](/assets/img/portfolio/analytics/1.jpg)
+    description: `# Huawei Analytics - Design System
 
-![华为分析界面2](/assets/img/portfolio/analytics/2.jpg)
+**Project Type**: Enterprise Analytics Platform Design System
+**Role**: Lead Designer & Frontend Developer
+**Launch Date**: 2024
 
-![华为分析界面3](/assets/img/portfolio/analytics/3.jpg)`,
+## Overview
+
+华为分析 (Huawei Analytics) 设计系统是一套完整的企业级数据分析平台设计规范，包含丰富的 UI 组件、数据可视化图表和分析工具。该设计系统基于现代设计原则，提供一致的视觉语言和交互体验。
+
+## Key Features
+
+### Component Library
+- **Form Components**: 输入框、按钮、开关、日历、多选框等原子化组件
+- **Navigation**: 标签页、面包屑、分页、步骤指示器
+- **Data Display**: 表格、列表、卡片、通知提醒
+- **Feedback**: 加载状态、空状态、提示消息、对话框
+
+### Data Visualization
+- **Charts**: 折线图、面积图、柱状图、雷达图、饼图、组合图
+- **Indicators**: 进度条、环形图、迷你图、仪表盘
+- **Maps**: 热点地图、分布地图、区域统计图
+
+### Layout System
+- **Mosaic Grid**: 瀑布流布局系统，支持多种卡片尺寸
+- **Dashboard**: 浮动仪表盘组件，可自由组合
+- **Analytics Grid**: 分析型网格布局
+
+### File Management
+- **Drag & Drop**: 拖拽上传组件
+- **Progress**: 上传进度指示
+- **Preview**: 文件预览与缩略图
+
+## Technology Stack
+
+- React 19 with TypeScript
+- recharts - 数据可视化库
+- lucide-react - 图标库
+- CSS Custom Properties - 主题系统
+- Responsive Design - 响应式设计
+
+## Design Principles
+
+1. **一致性**: 所有组件遵循统一的设计语言
+2. **可访问性**: 符合 WCAG 2.1 AA 级标准
+3. **可扩展性**: 支持主题定制和组件扩展
+4. **性能优化**: 注重首屏加载和渲染性能
+
+## Interactive Demo
+
+以下展示华为分析设计系统的核心组件和交互效果：`,
     image: '/assets/img/portfolio/2.jpg',
     thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
     technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL'],

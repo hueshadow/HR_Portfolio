@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
+import { DesignSystemShowcase } from './design-system'
 
 interface PortfolioDetailPageProps {
   onPageChange: (pageId: string) => void
@@ -132,6 +133,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                   allowFullScreen
                   title="Huawei Cloud Project Details"
                 />
+              </div>
+            ) : item.id === 2 ? (
+              <div className="design-system-showcase-container">
+                <DesignSystemShowcase />
               </div>
             ) : (
               <div className="markdown-content">
@@ -527,6 +532,26 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         .markdown-content pre code {
           background: none;
           padding: 0;
+        }
+
+        /* Design System Showcase Container */
+        .design-system-showcase-container {
+          padding: 20px 0;
+        }
+
+        .design-system-showcase-container .design-system-showcase {
+          background: transparent;
+        }
+
+        .design-system-showcase-container .design-system-showcase h2 {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 20px;
+          color: var(--px-theme-clr, #ff6b6b);
+        }
+
+        .design-system-showcase-container .design-system-content {
+          margin-top: 20px;
         }
 
         @media (max-width: 768px) {
