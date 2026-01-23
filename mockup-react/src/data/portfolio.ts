@@ -353,6 +353,264 @@ RailPulse 是一个专业的铁路监控和数据分析平台，为铁路运营�
     externalOnly: true,
     createdAt: '2025-01-15T00:00:00Z',
     updatedAt: '2025-01-19T00:00:00Z'
+  },
+  {
+    id: 12,
+    category: 'image',
+    title: '上海培佳双语',
+    description: `# 上海培佳双语学校官网
+
+**Project Type**: Educational Institution Website
+**Role**: Frontend Development
+**Launch Date**: 2024
+
+## Overview
+
+上海培佳双语学校官方网站，展示学校风貌、教育理念、课程设置等信息。
+
+## Key Features
+
+- School introduction and history
+- Academic programs overview
+- Campus news and announcements
+- Contact information
+- Responsive design for all devices
+
+## Technology Stack
+
+- HTML5 / CSS3
+- JavaScript
+- Responsive Design
+- CMS Integration
+
+---
+
+*Visit: 上海培佳双语学校官网*`,
+    image: '/assets/img/portfolio/上海培佳双语.jpg',
+    thumb: '/assets/img/portfolio/上海培佳双语.jpg',
+    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'CMS'],
+    projectDate: '2024-06-01',
+    featured: false,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-23T00:00:00Z'
+  },
+  {
+    id: 13,
+    category: 'image',
+    title: '一拍机合',
+    description: `# 一拍机合 - 专业摄影服务平台
+
+**Project Type**: Photography Service Platform
+**Role**: Full-Stack Development
+**Launch Date**: 2024
+
+## Overview
+
+一拍机合是一个专业的摄影服务平台，提供摄影师预约、作品展示、在线预订等功能。
+
+## Key Features
+
+- Photographer profiles and portfolios
+- Online booking system
+- Service package selection
+- Gallery showcase
+- Customer reviews and ratings
+
+## Technology Stack
+
+- React
+- Node.js
+- MongoDB
+- Image Processing
+- Payment Integration
+
+---
+
+*一拍机合 - 让摄影更简单*`,
+    image: '/assets/img/portfolio/一拍机合@2x.jpg',
+    thumb: '/assets/img/portfolio/一拍机合@2x.jpg',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Image Processing', 'Payment Gateway'],
+    projectDate: '2024-07-15',
+    featured: true,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-23T00:00:00Z'
+  },
+  {
+    id: 14,
+    category: 'image',
+    title: 'Business Connect 商家入口',
+    description: `# Business Connect - 地图商家入口
+
+**Project Type**: Business Directory Platform
+**Role**: Frontend Development
+**Launch Date**: 2024
+
+## Overview
+
+Business Connect 商家入口平台，为商家提供地图定位、店铺展示、流量分析等服务。
+
+## Key Features
+
+- Business listing management
+- Map-based location services
+- Storefront customization
+- Analytics dashboard
+- Customer engagement tools
+
+## Technology Stack
+
+- React
+- Map API Integration
+- TypeScript
+- Data Visualization
+- RESTful API
+
+---
+
+*Business Connect - 连接商业价值*`,
+    image: '/assets/img/portfolio/Business Connect_地图商家入口.png',
+    thumb: '/assets/img/portfolio/Business Connect_地图商家入口.png',
+    technologies: ['React', 'TypeScript', 'Map APIs', 'Data Visualization', 'REST API'],
+    projectDate: '2024-08-20',
+    featured: true,
+    projectUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-23T00:00:00Z'
+  },
+  {
+    id: 15,
+    category: 'image',
+    title: 'ECP',
+    description: `# ECP - 企业众测平台
+
+**Project Type**: Enterprise Crowdsourcing Platform
+**Role**: Full-Stack Development
+**Launch Date**: 2024
+
+## Overview
+
+华为云企业众测平台 (Enterprise Crowdsourcing Platform)，为企业提供产品测试、用户反馈收集等服务。
+
+## Key Features
+
+- Test project management
+- Bug tracking system
+- User feedback collection
+- Analytics and reporting
+- Team collaboration tools
+
+## Technology Stack
+
+- React
+- TypeScript
+- Node.js
+- PostgreSQL
+- Cloud Services
+
+---
+
+*ECP - 企业级质量保障平台*`,
+    image: '/assets/img/portfolio/ECP.jpg',
+    thumb: '/assets/img/portfolio/ECP.jpg',
+    technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Cloud Computing'],
+    projectDate: '2024-09-10',
+    featured: true,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-23T00:00:00Z'
+  },
+  {
+    id: 16,
+    category: 'image',
+    title: 'LekaHome',
+    description: `# LekaHome - 智能家居平台
+
+**Project Type**: IoT Smart Home Platform
+**Role**: Full-Stack Development
+**Launch Date**: 2024
+
+## Overview
+
+LekaHome 智能家居平台，提供设备控制、场景联动、能耗管理等功能，打造智慧生活体验。
+
+## Key Features
+
+- Device control and management
+- Scene automation
+- Energy monitoring
+- Security system integration
+- Remote access
+
+## Technology Stack
+
+- React
+- IoT Protocols
+- Node.js
+- MQTT
+- Cloud Integration
+
+---
+
+*LekaHome - 智享生活*`,
+    image: '/assets/img/portfolio/LekaHome.jpg',
+    thumb: '/assets/img/portfolio/LekaHome.jpg',
+    technologies: ['React', 'IoT', 'Node.js', 'MQTT', 'Smart Home'],
+    projectDate: '2024-10-05',
+    featured: true,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-23T00:00:00Z'
+  },
+  {
+    id: 17,
+    category: 'image',
+    title: 'Vting',
+    description: `# Vting - 视频直播平台
+
+**Project Type**: Video Streaming Platform
+**Role**: Full-Stack Development
+**Launch Date**: 2024
+
+## Overview
+
+Vting 视频直播平台，提供视频播放、直播推流、互动弹幕、用户社区等功能。
+
+## Key Features
+
+- Video on demand
+- Live streaming
+- Real-time chat/弹幕
+- User profiles
+- Content recommendations
+
+## Technology Stack
+
+- React
+- WebRTC
+- HLS Streaming
+- Node.js
+- Redis
+
+---
+
+*Vting - 畅享视听体验*`,
+    image: '/assets/img/portfolio/Vting.jpg',
+    thumb: '/assets/img/portfolio/Vting.jpg',
+    technologies: ['React', 'WebRTC', 'HLS', 'Node.js', 'Redis'],
+    projectDate: '2024-11-01',
+    featured: true,
+    projectUrl: '',
+    githubUrl: '',
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-23T00:00:00Z'
   }
 ]
 

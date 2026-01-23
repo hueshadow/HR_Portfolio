@@ -31,7 +31,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   ]
 
   // 项目排序（按指定位置）
-  const sortOrder = [1, 2, 4, 3, 5, 6, 10, 11]
+  const sortOrder = [1, 2, 4, 3, 5, 6, 10, 11, 12, 13, 14, 15, 16, 17]
 
   // 过滤并排序的项目（排除视频项目 id=7,8,9）
   const sortedItems = filteredItems
