@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
-import { DesignSystemShowcase } from './design-system'
+import { DesignSystemShowcase } from './DesignSystemShowcase'
 
 interface PortfolioDetailPageProps {
   onPageChange: (pageId: string) => void
