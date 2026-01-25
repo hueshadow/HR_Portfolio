@@ -136,7 +136,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             ) : item.id === 2 ? (
               <div className="design-principles-iframe-container">
                 <iframe
-                  src="http://localhost:3000"
+                  src="http://localhost:3003"
                   style={{
                     width: '100%',
                     height: 'calc(100vh - 200px)',
