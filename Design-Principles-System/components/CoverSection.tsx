@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowDown, Layers, Component } from 'lucide-react';
-import FloatingDashboard from './FloatingDashboard';
 
 const CoverSection: React.FC = () => {
   return (
@@ -55,7 +54,11 @@ const CoverSection: React.FC = () => {
         {/* Right Side: Floating Dashboard */}
         <div className="w-full lg:w-1/2 h-[500px] lg:h-full min-h-[500px] relative flex items-center justify-center perspective-1000 z-10 pointer-events-none lg:pointer-events-auto">
              <div className="relative w-full h-full max-w-[600px] max-h-[500px] scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 origin-center flex items-center justify-center">
-                <FloatingDashboard />
+                <img
+                  src="/analytics-preview.png"
+                  alt="Analytics Dashboard Preview"
+                  className="w-full h-auto object-contain"
+                />
             </div>
         </div>
 
