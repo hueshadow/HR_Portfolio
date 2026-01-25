@@ -614,49 +614,6 @@ LekaHome 智能家居平台，提供设备控制、场景联动、能耗管理�
     githubUrl: '',
     createdAt: '2025-01-23T00:00:00Z',
     updatedAt: '2025-01-23T00:00:00Z'
-  },
-  {
-    id: 17,
-    category: 'image',
-    title: 'Vting',
-    description: `# Vting - 视频直播平台
-
-**Project Type**: Video Streaming Platform
-**Role**: Full-Stack Development
-**Launch Date**: 2024
-
-## Overview
-
-Vting 视频直播平台，提供视频播放、直播推流、互动弹幕、用户社区等功能。
-
-## Key Features
-
-- Video on demand
-- Live streaming
-- Real-time chat/弹幕
-- User profiles
-- Content recommendations
-
-## Technology Stack
-
-- React
-- WebRTC
-- HLS Streaming
-- Node.js
-- Redis
-
----
-
-*Vting - 畅享视听体验*`,
-    image: '/assets/img/portfolio/Vting.jpg',
-    thumb: '/assets/img/portfolio/Vting.jpg',
-    technologies: ['React', 'WebRTC', 'HLS', 'Node.js', 'Redis'],
-    projectDate: '2024-11-01',
-    featured: true,
-    projectUrl: '',
-    githubUrl: '',
-    createdAt: '2025-01-23T00:00:00Z',
-    updatedAt: '2025-01-23T00:00:00Z'
   }
 ]
 
