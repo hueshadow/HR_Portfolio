@@ -79,7 +79,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL'],
     projectDate: '2024-02-20',
     featured: true,
-    projectUrl: 'https://analytics-kit.netlify.app/?id=mv71dg&p=landing',
+    projectUrl: 'http://localhost:5174',
     githubUrl: 'https://developer.huawei.com/consumer/cn/doc/HMSCore-Guides/introduction-0000001050745149',
     createdAt: '2024-02-20T00:00:00Z',
     updatedAt: '2024-12-03T00:00:00Z'
