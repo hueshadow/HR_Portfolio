@@ -133,10 +133,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                   title="Huawei Cloud Project Details"
                 />
               </div>
-            ) : item.id === 2 && item.projectUrl ? (
-              <div className="huawei-analytics-iframe-container">
+            ) : item.id === 2 ? (
+              <div className="design-principles-iframe-container">
                 <iframe
-                  src={item.projectUrl}
+                  src="http://localhost:3000"
                   style={{
                     width: '100%',
                     height: 'calc(100vh - 200px)',
@@ -563,15 +563,15 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           margin-top: 20px;
         }
 
-        /* Huawei Analytics iframe Container */
-        .huawei-analytics-iframe-container {
+        /* Design Principles iframe Container */
+        .design-principles-iframe-container {
           width: 100%;
           background: white;
           padding: 20px;
           border-radius: 8px;
         }
 
-        .huawei-analytics-iframe-container iframe {
+        .design-principles-iframe-container iframe {
           display: block;
           width: 100%;
           height: calc(100vh - 200px);
@@ -581,7 +581,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         }
 
         @media (max-width: 768px) {
-          .huawei-analytics-iframe-container iframe {
+          .design-principles-iframe-container iframe {
             height: calc(100vh - 150px);
             min-height: 600px;
           }
