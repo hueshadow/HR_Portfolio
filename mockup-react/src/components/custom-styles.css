@@ -1424,6 +1424,11 @@ main {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Portfolio 按钮文字居中 */
+.portfolio-btn {
+  text-align: center !important;
+}
+
 /* 移动端优化 */
 @media (max-width: 960px) {
   .portfolio-actions {
