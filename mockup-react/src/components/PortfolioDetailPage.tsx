@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { portfolioManager } from '../data/portfolio'
 import type { PortfolioItem } from '../types/portfolio'
-import DesignSystemShowcase from './design-system/DesignSystemShowcase'
 
 interface PortfolioDetailPageProps {
   onPageChange: (pageId: string) => void
@@ -134,9 +133,19 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                   title="Huawei Cloud Project Details"
                 />
               </div>
-            ) : item.id === 2 ? (
-              <div className="design-system-showcase-container">
-                <DesignSystemShowcase />
+            ) : item.id === 2 && item.projectUrl ? (
+              <div className="huawei-analytics-iframe-container">
+                <iframe
+                  src={item.projectUrl}
+                  style={{
+                    width: '100%',
+                    height: 'calc(100vh - 200px)',
+                    minHeight: '800px',
+                    border: 'none'
+                  }}
+                  allowFullScreen
+                  title={item.title}
+                />
               </div>
             ) : (
               <div className="markdown-content">
@@ -552,6 +561,30 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .design-system-showcase-container .design-system-content {
           margin-top: 20px;
+        }
+
+        /* Huawei Analytics iframe Container */
+        .huawei-analytics-iframe-container {
+          width: 100%;
+          background: white;
+          padding: 20px;
+          border-radius: 8px;
+        }
+
+        .huawei-analytics-iframe-container iframe {
+          display: block;
+          width: 100%;
+          height: calc(100vh - 200px);
+          min-height: 800px;
+          border: 1px solid #e0e0e0;
+          border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+          .huawei-analytics-iframe-container iframe {
+            height: calc(100vh - 150px);
+            min-height: 600px;
+          }
         }
 
         @media (max-width: 768px) {
