@@ -614,6 +614,62 @@ LekaHome 智能家居平台，提供设备控制、场景联动、能耗管理�
     githubUrl: '',
     createdAt: '2025-01-23T00:00:00Z',
     updatedAt: '2025-01-23T00:00:00Z'
+  },
+  {
+    id: 17,
+    category: 'image',
+    title: 'Web3 Vault Wallet',
+    description: `# Web3 Vault Wallet - Decentralized Wallet Platform
+
+**Project Type**: Web3 DeFi Platform
+**Role**: Full-Stack Development
+**Launch Date**: 2025
+
+## Overview
+
+Web3 Vault Wallet is a secure decentralized wallet platform for managing crypto assets and interacting with Web3 applications. Features include wallet creation, token swaps, staking, and DeFi integration.
+
+## Key Features
+
+- Multi-chain wallet support (Ethereum, BSC, Polygon, etc.)
+- Secure seed phrase backup
+- Token swap and exchange
+- Staking and yield farming
+- NFT viewing and management
+- DApp browser integration
+- Gas fee optimization
+- Transaction history and analytics
+
+## Technology Stack
+
+- React / Next.js
+- TypeScript
+- Web3.js / Ethers.js
+- WalletConnect
+- IPFS for decentralized storage
+- Zero-knowledge proofs for privacy
+
+## Security Features
+
+- Hardware wallet integration
+- Multi-signature support
+- Phishing protection
+- Transaction preview and approval
+- Rate limiting and anomaly detection
+
+---
+
+*Secure your digital assets with Web3 Vault Wallet*`,
+    image: '/assets/img/portfolio/web3-vault-wallet.jpg',
+    thumb: '/assets/img/portfolio/web3-vault-wallet.jpg',
+    technologies: ['React', 'TypeScript', 'Web3.js', 'DeFi', 'Blockchain', 'WalletConnect'],
+    projectDate: '2025-01-26',
+    featured: true,
+    projectUrl: 'https://web3-vault-wallet.netlify.app/',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2025-01-26T00:00:00Z',
+    updatedAt: '2025-01-26T00:00:00Z'
   }
 ]
 
