@@ -2187,3 +2187,27 @@ body[class*="ra-"] nav {
     border-color: var(--border-dark);
   }
 }
+
+/* 详情页封面图片清除遮罩效果 */
+.portfolio-detail-wrapper .detail-image img,
+.portfolio-detail-wrapper .project-hero img,
+.portfolio-detail-wrapper .project-media img {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* 清除详情页可能存在的 figcaption 样式影响 */
+.portfolio-detail-wrapper .imghvr-shutter-in-out-diag-2 figcaption {
+  background: transparent !important;
+}
+
+/* 确保详情页的图片不会被任何遮罩类影响 */
+.portfolio-detail-wrapper figure {
+  background: transparent !important;
+}
+
+.portfolio-detail-wrapper figure figcaption {
+  background: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
