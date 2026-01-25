@@ -120,7 +120,22 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                 </a>
               )}
             </div>
-            <div className="markdown-content">
+            {item.id === 2 ? (
+              <div className="design-principles-iframe-container">
+                <iframe
+                  src="https://design-principles-system.netlify.app/"
+                  style={{
+                    width: '100%',
+                    height: 'calc(100vh - 280px)',
+                    minHeight: '700px',
+                    border: 'none'
+                  }}
+                  allowFullScreen
+                  title={item.title}
+                />
+              </div>
+            ) : (
+              <div className="markdown-content">
                 <ReactMarkdown
                   components={{
                     img: ({node, ...props}) => (
@@ -141,6 +156,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                   {item.description}
                 </ReactMarkdown>
               </div>
+            )}
           </div>
         </div>
       </div>
@@ -532,6 +548,23 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .design-system-showcase-container .design-system-content {
           margin-top: 20px;
+        }
+
+        /* Design Principles iframe Container */
+        .design-principles-iframe-container {
+          width: 100%;
+          background: white;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .design-principles-iframe-container iframe {
+          display: block;
+          width: 100%;
+          height: calc(100vh - 280px);
+          min-height: 700px;
+          border: none;
         }
 
         @media (max-width: 768px) {
