@@ -26,7 +26,7 @@ function AppContent() {
     { id: 'home', title: 'Home', number: '01', component: HomePage },
     { id: 'about', title: 'About', number: '02', component: AboutPage },
     { id: 'portfolio', title: 'Portfolio', number: '03', component: PortfolioPage },
-    { id: 'blog', title: 'Blog', number: '04', component: BlogPage },
+    { id: 'blog', title: 'Blog', number: '04', component: BlogPage, hidden: true },
     { id: 'contact', title: 'Contact', number: '05', component: ContactPage }
   ]
 
