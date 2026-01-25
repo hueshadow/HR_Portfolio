@@ -120,35 +120,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                 </a>
               )}
             </div>
-            {item.id === 1 ? (
-              <div className="notion-embed-container">
-                <iframe
-                  src="https://enchanted-durian-d95.notion.site/ebd/2372d787465b80409eb6ddf3db67908c"
-                  style={{
-                    width: '100%',
-                    height: '2000px',
-                    border: 'none'
-                  }}
-                  allowFullScreen
-                  title="Huawei Cloud Project Details"
-                />
-              </div>
-            ) : item.id === 2 ? (
-              <div className="design-principles-iframe-container">
-                <iframe
-                  src="http://localhost:3003"
-                  style={{
-                    width: '100%',
-                    height: 'calc(100vh - 200px)',
-                    minHeight: '800px',
-                    border: 'none'
-                  }}
-                  allowFullScreen
-                  title={item.title}
-                />
-              </div>
-            ) : (
-              <div className="markdown-content">
+            <div className="markdown-content">
                 <ReactMarkdown
                   components={{
                     img: ({node, ...props}) => (
@@ -169,7 +141,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                   {item.description}
                 </ReactMarkdown>
               </div>
-            )}
           </div>
         </div>
       </div>
@@ -561,30 +532,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .design-system-showcase-container .design-system-content {
           margin-top: 20px;
-        }
-
-        /* Design Principles iframe Container */
-        .design-principles-iframe-container {
-          width: 100%;
-          background: white;
-          padding: 20px;
-          border-radius: 8px;
-        }
-
-        .design-principles-iframe-container iframe {
-          display: block;
-          width: 100%;
-          height: calc(100vh - 200px);
-          min-height: 800px;
-          border: 1px solid #e0e0e0;
-          border-radius: 4px;
-        }
-
-        @media (max-width: 768px) {
-          .design-principles-iframe-container iframe {
-            height: calc(100vh - 150px);
-            min-height: 600px;
-          }
         }
 
         @media (max-width: 768px) {
