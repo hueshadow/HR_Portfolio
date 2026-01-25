@@ -660,8 +660,8 @@ Web3 Vault Wallet is a secure decentralized wallet platform for managing crypto 
 ---
 
 *Secure your digital assets with Web3 Vault Wallet*`,
-    image: '/assets/img/portfolio/web3-vault-wallet.jpg',
-    thumb: '/assets/img/portfolio/web3-vault-wallet.jpg',
+    image: '/assets/img/portfolio/web3-vault-wallet.png',
+    thumb: '/assets/img/portfolio/web3-vault-wallet.png',
     technologies: ['React', 'TypeScript', 'Web3.js', 'DeFi', 'Blockchain', 'WalletConnect'],
     projectDate: '2025-01-26',
     featured: true,
