@@ -12,6 +12,15 @@ interface PortfolioPageProps {
   onPageChange: (pageId: string) => void
 }
 
+const getDescriptionPreview = (description: string) => {
+  return description
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/[`*_>#-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const navigate = useNavigate()
   const [filteredItems, setFilteredItems] = useState<typeof portfolioItems>([])
@@ -126,7 +135,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .portfolio-item:hover {
-            transform: scale(1.02);
+            transform: none;
           }
 
           .portfolio-item img,
@@ -137,50 +146,54 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             display: block;
           }
 
-          .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+          .portfolio-media {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-            z-index: 5;
+            aspect-ratio: 3 / 2;
+            overflow: hidden;
+            background: #f2f2f2;
           }
 
-          .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
+          .portfolio-media img,
+          .portfolio-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
           }
 
           .portfolio-content {
-            text-align: center;
-            color: white;
-            padding: 15px;
+            color: #111;
+            padding: 14px;
           }
 
           .portfolio-title {
             font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 10px;
+            font-weight: 600;
+            margin-bottom: 6px;
+          }
+
+          .portfolio-subtitle {
+            font-size: 13px;
+            color: rgba(0,0,0,0.65);
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
           }
 
           .portfolio-buttons {
             display: flex;
             gap: 8px;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
           }
 
           .portfolio-btn {
             background: transparent;
-            color: white;
+            color: #111;
             padding: 6px 14px;
-            border: 1px solid white;
+            border: 1px solid rgba(0,0,0,0.25);
             border-radius: 3px;
             cursor: pointer;
             font-size: 11px;
@@ -192,8 +205,8 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .portfolio-btn:hover {
-            background: white;
-            color: #333;
+            background: rgba(0,0,0,0.06);
+            color: #111;
           }
 
           /* 响应式 */
@@ -358,16 +371,39 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             {sortedItems.map(item => (
               <li key={item.id} data-groups={`["${item.category}"]`}>
                 <figure className="portfolio-item">
-                  <img src={item.thumb} alt={item.title} />
-                  <div className="portfolio-overlay">
-                    <div className="portfolio-content">
-                      <div className="portfolio-title">{item.title}</div>
-                      <div className="portfolio-buttons">
-                        <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDetailClick(item); }}>查看详情</button>
-                        {item.projectUrl && <button className="portfolio-btn" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(item.projectUrl, '_blank'); }}>访问项目</button>}
-                      </div>
-                    </div>
+                  <div className="portfolio-media" onClick={() => handleDetailClick(item)}>
+                    <img src={item.thumb} alt={item.title} />
                   </div>
+                  <figcaption className="portfolio-content">
+                    <div className="portfolio-title">{item.title}</div>
+                    {item.description && (
+                      <div className="portfolio-subtitle">{getDescriptionPreview(item.description)}</div>
+                    )}
+                    <div className="portfolio-buttons">
+                      <button
+                        className="portfolio-btn"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          handleDetailClick(item)
+                        }}
+                      >
+                        查看详情
+                      </button>
+                      {item.projectUrl && (
+                        <button
+                          className="portfolio-btn"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            window.open(item.projectUrl, '_blank')
+                          }}
+                        >
+                          访问项目
+                        </button>
+                      )}
+                    </div>
+                  </figcaption>
                 </figure>
               </li>
             ))}
