@@ -88,7 +88,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       </div>
 
       <div className="portfolio-detail-content">
-        {item.id !== 1 && (
+        {item.id !== 1 && item.id !== 2 && (
           <div className="project-hero">
             <div className="project-media">
               {isVideo ? (
