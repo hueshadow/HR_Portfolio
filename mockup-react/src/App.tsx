@@ -35,15 +35,11 @@ function AppContent() {
   const isAdminPage = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login'
 
   useEffect(() => {
-    // 预加载背景图片
+    // 首屏不阻塞：立即渲染页面，背景图加载完成后仅用于增强动画/样式
+    setIsLoaded(true)
+    document.body.classList.add('hr-loaded')
+
     const image = new Image()
-    image.onload = () => {
-      // 模拟原主题的延迟加载效果
-      setTimeout(() => {
-        setIsLoaded(true)
-        document.body.classList.add('hr-loaded')
-      }, 250)
-    }
     image.src = 'https://photosave.net/2025/09/fa0d5a10405bfab5931f038d97c545e6.png'
   }, [])
 
@@ -140,11 +136,13 @@ function AppContent() {
     }
   }, [isNavOpen, isSidebarOpen, isLoaded, activePageId, isDetailPage, isAdminPage])
 
+  const shouldRenderMouseTrailer = !isAdminPage && !isDetailPage && typeof window !== 'undefined' && window.innerWidth >= 960
+
   // 如果在详情页，只显示相应内容
   if (isDetailPage) {
     return (
       <>
-        <MouseTrailer />
+        {shouldRenderMouseTrailer && <MouseTrailer />}
         <Routes>
           <Route path="/portfolio/:id" element={<PortfolioDetailPage onPageChange={handlePageChange} />} />
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
@@ -156,7 +154,7 @@ function AppContent() {
 
   return (
     <>
-      <MouseTrailer />
+      {shouldRenderMouseTrailer && <MouseTrailer />}
       <MobileNav
         activePageId={activePageId}
         onPageChange={handlePageChange}
@@ -166,7 +164,7 @@ function AppContent() {
         onPageChange={handlePageChange}
       />
 
-      <main style={{ display: isLoaded ? 'block' : 'none' }}>
+      <main>
         {pages.filter(page => !page.hidden).map((page) => {
           const PageComponent = page.component
           return (
