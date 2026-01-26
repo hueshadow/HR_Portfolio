@@ -7,6 +7,7 @@ export interface PortfolioItem {
   thumb: string
   video?: string
   embedUrl?: string
+  embedPreviewImage?: string
   technologies: string[]
   projectDate: string
   featured: boolean

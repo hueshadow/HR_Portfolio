@@ -146,6 +146,16 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                     title={`${item.title} embed`}
                   />
                 </div>
+                {item.embedPreviewImage && (
+                  <a
+                    href={item.embedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="embed-preview"
+                  >
+                    <img src={item.embedPreviewImage} alt={`${item.title} preview`} loading="lazy" />
+                  </a>
+                )}
                 <a
                   href={item.embedUrl}
                   target="_blank"
@@ -624,6 +634,17 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .embed-open-link:hover {
           text-decoration: underline;
+        }
+
+        .embed-preview {
+          display: block;
+          border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .embed-preview img {
+          display: block;
+          width: 100%;
+          height: auto;
         }
 
         @media (max-width: 768px) {
