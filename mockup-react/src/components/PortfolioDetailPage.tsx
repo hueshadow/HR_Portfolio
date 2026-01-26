@@ -134,11 +134,32 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                   title={item.title}
                 />
               </div>
+            ) : item.embedUrl ? (
+              <div className="embed-iframe-container">
+                <div className="embed-iframe-aspect">
+                  <iframe
+                    src={item.embedUrl}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allow="fullscreen"
+                    allowFullScreen
+                    title={`${item.title} embed`}
+                  />
+                </div>
+                <a
+                  href={item.embedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="embed-open-link"
+                >
+                  <i className="fas fa-external-link-alt"></i> 在新窗口打开
+                </a>
+              </div>
             ) : (
               <div className="markdown-content">
                 <ReactMarkdown
                   components={{
-                    img: ({node, ...props}) => (
+                    img: ({ ...props }) => (
                       <img
                         {...props}
                         loading="lazy"
@@ -565,6 +586,44 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           height: calc(100vh - 280px);
           min-height: 700px;
           border: none;
+        }
+
+        .embed-iframe-container {
+          width: 100%;
+          background: white;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .embed-iframe-aspect {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16 / 9;
+          background: #fff;
+        }
+
+        .embed-iframe-aspect iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+          display: block;
+        }
+
+        .embed-open-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 14px;
+          color: var(--px-theme-clr, #ff6b6b);
+          text-decoration: none;
+          font-weight: 600;
+        }
+
+        .embed-open-link:hover {
+          text-decoration: underline;
         }
 
         @media (max-width: 768px) {
