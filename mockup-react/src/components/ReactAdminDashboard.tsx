@@ -39,6 +39,9 @@ import {
 } from 'react-admin'
 import WorkIcon from '@mui/icons-material/Work'
 import LoginIcon from '@mui/icons-material/Login'
+
+import '@fontsource/material-icons-round'
+import './admin-styles.css'
 import AddIcon from '@mui/icons-material/Add'
 import { createTheme } from '@mui/material/styles'
 import {
