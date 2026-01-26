@@ -76,8 +76,8 @@ const initialPortfolioItems: PortfolioItem[] = [
 ## Interactive Demo
 
 以下展示华为分析设计系统的核心组件和交互效果：`,
-    image: '/assets/img/portfolio/2.jpg',
-    thumb: 'https://photosave.net/2025/09/c40993e5c628645f2b35bee5d57f7bf2.jpg',
+    image: 'https://photosave.net/2026/01/d9f9d120c466b80b2d687ca9ecd562f5.png',
+    thumb: 'https://photosave.net/2026/01/d9f9d120c466b80b2d687ca9ecd562f5.png',
     technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL'],
     projectDate: '2024-02-20',
     featured: true,
