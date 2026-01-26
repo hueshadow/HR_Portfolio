@@ -119,7 +119,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .portfolio-grid li {
-            aspect-ratio: 3 / 2 !important;
             list-style: none;
             margin: 0 !important;
             padding: 0 !important;
@@ -131,7 +130,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             background: #fff;
             cursor: pointer;
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
           }
 
           .portfolio-item:hover {
