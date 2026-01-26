@@ -185,6 +185,10 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             cursor: pointer;
             font-size: 11px;
             transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
           }
 
           .portfolio-btn:hover {
