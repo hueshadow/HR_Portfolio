@@ -87,28 +87,30 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
       </div>
 
       <div className="portfolio-detail-content">
-        <div className="project-hero">
-          <div className="project-media">
-            {isVideo ? (
-              <video
-                src={item.image}
-                controls
-                autoPlay={false}
-                muted={false}
-                loop={false}
-                playsInline
-                style={{ width: '100%', height: 'auto', maxHeight: '600px', objectFit: 'cover' }}
-                title={item.title}
-              />
-            ) : (
-              <img
-                src={item.image}
-                alt={item.title}
-                style={{ width: '100%', height: 'auto', maxHeight: '600px', objectFit: 'cover' }}
-              />
-            )}
+        {item.id !== 1 && (
+          <div className="project-hero">
+            <div className="project-media">
+              {isVideo ? (
+                <video
+                  src={item.image}
+                  controls
+                  autoPlay={false}
+                  muted={false}
+                  loop={false}
+                  playsInline
+                  style={{ width: '100%', height: 'auto', maxHeight: '600px', objectFit: 'cover' }}
+                  title={item.title}
+                />
+              ) : (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  style={{ width: '100%', height: 'auto', maxHeight: '600px', objectFit: 'cover' }}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="project-info">
           <div className="project-description">
@@ -146,14 +148,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
                     title={`${item.title} embed`}
                   />
                 </div>
-                <a
-                  href={item.embedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="embed-open-link"
-                >
-                  <i className="fas fa-external-link-alt"></i> 在新窗口打开
-                </a>
               </div>
             ) : (
               <div className="markdown-content">
