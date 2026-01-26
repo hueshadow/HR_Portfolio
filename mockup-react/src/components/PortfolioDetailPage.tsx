@@ -12,6 +12,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const [item, setItem] = useState<PortfolioItem | null>(null)
+  const [embedHeightMode, setEmbedHeightMode] = useState<'normal' | 'tall' | 'fullscreen'>('normal')
 
   useEffect(() => {
     if (id) {
@@ -138,7 +139,30 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
               </div>
             ) : item.embedUrl ? (
               <div className="embed-iframe-container">
-                <div className="embed-iframe-aspect">
+                <div className="embed-toolbar">
+                  <button
+                    type="button"
+                    className={`embed-height-btn ${embedHeightMode === 'normal' ? 'active' : ''}`}
+                    onClick={() => setEmbedHeightMode('normal')}
+                  >
+                    正常
+                  </button>
+                  <button
+                    type="button"
+                    className={`embed-height-btn ${embedHeightMode === 'tall' ? 'active' : ''}`}
+                    onClick={() => setEmbedHeightMode('tall')}
+                  >
+                    加高
+                  </button>
+                  <button
+                    type="button"
+                    className={`embed-height-btn ${embedHeightMode === 'fullscreen' ? 'active' : ''}`}
+                    onClick={() => setEmbedHeightMode('fullscreen')}
+                  >
+                    全屏
+                  </button>
+                </div>
+                <div className={`embed-iframe-frame ${embedHeightMode}`}>
                   <iframe
                     src={item.embedUrl}
                     loading="lazy"
@@ -590,20 +614,71 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .embed-iframe-aspect {
-          position: relative;
+        .embed-toolbar {
+          display: flex;
+          gap: 8px;
+          padding: 10px 12px;
+          border-bottom: 1px solid rgba(0,0,0,0.06);
+          background: rgba(255,255,255,0.9);
+          backdrop-filter: blur(6px);
+        }
+
+        .embed-height-btn {
+          appearance: none;
+          border: 1px solid rgba(0,0,0,0.12);
+          background: #fff;
+          color: #333;
+          border-radius: 999px;
+          padding: 6px 12px;
+          font-weight: 600;
+          cursor: pointer;
+        }
+
+        .embed-height-btn.active {
+          border-color: var(--px-theme-clr, #ff6b6b);
+          color: var(--px-theme-clr, #ff6b6b);
+        }
+
+        .embed-iframe-frame {
           width: 100%;
-          aspect-ratio: 16 / 9;
           background: #fff;
         }
 
-        .embed-iframe-aspect iframe {
-          position: absolute;
-          inset: 0;
+        .embed-iframe-frame iframe {
+          display: block;
           width: 100%;
           height: 100%;
           border: none;
-          display: block;
+        }
+
+        .embed-iframe-frame.normal {
+          height: clamp(900px, calc(100vh - 260px), 1600px);
+        }
+
+        .embed-iframe-frame.tall {
+          height: clamp(1200px, calc(95vh - 220px), 2400px);
+        }
+
+        .embed-iframe-frame.fullscreen {
+          height: calc(100vh - 220px);
+          min-height: 700px;
+        }
+
+        @media (max-width: 768px) {
+          .embed-iframe-frame.normal {
+            height: 80vh;
+            min-height: 700px;
+          }
+
+          .embed-iframe-frame.tall {
+            height: 90vh;
+            min-height: 900px;
+          }
+
+          .embed-iframe-frame.fullscreen {
+            height: 92vh;
+            min-height: 700px;
+          }
         }
 
         .embed-open-link {
