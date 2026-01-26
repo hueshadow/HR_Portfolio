@@ -21,6 +21,18 @@ const getDescriptionPreview = (description: string) => {
     .trim()
 }
 
+const getSubtitle = (item: PortfolioItem) => {
+  const desc = (item.description || '').trim()
+  if (desc) return getDescriptionPreview(desc)
+
+  const tech = (item.technologies || []).filter(Boolean).slice(0, 3)
+  if (tech.length > 0) return tech.join(' · ')
+
+  const cat = (item.category || '').trim()
+  const date = (item.projectDate || '').trim()
+  return [cat, date].filter(Boolean).join(' · ')
+}
+
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const navigate = useNavigate()
   const [filteredItems, setFilteredItems] = useState<typeof portfolioItems>([])
@@ -149,7 +161,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
 
           .portfolio-media {
             width: 100%;
-            aspect-ratio: 3 / 2;
+            height: 200px;
             overflow: hidden;
             background: #f2f2f2;
           }
@@ -165,6 +177,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .portfolio-content {
             color: #111;
             padding: 14px;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
           }
 
           .portfolio-title {
@@ -188,6 +203,11 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             gap: 8px;
             justify-content: flex-start;
             flex-wrap: wrap;
+            margin-top: auto;
+          }
+
+          .portfolio-grid li .portfolio-item {
+            height: 360px;
           }
 
           .portfolio-btn {
@@ -377,9 +397,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                   </div>
                   <figcaption className="portfolio-content">
                     <div className="portfolio-title">{item.title}</div>
-                    {item.description && (
-                      <div className="portfolio-subtitle">{getDescriptionPreview(item.description)}</div>
-                    )}
+                    <div className="portfolio-subtitle">{getSubtitle(item)}</div>
                     <div className="portfolio-buttons">
                       <button
                         className="portfolio-btn"
