@@ -185,8 +185,8 @@ Intuitive interface for exploring, saving, and sharing favorite designs with int
 ---
 
 *Visit the live platform to explore thousands of AI-generated nail art designs.*`,
-    image: '/assets/img/portfolio/5.jpg',
-    thumb: '/assets/img/portfolio/5_s.jpg',
+    image: 'https://photosave.net/2026/01/2a0ef25f860eb15e86eb1dfcb69035c2.png',
+    thumb: 'https://photosave.net/2026/01/2a0ef25f860eb15e86eb1dfcb69035c2.png',
     technologies: ['AI/ML', 'React', 'Computer Vision', 'Cloud Computing', 'AR Technology'],
     projectDate: '2024-11-15',
     featured: true,
