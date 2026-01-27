@@ -10,7 +10,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     title: '华为云',
     description: '华为云费用中心项目',
     image: '/assets/img/portfolio/1.jpg',
-    thumb: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
+    thumb: 'https://photosave.net/2026/01/baac8a58bb237ca7e07e9c4d9082025a.png',
     embedUrl: 'https://enchanted-durian-d95.notion.site/ebd//2372d787465b80409eb6ddf3db67908c',
     embedPreviewImage: '/assets/img/portfolio/1.jpg',
     technologies: ['React', 'TypeScript', 'Node.js', 'CSS3'],
