@@ -166,11 +166,11 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .portfolio-title {
-            font-size: 34px;
+            font-size: 16px;
             font-weight: 700;
-            margin: 0 0 10px;
-            letter-spacing: -0.6px;
-            line-height: 1.15;
+            margin: 0 0 6px;
+            letter-spacing: -0.2px;
+            line-height: 1.2;
           }
 
           .portfolio-subtitle {
@@ -179,7 +179,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             margin: 0 0 16px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             overflow: hidden;
             line-height: 1.6;
           }
@@ -245,19 +245,11 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             .portfolio-grid {
               grid-template-columns: repeat(2, 1fr);
             }
-
-            .portfolio-title {
-              font-size: 28px;
-            }
           }
 
           @media (max-width: 600px) {
             .portfolio-grid {
               grid-template-columns: 1fr;
-            }
-
-            .portfolio-title {
-              font-size: 26px;
             }
           }
         `}</style>
@@ -425,7 +417,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                           handleDetailClick(item)
                         }}
                       >
-                        CHECKLIST
+                        访问项目
                       </button>
                       <button
                         className="portfolio-btn-arrow"
@@ -436,7 +428,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                           handleDetailClick(item)
                         }}
                       >
-                        <span style={{ fontSize: '18px', lineHeight: 1 }}>e001</span>
+                        <span style={{ fontSize: '18px', lineHeight: 1 }}>→</span>
                       </button>
                     </div>
                   </figcaption>
