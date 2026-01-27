@@ -125,7 +125,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             height: auto;
             display: flex;
             flex-direction: column;
-            border-radius: 14px;
+            border-radius: 0;
             border: 1px solid rgba(0,0,0,0.06);
             box-shadow: 0 1px 2px rgba(0,0,0,0.06);
           }
