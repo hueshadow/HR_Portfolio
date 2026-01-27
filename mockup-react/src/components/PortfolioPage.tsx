@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PortfolioFilter from './PortfolioFilter'
 import ImagePreview from './ImagePreview'
 import { usePortfolioCaptionAnimation } from '../hooks/useAnimations'
 import { portfolioManager } from '../data/portfolio'
@@ -35,21 +34,14 @@ const getSubtitle = (item: PortfolioItem) => {
 
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const navigate = useNavigate()
-  const [filteredItems, setFilteredItems] = useState<typeof portfolioItems>([])
+  const [filteredItems, setFilteredItems] = useState<PortfolioItem[]>([])
   const [previewOpen, setPreviewOpen] = useState(false)
   const [previewImage, setPreviewImage] = useState('')
   const [previewVideo, setPreviewVideo] = useState('')
   const [isVideoPreview, setIsVideoPreview] = useState(false)
   const { animateCaption } = usePortfolioCaptionAnimation()
 
-  const [portfolioItems, setPortfolioItems] = useState(portfolioManager.getAll())
-
-  const filterItems = [
-    { id: 'all', label: 'All', target: '*' },
-    { id: 'image', label: 'Image', target: 'image' },
-    { id: 'video', label: 'Video', target: 'video' },
-    { id: '3d', label: '3D', target: '3d' }
-  ]
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>(portfolioManager.getAll())
 
   // 项目排序（按指定位置）
   const sortOrder = [1, 2, 4, 3, 5, 17, 6, 10, 11, 12, 13, 14, 15, 16]
@@ -79,14 +71,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
     }
   }, [active, loaded, animateCaption])
 
-  const handleFilterChange = (filter: string) => {
-    if (filter === '*') {
-      setFilteredItems(portfolioItems)
-    } else {
-      setFilteredItems(portfolioItems.filter(item => item.category === filter))
-    }
-  }
-
   const handleDetailClick = (item: PortfolioItem) => {
     // If item is a video, open video preview directly
     if (item.category === 'video' && item.video) {
@@ -103,10 +87,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
       // Standard behavior: navigate to detail page
       navigate(`/portfolio/${item.id}`)
     }
-  }
-
-  const handleProjectSourceClick = (projectUrl: string) => {
-    window.open(projectUrl, '_blank')
   }
 
   const closePreview = () => {
@@ -145,6 +125,9 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             height: auto;
             display: flex;
             flex-direction: column;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06);
           }
 
           .portfolio-item:hover {
@@ -176,34 +159,39 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
 
           .portfolio-content {
             color: #111;
-            padding: 14px;
+            padding: 18px 18px 14px;
             display: flex;
             flex: 1;
             flex-direction: column;
           }
 
           .portfolio-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 6px;
+            font-size: 34px;
+            font-weight: 700;
+            margin: 0 0 10px;
+            letter-spacing: -0.6px;
+            line-height: 1.15;
           }
 
           .portfolio-subtitle {
-            font-size: 13px;
-            color: rgba(0,0,0,0.65);
-            margin-bottom: 12px;
+            font-size: 14px;
+            color: rgba(17,17,17,0.62);
+            margin: 0 0 16px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             overflow: hidden;
+            line-height: 1.6;
           }
 
           .portfolio-buttons {
             display: flex;
-            gap: 8px;
-            justify-content: flex-start;
-            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
             margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0,0,0,0.06);
           }
 
           .portfolio-grid li .portfolio-item {
@@ -212,22 +200,44 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
 
           .portfolio-btn {
             background: transparent;
-            color: #111;
-            padding: 6px 14px;
-            border: 1px solid rgba(0,0,0,0.25);
-            border-radius: 3px;
+            color: #4f46e5;
+            padding: 10px 0;
+            border: none;
+            border-radius: 0;
             cursor: pointer;
-            font-size: 11px;
-            transition: all 0.2s ease;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             line-height: 1;
+            min-height: 34px;
           }
 
           .portfolio-btn:hover {
-            background: rgba(0,0,0,0.06);
-            color: #111;
+            color: #4338ca;
+          }
+
+          .portfolio-btn-arrow {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: rgba(79,70,229,0.75);
+            transition: transform 0.2s ease, color 0.2s ease;
+            padding: 0;
+          }
+
+          .portfolio-btn-arrow:hover {
+            transform: translateX(2px);
+            color: rgba(79,70,229,1);
           }
 
           /* 响应式 */
@@ -235,11 +245,19 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             .portfolio-grid {
               grid-template-columns: repeat(2, 1fr);
             }
+
+            .portfolio-title {
+              font-size: 28px;
+            }
           }
 
           @media (max-width: 600px) {
             .portfolio-grid {
               grid-template-columns: 1fr;
+            }
+
+            .portfolio-title {
+              font-size: 26px;
             }
           }
         `}</style>
@@ -407,20 +425,19 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                           handleDetailClick(item)
                         }}
                       >
-                        查看详情
+                        CHECKLIST
                       </button>
-                      {item.projectUrl && (
-                        <button
-                          className="portfolio-btn"
-                          onClick={(e) => {
-                            e.preventDefault()
-                            e.stopPropagation()
-                            window.open(item.projectUrl, '_blank')
-                          }}
-                        >
-                          访问项目
-                        </button>
-                      )}
+                      <button
+                        className="portfolio-btn-arrow"
+                        aria-label="Open"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          handleDetailClick(item)
+                        }}
+                      >
+                        <span style={{ fontSize: '18px', lineHeight: 1 }}>e001</span>
+                      </button>
                     </div>
                   </figcaption>
                 </figure>
