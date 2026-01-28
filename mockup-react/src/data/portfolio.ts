@@ -403,48 +403,6 @@ RailPulse 是一个专业的铁路监控和数据分析平台，为铁路运营�
     updatedAt: '2025-01-19T00:00:00Z'
   },
   {
-    id: 12,
-    category: 'image',
-    title: '上海培佳双语',
-    description: `# 上海培佳双语学校官网
-
-**Project Type**: Educational Institution Website
-**Role**: Frontend Development
-**Launch Date**: 2024
-
-## Overview
-
-上海培佳双语学校官方网站，展示学校风貌、教育理念、课程设置等信息。
-
-## Key Features
-
-- School introduction and history
-- Academic programs overview
-- Campus news and announcements
-- Contact information
-- Responsive design for all devices
-
-## Technology Stack
-
-- HTML5 / CSS3
-- JavaScript
-- Responsive Design
-- CMS Integration
-
----
-
-*Visit: 上海培佳双语学校官网*`,
-    image: '/assets/img/portfolio/上海培佳双语.jpg',
-    thumb: '/assets/img/portfolio/上海培佳双语.jpg',
-    technologies: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'CMS'],
-    projectDate: '2024-06-01',
-    featured: false,
-    projectUrl: '',
-    githubUrl: '',
-    createdAt: '2025-01-23T00:00:00Z',
-    updatedAt: '2025-01-23T00:00:00Z'
-  },
-  {
     id: 13,
     category: 'image',
     title: '一拍机合',
