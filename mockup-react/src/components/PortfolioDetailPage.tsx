@@ -617,6 +617,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
 
         .embed-iframe-frame {
           width: 100%;
+          height: clamp(900px, calc(100vh - 260px), 1600px);
           background: #fff;
         }
 
