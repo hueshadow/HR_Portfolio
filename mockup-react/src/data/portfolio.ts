@@ -10,7 +10,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     title: '华为云',
     description: '华为云费用中心项目',
     image: '/assets/img/portfolio/1.jpg',
-    thumb: 'https://photosave.net/2026/01/baac8a58bb237ca7e07e9c4d9082025a.png',
+    thumb: '/assets/img/portfolio/华为云封面图.png',
     embedUrl: 'https://enchanted-durian-d95.notion.site/ebd//2372d787465b80409eb6ddf3db67908c',
     embedPreviewImage: '/assets/img/portfolio/1.jpg',
     technologies: ['React', 'TypeScript', 'Node.js', 'CSS3'],
@@ -76,8 +76,8 @@ const initialPortfolioItems: PortfolioItem[] = [
 ## Interactive Demo
 
 以下展示华为分析设计系统的核心组件和交互效果：`,
-    image: 'https://photosave.net/2026/01/d9f9d120c466b80b2d687ca9ecd562f5.png',
-    thumb: 'https://photosave.net/2026/01/d9f9d120c466b80b2d687ca9ecd562f5.png',
+    image: '/assets/img/portfolio/data_analytics_landing_page_v2.png',
+    thumb: '/assets/img/portfolio/data_analytics_landing_page_v2.png',
     technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL'],
     projectDate: '2024-02-20',
     featured: true,
@@ -185,8 +185,8 @@ Intuitive interface for exploring, saving, and sharing favorite designs with int
 ---
 
 *Visit the live platform to explore thousands of AI-generated nail art designs.*`,
-    image: 'https://photosave.net/2026/01/2a0ef25f860eb15e86eb1dfcb69035c2.png',
-    thumb: 'https://photosave.net/2026/01/2a0ef25f860eb15e86eb1dfcb69035c2.png',
+    image: '/assets/img/portfolio/nail 封面图.png',
+    thumb: '/assets/img/portfolio/nail 封面图.png',
     technologies: ['AI/ML', 'React', 'Computer Vision', 'Cloud Computing', 'AR Technology'],
     projectDate: '2024-11-15',
     featured: true,
