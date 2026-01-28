@@ -52,7 +52,8 @@
       "Bash(pkill:*)",
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_take_screenshot",
-      "mcp__mcpServers__understand_image"
+      "mcp__mcpServers__understand_image",
+      "mcp__playwright__browser_click"
     ],
     "deny": [],
     "ask": []

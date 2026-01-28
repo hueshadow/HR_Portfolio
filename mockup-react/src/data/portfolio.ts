@@ -477,8 +477,8 @@ RailPulse 是一个专业的铁路监控和数据分析平台，为铁路运营�
 ---
 
 *一拍机合 - 让摄影更简单*`,
-    image: '/assets/img/portfolio/一拍机合@2x.jpg',
-    thumb: '/assets/img/portfolio/一拍机合@2x.jpg',
+    image: '/assets/img/portfolio/一拍机合.jpg',
+    thumb: '/assets/img/portfolio/一拍机合.jpg',
     technologies: ['React', 'Node.js', 'MongoDB', 'Image Processing', 'Payment Gateway'],
     projectDate: '2024-07-15',
     featured: true,
