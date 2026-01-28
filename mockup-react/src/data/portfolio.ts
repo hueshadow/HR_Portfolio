@@ -16,7 +16,7 @@ const initialPortfolioItems: PortfolioItem[] = [
     technologies: ['React', 'TypeScript', 'Node.js', 'CSS3'],
     projectDate: '2024-01-15',
     featured: true,
-    projectUrl: 'https://hwcloud.netlify.app/',
+    projectUrl: 'https://cloud-billing.netlify.app/',
     githubUrl: 'https://support.huaweicloud.com/usermanual-billing/bills-topic_new_1000101.html',
     createdAt: '2024-01-15T00:00:00Z',
     updatedAt: '2024-01-15T00:00:00Z'

@@ -12,7 +12,6 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const [item, setItem] = useState<PortfolioItem | null>(null)
-  const [embedHeightMode, setEmbedHeightMode] = useState<'normal' | 'tall' | 'fullscreen'>('normal')
 
   useEffect(() => {
     if (id) {
@@ -139,30 +138,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
               </div>
             ) : item.embedUrl ? (
               <div className="embed-iframe-container">
-                <div className="embed-toolbar">
-                  <button
-                    type="button"
-                    className={`embed-height-btn ${embedHeightMode === 'normal' ? 'active' : ''}`}
-                    onClick={() => setEmbedHeightMode('normal')}
-                  >
-                    正常
-                  </button>
-                  <button
-                    type="button"
-                    className={`embed-height-btn ${embedHeightMode === 'tall' ? 'active' : ''}`}
-                    onClick={() => setEmbedHeightMode('tall')}
-                  >
-                    加高
-                  </button>
-                  <button
-                    type="button"
-                    className={`embed-height-btn ${embedHeightMode === 'fullscreen' ? 'active' : ''}`}
-                    onClick={() => setEmbedHeightMode('fullscreen')}
-                  >
-                    全屏
-                  </button>
-                </div>
-                <div className={`embed-iframe-frame ${embedHeightMode}`}>
+                <div className="embed-iframe-frame">
                   <iframe
                     src={item.embedUrl}
                     loading="lazy"
