@@ -120,12 +120,15 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .project-header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: baseline;
-            gap: 16px;
-            padding-bottom: 12px;
             border-bottom: 1px solid #000;
+            margin-bottom: 12px;
+          }
+
+          .project-meta {
+            font-size: 14px;
+            color: #666;
+            white-space: nowrap;
+            margin-bottom: 4px;
           }
 
           .project-title {
@@ -134,13 +137,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             color: #111;
             margin: 0;
             line-height: 1.3;
-          }
-
-          .project-meta {
-            font-size: 14px;
-            color: #666;
-            white-space: nowrap;
-            flex-shrink: 0;
           }
 
           .project-description {
@@ -216,11 +212,10 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                 key={item.id}
                 onClick={() => handleDetailClick(item)}
               >
-                <div className="project-header">
-                  <span className="project-meta">
-                    {getOrganization(item)} · {getYear(item)}
-                  </span>
-                </div>
+                <div className="project-header"></div>
+                <span className="project-meta">
+                  {getOrganization(item)} · {getYear(item)}
+                </span>
                 <h3 className="project-title">{item.title}</h3>
                 <p className="project-description">
                   {getDescriptionPreview(item.description || '')}
