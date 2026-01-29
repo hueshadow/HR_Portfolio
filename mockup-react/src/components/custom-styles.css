@@ -593,7 +593,7 @@ main {
   background-repeat: no-repeat !important;
   z-index: -1 !important;
   opacity: 0 !important;
-  pointer-events: none !important;
+  pointer-events: auto !important;
   
   /* 创建遮罩层 */
   mask: radial-gradient(

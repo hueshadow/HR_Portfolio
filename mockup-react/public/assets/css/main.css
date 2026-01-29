@@ -361,7 +361,7 @@ main{
   inherits: false;
   initial-value: 0px;
 }
-.home h1{
+.page#home h1{
   opacity: 0;
   transform: translateY(20%);
   background: radial-gradient(circle at var(--x,-250px) var(--y,-250px), #fff var(--size, 0px), var(--px-theme-clr) var(--size, 0px) );
@@ -371,7 +371,7 @@ main{
   -webkit-text-fill-color: transparent;
   transition: --size 0.25s ease, opacity 0.8s ease, transform 0.8s ease;
 }
-.hr-loaded .home h1{
+.hr-loaded .page#home h1{
   opacity: 1;
   transform: translateY(0%);
 }

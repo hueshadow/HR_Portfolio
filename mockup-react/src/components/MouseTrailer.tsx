@@ -81,9 +81,9 @@ const MouseTrailer = () => {
 
         // 缓存DOM查询
         const homeBackground = document.getElementById('home-background')
-        
-        // 更新 h1 元素的 CSS 变量 - 只在hover时执行
-        if (homeBackground && homeBackground.matches(':hover')) {
+
+        // 更新 h1 元素的 CSS 变量 - 始终执行
+        if (homeBackground && homeBackground.closest('.page#home')) {
           document.querySelectorAll('h1').forEach(h1 => {
             const rect = h1.getBoundingClientRect()
             // 使用限制后的鼠标位置
