@@ -97,13 +97,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
     setIsVideoPreview(false)
   }
 
-  
-  // 将项目按两个一组分组，用于添加行分隔线
-  const groupedItems: PortfolioItem[][] = []
-  for (let i = 0; i < sortedItems.length; i += 2) {
-    groupedItems.push(sortedItems.slice(i, i + 2))
-  }
-
   return (
     <>
         <style>{`
@@ -111,21 +104,10 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 48px 40px;
+            gap: 48px;
             width: 100%;
             margin: 0;
             padding: 0;
-          }
-
-          .project-row {
-            display: contents;
-          }
-
-          .row-divider {
-            grid-column: 1 / -1;
-            border: none;
-            border-top: 1px solid #e5e7eb;
-            margin: 12px 0 24px;
           }
 
           .project-card {
@@ -142,6 +124,8 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             justify-content: space-between;
             align-items: baseline;
             gap: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e0e0e0;
           }
 
           .project-title {
@@ -160,8 +144,8 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           }
 
           .project-description {
-            font-size: 15px;
-            color: #444;
+            font-size: 14px;
+            color: #555;
             line-height: 1.6;
             margin: 0;
             display: -webkit-box;
@@ -173,19 +157,19 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 12px;
           }
 
           .project-tag {
-            font-size: 12px;
-            color: #6b7280;
+            font-size: 13px;
+            color: #888;
           }
 
           .project-image {
-            margin-top: 12px;
+            margin-top: 8px;
             border-radius: 8px;
             overflow: hidden;
-            background: #f5f5f5;
+            background: #f8f8f8;
             aspect-ratio: 16 / 10;
           }
 
@@ -205,20 +189,17 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
           @media (max-width: 768px) {
             .projects-grid {
               grid-template-columns: 1fr;
-              gap: 32px;
-            }
-
-            .row-divider {
-              display: none;
+              gap: 40px;
             }
 
             .project-header {
               flex-direction: column;
               gap: 4px;
+              align-items: flex-start;
             }
 
-            .project-meta {
-              font-size: 13px;
+            .project-title {
+              font-size: 16px;
             }
           }
         `}</style>
@@ -229,35 +210,30 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
 
         <div className="portfolio-wrapper">
           <div className="projects-grid">
-            {groupedItems.map((row, rowIndex) => (
-              <div className="project-row" key={rowIndex}>
-                {rowIndex > 0 && <hr className="row-divider" />}
-                {row.map(item => (
-                  <article
-                    className="project-card"
-                    key={item.id}
-                    onClick={() => handleDetailClick(item)}
-                  >
-                    <header className="project-header">
-                      <h3 className="project-title">{item.title}</h3>
-                      <span className="project-meta">
-                        {getOrganization(item)} · {getYear(item)}
-                      </span>
-                    </header>
-                    <p className="project-description">
-                      {getDescriptionPreview(item.description || '')}
-                    </p>
-                    <div className="project-tags">
-                      {(item.technologies || []).slice(0, 4).map(tag => (
-                        <span key={tag} className="project-tag">#{tag}</span>
-                      ))}
-                    </div>
-                    <div className="project-image">
-                      <img src={item.thumb} alt={item.title} loading="lazy" />
-                    </div>
-                  </article>
-                ))}
-              </div>
+            {sortedItems.map(item => (
+              <article
+                className="project-card"
+                key={item.id}
+                onClick={() => handleDetailClick(item)}
+              >
+                <header className="project-header">
+                  <h3 className="project-title">{item.title}</h3>
+                  <span className="project-meta">
+                    {getOrganization(item)} · {getYear(item)}
+                  </span>
+                </header>
+                <p className="project-description">
+                  {getDescriptionPreview(item.description || '')}
+                </p>
+                <div className="project-tags">
+                  {(item.technologies || []).slice(0, 4).map(tag => (
+                    <span key={tag} className="project-tag">#{tag}</span>
+                  ))}
+                </div>
+                <div className="project-image">
+                  <img src={item.thumb} alt={item.title} loading="lazy" />
+                </div>
+              </article>
             ))}
           </div>
         </div>
