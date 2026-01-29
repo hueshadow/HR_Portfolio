@@ -94,7 +94,7 @@ const AboutPage = ({ active, loaded }: AboutPageProps) => {
       content: (
         <div style={{ height: '500px' }}>
           <video
-            src="https://photosave.net/2025/09/39e9be97da2f52a29a639b2d83aed0d9.mp4"
+            src="/assets/img/portfolio/portrait.mp4"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             muted
             loop
