@@ -20,20 +20,13 @@ const getDescriptionPreview = (description: string) => {
     .trim()
 }
 
-// 获取组织/公司名称
-const getOrganization = (item: PortfolioItem): string => {
-  const title = item.title || ''
-  if (title.includes('华为') || title.includes('Huawei')) return '华为'
-  if (title.includes('Business Connect')) return '华为'
-  if (title.includes('ECP')) return '华为云'
-  if (title.includes('Cloud')) return '华为云'
-  return 'Personal'
-}
-
-// 获取年份
-const getYear = (item: PortfolioItem): string => {
+// 获取年份范围
+const getYearRange = (item: PortfolioItem): string => {
   if (!item.projectDate) return ''
-  return item.projectDate.split('-')[0]
+  const year = parseInt(item.projectDate.split('-')[0])
+  // 生成年份范围，假设项目持续1-2年
+  const endYear = year + 1
+  return `${year}-${endYear}`
 }
 
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
