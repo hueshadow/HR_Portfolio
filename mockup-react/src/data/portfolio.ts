@@ -52,6 +52,22 @@ const initialPortfolioItems: PortfolioItem[] = [
     updatedAt: '2024-12-03T00:00:00Z'
   },
   {
+    id: 14,
+    category: 'image',
+    title: 'Business Connect 商家地图端',
+    description: '为商家提供地图定位、门店展示与到店/曝光数据分析能力，强化信息可信呈现与关键动作引导，帮助商家持续优化线上曝光与线下转化。',
+    image: '/assets/img/portfolio/Business Connect 地图商家入口.png',
+    thumb: '/assets/img/portfolio/Business Connect 地图商家入口.png',
+    technologies: ['React', 'TypeScript', 'Map APIs', 'Data Visualization', 'REST API'],
+    projectDate: '2020-08-20',
+    featured: true,
+    projectUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
+    githubUrl: '',
+    externalOnly: true,
+    createdAt: '2025-01-23T00:00:00Z',
+    updatedAt: '2025-01-24T00:00:00Z'
+  },
+  {
     id: 4,
     category: '3d',
     title: '海外商家入驻平台',
@@ -192,22 +208,6 @@ const initialPortfolioItems: PortfolioItem[] = [
     githubUrl: '',
     createdAt: '2025-01-23T00:00:00Z',
     updatedAt: '2025-01-23T00:00:00Z'
-  },
-  {
-    id: 14,
-    category: 'image',
-    title: 'Business Connect 商家地图端',
-    description: '为商家提供地图定位、门店展示与到店/曝光数据分析能力，强化信息可信呈现与关键动作引导，帮助商家持续优化线上曝光与线下转化。',
-    image: '/assets/img/portfolio/Business Connect 地图商家入口.png',
-    thumb: '/assets/img/portfolio/Business Connect 地图商家入口.png',
-    technologies: ['React', 'TypeScript', 'Map APIs', 'Data Visualization', 'REST API'],
-    projectDate: '2020-08-20',
-    featured: true,
-    projectUrl: 'https://dre.bizconnect.huawei.com/#/homepage',
-    githubUrl: '',
-    externalOnly: true,
-    createdAt: '2025-01-23T00:00:00Z',
-    updatedAt: '2025-01-24T00:00:00Z'
   },
   {
     id: 15,
