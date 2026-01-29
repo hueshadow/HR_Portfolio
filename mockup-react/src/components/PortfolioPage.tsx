@@ -121,11 +121,11 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
 
           .project-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: baseline;
             gap: 16px;
             padding-bottom: 12px;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid #000;
           }
 
           .project-title {
@@ -217,11 +217,11 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                 onClick={() => handleDetailClick(item)}
               >
                 <div className="project-header">
-                  <h3 className="project-title">{item.title}</h3>
                   <span className="project-meta">
                     {getOrganization(item)} · {getYear(item)}
                   </span>
                 </div>
+                <h3 className="project-title">{item.title}</h3>
                 <p className="project-description">
                   {getDescriptionPreview(item.description || '')}
                 </p>
