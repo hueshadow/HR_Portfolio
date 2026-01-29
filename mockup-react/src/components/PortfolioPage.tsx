@@ -29,6 +29,17 @@ const getYearRange = (item: PortfolioItem): string => {
   return `${year}-${endYear}`
 }
 
+// 获取年份
+const getYear = (item: PortfolioItem): string => {
+  if (!item.projectDate) return ''
+  return item.projectDate.split('-')[0]
+}
+
+// 获取组织/公司（暂时返回空字符串）
+const getOrganization = (_item: PortfolioItem): string => {
+  return ''
+}
+
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const navigate = useNavigate()
   const [filteredItems, setFilteredItems] = useState<PortfolioItem[]>([])
