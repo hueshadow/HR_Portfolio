@@ -33,8 +33,8 @@ const BlogDetailPage = ({ onPageChange }: BlogDetailPageProps) => {
 <p>通过可用性测试、A/B测试等方法，不断优化产品体验，确保最终产品能够真正满足用户需求。</p>
 
 <blockquote>
-  <p>"Design is not just what it looks like and feels like. Design is how it works."</p>
-  <cite>— Steve Jobs</cite>
+  <p>"设计不仅仅是外观和感觉。设计是它如何运作。"</p>
+  <cite>— 史蒂夫·乔布斯</cite>
 </blockquote>
 `,
       date: '2025-08-25',
@@ -50,7 +50,7 @@ const BlogDetailPage = ({ onPageChange }: BlogDetailPageProps) => {
     return (
       <div className="blog-detail-wrapper">
         <div className="page-header c12">
-          <h1 data-value="BLOG DETAIL">BLOG DETAIL</h1>
+          <h1 data-value="博客详情">博客详情</h1>
           <hr />
         </div>
         <div className="blog-detail-content">
@@ -74,7 +74,7 @@ const BlogDetailPage = ({ onPageChange }: BlogDetailPageProps) => {
             </button>
           </div>
           <div className="header-title">
-            <h1 data-value="BLOG DETAIL">BLOG DETAIL</h1>
+            <h1 data-value="博客详情">博客详情</h1>
           </div>
         </div>
         <hr />
@@ -86,9 +86,9 @@ const BlogDetailPage = ({ onPageChange }: BlogDetailPageProps) => {
           <div className="blog-post-meta">
             <h1 className="blog-detail-title">{post.title}</h1>
             <div className="entry-meta">
-              <span>By {post.author}</span>
+              <span>作者：{post.author}</span>
               <span>
-                <time className="entry-date">{new Date(post.date).toLocaleDateString()}</time>
+                <time className="entry-date">{new Date(post.date).toLocaleDateString('zh-CN')}</time>
               </span>
               <span className="cat-links">{post.category}</span>
             </div>

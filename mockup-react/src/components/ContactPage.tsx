@@ -31,20 +31,20 @@ const ContactPage = ({ loaded }: ContactPageProps) => {
   return (
     <>
         <div className="page-header c12">
-          <h1 data-value="Get It Touch">Get It Touch</h1>
+          <h1 data-value="联系我">联系我</h1>
           <hr className={loaded ? 'enabled' : ''} />
         </div>
 
         <div className="row">
           <div className="c6">
-            <h2>Message Me</h2>
+            <h2>给我留言</h2>
             <p>
-              A design girl who loves dancing and sports and lives in Suzhou. She hopes to meet creators from all over the world and communicate with each other.
+              一个热爱舞蹈和运动的设计女孩，现居苏州。希望能与来自世界各地的创作者相遇，互相交流学习。
             </p>
           </div>
-          
+
           <div className="c6">
-            <h2>My Details</h2>
+            <h2>联系方式</h2>
             <ul className="contact-details">
               <li>
                 <div className="icon-holder">
@@ -56,13 +56,13 @@ const ContactPage = ({ loaded }: ContactPageProps) => {
                 <div className="icon-holder">
                   <i className="fas fa-map-marker-alt"></i>
                 </div>
-                <span>Eton Town, Suzhou, China</span>
+                <span>中国苏州</span>
               </li>
               <li>
                 <div className="icon-holder">
                   <i className="fas fa-clock"></i>
                 </div>
-                <span>Mon - Fri 9AM to 5PM</span>
+                <span>周一至周五 9:00 - 17:00</span>
               </li>
             </ul>
           </div>
@@ -70,7 +70,7 @@ const ContactPage = ({ loaded }: ContactPageProps) => {
 
         <div className="row">
           <div className="c6"></div>
-          
+
           <div className="c6">
             <form id="frmContact" onSubmit={handleSubmit}>
               <div>
@@ -78,45 +78,45 @@ const ContactPage = ({ loaded }: ContactPageProps) => {
                   type="text"
                   name="userName"
                   id="userName"
-                  placeholder="Your Name"
+                  placeholder="您的姓名"
                   value={formData.userName}
                   onChange={handleInputChange}
                   required
                 />
                 <span id="userName-info" className="info"></span>
               </div>
-              
+
               <div>
                 <input
                   type="email"
                   name="userEmail"
                   id="userEmail"
-                  placeholder="Your Email"
+                  placeholder="您的邮箱"
                   value={formData.userEmail}
                   onChange={handleInputChange}
                   required
                 />
                 <span id="userEmail-info" className="info"></span>
               </div>
-              
+
               <div>
                 <input
                   type="text"
                   name="subject"
                   id="subject"
-                  placeholder="Subject"
+                  placeholder="主题"
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
                 />
                 <span id="subject-info" className="info"></span>
               </div>
-              
+
               <div>
                 <textarea
                   name="content"
                   id="content"
-                  placeholder="Your Message"
+                  placeholder="您的留言"
                   rows={5}
                   value={formData.content}
                   onChange={handleInputChange}
@@ -124,13 +124,13 @@ const ContactPage = ({ loaded }: ContactPageProps) => {
                 ></textarea>
                 <span id="content-info" className="info"></span>
               </div>
-              
+
               <div>
                 <button type="submit" id="send">
-                  Send Message <i className="fas fa-paper-plane"></i>
+                  发送消息 <i className="fas fa-paper-plane"></i>
                 </button>
               </div>
-              
+
               <div id="mail-status"></div>
             </form>
           </div>

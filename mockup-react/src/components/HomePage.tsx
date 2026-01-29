@@ -87,18 +87,18 @@ const HomePage = ({ active }: HomePageProps) => {
       ></div>
       
       <div>
-        <h1 className="mega" data-value="I'm HUANG">I'm HUANG</h1>
-        <h1 className="mega" data-value="Ronn.">Ronn.</h1>
+        <h1 className="mega" data-value="我是黄">我是黄</h1>
+        <h1 className="mega" data-value="蓉。">蓉。</h1>
         <h1 className="delta">
-          I'm a freelance <TypeWriter 
-            texts={['UX designer.', 'Product development.', 'Coffee Drinker.']}
+          我是一名 <TypeWriter
+            texts={['用户体验设计师。', '产品开发者。', '咖啡爱好者。']}
             typingSpeed={100}
             deletingSpeed={50}
             delayBetweenTexts={2000}
             className="write"
           /><span className="typed-cursor">|</span>
           <br />
-          From CHINA.
+          来自中国。
         </h1>
       </div>
     </>

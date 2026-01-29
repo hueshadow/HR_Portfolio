@@ -33,10 +33,10 @@ function TopNav() {
     <nav className="po-nav">
       <a href="/" className="nav-logo">HueShadow</a>
       <div className="nav-links">
-        <a href="/work">Work</a>
-        <a href="/resume">Resume</a>
+        <a href="/work">作品</a>
+        <a href="/resume">简历</a>
         <a href="https://linkedin.com/in/hueshadow" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="mailto:hello@hueshadow.com">Email</a>
+        <a href="mailto:hello@hueshadow.com">邮箱</a>
       </div>
     </nav>
   )
@@ -73,7 +73,7 @@ function FilterControls({
         onClick={() => setIsExpanded(!isExpanded)}
         aria-expanded={isExpanded}
       >
-        {isExpanded ? 'Hide filters' : 'Show filters'}
+        {isExpanded ? '隐藏筛选' : '显示筛选'}
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5">
           <polyline points={isExpanded ? "2,8 6,4 10,8" : "2,4 6,8 10,4"} />
         </svg>
@@ -84,7 +84,7 @@ function FilterControls({
           <div className="filter-row">
             <input
               type="text"
-              placeholder="Search projects..."
+              placeholder="搜索项目..."
               value={search}
               onChange={(e) => onSearchChange(e.target.value)}
               className="filter-search"
@@ -102,14 +102,14 @@ function FilterControls({
             </div>
           </div>
           <div className="filter-sort">
-            <span className="sort-label">Sort:</span>
+            <span className="sort-label">排序：</span>
             {(['featured', 'newest', 'az'] as SortOption[]).map(option => (
               <button
                 key={option}
                 className={`sort-btn ${sortBy === option ? 'active' : ''}`}
                 onClick={() => onSortChange(option)}
               >
-                {option === 'az' ? 'A-Z' : option.charAt(0).toUpperCase() + option.slice(1)}
+                {option === 'featured' ? '精选' : option === 'newest' ? '最新' : 'A-Z'}
               </button>
             ))}
           </div>
@@ -161,10 +161,10 @@ function Hero() {
   return (
     <header className="po-hero">
       <p className="po-intro">
-        I&apos;m a product designer and developer focused on creating meaningful digital experiences.
-        Currently working on design systems and interactive web applications.
-        Previously at Huawei Cloud, building data visualization tools and developer platforms.
-        Based in Shenzhen, China.
+        我是一名产品设计师和开发者，专注于创造有意义的数字体验。
+        目前致力于设计系统和交互式 Web 应用的开发。
+        曾在华为云工作，负责数据可视化工具和开发者平台的设计。
+        现居中国深圳。
       </p>
       <hr className="po-divider" />
     </header>
@@ -269,13 +269,13 @@ export function PortfolioOverview() {
 
           {projects.length === 0 && (
             <div className="po-empty">
-              <p>No projects found.</p>
+              <p>未找到项目。</p>
               {search && (
                 <button
                   className="clear-search"
                   onClick={() => setSearch('')}
                 >
-                  Clear search
+                  清除搜索
                 </button>
               )}
             </div>

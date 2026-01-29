@@ -51,17 +51,17 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
             <button onClick={handleBackToPortfolio} className="back-button">
               <i className="fas fa-arrow-left"></i> 返回
             </button>
-            <h1 data-value="PROJECT DETAIL">PROJECT DETAIL</h1>
+            <h1 data-value="项目详情">项目详情</h1>
           </div>
           <hr className="enabled" />
         </div>
 
         <div className="portfolio-detail-default">
           <div className="not-found">
-            <h2>Project Not Found</h2>
-            <p>The requested portfolio item could not be found.</p>
+            <h2>项目未找到</h2>
+            <p>请求的作品项目不存在。</p>
             <button onClick={handleBackToPortfolio} className="back-to-portfolio">
-              Back to Portfolio
+              返回作品集
             </button>
           </div>
         </div>
@@ -81,7 +81,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
           <button onClick={handleBackToPortfolio} className="back-button">
             <i className="fas fa-arrow-left"></i> 返回
           </button>
-          <h1 data-value={`${item.title} PROJECT DETAIL`}>{item.title} PROJECT DETAIL</h1>
+          <h1 data-value={`${item.title} 项目详情`}>{item.title} 项目详情</h1>
         </div>
         <hr className="enabled" />
       </div>
@@ -115,10 +115,10 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
         <div className="project-info">
           <div className="project-description">
             <div className="description-header">
-              <h3>Project Description</h3>
+              <h3>项目描述</h3>
               {item.projectUrl && (
                 <a href={item.projectUrl} target="_blank" rel="noopener noreferrer" className="view-project-link">
-                  <i className="fas fa-external-link-alt"></i> View Project
+                  <i className="fas fa-external-link-alt"></i> 查看项目
                 </a>
               )}
             </div>

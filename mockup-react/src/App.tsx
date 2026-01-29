@@ -23,11 +23,11 @@ function AppContent() {
   
   // 页面配置数组
   const pages = [
-    { id: 'home', title: 'Home', number: '01', component: HomePage },
-    { id: 'about', title: 'About', number: '02', component: AboutPage },
-    { id: 'portfolio', title: 'Portfolio', number: '03', component: PortfolioPage },
-    { id: 'blog', title: 'Blog', number: '04', component: BlogPage, hidden: true },
-    { id: 'contact', title: 'Contact', number: '05', component: ContactPage }
+    { id: 'home', title: '首页', number: '01', component: HomePage },
+    { id: 'about', title: '关于', number: '02', component: AboutPage },
+    { id: 'portfolio', title: '作品', number: '03', component: PortfolioPage },
+    { id: 'blog', title: '博客', number: '04', component: BlogPage, hidden: true },
+    { id: 'contact', title: '联系', number: '05', component: ContactPage }
   ]
 
   // 检查是否在详情页或管理页

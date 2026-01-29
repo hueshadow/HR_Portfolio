@@ -31,7 +31,7 @@ const BlogPage = ({ loaded }: BlogPageProps) => {
   return (
     <>
       <div className="page-header c12">
-        <h1 data-value="Project description">Project description</h1>
+        <h1 data-value="博客文章">博客文章</h1>
         <span className="toggle-sidebar"><i></i></span>
         <hr className={loaded ? 'enabled' : ''}></hr>
       </div>
@@ -49,7 +49,7 @@ const BlogPage = ({ loaded }: BlogPageProps) => {
             <img alt={post.title} src={post.image}></img>
             <span className="date">
               <span className="day">{new Date(post.date).getDate()}</span>
-              {new Date(post.date).toLocaleString('en-US', { month: 'long', year: 'numeric' })}
+              {new Date(post.date).toLocaleString('zh-CN', { month: 'long', year: 'numeric' })}
             </span>
           </a>
           <h2 className="gamma entry-title">
@@ -65,8 +65,8 @@ const BlogPage = ({ loaded }: BlogPageProps) => {
           </h2>
           <p>{post.excerpt}</p>
           <div className="entry-meta">
-            <span>By {post.author}</span>
-            <span><time className="entry-date">{new Date(post.date).toLocaleDateString()}</time></span>
+            <span>作者：{post.author}</span>
+            <span><time className="entry-date">{new Date(post.date).toLocaleDateString('zh-CN')}</time></span>
             <span className="cat-links">{post.category}</span>
             <a
               className="readmore"
@@ -76,7 +76,7 @@ const BlogPage = ({ loaded }: BlogPageProps) => {
                 handlePostClick(post.id)
               }}
             >
-              Read more
+              阅读更多
             </a>
           </div>
         </div>
