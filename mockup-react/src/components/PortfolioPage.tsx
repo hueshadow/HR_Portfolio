@@ -124,11 +124,18 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             margin-bottom: 12px;
           }
 
+          .project-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
+          }
+
           .project-meta {
             font-size: 14px;
             color: #666;
             white-space: nowrap;
-            margin-bottom: 4px;
+            flex-shrink: 0;
           }
 
           .project-title {
@@ -148,17 +155,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             overflow: hidden;
-          }
-
-          .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-          }
-
-          .project-tag {
-            font-size: 13px;
-            color: #888;
           }
 
           .project-image {
@@ -213,18 +209,15 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                 onClick={() => handleDetailClick(item)}
               >
                 <div className="project-header"></div>
-                <span className="project-meta">
-                  {getOrganization(item)} · {getYear(item)}
-                </span>
-                <h3 className="project-title">{item.title}</h3>
+                <div className="project-title-row">
+                  <h3 className="project-title">{item.title}</h3>
+                  <span className="project-meta">
+                    {getOrganization(item)} · {getYear(item)}
+                  </span>
+                </div>
                 <p className="project-description">
                   {getDescriptionPreview(item.description || '')}
                 </p>
-                <div className="project-tags">
-                  {(item.technologies || []).slice(0, 4).map(tag => (
-                    <span key={tag} className="project-tag">#{tag}</span>
-                  ))}
-                </div>
                 <div className="project-image">
                   <img src={item.thumb} alt={item.title} loading="lazy" />
                 </div>
