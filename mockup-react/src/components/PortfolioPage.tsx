@@ -20,16 +20,20 @@ const getDescriptionPreview = (description: string) => {
     .trim()
 }
 
-const getSubtitle = (item: PortfolioItem) => {
-  const desc = (item.description || '').trim()
-  if (desc) return getDescriptionPreview(desc)
+// 获取组织/公司名称
+const getOrganization = (item: PortfolioItem): string => {
+  const title = item.title || ''
+  if (title.includes('华为') || title.includes('Huawei')) return '华为'
+  if (title.includes('Business Connect')) return '华为'
+  if (title.includes('ECP')) return '华为云'
+  if (title.includes('Cloud')) return '华为云'
+  return 'Personal'
+}
 
-  const tech = (item.technologies || []).filter(Boolean).slice(0, 3)
-  if (tech.length > 0) return tech.join(' · ')
-
-  const cat = (item.category || '').trim()
-  const date = (item.projectDate || '').trim()
-  return [cat, date].filter(Boolean).join(' · ')
+// 获取年份
+const getYear = (item: PortfolioItem): string => {
+  if (!item.projectDate) return ''
+  return item.projectDate.split('-')[0]
 }
 
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
@@ -40,8 +44,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const [previewVideo, setPreviewVideo] = useState('')
   const [isVideoPreview, setIsVideoPreview] = useState(false)
   const { animateCaption } = usePortfolioCaptionAnimation()
-
-  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>(portfolioManager.getAll())
 
   // 项目排序（按指定位置）
   const sortOrder = [1, 2, 4, 3, 5, 17, 6, 10, 11, 12, 13, 14, 15, 16]
@@ -58,7 +60,6 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
     })
 
   useEffect(() => {
-    setPortfolioItems(portfolioManager.getAll())
     setFilteredItems(portfolioManager.getAll())
   }, [])
 
@@ -97,345 +98,168 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   }
 
   
+  // 将项目按两个一组分组，用于添加行分隔线
+  const groupedItems: PortfolioItem[][] = []
+  for (let i = 0; i < sortedItems.length; i += 2) {
+    groupedItems.push(sortedItems.slice(i, i + 2))
+  }
+
   return (
     <>
         <style>{`
-          /* 网格布局 - 一行3张卡片，1:1比例 */
-          .portfolio-grid {
+          /* 极简两列网格布局 */
+          .projects-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 40px;
             width: 100%;
             margin: 0;
             padding: 0;
           }
 
-          .portfolio-grid li {
-            list-style: none;
-            margin: 0 !important;
-            padding: 0 !important;
+          .project-row {
+            display: contents;
           }
 
-          .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            background: #fff;
+          .row-divider {
+            grid-column: 1 / -1;
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 12px 0 24px;
+          }
+
+          .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             cursor: pointer;
-            width: 100%;
-            height: auto;
+            padding: 0;
+            background: transparent;
+          }
+
+          .project-header {
             display: flex;
-            flex-direction: column;
-            border-radius: 0;
-            border: 1px solid rgba(0,0,0,0.06);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 16px;
           }
 
-          .portfolio-item:hover {
-            transform: none;
-          }
-
-          .portfolio-item img,
-          .portfolio-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-          }
-
-          .portfolio-media {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            background: #f2f2f2;
-          }
-
-          .portfolio-media img,
-          .portfolio-media video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-          }
-
-          .portfolio-content {
+          .project-title {
+            font-size: 18px;
+            font-weight: 600;
             color: #111;
-            padding: 18px 18px 14px;
-            display: flex;
-            flex: 1;
-            flex-direction: column;
+            margin: 0;
+            line-height: 1.3;
           }
 
-          .portfolio-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin: 0 0 6px;
-            letter-spacing: -0.2px;
-            line-height: 1.2;
-          }
-
-          .portfolio-subtitle {
+          .project-meta {
             font-size: 14px;
-            color: rgba(17,17,17,0.62);
-            margin: 0 0 16px;
+            color: #666;
+            white-space: nowrap;
+            flex-shrink: 0;
+          }
+
+          .project-description {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+            margin: 0;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             overflow: hidden;
-            line-height: 1.6;
           }
 
-          .portfolio-buttons {
+          .project-tags {
             display: flex;
-            gap: 10px;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-            padding-top: 12px;
-            border-top: 1px solid rgba(0,0,0,0.06);
+            flex-wrap: wrap;
+            gap: 8px;
           }
 
-          .portfolio-grid li .portfolio-item {
-            height: 360px;
+          .project-tag {
+            font-size: 12px;
+            color: #6b7280;
           }
 
-          .portfolio-btn {
-            background: transparent;
-            color: #4f46e5;
-            padding: 10px 0;
-            border: none;
-            border-radius: 0;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-            transition: color 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: flex-start;
-            line-height: 1;
-            min-height: 34px;
+          .project-image {
+            margin-top: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f5f5;
+            aspect-ratio: 16 / 10;
           }
 
-          .portfolio-btn:hover {
-            color: #4338ca;
+          .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
           }
 
-          .portfolio-btn-arrow {
-            width: 34px;
-            height: 34px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            color: rgba(79,70,229,0.75);
-            transition: transform 0.2s ease, color 0.2s ease;
-            padding: 0;
-          }
-
-          .portfolio-btn-arrow:hover {
-            transform: translateX(2px);
-            color: rgba(79,70,229,1);
+          .project-card:hover .project-image img {
+            transform: scale(1.02);
           }
 
           /* 响应式 */
-          @media (max-width: 960px) {
-            .portfolio-grid {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-
-          @media (max-width: 600px) {
-            .portfolio-grid {
+          @media (max-width: 768px) {
+            .projects-grid {
               grid-template-columns: 1fr;
+              gap: 32px;
+            }
+
+            .row-divider {
+              display: none;
+            }
+
+            .project-header {
+              flex-direction: column;
+              gap: 4px;
+            }
+
+            .project-meta {
+              font-size: 13px;
             }
           }
         `}</style>
-        <style>{`
-          .protect-image {
-            text-align: center;
-            height: 100%;
-            display: flex;
-            align-items: stretch;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-          }
-
-          .protect-image img {
-            width: 100%;
-            max-width: 400px;
-            height: 100%; /* 改为100%填充容器高度 */
-            border-radius: 0;
-            object-fit: contain; /* 保持图片比例 */
-            margin: auto;
-            padding: 0;
-            display: block;
-          }
-
-          .protect-discribe {
-            flex: 6 1 0%;
-            color: rgb(85, 85, 85);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* 使用space-between确保内容分布 */
-          }
-
-          .protect-discribe .protect-title {
-            font-size: 24px;
-            font-weight: 500;
-            color: rgb(0, 0, 0);
-            margin: 0;
-            text-align: left;
-            padding: 0;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-            align-self: flex-start; /* 顶部对齐 */
-            font-family: 'Montserrat', sans-serif;
-            flex-shrink: 0; /* 防止标题压缩 */
-          }
-
-          .protect-discribe .year-text {
-            font-size: 14px;
-            color: rgb(0, 0, 0);
-            text-align: left;
-            align-self: flex-start; /* 底部对齐 */
-            margin-top: auto; /* 使用auto margin推到容器底部 */
-            flex-shrink: 0; /* 防止年份文本压缩 */
-          }
-
-          .protect-discribe p {
-            font-size: 24px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            display: none;
-          }
-
-          .protect-details {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            z-index: 10;
-            position: relative;
-          }
-
-          .protect-details:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-            transform: scale(1.1);
-          }
-
-          .protect-details i {
-            font-size: 24px;
-            color: rgb(0, 0, 0);
-            margin: 0;
-          }
-
-          .protect-discribe .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-          }
-
-          .protect-discribe .detail-btn,
-          .protect-discribe .preview-btn {
-            padding: 10px 24px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 0px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgb(0, 0, 0);
-          }
-
-          .protect-discribe .detail-btn {
-            background: rgb(0, 0, 0);
-            color: rgb(255, 255, 255);
-          }
-
-          .protect-discribe .preview-btn {
-            background: transparent;
-            color: rgb(0, 0, 0);
-          }
-
-          .h2-title {
-            position: relative;
-            text-align: left;
-            margin-bottom: 0px;
-            font-size: 32px;
-            font-weight: 600;
-            color: rgb(0, 0, 0);
-            width: 100%;
-            padding-bottom: 24px;
-          }
-
-          .h2-title::after {
-            content: '';
-            display: block;
-            width: auto;
-            height: 12px;
-            margin-top: 0.2rem;
-            border-bottom: 1px solid;
-            border-color: inherit;
-          }
-        `}</style>
-        <div className="page-header c12" style={{ paddingBottom: '40px' }}>
-          <h1 data-value="作品集">作品集</h1>
+        <div className="page-header c12" style={{ paddingBottom: '32px' }}>
+          <h1 data-value="作品集" style={{ fontSize: '28px', fontWeight: 600 }}>作品集</h1>
           <hr className={loaded ? 'enabled' : ''} />
         </div>
 
         <div className="portfolio-wrapper">
-          <ul className="portfolio-grid">
-            {sortedItems.map(item => (
-              <li key={item.id} data-groups={`["${item.category}"]`}>
-                <figure className="portfolio-item">
-                  <div className="portfolio-media" onClick={() => handleDetailClick(item)}>
-                    <img src={item.thumb} alt={item.title} />
-                  </div>
-                  <figcaption className="portfolio-content">
-                    <div className="portfolio-title">{item.title}</div>
-                    <div className="portfolio-subtitle">{getSubtitle(item)}</div>
-                    <div className="portfolio-buttons">
-                      <button
-                        className="portfolio-btn"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          handleDetailClick(item)
-                        }}
-                      >
-                        访问项目
-                      </button>
-                      <button
-                        className="portfolio-btn-arrow"
-                        aria-label="Open"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          handleDetailClick(item)
-                        }}
-                      >
-                        <span style={{ fontSize: '18px', lineHeight: 1 }}>→</span>
-                      </button>
+          <div className="projects-grid">
+            {groupedItems.map((row, rowIndex) => (
+              <div className="project-row" key={rowIndex}>
+                {rowIndex > 0 && <hr className="row-divider" />}
+                {row.map(item => (
+                  <article
+                    className="project-card"
+                    key={item.id}
+                    onClick={() => handleDetailClick(item)}
+                  >
+                    <header className="project-header">
+                      <h3 className="project-title">{item.title}</h3>
+                      <span className="project-meta">
+                        {getOrganization(item)} · {getYear(item)}
+                      </span>
+                    </header>
+                    <p className="project-description">
+                      {getDescriptionPreview(item.description || '')}
+                    </p>
+                    <div className="project-tags">
+                      {(item.technologies || []).slice(0, 4).map(tag => (
+                        <span key={tag} className="project-tag">#{tag}</span>
+                      ))}
                     </div>
-                  </figcaption>
-                </figure>
-              </li>
+                    <div className="project-image">
+                      <img src={item.thumb} alt={item.title} loading="lazy" />
+                    </div>
+                  </article>
+                ))}
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
 
       <ImagePreview
