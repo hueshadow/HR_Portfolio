@@ -216,12 +216,12 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                 key={item.id}
                 onClick={() => handleDetailClick(item)}
               >
-                <header className="project-header">
+                <div className="project-header">
                   <h3 className="project-title">{item.title}</h3>
                   <span className="project-meta">
                     {getOrganization(item)} · {getYear(item)}
                   </span>
-                </header>
+                </div>
                 <p className="project-description">
                   {getDescriptionPreview(item.description || '')}
                 </p>

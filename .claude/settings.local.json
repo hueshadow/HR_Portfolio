@@ -54,7 +54,8 @@
       "mcp__playwright__browser_take_screenshot",
       "mcp__mcpServers__understand_image",
       "mcp__playwright__browser_click",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "mcp__playwright__browser_evaluate"
     ],
     "deny": [],
     "ask": []
