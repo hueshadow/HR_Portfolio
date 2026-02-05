@@ -39,7 +39,7 @@ const BlogDetailPage = ({ onPageChange }: BlogDetailPageProps) => {
 `,
       date: '2025-08-25',
       author: 'Admin',
-      image: 'https://photosave.net/2025/09/79099f4ebdd91238cb4e2c28d0c110e8.jpg',
+      image: '/assets/img/blog1.jpg',
       category: '未分类'
     }
   ]

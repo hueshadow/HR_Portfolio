@@ -133,7 +133,7 @@ const AboutPage = ({ active, loaded }: AboutPageProps) => {
               拥有成熟的系统思维，能与设计上下游高效协同。
             </p>
             <p>
-              <a href="https://photosave.net/2025/09/9a9d7bd463f26787c8a97e61e2ccec88.zip" className="button" target="_blank" rel="noopener noreferrer" download="黄蓉_个人简历.pdf.zip">下载简历 <i className="fas fa-download"></i></a>
+              <a href="/assets/files/resume.zip" className="button" target="_blank" rel="noopener noreferrer" download="黄蓉_个人简历.pdf.zip">下载简历 <i className="fas fa-download"></i></a>
             </p>
           </div>
           <div className="c6">

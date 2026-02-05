@@ -588,7 +588,7 @@ main {
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  background: url('https://photosave.net/2025/09/fa0d5a10405bfab5931f038d97c545e6.png') center center !important;
+  background: url('/assets/img/background.jpg') center center !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   z-index: -1 !important;
@@ -729,7 +729,7 @@ main {
     left: 80px;
     width: calc(100% - 160px);
     height: calc(100% - 200px);
-    background: url('https://photosave.net/2025/09/fa0d5a10405bfab5931f038d97c545e6.png') center center;
+    background: url('/assets/img/background.jpg') center center;
     background-size: cover;
     opacity: 0.1;
     z-index: 0;

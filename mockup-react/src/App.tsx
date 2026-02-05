@@ -40,7 +40,7 @@ function AppContent() {
     document.body.classList.add('hr-loaded')
 
     const image = new Image()
-    image.src = 'https://photosave.net/2025/09/fa0d5a10405bfab5931f038d97c545e6.png'
+    image.src = '/assets/img/background.jpg'
   }, [])
 
   // 处理窗口大小改变时的背景色更新
