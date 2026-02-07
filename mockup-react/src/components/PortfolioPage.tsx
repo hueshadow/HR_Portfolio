@@ -111,7 +111,7 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
             gap: 48px;
             width: 100%;
             margin: 0;
-            padding: 0;
+            padding: 0 20px;
           }
 
           .project-card {
