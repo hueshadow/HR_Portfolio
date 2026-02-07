@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ImagePreview from './ImagePreview'
 import { usePortfolioCaptionAnimation } from '../hooks/useAnimations'
@@ -20,24 +20,10 @@ const getDescriptionPreview = (description: string) => {
     .trim()
 }
 
-// 获取年份范围
-const getYearRange = (item: PortfolioItem): string => {
-  if (!item.projectDate) return ''
-  const year = parseInt(item.projectDate.split('-')[0])
-  // 生成年份范围，假设项目持续1-2年
-  const endYear = year + 1
-  return `${year}-${endYear}`
-}
-
 // 获取年份
 const getYear = (item: PortfolioItem): string => {
   if (!item.projectDate) return ''
   return item.projectDate.split('-')[0]
-}
-
-// 获取组织/公司（暂时返回空字符串）
-const getOrganization = (_item: PortfolioItem): string => {
-  return ''
 }
 
 const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
@@ -47,21 +33,24 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
   const [previewImage, setPreviewImage] = useState('')
   const [previewVideo, setPreviewVideo] = useState('')
   const [isVideoPreview, setIsVideoPreview] = useState(false)
-  const { animateCaption } = usePortfolioCaptionAnimation()
+  const { animateCaption, cleanupCaption } = usePortfolioCaptionAnimation()
 
   // 项目排序（按指定位置）
   const sortOrder = [1, 2, 4, 3, 5, 17, 6, 10, 11, 12, 13, 14, 15, 16]
 
   // 过滤并排序的项目（排除视频项目 id=7,8,9）
-  const sortedItems = filteredItems
-    .filter(item => item.id !== 7 && item.id !== 8 && item.id !== 9)
-    .sort((a, b) => {
-      const indexA = sortOrder.indexOf(a.id)
-      const indexB = sortOrder.indexOf(b.id)
-      if (indexA === -1) return 1
-      if (indexB === -1) return -1
-      return indexA - indexB
-    })
+  const sortedItems = useMemo(() =>
+    filteredItems
+      .filter(item => item.id !== 7 && item.id !== 8 && item.id !== 9)
+      .sort((a, b) => {
+        const indexA = sortOrder.indexOf(a.id)
+        const indexB = sortOrder.indexOf(b.id)
+        if (indexA === -1) return 1
+        if (indexB === -1) return -1
+        return indexA - indexB
+      }),
+    [filteredItems]
+  )
 
   useEffect(() => {
     setFilteredItems(portfolioManager.getAll())
@@ -69,12 +58,14 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
 
   useEffect(() => {
     if (active && loaded) {
-      // 延迟执行动画初始化，确保 DOM 已渲染
       setTimeout(() => {
         animateCaption()
       }, 100)
     }
-  }, [active, loaded, animateCaption])
+    return () => {
+      cleanupCaption()
+    }
+  }, [active, loaded, animateCaption, cleanupCaption])
 
   const handleDetailClick = (item: PortfolioItem) => {
     // If item is a video, open video preview directly
@@ -211,12 +202,15 @@ const PortfolioPage = ({ active, loaded }: PortfolioPageProps) => {
                 className="project-card"
                 key={item.id}
                 onClick={() => handleDetailClick(item)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleDetailClick(item) } }}
+                tabIndex={0}
+                role="button"
               >
                 <div className="project-header"></div>
                 <div className="project-title-row">
                   <h3 className="project-title">{item.title}</h3>
                   <span className="project-meta">
-                    {getOrganization(item)} · {getYear(item)}
+                    {getYear(item)}
                   </span>
                 </div>
                 <p className="project-description">

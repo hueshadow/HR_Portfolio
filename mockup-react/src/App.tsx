@@ -45,25 +45,23 @@ function AppContent() {
 
   // 处理窗口大小改变时的背景色更新
   useEffect(() => {
+    let resizeTimer: ReturnType<typeof setTimeout>
     const handleResize = () => {
-      // Update background based on new window size
-      if (activePageId === 'about') {
-        if (window.innerWidth >= 960) {
-          document.body.style.background = '#e3e3de'
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(() => {
+        if (activePageId === 'about') {
+          document.body.style.background = window.innerWidth >= 960 ? '#e3e3de' : ''
         } else {
-          document.body.style.background = ''
+          document.body.style.background = window.innerWidth >= 960 ? '#f7f6f1' : ''
         }
-      } else {
-        if (window.innerWidth >= 960) {
-          document.body.style.background = '#f7f6f1'
-        } else {
-          document.body.style.background = ''
-        }
-      }
+      }, 150)
     }
 
     window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    return () => {
+      clearTimeout(resizeTimer)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [activePageId])
 
   const handlePageChange = (pageId: string) => {
@@ -99,7 +97,7 @@ function AppContent() {
     return () => {
       document.removeEventListener('click', handleClick)
     }
-  }, [isNavOpen])
+  }, [toggleNav])
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)
@@ -189,22 +187,22 @@ function AppContent() {
                     </div>
                     <ul className="social">
                       <li>
-                        <a href="#" aria-label="Facebook">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                           <i className="fab fa-facebook-f"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#" aria-label="Twitter">
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                           <i className="fab fa-twitter"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#" aria-label="Instagram">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                           <i className="fab fa-instagram"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#" aria-label="LinkedIn">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                           <i className="fab fa-linkedin-in"></i>
                         </a>
                       </li>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import TypeWriter from './TypeWriter'
 
 interface HomePageProps {
@@ -8,14 +8,15 @@ interface HomePageProps {
 }
 
 const HomePage = ({ active }: HomePageProps) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const mousePositionRef = useRef({ x: 0, y: 0 })
   const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
+    if (!active) return
+
     let animationId: number
     let contentRect: DOMRect | null = null
-    
-    // 缓存content区域边界，避免重复计算
+
     const updateContentRect = () => {
       const homePage = document.getElementById('home')
       const homeContent = homePage?.querySelector('.content') as HTMLElement
@@ -23,58 +24,44 @@ const HomePage = ({ active }: HomePageProps) => {
         contentRect = homeContent.getBoundingClientRect()
       }
     }
-    
-    // 更高效的lerp函数
+
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!active) return
-      
       let constrainedX = e.clientX
       let constrainedY = e.clientY
-      
-      // 使用缓存的边界信息
+
       if (contentRect) {
         constrainedX = Math.max(contentRect.left, Math.min(contentRect.right, e.clientX))
         constrainedY = Math.max(contentRect.top, Math.min(contentRect.bottom, e.clientY))
       }
-      
-      setMousePosition({ x: constrainedX, y: constrainedY })
+
+      mousePositionRef.current = { x: constrainedX, y: constrainedY }
     }
 
     const smoothAnimation = () => {
+      const target = mousePositionRef.current
       setSmoothPosition(prev => {
-        // 提升lerp因子，让跟随更敏感
-        const newX = lerp(prev.x, mousePosition.x, 0.15)
-        const newY = lerp(prev.y, mousePosition.y, 0.15)
-        
-        // 降低阈值，让动画更流畅
-        const threshold = 0.05
-        if (Math.abs(newX - mousePosition.x) > threshold || Math.abs(newY - mousePosition.y) > threshold) {
-          animationId = requestAnimationFrame(smoothAnimation)
-        }
-        
+        const newX = lerp(prev.x, target.x, 0.15)
+        const newY = lerp(prev.y, target.y, 0.15)
         return { x: newX, y: newY }
       })
-    }
-
-    if (active) {
-      updateContentRect()
-      document.addEventListener('mousemove', handleMouseMove, { passive: true })
-      document.addEventListener('resize', updateContentRect, { passive: true })
       animationId = requestAnimationFrame(smoothAnimation)
     }
 
+    updateContentRect()
+    document.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('resize', updateContentRect, { passive: true })
+    animationId = requestAnimationFrame(smoothAnimation)
+
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('resize', updateContentRect)
-      if (animationId) {
-        cancelAnimationFrame(animationId)
-      }
+      window.removeEventListener('resize', updateContentRect)
+      cancelAnimationFrame(animationId)
     }
-  }, [active, mousePosition.x, mousePosition.y])
+  }, [active])
 
   return (
     <>

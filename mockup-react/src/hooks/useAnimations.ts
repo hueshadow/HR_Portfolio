@@ -74,21 +74,30 @@ export const useHeadingAnimation = () => {
 // 作品集标题动画 Hook
 export const usePortfolioCaptionAnimation = () => {
   const letters = 'abcdefghijklmnopqrstuvwxyz'
-  
+  const cleanupFnsRef = useRef<Array<() => void>>([])
+
+  const cleanupCaption = () => {
+    cleanupFnsRef.current.forEach(fn => fn())
+    cleanupFnsRef.current = []
+  }
+
   const animateCaption = () => {
+    // Clean up previous listeners before adding new ones
+    cleanupCaption()
+
     document.querySelectorAll('.portfolio-container li figcaption div').forEach(txt => {
       const container = txt.parentElement
       if (!container) return
-      
+
       let captionInterval: NodeJS.Timeout
       let hoverTimeout: NodeJS.Timeout
-      
+
       const mouseEnterHandler = () => {
         clearInterval(captionInterval)
         hoverTimeout = setTimeout(() => {
           const originalText = txt.getAttribute('data-value') || txt.textContent || ''
           let iter = 0
-          
+
           captionInterval = setInterval(() => {
             txt.textContent = originalText
               .split('')
@@ -99,7 +108,7 @@ export const usePortfolioCaptionAnimation = () => {
                 return letters[Math.floor(Math.random() * 26)]
               })
               .join('')
-            
+
             if (iter >= originalText.length) {
               clearInterval(captionInterval)
             }
@@ -107,21 +116,23 @@ export const usePortfolioCaptionAnimation = () => {
           }, 20)
         }, 250)
       }
-      
+
       const mouseLeaveHandler = () => {
         clearTimeout(hoverTimeout)
         clearInterval(captionInterval)
       }
-      
+
       container.addEventListener('mouseenter', mouseEnterHandler)
       container.addEventListener('mouseleave', mouseLeaveHandler)
-      
-      return () => {
+
+      cleanupFnsRef.current.push(() => {
         container.removeEventListener('mouseenter', mouseEnterHandler)
         container.removeEventListener('mouseleave', mouseLeaveHandler)
-      }
+        clearTimeout(hoverTimeout)
+        clearInterval(captionInterval)
+      })
     })
   }
 
-  return { animateCaption }
+  return { animateCaption, cleanupCaption }
 }
