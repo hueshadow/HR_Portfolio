@@ -1,0 +1,25 @@
+# Sub-projects with independent Git repositories
+# These have their own Netlify deployments
+Analytics/
+Business_Connect/
+Cloud-Billing-Dashboard-Pro/
+Design-Principles-System/
+Harmonyos-Ecosystem-Dashboard/
+RailPulse-Enterprise/
+railpulse-occ-dashboard/
+web3-crypto-wallet/
+
+# macOS
+.DS_Store
+
+# Node.js
+node_modules/
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
