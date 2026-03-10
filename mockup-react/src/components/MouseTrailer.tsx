@@ -15,10 +15,8 @@ const MouseTrailer = () => {
     const width = movementStrength / window.innerWidth
 
     // Cache DOM element references
-    let homeBackground: HTMLElement | null = document.getElementById('home-background')
     let homePage: HTMLElement | null = document.getElementById('home')
     let homeContent: HTMLElement | null = homePage?.querySelector('.content') as HTMLElement | null
-    let cachedH1s: HTMLElement[] = Array.from(document.querySelectorAll('#home h1'))
 
     // Track hover state via event delegation instead of :hover queries
     let isHoveringInteractive = false
@@ -103,21 +101,10 @@ const MouseTrailer = () => {
 
     const animateLoop = () => {
       if (window.innerWidth > 960) {
-        const xp = mouseX - 6
-        const yp = mouseY - 6
+        const xp = mouseX
+        const yp = mouseY
         const bxp = backgroundX / 12
         const byp = backgroundY / 12
-
-        // Update h1 CSS variables using cached references
-        if (homeBackground && homeBackground.closest('.page#home')) {
-          for (let i = 0; i < cachedH1s.length; i++) {
-            const h1 = cachedH1s[i]
-            const rect = h1.getBoundingClientRect()
-            h1.style.setProperty('--x', `${mouseX - rect.left}px`)
-            h1.style.setProperty('--y', `${mouseY - rect.top}px`)
-            h1.style.setProperty('--size', '125px')
-          }
-        }
 
         if (mouseRef.current) {
           mouseRef.current.style.transform = `translate3d(${xp}px, ${yp}px, 0)`
@@ -130,10 +117,8 @@ const MouseTrailer = () => {
 
     // Refresh cached DOM references when DOM changes
     const refreshCachedElements = () => {
-      homeBackground = document.getElementById('home-background')
       homePage = document.getElementById('home')
       homeContent = homePage?.querySelector('.content') as HTMLElement | null
-      cachedH1s = Array.from(document.querySelectorAll('#home h1'))
     }
 
     // Use MutationObserver to refresh caches when DOM structure changes

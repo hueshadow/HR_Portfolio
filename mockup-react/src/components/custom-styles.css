@@ -49,18 +49,20 @@ main {
 
 /* 手风琴布局效果 - 严格还原原网站 */
 @media (min-width: 961px) {
+
   /* 页面基础样式 */
   .page {
     width: 80px;
     height: 100%;
     float: left;
-    transition: width 0.4s cubic-bezier(0,-0.06, 0.29, 0.82);
+    transition: width 0.4s cubic-bezier(0, -0.06, 0.29, 0.82);
     overflow: hidden;
     position: relative;
   }
-  
+
   .page.active {
-    width: calc(100% - 320px); /* 4个非激活页面 * 80px = 320px */
+    width: calc(100% - 320px);
+    /* 4个非激活页面 * 80px = 320px */
   }
 
   /* About页面激活状态下的背景色 */
@@ -79,18 +81,18 @@ main {
     opacity: 0;
     transition: all 0.8s ease;
   }
-  
+
   .page:first-child header {
     border-left: none;
     cursor: default;
     outline: 1px solid var(--px-theme-clr);
   }
-  
+
   /* 加载完成后显示header */
   body.hr-loaded .page header {
     opacity: 1;
   }
-  
+
   /* 统一所有页面的page-title样式 - 设置尺寸为80px宽度，100%高度，title-text右对齐 */
   .page .page-title {
     position: absolute !important;
@@ -109,7 +111,7 @@ main {
     box-sizing: border-box !important;
     white-space: nowrap !important;
   }
-  
+
   /* 01-06页面的page-title统一尺寸设置 */
   .page .page-title {
     width: 80px !important;
@@ -118,7 +120,7 @@ main {
     left: 0 !important;
     transform: none !important;
   }
-  
+
   /* 强制所有页面的page-title尺寸和位置完全一致 */
   .page#home .page-title,
   .page#about .page-title,
@@ -134,7 +136,7 @@ main {
     position: absolute !important;
     margin: 0 !important;
   }
-  
+
   /* 确保所有page-title在相同的尺寸 */
   .page header .page-title {
     width: 80px !important;
@@ -143,7 +145,7 @@ main {
     left: 0 !important;
     transform: none !important;
   }
-  
+
   /* Portfolio页面特殊处理 - 确保尺寸一致 */
   section.page#portfolio .page-title {
     width: 80px !important;
@@ -152,9 +154,9 @@ main {
     left: 0 !important;
     transform: none !important;
   }
-  
+
   /* 清理调试样式 */
-  
+
   /* 统一所有页面的title-number样式 - 适配80px容器，右对齐 */
   .page .title-number {
     font-family: 'Montserrat', sans-serif !important;
@@ -179,7 +181,7 @@ main {
     align-self: flex-end !important;
     order: 2 !important;
   }
-  
+
   /* 统一所有页面的title-text样式 - 适配80px容器，右对齐 */
   .page .title-text {
     font-size: 12px !important;
@@ -208,342 +210,348 @@ main {
     align-self: flex-start !important;
     order: 1 !important;
   }
-  
+
   /* 所有页面标题文字保持水平显示，不需要旋转 */
 
-/* Portfolio页面page-header特殊样式 */
-.page#portfolio .page-header {
-  position: relative !important;
-  min-height: 150px !important;
-}
+  /* Portfolio页面page-header特殊样式 */
+  .page#portfolio .page-header {
+    position: relative !important;
+    min-height: 150px !important;
+  }
 
-/* Portfolio页面中portfolio-filter居底居右对齐 */
-.page#portfolio .page-header .portfolio-filter {
-  position: absolute !important;
-  bottom: 0 !important;
-  right: 0 !important;
-  margin: 0 !important;
-}
+  /* Portfolio页面中portfolio-filter居底居右对齐 */
+  .page#portfolio .page-header .portfolio-filter {
+    position: absolute !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+  }
 
-/* Blog页面page-header特殊样式 - 与Portfolio页面保持一致 */
-.page#blog .page-header {
-  position: relative !important;
-  min-height: 150px !important;
-}
+  /* Blog页面page-header特殊样式 - 与Portfolio页面保持一致 */
+  .page#blog .page-header {
+    position: relative !important;
+    min-height: 150px !important;
+  }
 
-/* Blog详情页样式 */
-.page#blog .page-header .back-to-blog {
-  position: absolute !important;
-  top: 50% !important;
-  right: 100px !important;
-  transform: translateY(-50%) !important;
-  background: transparent !important;
-  border: 1px solid var(--px-theme-clr) !important;
-  color: var(--px-theme-clr) !important;
-  padding: 10px 20px !important;
-  font-size: 13px !important;
-  font-weight: 300 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  font-family: 'Space Mono', monospace !important;
-  border-radius: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
+  /* Blog详情页样式 */
+  .page#blog .page-header .back-to-blog {
+    position: absolute !important;
+    top: 50% !important;
+    right: 100px !important;
+    transform: translateY(-50%) !important;
+    background: transparent !important;
+    border: 1px solid var(--px-theme-clr) !important;
+    color: var(--px-theme-clr) !important;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Space Mono', monospace !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
 
-.page#blog .page-header .back-to-blog:hover {
-  background: var(--px-theme-clr) !important;
-  color: #fff !important;
-  transform: translateY(-50%) translateX(-2px) !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
-}
+  .page#blog .page-header .back-to-blog:hover {
+    background: var(--px-theme-clr) !important;
+    color: #fff !important;
+    transform: translateY(-50%) translateX(-2px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
 
-.page#blog .page-header .back-to-blog:active {
-  background: var(--px-theme-clr) !important;
-  color: #fff !important;
-  transform: translateY(-50%) translateX(0px) scale(0.98) !important;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
-  transition: all 0.1s ease !important;
-}
+  .page#blog .page-header .back-to-blog:active {
+    background: var(--px-theme-clr) !important;
+    color: #fff !important;
+    transform: translateY(-50%) translateX(0px) scale(0.98) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.1s ease !important;
+  }
 
-.blog-detail-content {
-  padding: 20px 0 !important;
-}
+  .blog-detail-content {
+    padding: 20px 0 !important;
+  }
 
-.blog-post {
-  width: 60% !important;
-  max-width: 60% !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-}
-
-.post-header {
-  margin-bottom: 30px !important;
-  border-bottom: 1px solid #e0e0e0 !important;
-  padding-bottom: 20px !important;
-}
-
-.post-title {
-  font-size: 2.5em !important;
-  font-weight: 300 !important;
-  color: var(--px-theme-clr) !important;
-  margin: 0 0 15px 0 !important;
-  line-height: 1.2 !important;
-}
-
-.post-meta {
-  display: flex !important;
-  gap: 20px !important;
-  font-size: 0.9em !important;
-  color: #666 !important;
-  font-family: 'Space Mono', monospace !important;
-}
-
-.post-meta span {
-  display: flex !important;
-  align-items: center !important;
-}
-
-.post-featured-image {
-  margin: 30px 0 !important;
-  text-align: center !important;
-}
-
-.post-featured-image img {
-  max-width: 100% !important;
-  height: auto !important;
-  border-radius: 4px !important;
-}
-
-.post-content {
-  font-size: 1.1em !important;
-  line-height: 1.8 !important;
-  color: var(--px-theme-clr) !important;
-}
-
-.post-content h2 {
-  font-size: 1.8em !important;
-  font-weight: 300 !important;
-  color: var(--px-theme-clr) !important;
-  margin: 40px 0 20px 0 !important;
-  border-bottom: 2px solid var(--px-theme-clr) !important;
-  padding-bottom: 10px !important;
-}
-
-.post-content h3 {
-  font-size: 1.4em !important;
-  font-weight: 400 !important;
-  color: var(--px-theme-clr) !important;
-  margin: 30px 0 15px 0 !important;
-}
-
-.post-content p {
-  margin: 0 0 20px 0 !important;
-}
-
-.post-content ul, .post-content ol {
-  margin: 20px 0 !important;
-  padding-left: 30px !important;
-}
-
-.post-content li {
-  margin: 8px 0 !important;
-}
-
-.post-content blockquote {
-  border-left: 4px solid var(--px-theme-clr) !important;
-  padding: 20px 30px !important;
-  margin: 30px 0 !important;
-  background: #f9f9f9 !important;
-  font-style: italic !important;
-  color: #666 !important;
-}
-
-.post-content blockquote p {
-  margin: 0 !important;
-}
-
-.post-navigation {
-  margin: 60px 0 40px 0 !important;
-  padding-top: 30px !important;
-  border-top: 1px solid #e0e0e0 !important;
-  text-align: center !important;
-}
-
-.nav-button {
-  background: var(--px-theme-clr) !important;
-  border: 1px solid var(--px-theme-clr) !important;
-  color: var(--px-theme-clr) !important;
-  padding: 14px 28px !important;
-  font-size: 13px !important;
-  font-weight: 400 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  font-family: 'Space Mono', monospace !important;
-  border-radius: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.nav-button:hover {
-  background: var(--px-theme-clr) !important;
-  border-color: var(--px-theme-clr) !important;
-  color: #fff !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-}
-
-.nav-button:active {
-  background: var(--px-theme-clr) !important;
-  border-color: var(--px-theme-clr) !important;
-  color: #fff !important;
-  transform: translateY(0px) scale(0.98) !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
-  transition: all 0.1s ease !important;
-}
-
-.not-found {
-  text-align: center !important;
-  padding: 60px 20px !important;
-}
-
-.not-found p {
-  font-size: 1.2em !important;
-  color: #666 !important;
-  margin-bottom: 30px !important;
-}
-
-.back-button {
-  background: transparent !important;
-  border: none !important;
-  color: var(--px-theme-clr) !important;
-  font-size: 14px !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  cursor: pointer !important;
-  transition: all 0.3s ease !important;
-  font-family: 'Space Mono', monospace !important;
-}
-
-.back-button:hover {
-  background: transparent !important;
-  color: var(--px-theme-clr) !important;
-  text-decoration: underline !important;
-}
-
-/* Portfolio页面图片响应式布局 */
-/* 默认布局：屏幕宽度960px以上，一行3张图片 */
-@media (min-width: 961px) {
-  .page#portfolio .portfolio-container li {
-    width: 33.33% !important;
-    float: left !important;
+  .blog-post {
+    width: 60% !important;
+    max-width: 60% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
     box-sizing: border-box !important;
   }
-}
 
-/* 中等屏幕：屏幕宽度960px及以下，一行1张图片 */
-@media (max-width: 960px) and (min-width: 481px) {
-  .page#portfolio .portfolio-container li {
+  .post-header {
+    margin-bottom: 30px !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    padding-bottom: 20px !important;
+  }
+
+  .post-title {
+    font-size: 2.5em !important;
+    font-weight: 300 !important;
+    color: var(--px-theme-clr) !important;
+    margin: 0 0 15px 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .post-meta {
+    display: flex !important;
+    gap: 20px !important;
+    font-size: 0.9em !important;
+    color: #666 !important;
+    font-family: 'Space Mono', monospace !important;
+  }
+
+  .post-meta span {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .post-featured-image {
+    margin: 30px 0 !important;
+    text-align: center !important;
+  }
+
+  .post-featured-image img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 4px !important;
+  }
+
+  .post-content {
+    font-size: 1.1em !important;
+    line-height: 1.8 !important;
+    color: var(--px-theme-clr) !important;
+  }
+
+  .post-content h2 {
+    font-size: 1.8em !important;
+    font-weight: 300 !important;
+    color: var(--px-theme-clr) !important;
+    margin: 40px 0 20px 0 !important;
+    border-bottom: 2px solid var(--px-theme-clr) !important;
+    padding-bottom: 10px !important;
+  }
+
+  .post-content h3 {
+    font-size: 1.4em !important;
+    font-weight: 400 !important;
+    color: var(--px-theme-clr) !important;
+    margin: 30px 0 15px 0 !important;
+  }
+
+  .post-content p {
+    margin: 0 0 20px 0 !important;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin: 20px 0 !important;
+    padding-left: 30px !important;
+  }
+
+  .post-content li {
+    margin: 8px 0 !important;
+  }
+
+  .post-content blockquote {
+    border-left: 4px solid var(--px-theme-clr) !important;
+    padding: 20px 30px !important;
+    margin: 30px 0 !important;
+    background: #f9f9f9 !important;
+    font-style: italic !important;
+    color: #666 !important;
+  }
+
+  .post-content blockquote p {
+    margin: 0 !important;
+  }
+
+  .post-navigation {
+    margin: 60px 0 40px 0 !important;
+    padding-top: 30px !important;
+    border-top: 1px solid #e0e0e0 !important;
+    text-align: center !important;
+  }
+
+  .nav-button {
+    background: var(--px-theme-clr) !important;
+    border: 1px solid var(--px-theme-clr) !important;
+    color: var(--px-theme-clr) !important;
+    padding: 14px 28px !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Space Mono', monospace !important;
+    border-radius: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .nav-button:hover {
+    background: var(--px-theme-clr) !important;
+    border-color: var(--px-theme-clr) !important;
+    color: #fff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .nav-button:active {
+    background: var(--px-theme-clr) !important;
+    border-color: var(--px-theme-clr) !important;
+    color: #fff !important;
+    transform: translateY(0px) scale(0.98) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.1s ease !important;
+  }
+
+  .not-found {
+    text-align: center !important;
+    padding: 60px 20px !important;
+  }
+
+  .not-found p {
+    font-size: 1.2em !important;
+    color: #666 !important;
+    margin-bottom: 30px !important;
+  }
+
+  .back-button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--px-theme-clr) !important;
+    font-size: 14px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Space Mono', monospace !important;
+  }
+
+  .back-button:hover {
+    background: transparent !important;
+    color: var(--px-theme-clr) !important;
+    text-decoration: underline !important;
+  }
+
+  /* Portfolio页面图片响应式布局 */
+  /* 默认布局：屏幕宽度960px以上，一行3张图片 */
+  @media (min-width: 961px) {
+    .page#portfolio .portfolio-container li {
+      width: 33.33% !important;
+      float: left !important;
+      box-sizing: border-box !important;
+    }
+  }
+
+  /* 中等屏幕：屏幕宽度960px及以下，一行1张图片 */
+  @media (max-width: 960px) and (min-width: 481px) {
+    .page#portfolio .portfolio-container li {
+      width: 100% !important;
+      float: none !important;
+      box-sizing: border-box !important;
+    }
+  }
+
+  /* 移动端：屏幕宽度480px及以下，一行1张图片 */
+  @media (max-width: 480px) {
+    .page#portfolio .portfolio-container li {
+      width: 100% !important;
+      float: none !important;
+      box-sizing: border-box !important;
+    }
+  }
+
+  /* Portfolio容器基本样式优化 */
+  .page#portfolio .portfolio-container {
+    display: block !important;
     width: 100% !important;
-    float: none !important;
-    box-sizing: border-box !important;
+    overflow: hidden !important;
+    /* 清除浮动 */
   }
-}
 
-/* 移动端：屏幕宽度480px及以下，一行1张图片 */
-@media (max-width: 480px) {
   .page#portfolio .portfolio-container li {
-    width: 100% !important;
-    float: none !important;
-    box-sizing: border-box !important;
+    display: block !important;
+    position: relative !important;
+    list-style: none !important;
+    padding: 1px !important;
+    margin: 0 !important;
   }
-}
 
-/* Portfolio容器基本样式优化 */
-.page#portfolio .portfolio-container {
-  display: block !important;
-  width: 100% !important;
-  overflow: hidden !important; /* 清除浮动 */
-}
+  /* About页面内容可滚动设置 */
+  .page#about .content {
+    overflow-y: auto !important;
+    max-height: calc(100vh - 80px) !important;
+    /* 除去页签条高度 */
+    padding-right: 10px !important;
+    /* 为滚动条留出空间 */
+  }
 
-.page#portfolio .portfolio-container li {
-  display: block !important;
-  position: relative !important;
-  list-style: none !important;
-  padding: 1px !important;
-  margin: 0 !important;
-}
+  /* Portfolio页面内容可滚动设置 */
+  .page#portfolio .content {
+    overflow-y: auto !important;
+    max-height: calc(100vh - 80px) !important;
+    /* 除去页签条高度 */
+    padding-right: 10px !important;
+    /* 为滚动条留出空间 */
+  }
 
-/* About页面内容可滚动设置 */
-.page#about .content {
-  overflow-y: auto !important;
-  max-height: calc(100vh - 80px) !important; /* 除去页签条高度 */
-  padding-right: 10px !important; /* 为滚动条留出空间 */
-}
+  /* 自定义滚动条样式 */
+  .page#about .content::-webkit-scrollbar,
+  .page#portfolio .content::-webkit-scrollbar {
+    width: 6px;
+  }
 
-/* Portfolio页面内容可滚动设置 */
-.page#portfolio .content {
-  overflow-y: auto !important;
-  max-height: calc(100vh - 80px) !important; /* 除去页签条高度 */
-  padding-right: 10px !important; /* 为滚动条留出空间 */
-}
+  .page#about .content::-webkit-scrollbar-track,
+  .page#portfolio .content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
 
-/* 自定义滚动条样式 */
-.page#about .content::-webkit-scrollbar,
-.page#portfolio .content::-webkit-scrollbar {
-  width: 6px;
-}
+  .page#about .content::-webkit-scrollbar-thumb,
+  .page#portfolio .content::-webkit-scrollbar-thumb {
+    background: var(--px-theme-clr);
+    border-radius: 3px;
+  }
 
-.page#about .content::-webkit-scrollbar-track,
-.page#portfolio .content::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-}
+  .page#about .content::-webkit-scrollbar-thumb:hover,
+  .page#portfolio .content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
 
-.page#about .content::-webkit-scrollbar-thumb,
-.page#portfolio .content::-webkit-scrollbar-thumb {
-  background: var(--px-theme-clr);
-  border-radius: 3px;
-}
+  /* Design Skills部分skill-bar-wrapper垂直均匀分布 */
+  .page#about #skills-content .c6:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+    min-height: 300px !important;
+  }
 
-.page#about .content::-webkit-scrollbar-thumb:hover,
-.page#portfolio .content::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
+  .page#about #skills-content .c6:first-child .skill-bar-wrapper {
+    flex: 1 !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
 
-/* Design Skills部分skill-bar-wrapper垂直均匀分布 */
-.page#about #skills-content .c6:first-child {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  height: 100% !important;
-  min-height: 300px !important;
-}
+  /* skills-content内的所有c6容器高度设置为100% */
+  .page#about #skills-content .c6 {
+    height: 100% !important;
+  }
 
-.page#about #skills-content .c6:first-child .skill-bar-wrapper {
-  flex: 1 !important;
-  margin-bottom: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
-
-/* skills-content内的所有c6容器高度设置为100% */
-.page#about #skills-content .c6 {
-  height: 100% !important;
-}
-
-/* Design Skills标题与第一个skill-bar-wrapper的间距 */
-.page#about #skills-content .c6:first-child h4 {
-  margin-bottom: 12px !important;
-}
+  /* Design Skills标题与第一个skill-bar-wrapper的间距 */
+  .page#about #skills-content .c6:first-child h4 {
+    margin-bottom: 12px !important;
+  }
 
   /* 02、03、04、05页面编号hover缩放效果 */
   .page#about:not(.active) header:hover .title-number,
@@ -562,137 +570,141 @@ main {
     transition: transform 0.3s ease !important;
   }
 
-/* 打字效果样式 */
-.write {
-  color: var(--px-theme-clr) !important;
-  font-weight: 400 !important;
-  display: inline-block !important;
-  min-width: 1ch !important; /* 确保至少有一个字符的宽度 */
-}
+  /* 打字效果样式 */
+  .write {
+    color: var(--px-theme-clr) !important;
+    font-weight: 400 !important;
+    display: inline-block !important;
+    min-width: 1ch !important;
+    /* 确保至少有一个字符的宽度 */
+  }
 
-.typed-cursor {
-  color: var(--px-theme-clr) !important;
-  font-weight: 400 !important;
-  animation: blink 1s infinite !important;
-}
+  .typed-cursor {
+    color: var(--px-theme-clr) !important;
+    font-weight: 400 !important;
+    animation: blink 1s infinite !important;
+  }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
+  @keyframes blink {
 
-/* 01页面背景图鼠标圆圈显示效果 */
-#home-background {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background: url('/assets/img/background.jpg') center center !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  z-index: -1 !important;
-  opacity: 0 !important;
-  pointer-events: auto !important;
-  
-  /* 创建遮罩层 */
-  mask: radial-gradient(
-    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    transparent 0%,
-    transparent 100%,
-    black 100%
-  ) !important;
-  -webkit-mask: radial-gradient(
-    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    transparent 0%,
-    transparent 100%,
-    black 100%
-  ) !important;
-}
+    0%,
+    50% {
+      opacity: 1;
+    }
 
-/* 当Home页面激活时显示背景 */
-.page#home.active #home-background {
-  opacity: 1 !important;
-  
-  /* 鼠标圆圈显示效果 - 优化为更丝滑的跟随效果 */
-  mask: radial-gradient(
-    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    black 0%,
-    black 100%,
-    transparent 100%
-  ) !important;
-  -webkit-mask: radial-gradient(
-    circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    black 0%,
-    black 100%,
-    transparent 100%
-  ) !important;
-  
-  /* 启用GPU加速和优化渲染性能 */
-  transform: translateZ(0) !important;
-  will-change: mask, -webkit-mask !important;
-  
-  /* 添加平滑过渡效果，让圆圈跟随更丝滑 */
-  transition: mask 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              -webkit-mask 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  
-  /* 优化渲染层 */
-  backface-visibility: hidden !important;
-  perspective: 1000px !important;
-}
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
 
-/* 社交媒体图标尺寸设置 - 按照参考网站样式 */
-.page#home .social i.fab {
-  font-size: 25px !important;
-}
+  /* 01页面背景图鼠标圆圈显示效果 */
+  #home-background {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: url('/assets/img/ballet_background.png') center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
+    pointer-events: auto !important;
 
-/* 具体社交媒体图标尺寸 */
-.page#home .social .fa-facebook-f,
-.page#home .social .fa-twitter,
-.page#home .social .fa-instagram,
-.page#home .social .fa-linkedin-in {
-  font-size: 25px !important;
-}
+    /* 创建遮罩层 */
+    mask: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        transparent 0%,
+        transparent 100%,
+        black 100%) !important;
+    -webkit-mask: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        transparent 0%,
+        transparent 100%,
+        black 100%) !important;
+  }
 
-/* 社交媒体链接统一样式，不需要单独设置 */
+  /* 当Home页面激活时显示背景 */
+  .page#home.active #home-background {
+    opacity: 1 !important;
 
-/* 社交媒体链接样式已按参考网站https://hueshadow.com/重新设计 */
+    /* 鼠标圆圈显示效果 - 优化为更丝滑的跟随效果 */
+    mask: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        black 0%,
+        black 100%,
+        transparent 100%) !important;
+    -webkit-mask: radial-gradient(circle 150px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        black 0%,
+        black 100%,
+        transparent 100%) !important;
 
-/* 隐藏01页面的page-title，展示logo */
-.page#home .page-title {
-  display: none !important;
-}
+    /* 启用GPU加速和优化渲染性能 */
+    transform: translateZ(0) !important;
+    will-change: mask, -webkit-mask !important;
 
-.page#home .logo {
-  display: block !important;
-  position: absolute !important;
-  top: 10px !important; /* 与其他页面page-title的top值保持一致 */
-  left: 50% !important;
-  transform: translate(-50%, 0) !important; /* 只水平居中，不垂直居中 */
-  width: 80px !important;
-  height: 80px !important;
-  padding: 16px !important; /* 所有方向内边距为16px */
-  box-sizing: border-box !important;
-  z-index: 10 !important;
-}
+    /* 添加平滑过渡效果，让圆圈跟随更丝滑 */
+    transition: mask 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      -webkit-mask 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
 
-.page#home .logo img {
-  max-width: 100% !important;
-  max-height: 100% !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  display: block !important;
-  margin: 0 auto !important;
-}
-  
+    /* 优化渲染层 */
+    backface-visibility: hidden !important;
+    perspective: 1000px !important;
+  }
+
+  /* 社交媒体图标尺寸设置 - 按照参考网站样式 */
+  .page#home .social i.fab {
+    font-size: 25px !important;
+  }
+
+  /* 具体社交媒体图标尺寸 */
+  .page#home .social .fa-facebook-f,
+  .page#home .social .fa-twitter,
+  .page#home .social .fa-instagram,
+  .page#home .social .fa-linkedin-in {
+    font-size: 25px !important;
+  }
+
+  /* 社交媒体链接统一样式，不需要单独设置 */
+
+  /* 社交媒体链接样式已按参考网站https://hueshadow.com/重新设计 */
+
+  /* 隐藏01页面的page-title，展示logo */
+  .page#home .page-title {
+    display: none !important;
+  }
+
+  .page#home .logo {
+    display: block !important;
+    position: absolute !important;
+    top: 10px !important;
+    /* 与其他页面page-title的top值保持一致 */
+    left: 50% !important;
+    transform: translate(-50%, 0) !important;
+    /* 只水平居中，不垂直居中 */
+    width: 80px !important;
+    height: 80px !important;
+    padding: 16px !important;
+    /* 所有方向内边距为16px */
+    box-sizing: border-box !important;
+    z-index: 10 !important;
+  }
+
+  .page#home .logo img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
   /* 悬停效果 - 取消字符加粗 */
   .page:not(.active) header:hover .title-number {
     transform: scale(1.2);
     opacity: 0.7;
     transition: all 0.3s ease;
   }
-  
+
   /* 页面内容 */
   .page .content {
     width: calc(100% - 80px);
@@ -703,25 +715,25 @@ main {
     height: 100%;
     display: none;
   }
-  
+
   .page.active .content {
     display: block;
   }
-  
+
   /* Home页面特殊样式 */
   .page#home .content {
     padding: 35px 70px;
     position: relative;
   }
-  
-  .page#home .content > div {
+
+  .page#home .content>div {
     z-index: 1;
     position: absolute;
     bottom: 80px;
     width: calc(100% - 140px);
     left: 70px;
   }
-  
+
   /* Home页面背景 */
   #home-background {
     position: absolute;
@@ -729,12 +741,12 @@ main {
     left: 80px;
     width: calc(100% - 160px);
     height: calc(100% - 200px);
-    background: url('/assets/img/background.jpg') center center;
+    background: url('/assets/img/ballet_background.png') center center;
     background-size: cover;
     opacity: 0.1;
     z-index: 0;
   }
-  
+
   /* Home页面header特殊样式 */
   .page#home header.home-header {
     cursor: default;
@@ -742,7 +754,7 @@ main {
     background-color: transparent !important;
     background-image: none !important;
   }
-  
+
   .page#home .logo {
     position: absolute;
     top: 40px;
@@ -750,16 +762,16 @@ main {
     transform: translateX(-50%);
     width: 32px;
   }
-  
+
   .page#home .logo img {
     width: 100%;
     transition: transform 0.3s ease;
   }
-  
+
   .page#home .logo:hover img {
     transform: scale(1.1);
   }
-  
+
   .page#home .social {
     position: absolute;
     bottom: 40px;
@@ -769,16 +781,16 @@ main {
     padding: 0;
     margin: 0;
   }
-  
+
   .page#home .social li {
     font-size: 25px;
-    background-color: rgba(34,34,34,0);
+    background-color: rgba(34, 34, 34, 0);
     text-align: center;
     border-top: 1px solid var(--px-theme-clr);
     transition: all 0.25s ease;
     margin: 0;
   }
-  
+
   .page#home .social a {
     color: var(--px-theme-clr);
     display: block;
@@ -788,36 +800,41 @@ main {
     height: 100%;
     transition: all 0.25s ease;
   }
-  
+
   /* 社交媒体链接hover效果 - 严格按照参考网站样式 */
   .page#home .social li:hover {
     background-color: var(--px-theme-clr);
   }
-  
+
   .page#home .social li:hover a {
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
   }
-  
+
   /* 页面加载延迟动画 */
   .page:nth-child(1) header {
     transition-delay: 0.0s;
   }
+
   .page:nth-child(2) header {
     transition-delay: 0.1s;
   }
+
   .page:nth-child(3) header {
     transition-delay: 0.2s;
   }
+
   .page:nth-child(4) header {
     transition-delay: 0.3s;
   }
+
   .page:nth-child(5) header {
     transition-delay: 0.4s;
   }
+
   .page:nth-child(6) header {
     transition-delay: 0.5s;
   }
-  
+
   /* Blog页面特殊样式（遵循通用布局，保留页签条可见） */
   /* blog-header已清除 */
 
@@ -854,18 +871,19 @@ main {
 
 /* 移动端页面布局 - 全屏上下滚动 */
 @media (max-width: 960px) {
+
   /* 移动端：重置html和body以允许滚动 */
   html {
     overflow: auto !important;
     height: auto !important;
   }
-  
+
   body {
     overflow-y: auto !important;
     overflow-x: hidden !important;
     height: auto !important;
   }
-  
+
   /* 移动端：所有页面垂直滚动布局 */
   main {
     height: auto !important;
@@ -878,7 +896,7 @@ main {
     background-color: transparent !important;
     background-image: none !important;
   }
-  
+
   .page {
     display: block !important;
     width: 100% !important;
@@ -887,7 +905,7 @@ main {
     float: none !important;
     position: relative !important;
   }
-  
+
   /* 所有页面内容都显示，不再使用active状态控制 */
   .page .content {
     display: block !important;
@@ -897,30 +915,30 @@ main {
     padding: 35px 40px !important;
     min-height: calc(100vh - 70px) !important;
   }
-  
+
   /* 强制显示所有页面，覆盖active状态控制 */
   .page:not(.active) .content {
     display: block !important;
     opacity: 1 !important;
   }
-  
+
   /* 移动端隐藏所有页面header（导航条） */
   .page header {
     display: none !important;
   }
-  
+
   /* 移动端隐藏所有page-title */
   .page .page-title {
     display: none !important;
   }
-  
+
   /* 首页特殊布局 - 左右分栏 */
   .page#home {
     display: flex !important;
     flex-direction: row !important;
     min-height: 100vh !important;
   }
-  
+
   /* 首页header在移动端显示，左侧固定定位 */
   .page#home header {
     display: flex !important;
@@ -933,16 +951,16 @@ main {
     left: 0 !important;
     z-index: 1000 !important;
   }
-  
+
   /* 其他页面（02-05）移动端样式 */
   .page#about,
-  .page#portfolio, 
+  .page#portfolio,
   .page#blog,
   .page#contact {
     border-top: 1px solid #e0e0e0 !important;
     background: #fff !important;
   }
-  
+
   .page#about .content,
   .page#portfolio .content,
   .page#blog .content,
@@ -950,21 +968,21 @@ main {
     padding: 40px 20px 40px 100px !important;
     min-height: 100vh !important;
   }
-  
+
   /* 页面标识已移除，保持简洁的移动端设计 */
-  
+
   /* Blog页面特殊处理 */
   .page#blog .content {
     padding-top: 40px !important;
   }
-  
+
   /* 移动端blog-post宽度和padding调整 */
   .blog-post {
     width: 90% !important;
     max-width: 90% !important;
     padding: 0 20px !important;
   }
-  
+
   /* 移动端返回按钮调整 */
   .page#blog .page-header .back-to-blog {
     right: 20px !important;
@@ -973,15 +991,15 @@ main {
     padding: 8px 16px !important;
     font-size: 12px !important;
   }
-  
+
   .page#blog .page-header .back-to-blog:hover {
     transform: translateX(-1px) !important;
   }
-  
+
   .page#blog .page-header .back-to-blog:active {
     transform: translateX(0px) scale(0.98) !important;
   }
-  
+
   /* 移动端首页content内容布局调整 - 为固定header留出空间 */
   .page#home .content {
     width: calc(100% - 80px) !important;
@@ -995,8 +1013,8 @@ main {
     align-items: flex-start !important;
     overflow-y: auto !important;
   }
-  
-  .page#home .content > div {
+
+  .page#home .content>div {
     position: static !important;
     width: 100% !important;
     left: auto !important;
@@ -1005,7 +1023,7 @@ main {
     text-align: left !important;
     padding-bottom: 40px !important;
   }
-  
+
   /* 移动端首页背景调整 */
   #home-background {
     top: 0 !important;
@@ -1013,7 +1031,7 @@ main {
     width: 100% !important;
     height: 100% !important;
   }
-  
+
   /* 移动端首页header内元素定位 - 参考hueshadow.com */
   .page#home .logo {
     position: static !important;
@@ -1026,13 +1044,13 @@ main {
     top: auto !important;
     border-top: none !important;
   }
-  
+
   .page#home .logo img {
     width: 40px !important;
     height: 40px !important;
     object-fit: contain !important;
   }
-  
+
   .page#home .social {
     position: static !important;
     width: 100% !important;
@@ -1043,17 +1061,17 @@ main {
     bottom: auto !important;
     list-style: none !important;
   }
-  
+
   /* 移动端社交媒体样式调整 */
   .page#home .social li {
     font-size: 16px !important;
     margin: 0 !important;
     border-top: 1px solid var(--px-theme-clr) !important;
-    background-color: rgba(34,34,34,0) !important;
+    background-color: rgba(34, 34, 34, 0) !important;
     text-align: center !important;
     transition: all 0.25s ease !important;
   }
-  
+
   .page#home .social li a {
     padding: 15px 0 !important;
     display: block !important;
@@ -1062,32 +1080,28 @@ main {
     height: 100% !important;
     transition: all 0.25s ease !important;
   }
-  
+
   .page#home .social i.fab {
     font-size: 16px !important;
   }
-  
+
   /* 移动端社交媒体hover效果 */
   .page#home .social li:hover {
     background-color: var(--px-theme-clr) !important;
   }
-  
+
   .page#home .social li:hover a {
-    color: rgba(255,255,255,1) !important;
+    color: rgba(255, 255, 255, 1) !important;
   }
 }
 
 /* 优化鼠标跟踪器性能 */
 .mouse {
-  /* 启用GPU加速 */
-  transform: translateZ(0) !important;
-  will-change: transform !important;
-  
+  /* 启用GPU加速（不应该使用 !important 覆盖内联样式） */
+  will-change: transform;
+
   /* 优化渲染性能 */
-  backface-visibility: hidden !important;
-  
-  /* 添加平滑过渡效果 */
-  transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  backface-visibility: hidden;
 }
 
 .mouse.regular {
@@ -1345,7 +1359,7 @@ main {
     transform: translateY(0);
     gap: 10px;
   }
-  
+
   .detail-btn,
   .zoom-btn {
     padding: 6px 12px;
@@ -1358,7 +1372,7 @@ main {
   .portfolio-actions {
     gap: 8px;
   }
-  
+
   .detail-btn,
   .zoom-btn {
     padding: 5px 10px;
@@ -1568,27 +1582,27 @@ body.detail-page .portfolio-detail-wrapper {
   .portfolio-detail-container {
     padding: 20px;
   }
-  
+
   .detail-content {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .detail-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  
+
   .detail-meta {
     align-self: stretch;
     justify-content: space-between;
   }
-  
+
   .detail-title {
     font-size: 2rem;
   }
-  
+
   .link-buttons {
     flex-direction: column;
   }
@@ -1598,11 +1612,11 @@ body.detail-page .portfolio-detail-wrapper {
   .portfolio-detail-container {
     padding: 15px;
   }
-  
+
   .detail-title {
     font-size: 1.8rem;
   }
-  
+
   .back-button,
   .link-button {
     padding: 10px 20px;
@@ -1612,11 +1626,12 @@ body.detail-page .portfolio-detail-wrapper {
 
 /* 响应式优化 */
 @media (max-width: 960px) {
+
   .about-slider-controls,
   .slide-number {
     display: none;
   }
-  
+
   .testomonial-slider-controls {
     left: 20px;
     right: auto;
@@ -1660,7 +1675,7 @@ body.admin-page main {
 }
 
 /* 确保在所有情况下都能滚动 */
-body.admin-page > * {
+body.admin-page>* {
   height: auto !important;
   min-height: auto !important;
 }
@@ -2005,18 +2020,39 @@ body[class*="ra-"] nav {
 
 /* Animation Keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes float-delayed {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @keyframes fade-in-up {
@@ -2024,6 +2060,7 @@ body[class*="ra-"] nav {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -2031,18 +2068,35 @@ body[class*="ra-"] nav {
 }
 
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes progress-bar-stripes {
-  from { background-position: 1rem 0; }
-  to { background-position: 0 0; }
+  from {
+    background-position: 1rem 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
 }
 
 /* Animation Classes */
