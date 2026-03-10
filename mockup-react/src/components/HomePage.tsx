@@ -7,9 +7,54 @@ interface HomePageProps {
   onPageChange: (pageId: string) => void
 }
 
+const ScrambleText = ({ text, active, className }: { text: string, active: boolean, className?: string }) => {
+  const [displayText, setDisplayText] = useState(text)
+
+  useEffect(() => {
+    if (!active) {
+      setDisplayText(text)
+      return
+    }
+
+    const letters = 'abcdefghijklmnopqrstuvwxyz'
+    let iteration = 0
+    let animationFrame: number
+    let lastTime = Date.now()
+
+    const animate = () => {
+      const now = Date.now()
+      if (now - lastTime >= 20) {
+        lastTime = now
+        setDisplayText(
+          text.split('').map((letter, index) => {
+            if (index < iteration) {
+              return text[index]
+            }
+            return letters[Math.floor(Math.random() * 26)]
+          }).join('')
+        )
+
+        if (iteration >= text.length) {
+          return // Done
+        }
+        iteration += 1 / 2
+      }
+      animationFrame = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame)
+    }
+  }, [active, text])
+
+  return <h1 className={className} data-value={text}>{displayText}</h1>
+}
+
 const HomePage = ({ active }: HomePageProps) => {
   const mousePositionRef = useRef({ x: 0, y: 0 })
-  const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 })
+  const isHoveringRef = useRef(false)
 
   useEffect(() => {
     if (!active) return
@@ -17,12 +62,16 @@ const HomePage = ({ active }: HomePageProps) => {
     let animationId: number
     let contentRect: DOMRect | null = null
 
+    const homeBg = document.getElementById('home-background')
+    let h1Elements: NodeListOf<HTMLElement> | null = null
+
     const updateContentRect = () => {
       const homePage = document.getElementById('home')
       const homeContent = homePage?.querySelector('.content') as HTMLElement
       if (homeContent) {
         contentRect = homeContent.getBoundingClientRect()
       }
+      h1Elements = homePage?.querySelectorAll('h1') as NodeListOf<HTMLElement>
     }
 
     const lerp = (start: number, end: number, factor: number) => {
@@ -39,15 +88,41 @@ const HomePage = ({ active }: HomePageProps) => {
       }
 
       mousePositionRef.current = { x: constrainedX, y: constrainedY }
+      
+      const target = e.target as HTMLElement
+      // Default to hovering effects unless we are over interactive elements
+      const isInteractive = target.closest('a, button, .portfolio-filter, .tabs-nav, .toggle-sidebar, input') !== null
+      isHoveringRef.current = !isInteractive
     }
+
+    let currentX = mousePositionRef.current.x
+    let currentY = mousePositionRef.current.y
 
     const smoothAnimation = () => {
       const target = mousePositionRef.current
-      setSmoothPosition(prev => {
-        const newX = lerp(prev.x, target.x, 0.15)
-        const newY = lerp(prev.y, target.y, 0.15)
-        return { x: newX, y: newY }
-      })
+      currentX = lerp(currentX, target.x, 0.15)
+      currentY = lerp(currentY, target.y, 0.15)
+      
+      if (homeBg) {
+        homeBg.style.setProperty('--mouse-x', `${currentX}px`)
+        homeBg.style.setProperty('--mouse-y', `${currentY}px`)
+      }
+
+      if (h1Elements) {
+        h1Elements.forEach((el) => {
+          const rect = el.getBoundingClientRect()
+          if (isHoveringRef.current) {
+            el.style.setProperty('--x', `${currentX - rect.left}px`)
+            el.style.setProperty('--y', `${currentY - rect.top}px`)
+            el.style.setProperty('--size', '125px')
+          } else {
+            el.style.removeProperty('--x')
+            el.style.removeProperty('--y')
+            el.style.removeProperty('--size')
+          }
+        })
+      }
+
       animationId = requestAnimationFrame(smoothAnimation)
     }
 
@@ -60,22 +135,24 @@ const HomePage = ({ active }: HomePageProps) => {
       document.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('resize', updateContentRect)
       cancelAnimationFrame(animationId)
+      
+      if (h1Elements) {
+        h1Elements.forEach(el => {
+          el.style.removeProperty('--x')
+          el.style.removeProperty('--y')
+          el.style.removeProperty('--size')
+        })
+      }
     }
   }, [active])
 
   return (
     <>
-      <div 
-        id="home-background"
-        style={{
-          '--mouse-x': `${smoothPosition.x}px`,
-          '--mouse-y': `${smoothPosition.y}px`
-        } as React.CSSProperties}
-      ></div>
+      <div id="home-background"></div>
       
       <div>
-        <h1 className="mega" data-value="I'm HUANG">I'm HUANG</h1>
-        <h1 className="mega" data-value="Ronn.">Ronn.</h1>
+        <ScrambleText text="I'm HUANG" active={active} className="mega" />
+        <ScrambleText text="Ronn." active={active} className="mega" />
         <h1 className="delta">
           I'm a freelance <TypeWriter
             texts={['UX designer.', 'Product development.', 'Coffee Drinker.']}
