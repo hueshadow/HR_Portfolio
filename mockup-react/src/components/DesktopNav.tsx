@@ -1,3 +1,5 @@
+import { pathForTab } from '../tabRoutes'
+
 interface DesktopNavProps {
   activePageId: string
   onPageChange: (pageId: string) => void
@@ -9,7 +11,7 @@ const DesktopNav = ({ activePageId, onPageChange }: DesktopNavProps) => {
     { id: 'about', label: 'About' },
     { id: 'portfolio', label: 'Portfolio' },
     { id: 'flow', label: 'Flow' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
   ]
 
   return (
@@ -17,8 +19,8 @@ const DesktopNav = ({ activePageId, onPageChange }: DesktopNavProps) => {
       <ul>
         {navItems.map(item => (
           <li key={item.id}>
-            <a 
-              href={`#${item.id}`}
+            <a
+              href={pathForTab(item.id)}
               onClick={(e) => {
                 e.preventDefault()
                 onPageChange(item.id)

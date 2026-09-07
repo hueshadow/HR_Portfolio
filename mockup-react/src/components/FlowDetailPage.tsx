@@ -6,14 +6,13 @@ interface FlowDetailPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const FlowDetailPage = ({ onPageChange }: FlowDetailPageProps) => {
+const FlowDetailPage = (_props: FlowDetailPageProps) => {
   const { date } = useParams<{ date: string }>()
   const navigate = useNavigate()
   const briefing = date ? getBriefing(date) : undefined
 
   const back = () => {
-    navigate('/')
-    onPageChange('flow')
+    navigate('/flow')
   }
 
   if (!briefing) {

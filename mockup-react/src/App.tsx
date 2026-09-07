@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import MouseTrailer from './components/MouseTrailer'
 import MobileNav from './components/MobileNav'
 import DesktopNav from './components/DesktopNav'
@@ -14,14 +14,18 @@ import BlogDetailPage from './components/BlogDetailPage'
 import FlowDetailPage from './components/FlowDetailPage'
 import ReactAdminDashboard from './components/ReactAdminDashboard'
 import PortfolioOverview from './components/PortfolioOverview'
+import { isTabDetailPath, pathForTab, tabFromLocation } from './tabRoutes'
 
 // 主应用组件
 function AppContent() {
-  const [activePageId, setActivePageId] = useState<string>('home')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [activePageId, setActivePageId] = useState<string>(() =>
+    tabFromLocation(location.pathname, typeof window !== 'undefined' ? window.location.hostname : undefined),
+  )
   const [isLoaded, setIsLoaded] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const location = useLocation()
   
   // 页面配置数组
   const pages = [
@@ -34,8 +38,15 @@ function AppContent() {
   ]
 
   // 检查是否在详情页或管理页
-  const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/') || location.pathname.startsWith('/flow/')
+  const isDetailPage = isTabDetailPath(location.pathname)
   const isAdminPage = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login'
+
+  useEffect(() => {
+    const tab = tabFromLocation(location.pathname, window.location.hostname)
+    if (!isDetailPage && tab !== activePageId) {
+      setActivePageId(tab)
+    }
+  }, [location.pathname, isDetailPage, activePageId])
 
   useEffect(() => {
     // 首屏不阻塞：立即渲染页面，背景图加载完成后仅用于增强动画/样式
@@ -68,16 +79,16 @@ function AppContent() {
   }, [activePageId])
 
   const handlePageChange = (pageId: string) => {
-    // 检查页面是否存在且未隐藏
     const page = pages.find(p => p.id === pageId && !p.hidden)
-    if (page && pageId !== activePageId) {
-      setActivePageId(pageId)
-      setIsNavOpen(false)
-
-      // 滚动到页面顶部（移动端）
-      if (window.innerWidth < 960) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
+    if (!page) return
+    setActivePageId(pageId)
+    setIsNavOpen(false)
+    const path = pathForTab(pageId)
+    if (location.pathname !== path) {
+      navigate(path)
+    }
+    if (window.innerWidth < 960) {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 

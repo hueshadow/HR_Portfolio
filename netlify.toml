@@ -5,7 +5,39 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# SPA redirect for all routes including admin
+# Subdomains → path suffixes on hueshadow.com
+# Add these hostnames as Netlify domain aliases, then CNAME them to the site.
+[[redirects]]
+  from = "https://about.hueshadow.com/*"
+  to = "https://hueshadow.com/about"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://portfolio.hueshadow.com/*"
+  to = "https://hueshadow.com/portfolio"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://flow.hueshadow.com/"
+  to = "https://hueshadow.com/flow"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://flow.hueshadow.com/*"
+  to = "https://hueshadow.com/flow/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://contact.hueshadow.com/*"
+  to = "https://hueshadow.com/contact"
+  status = 301
+  force = true
+
+# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"

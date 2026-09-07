@@ -8,7 +8,7 @@ interface PortfolioDetailPageProps {
   onPageChange: (pageId: string) => void
 }
 
-const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
+const PortfolioDetailPage = (_props: PortfolioDetailPageProps) => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const [item, setItem] = useState<PortfolioItem | null>(null)
@@ -39,8 +39,7 @@ const PortfolioDetailPage = ({ onPageChange }: PortfolioDetailPageProps) => {
   }, [])
 
   const handleBackToPortfolio = () => {
-    navigate('/')
-    onPageChange('portfolio')
+    navigate('/portfolio')
   }
 
   if (!item) {
