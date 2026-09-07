@@ -7,9 +7,11 @@ import HomePage from './components/HomePage'
 import AboutPage from './components/AboutPage'
 import PortfolioPage from './components/PortfolioPage'
 import BlogPage from './components/BlogPage'
+import FlowPage from './components/FlowPage'
 import ContactPage from './components/ContactPage'
 import PortfolioDetailPage from './components/PortfolioDetailPage'
 import BlogDetailPage from './components/BlogDetailPage'
+import FlowDetailPage from './components/FlowDetailPage'
 import ReactAdminDashboard from './components/ReactAdminDashboard'
 import PortfolioOverview from './components/PortfolioOverview'
 
@@ -26,12 +28,13 @@ function AppContent() {
     { id: 'home', title: 'Home', number: '01', component: HomePage },
     { id: 'about', title: 'About', number: '02', component: AboutPage },
     { id: 'portfolio', title: 'Portfolio', number: '03', component: PortfolioPage },
-    { id: 'blog', title: 'Blog', number: '04', component: BlogPage, hidden: true },
+    { id: 'flow', title: 'Flow', number: '04', component: FlowPage },
+    { id: 'blog', title: 'Blog', number: '06', component: BlogPage, hidden: true },
     { id: 'contact', title: 'Contact', number: '05', component: ContactPage }
   ]
 
   // 检查是否在详情页或管理页
-  const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/')
+  const isDetailPage = location.pathname.startsWith('/portfolio/') || location.pathname.startsWith('/blog/') || location.pathname.startsWith('/flow/')
   const isAdminPage = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login'
 
   useEffect(() => {
@@ -143,6 +146,7 @@ function AppContent() {
         {shouldRenderMouseTrailer && <MouseTrailer />}
         <Routes>
           <Route path="/portfolio/:id" element={<PortfolioDetailPage onPageChange={handlePageChange} />} />
+          <Route path="/flow/:date" element={<FlowDetailPage onPageChange={handlePageChange} />} />
           <Route path="/blog/:id" element={<BlogDetailPage active={true} loaded={isLoaded} onPageChange={handlePageChange} />} />
         </Routes>
       </>

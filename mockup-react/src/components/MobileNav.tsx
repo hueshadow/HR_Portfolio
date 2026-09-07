@@ -8,7 +8,7 @@ const MobileNav = ({ activePageId, onPageChange }: MobileNavProps) => {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'portfolio', label: 'Portfolio' },
-    { id: 'blog', label: 'Blog' },
+    { id: 'flow', label: 'Flow' },
     { id: 'contact', label: 'Contact' }
   ]
 
