@@ -3,11 +3,23 @@ import { SECTION_META } from '../data/briefings'
 
 function Item({ item, index, action }: { item: BriefingItem; index: number; action?: boolean }) {
   const primary = item.sources?.[0]
+  const thumb = item.image ? (
+    primary ? (
+      <a href={primary.url} target="_blank" rel="noreferrer" className="flow-thumb">
+        <img src={item.image} alt="" />
+      </a>
+    ) : (
+      <span className="flow-thumb">
+        <img src={item.image} alt="" />
+      </span>
+    )
+  ) : null
 
   return (
-    <article className="flow-item">
+    <article className={`flow-item${item.image ? ' has-thumb' : ''}`}>
       <span className="flow-index">{action ? '□' : String(index).padStart(2, '0')}</span>
-      <div>
+      {thumb}
+      <div className="flow-item-body">
         {primary ? (
           <a href={primary.url} target="_blank" rel="noreferrer" className="flow-item-title">
             {item.title}

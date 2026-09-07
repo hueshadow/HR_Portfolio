@@ -2271,9 +2271,31 @@ body[class*="ra-"] nav {
 .flow-item {
   display: grid;
   grid-template-columns: 2.2rem minmax(0, 1fr);
-  gap: 10px;
-  padding: 14px 0;
+  gap: 10px 12px;
+  padding: 16px 0;
   border-top: 1px solid #e4e0d8;
+  align-items: start;
+}
+
+.flow-item.has-thumb {
+  grid-template-columns: 2.2rem 148px minmax(0, 1fr);
+}
+
+.flow-thumb {
+  display: block;
+  width: 148px;
+  height: 88px;
+  overflow: hidden;
+  background: #ece8e0;
+  border: 1px solid #e4e0d8;
+  flex-shrink: 0;
+}
+
+.flow-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .flow-index {
@@ -2407,6 +2429,21 @@ a.flow-item-title:hover {
 @media (max-width: 960px) {
   .flow-title {
     font-size: 22px;
+  }
+
+  .flow-item.has-thumb {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .flow-thumb {
+    grid-column: 2;
+    width: 100%;
+    max-width: 280px;
+    height: 120px;
+  }
+
+  .flow-item-body {
+    grid-column: 2;
   }
 
   .flow-detail-wrapper {
