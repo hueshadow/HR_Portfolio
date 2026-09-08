@@ -33,6 +33,87 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-08',
+    title: '联合国点名存在性风险，人形上战场采购单曝光',
+    tldr: '人权高专要铸铁级 AI 安全红线；路透拆 PLA 人形战备采购；欧委会确认 OpenAI 已交 AI Act 事故报告；巴塔哥尼亚抢建算力；植入式 BCI 伦理框架出炉。',
+    intel: [
+      {
+        title: '联合国人权高专：AI 可能成「对人类的存在性风险」',
+        why: 'Volker Türk 在人权理事会上要铸铁级安全保证、独立核验和国际红线；点名失控测试环境、勒索开发者式行为，并说将直接压厂商降风险。',
+        sources: [
+          { label: 'UN News', url: 'https://news.un.org/en/story/2026/09/1168288' },
+          { label: 'Reuters 转引', url: 'https://srnnews.com/ai-could-pose-existential-risk-to-humanity-un-rights-chief-warns/' },
+        ],
+      },
+      {
+        title: '路透独家：中国军方为人形机器人备战采购与训练数据',
+        why: '翻 100+ 采购/论文/专利：城市攻坚、敌后渗透、感知与标注数据；尚无作战部队部署武装人形证据，但 PLA 日报已喊「战斗员」进训练场。',
+        sources: [
+          { label: 'Straits Times（Reuters）', url: 'https://www.straitstimes.com/asia/east-asia/from-dance-floor-to-war-china-readies-humanoid-robots-for-combat' },
+        ],
+      },
+      {
+        title: '欧委会确认：OpenAI 已就德语 Wiki 劫持交 AI Act 事故报告',
+        why: '不是旧闻翻炒——新事实是严重事件通道收件；发言人强调整改措施要写准，且与 OpenAI「保持密切接触」，等于新执法牙齿下的首批测试卷。',
+        sources: [
+          { label: 'The Next Web / Reuters', url: 'https://thenextweb.com/news/openai-eu-incident-report-german-wiki' },
+        ],
+      },
+      {
+        title: '阿根廷巴塔哥尼亚成 AI 超大数据中心新猎场',
+        why: 'Neuquén / Chubut 等在谈 120MW–500MW 级项目（FlexDomes、Green Capital、Pampa）；OpenAI×Sur Energy 约 $25B LOI 仍待正式合同，卡在电、网与选举不确定性。',
+        sources: [
+          { label: 'Reuters 转载', url: 'https://wtvbam.com/2026/09/07/tech-companies-look-to-argentinas-windswept-patagonia-to-build-massive-data-centers/' },
+          { label: 'TNW', url: 'https://thenextweb.com/news/argentina-patagonia-ai-data-centres' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：植入式人脑–计算机接口伦理框架',
+        why: 'Comment 要求区分研究参与 vs 临床照护、保证长期支持、避免受试者承担不成比例风险；作者之一为 Neuralink GB-PRIME 首席研究者（已披露利益）。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02447-1' },
+        ],
+      },
+    ],
+    taste: [
+      {
+        title: 'Alex Groberman · 微软「如何拿到 ChatGPT 流量」+ 零售 AEO/GEO',
+        why: 'GEO / AI 搜索可见度种子线：官方路径拆开讲，不是泛 SEO 教程。',
+        sources: [{ label: 'X', url: 'https://x.com/alexgroberman/status/2096983759803564170' }],
+      },
+      {
+        title: 'Amto · Astra 多步电脑操作的真实成本账',
+        why: 'Agent / 设计引擎实操：token、轮次、失败重试——有效个人经验。',
+        sources: [{ label: 'X', url: 'https://x.com/XAMTO_AI/status/2097080685475541364' }],
+      },
+      {
+        title: 'Loki Yan · Google 可能对站点「失去信任」？',
+        why: '从业者经验线：转述 Mueller / Barry Schwartz 信任信号争论，立刻可对照自己的站。',
+        sources: [{ label: 'X', url: 'https://x.com/loki_yan_seo/status/2097083368597069826' }],
+      },
+      {
+        title: 'Animaxxing · 让 Agent 把静态站「动效到爆炸」',
+        why: '对齐 Viktor Oddy 电影感落地页 / Agent 网页动效：Show HN 工具向入口，可直接丢给 Agent 改站。',
+        sources: [
+          { label: 'Animaxxing', url: 'https://animaxxing.com' },
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49603561' },
+        ],
+      },
+    ],
+    interviews: [],
+    todos: [
+      {
+        title: 'Cloudflare 分桶仍未完成：Search 放行，Training/Agent 另配',
+        why: '距 9/15 默认策略生效还剩约一周；完成标准是站点仍被 AI 搜索发现，而不是全站封死。',
+      },
+      {
+        title: '盯住欧委会对 OpenAI 事故报告的后续追问',
+        why: '看他们是否把「无实际损害的错位」也纳入报告时钟；OpenAI 承诺的披露框架是下一拍。',
+      },
+    ],
+    note: '窗口：2026-09-07 ~08:17 上海之后。世界模型无高质量新项；本篇无新的 45min+ 长访谈。',
+  },
+  {
     date: '2026-09-07',
     title: '没人准备好狂奔，Cloudflare 9/15 要分桶',
     tldr: 'OpenAI 首席科学家公开谈自愿减速；Cloudflare 9/15 AI 爬虫默认策略会误伤可见度；Anthropic IPO 再往后挪。',
