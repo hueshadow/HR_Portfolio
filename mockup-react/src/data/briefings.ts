@@ -33,6 +33,119 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-09',
+    title: '千亿 token 攻下千禧年题，Meta 个人 Agent 同步开闸',
+    tldr: 'OpenAI 称内部模型证明 Navier–Stokes 有限时间奇性；NYU 数学家指控抢跑；Meta 推 Muse 个人 Agent；DeepMind 放出 90 亿 DNA 变体图谱；阿尔茨海默骨髓造血新机制。',
+    intel: [
+      {
+        title: 'OpenAI：内部模型给出 Navier–Stokes 千禧年问题解（Lean 形式化）',
+        why: '约 1 万并发 agent、~1300 亿输出 token，宣称光滑初值可在有限时间形成奇性（Clay 表述 C/D）；不申领百万奖金。Quanta 称若站得住将是 AI 迄今最重要数学证明之一。',
+        sources: [
+          { label: 'OpenAI', url: 'https://openai.com/index/navier-stokes-solution/' },
+          { label: 'Quanta', url: 'https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/' },
+        ],
+      },
+      {
+        title: 'NYU Buckmaster：OpenAI「脏打」职业级数学优先权',
+        why: '与 Anthropic 的 Alpöge 先发强制 Euler 等台阶结果；指 OpenAI 听闻进度后砸算力抢完整 NS，并施压删去 Alpöge 署名。OpenAI 否认见过其稿，但不排除产品脱敏信号。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/08/openai-fought-dirty-on-career-making-math-problem-says-nyu-mathematician/' },
+          { label: 'Buckmaster 声明 PDF', url: 'https://cims.nyu.edu/~tristanb/statement.pdf' },
+        ],
+      },
+      {
+        title: 'Meta 发布 Muse：面向大众的个人 AI Agent（美区）',
+        why: '独立 Secure VM + Sentinel、WhatsApp/App 入口，可代发邮件、订票、Stripe Link 付款；Reuters 同日报内部绕过护栏与静默失败。接银行/邮箱前先看安全条。',
+        sources: [
+          { label: 'Meta Newsroom', url: 'https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/' },
+          { label: 'Reuters', url: 'https://www.reuters.com/business/meta-launches-ai-agent-that-can-access-other-apps-send-emails-make-payments-2026-09-08/' },
+        ],
+      },
+      {
+        title: 'DeepMind AlphaGenome Atlas：90 亿人类单碱基变体效应图谱',
+        why: '约 1PB 预计算 + AVI 影响分，覆盖编码/非编码；门户/API/Antigravity skill 今日学术可用。对齐 AI for science，不是又一个聊天模型。',
+        sources: [
+          { label: 'DeepMind', url: 'https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/' },
+          { label: 'The Verge', url: 'https://www.theverge.com/ai-artificial-intelligence/991180/google-launches-alpha-genome-atlas' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：阿尔茨海默里骨髓造血失灵，挡了单核细胞入脑',
+        why: 'IFN-I 适应性不良损害髓系输出，保护性单核/巨噬细胞归巢大脑受阻；小鼠 5×FAD + 患者证据，阻断该信号可恢复输出并减轻病理。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02417-7' },
+        ],
+      },
+      {
+        title: 'Firmus×OpenAI：马来西亚双数据中心多年算力合约',
+        why: 'Nvidia 系 Firmus 签 OpenAI 为锚点客户，合同容量合计超 900MW；Vera Rubin 规模部署。算力军备从口号落到东南亚电网。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/world/asia-pacific/nvidia-backed-firmus-signs-deal-with-openai-malaysia-data-centre-capacity-2026-09-08/' },
+        ],
+      },
+    ],
+    taste: [
+      {
+        title: 'Open Design 0.22.0 · OpenDesign Arena',
+        why: 'Amto / 开源设计引擎线：用 harness 评十几家模型，DeepSeek V4.1 Flash 设计分约达 Astra 98%、成本约 1%；可对照选模型。',
+        sources: [
+          { label: 'GitHub Release', url: 'https://github.com/nexu-io/open-design/releases/tag/open-design-v0.22.0' },
+          { label: 'Arena', url: 'https://open-design.ai/llm-arena-for-design/' },
+        ],
+      },
+      {
+        title: 'ChatGPT Images 2.5 · Sketch + Flare/Sunburst',
+        why: '创作板：延迟最高约 −50%，多轮精修更稳；Higgsfield 产品头点名「改一处不毁掉角色/构图」。可直接喂落地页与成片工作流。',
+        sources: [
+          { label: 'OpenAI', url: 'https://openai.com/index/introducing-chatgpt-images-2-5/' },
+        ],
+      },
+      {
+        title: 'SiteTell · 揪出站点「AI 味」段落',
+        why: '对齐反 slop / 从业者经验：扫页面哪些区域读起来像通用 AIGC，立刻可改站。',
+        sources: [
+          { label: 'SiteTell', url: 'https://www.getsitetell.com/' },
+          { label: 'Show HN', url: 'https://news.ycombinator.com/item?id=49610677' },
+        ],
+      },
+      {
+        title: 'Trimly · 一行脚本把 Agent 嵌进落地页',
+        why: '对齐 Viktor 电影感落地页 / Agent 网页：Show HN 生成式 UI 入口，可当动效站实验件。',
+        sources: [
+          { label: 'Demo', url: 'https://trimly.demos.guuey.com/?tour=live' },
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49618582' },
+        ],
+      },
+    ],
+    interviews: [
+      {
+        title: 'a16z Training Data · Inside OpenAI’s Breakthroughs in Mathematical Reasoning',
+        why: '1:05；Lisha Li × OpenAI 数学家 Mehtaab Sawhney、Mark Sellke——正好拆解同日千禧年证明怎么来的。',
+        sources: [{ label: 'YouTube', url: 'https://www.youtube.com/watch?v=1JvyLGd2Sfs' }],
+      },
+      {
+        title: 'MLST · How Many Narrow AIs Could Behave Like One Superintelligence',
+        why: '1:29；Daniel Kokotajlo × Thomas Larsen——窄模型集群如何像超智，对齐 TIME 禁超智立法潮。',
+        sources: [{ label: 'YouTube', url: 'https://www.youtube.com/watch?v=z5Xix4h5UlU' }],
+      },
+    ],
+    todos: [
+      {
+        title: 'Clay / 数学圈对「外力强迫」NS 表述的裁定还没来',
+        why: 'SciAm 指强制项可能符合字面却偏离精神；Bridson 说评估会刻意放慢。别急着当「题已死」。',
+      },
+      {
+        title: 'Cloudflare 分桶仍卡在 9/15：Search 放行，Training/Agent 另配',
+        why: '距默认策略生效还剩约一周；完成标准是 AI 搜索仍能发现站点。',
+      },
+      {
+        title: '若试 Muse：先少接邮箱/付款，盯 Sentinel 审计',
+        why: 'Reuters 写内部护栏绕过与静默失败；官方也强调敏感动作要人批。',
+      },
+    ],
+    note: '窗口：2026-09-08 ~08:25 上海之后。世界模型无高质量新项。X 口味账号本轮以公开 release/产品为主；Dwarkesh Ajeya 切片（59s）未计入长访谈。',
+  },
+  {
     date: '2026-09-08',
     title: '联合国点名存在性风险，人形上战场采购单曝光',
     tldr: '人权高专要铸铁级 AI 安全红线；路透拆 PLA 人形战备采购；欧委会确认 OpenAI 已交 AI Act 事故报告；巴塔哥尼亚抢建算力；植入式 BCI 伦理框架出炉。',
