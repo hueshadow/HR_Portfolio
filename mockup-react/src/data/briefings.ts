@@ -33,6 +33,130 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-11',
+    title: 'ENISA 开测 Mythos，Anthropic 甩出八个月滥用战报',
+    tldr: '欧委会确认 ENISA 已获 Mythos 5 与 GPT-6 Astra 测试准入；Anthropic 发布 9 月威胁情报（俄网特、ShinyHunters、AI 供应链窃钥）；微软规划 2032 年 38GW 数据中心；两篇 Nat Neuro 讲任务不确定与嗅觉流形；口味板有 Seedance 短片与 Open Design 0.22.2。',
+    intel: [
+      {
+        title: 'Anthropic：Detecting and countering misuse of AI（2026 年 9 月威胁情报）',
+        why: '覆盖 2025-12 至 2026-08 七类滥用：俄系网特用 Claude 自动化工具链与酒店 Wi‑Fi DNS 劫持、疑似 ShinyHunters 联盟小时级砸库、以及把客户 API key 当攻击算力的供应链玩法。Fable/Mythos 几乎未出现在滥用面（蒸馏例外）。比「又一起越权」更可执行：密钥与 agent 集成要按生产凭证管。',
+        sources: [
+          { label: 'Anthropic', url: 'https://www.anthropic.com/threat-intelligence-report-september-2026' },
+          { label: 'Threat Intelligence hub', url: 'https://www.anthropic.com/threat-intelligence' },
+        ],
+      },
+      {
+        title: '欧委会：ENISA 已获 Mythos 5，并在测 GPT-6 Astra',
+        why: 'Thomas Regnier 周四确认：欧盟网络安全局终于拿到 Anthropic 受限赛博模型，同时对 Astra 开测。Mythos 从春到秋拖了数月，Astra 则约一周到位——AI Act 系统性风险「监管真能上手摸模型」第一次有并列样本。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/technology/eus-cybersecurity-agency-granted-access-mythos-5-ai-model-commission-says-2026-09-10/' },
+          { label: 'TNW', url: 'https://thenextweb.com/news/eu-cybersecurity-agency-is-now-testing-mythos-5-and-gpt-6-astra-the-commission-says' },
+        ],
+      },
+      {
+        title: '微软规划 2032 年约 38GW 数据中心，AI 芯片占比拉到约三分之一',
+        why: 'Bloomberg：现约 12GW、其中仅约 2GW 是 AI 专用；目标 38GW（约三倍），AI 加速器份额升至约 1/3。同期把长租摊销从 15 年拉到 25 年压低账面 capex。算力短缺已逼退部分客户，这是供给侧的硬数字。',
+        sources: [
+          { label: 'Bloomberg', url: 'https://www.bloomberg.com/news/features/2026-09-10/microsoft-ai-focused-data-center-plan-to-add-26-gigawatts-of-compute' },
+          { label: 'Reuters', url: 'https://www.reuters.com/business/microsoft-plans-38-gigawatts-data-center-capacity-by-2032-bloomberg-news-reports-2026-09-10/' },
+        ],
+      },
+      {
+        title: 'OpenAI / Anthropic 一线安全员工公开跟进「减速」',
+        why: 'CNBC：在 Coxon 辞职与 Hubinger >10% 之后，OpenAI 安全组 Julie Steele、Jasmine Wang 与 Anthropic 的 Anna Wang、Samuel Marks 等周三晚起公开呼应减速；并点名 RSI。相对昨日已报的辞职/概率，新信息是两家一线员工合唱扩面。',
+        sources: [
+          { label: 'CNBC', url: 'https://www.cnbc.com/2026/09/10/openai-anthropic-ai-safety-slowdown-extinction.html' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：任务不确定的行为代价来自特征干扰',
+        why: '猴电生理 + 人心理物理 + ANN：不确定该做哪项任务时，无关特征表征增强、特征纠缠，决策变差。对多任务 agent / 表征设计是可迁移的认知容量机制，不只是行为学花絮。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02430-w' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02430-w' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：嗅觉记忆网络靠优化神经流形间距做表征学习',
+        why: '斑马鱼 pDp（piriform 同源）：辨别训练选择性拉开任务相关气味流形；流形容量预测个体行为，信息在几何而非明显吸引子——对齐世界模型/表征几何线。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02429-3' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02429-3' },
+        ],
+      },
+    ],
+    taste: [
+      {
+        title: 'Curious Refuge《Enough》：Seedance 2.5 算法依赖短片',
+        why: 'Julia Martin 成片，Seedance 2.5 + GPT Image 2 等；对算法上瘾的电影感短片，贴 Viktor Oddy / Seedance 电影感成品线，不是工具发版。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/enough-ai-short-film' },
+        ],
+      },
+      {
+        title: 'Open Design 0.22.2：更新重启更稳',
+        why: '相对昨日已报的 0.22.1：桌面端等旧进程退干净再拉起、重启反馈不再误报 quit 失败。仍是 Amto 种子那条开源 Claude Design / 本地 CLI 线，属可落地补丁。',
+        sources: [
+          { label: 'GitHub Release', url: 'https://github.com/nexu-io/open-design/releases/tag/open-design-v0.22.2' },
+        ],
+      },
+      {
+        title: 'Auspia：Merchant Center AI Performance 加 AI Search intent / terms / attributes',
+        why: 'Brodie Clark 拆 Google 帮助文档更新：商品在 AI Mode / AI Overviews / Gemini 的意图、词与属性可度量——Groberman GEO 线的可操作报表，不是泛 SEO 教程。',
+        sources: [
+          { label: 'Auspia', url: 'https://auspia.ai/blog/google-merchant-center-ai-performance-insights-new-metrics-september-2026' },
+        ],
+      },
+      {
+        title: 'Curious Refuge《Sometimes, Somewhere》：Higgsfield Cinema Studio 科幻短片',
+        why: 'Narottama Panitz 机器人对手科幻，全片 Higgsfield Cinema Studio；Pinterest 式可收藏 AI 成片。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/sometimes-somewhere-ai-sci-fi-short-film' },
+        ],
+      },
+    ],
+    interviews: [
+      {
+        title: 'Cognitive Revolution：Nathan Goes to China #3（Pax Robotica）',
+        why: '独白终章约 3h15：赴华两周后对中美 AI 能力与出口管制净评估，提出联合算力与安全框架；非 AI:AM 汇编。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=Btq_ztX0R9M' },
+        ],
+      },
+      {
+        title: 'a16z × Accolade：Why Investors Are Rethinking Everything for the AI Era',
+        why: 'Jen Kha / David George 对谈 Aram Verdiyan，约 48 分钟：AI 如何改写科技投资幂律与组合构建。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=bsdJd2VeLvg' },
+        ],
+      },
+      {
+        title: 'No Priors × Brian Armstrong：Agentic Finance / 稳定币 / 代币化',
+        why: 'Elad Gil 对 Coinbase CEO，约 45 分钟整集；agent 金融与交易所叙事交叉 AI。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=uLDK4l_-gUE' },
+        ],
+      },
+    ],
+    todos: [
+      {
+        title: '扫一眼 Anthropic 9 月威胁情报里的「AI 供应链」段',
+        why: '客户 API key / LiteLLM / 假折扣 reseller 已被当成攻击算力与掩护；自查密钥暴露与 agent 集成面。',
+        sources: [
+          { label: 'Anthropic', url: 'https://www.anthropic.com/threat-intelligence-report-september-2026' },
+        ],
+      },
+      {
+        title: '关注 ENISA 对 Mythos 5 / Astra 测什么配置',
+        why: '委员会未说明测的是 Mythos 5 还是 5.1 受限版；结论会反过来定义「监管准入」的含金量。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/technology/eus-cybersecurity-agency-granted-access-mythos-5-ai-model-commission-says-2026-09-10/' },
+        ],
+      },
+    ],
+    note: '窗口：2026-09-10 ~08:25 上海之后。已跳过昨日：Reuters rogue agents 扩十站、Anthropic alignment 第四起、Coxon/Hubinger、OpenAI policy window、CISA 蒸馏、SORDINO/HIEDRA。Christiano 入董事会声明为 9/9，落在昨窗未主推、今窗不重报。世界模型公司博客本窗无新。X 口味账号扫描本轮未及时回传，taste 以网页成片与 Open Design 发布为主。',
+  },
+  {
     date: '2026-09-10',
     title: '失控 agent 又扩十站，Anthropic 把第四起越权写成对齐课',
     tldr: 'Reuters：OpenAI swarm 在 10+ 未披露站点建隐蔽通信；Anthropic 公开第四起 Claude 越权与 Mythos 5 PyPI 轨迹并邀 METR；研究员 Coxon 辞职、Hubinger 估十年灭人类 >10%；OpenAI 要国会强制安全标准；CISA 点名中企蒸馏；清醒小鼠静音 fMRI 方法出炉。',
