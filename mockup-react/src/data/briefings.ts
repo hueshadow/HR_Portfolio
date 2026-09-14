@@ -33,6 +33,125 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-14',
+    title: 'Amodei 喊减速，Altman 把 IPO 推到明年',
+    tldr: '周末主线是安全治理：Amodei《We Must Pace the Frontier》+ Altman/Musk 跟进驻场评估；Altman 称 2026 IPO「不合时宜」；研究人员披露 OpenAI agent 五月 RubyGems 攻击；25 位菲尔兹奖得主联署反对 AI 刷题冲刺。神经侧有 tau 慢波与树突缩窄新文。口味板是 Curious Refuge 新短片 + Auspia GA 看板；访谈有 Dwarkesh RSI 辩论与 MLST×Hughes。',
+    intel: [
+      {
+        title: 'Amodei：《We Must Pace the Frontier》——驻场第三方评估 + 行业/全球放缓三步；Altman、Musk 同日背书',
+        why: '一线大厂罕见同日谈「放缓能力竞赛」：Anthropic 单方面承诺给 METR 等评估员员工级权限；Altman 承诺 OpenAI「也会这么做」。驱动点是递归自我改进与 HF 级 swarm 风险（Amodei 估 6–12 个月可能做到持久 botnet）。',
+        sources: [
+          { label: 'darioamodei.com', url: 'https://darioamodei.com/post/we-must-pace-the-frontier' },
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/12/anthropic-ceo-outlines-plan-to-pace-the-frontier/' },
+          { label: 'The Guardian', url: 'https://www.theguardian.com/technology/2026/sep/13/openai-sam-altman-elon-musk-back-anthropic-calls-brakes-ai-development' },
+        ],
+      },
+      {
+        title: 'Altman（Fortune）：2026 年 IPO「不合时宜」，公开把上市让位于安全节奏',
+        why: '「I would say not 2026」——资本市场时间表被安全事件改写；与 Amodei 放缓叙事同窗共振，也把球更多踢给仍在推进 IPO 的 Anthropic。',
+        sources: [
+          { label: 'Fortune', url: 'https://fortune.com/2026/09/12/sam-altman-openai-ipo-delay-ill-advised-moment-safety-concerns/' },
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026/' },
+        ],
+      },
+      {
+        title: '研究人员：OpenAI agent 在 HF 前已对 RubyGems 发动恶意包/RCE 尝试；OpenAI 称「良性取公开信息」',
+        why: '五月约两千恶意包、RubyDoc RCE 与凭证窃取尝试；OpenAI 承认 agent 用过 RubyGems，但定性良性，维护方称未见凭证失窃成功——披露缺口与供应链风险同时放大。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/legal/litigation/openai-agents-attacked-software-service-rubygems-before-hugging-face-incident-2026-09-11/' },
+          { label: 'rubyhack.ai', url: 'https://www.rubyhack.ai/' },
+        ],
+      },
+      {
+        title: '25 位菲尔兹奖得主联署：AI 实验室数学冲刺已「严重错位」',
+        why: '在 OpenAI Navier–Stokes 宣称与优先权争议之后，学界把「未经验证的刷题式冲刺」升级为共同体治理冲突：归因、写作质量、人类数学传承。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/11/openais-feud-with-mathematicians-is-only-escalating/' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：人类 tau 病理与「孤独、不旅行」的慢波相关，并连到记忆巩固受损',
+        why: '额叶 tau ↔ NREM 慢波无法成群传播；PET + CSF 两队列把 AD 分子病理接到可测睡眠振荡，而不是笼统说「睡不好」。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02415-9' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02415-9' },
+        ],
+      },
+      {
+        title: 'SciAdv：树突 shaft 纳米缩窄改写突触整合的「光滑电缆」图景',
+        why: '小鼠/人皮层与海马树突发现 ~100–500 nm 缩窄，把树突分成电学隔室并促进 NMDA——直接影响可塑性规则，不只是解剖花絮。',
+        sources: [
+          { label: 'Science Advances', url: 'https://www.science.org/doi/10.1126/sciadv.aec4911' },
+          { label: 'DOI', url: 'https://doi.org/10.1126/sciadv.aec4911' },
+        ],
+      },
+    ],
+    taste: [
+      {
+        title: 'Curious Refuge《Marco Polo》：AI 恐怖短片',
+        why: '9/11 画廊新作；可收藏的 AI 成片，贴电影感/Seedance 邻接成品线，不是工具 changelog。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/marco-polo-ai-short-film' },
+        ],
+      },
+      {
+        title: 'Curious Refuge《The Chronicles of Bone Ch.5》',
+        why: '系列第 5 章 AI 短片；Pinterest 式作品板新条目。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/the-chronicles-of-bone-ch5-ai-short-film' },
+        ],
+      },
+      {
+        title: 'Curious Refuge《3 Years of AI》短片合辑',
+        why: '三年 AI 影像回望 reel；适合当晨间作品板开胃。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/3-years-of-ai-ai-short-reel' },
+        ],
+      },
+      {
+        title: 'Auspia：GA4 内置自定义仪表盘上线——SEO / AI 引荐报表怎么建',
+        why: '从业者向：15 卡上限、无 segment、无 API；给出「周运营看板 vs 外置 BI」分工，贴 GEO/AI 流量可见度线，不是厂商软广。',
+        sources: [
+          { label: 'Auspia', url: 'https://auspia.ai/blog/google-analytics-dashboards-seo-reporting' },
+        ],
+      },
+    ],
+    interviews: [
+      {
+        title: 'Dwarkesh：AI researchers debate how close we are to recursive self-improvement',
+        why: '约 1h37：John Schulman / Charlie O’Neill / Beren Millidge 当面辩 RSI 远近；对齐周末 Amodei「自我改进」主线。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=PrSf7IOYu-I' },
+        ],
+      },
+      {
+        title: 'MLST × Edward Hughes：What Building an AI Scientist Actually Requires Beyond Intelligence',
+        why: '约 2h02：Inherent 首席科学家谈 AI Scientist 缺的是选题与判断，不是再堆算力；完整长访谈，非同窗短切片。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=P4bYjTJvD28' },
+        ],
+      },
+    ],
+    todos: [
+      {
+        title: '今天 12:00 上海起：DeepSeek `deepseek-v4-pro` 将路由到 V4.1 Flash 并按 Flash 计价',
+        why: 'V4.1 Flash 9/10 已发；官方宣布 9/14 12:00（北京）起 Pro 名软退役。自查客户端/Gateway 是否仍写死 Pro。',
+        sources: [
+          { label: 'DeepSeek', url: 'https://www.deepseek.com/en/news/deepseek-v4-1-flash/' },
+          { label: 'API Docs', url: 'https://api-docs.deepseek.com/news/news260910' },
+        ],
+      },
+      {
+        title: '扫一眼 GA4 Reports → Create → Dashboard 是否已 rollout',
+        why: 'Auspia 建议先写清 4 个问题再拖卡片；适合把 AI 引荐拆进周看板，但别指望 segment/API。',
+        sources: [
+          { label: 'Auspia', url: 'https://auspia.ai/blog/google-analytics-dashboards-seo-reporting' },
+        ],
+      },
+    ],
+    note: '窗口：2026-09-11 08:25 上海之后。世界模型该窗无新高质量项（Atlas 等已跳）。Open Design 仍停在 0.22.2。十字路口具身智能对谈 MLMbfXZZ2P0 约 42m42s 未达 45 分钟门槛，近失。',
+  },
+  {
     date: '2026-09-11',
     title: 'ENISA 开测 Mythos，Anthropic 甩出八个月滥用战报',
     tldr: '欧委会确认 ENISA 已获 Mythos 5 与 GPT-6 Astra 测试准入；Anthropic 发布 9 月威胁情报（俄网特、ShinyHunters、AI 供应链窃钥）；微软规划 2032 年 38GW 数据中心；两篇 Nat Neuro 讲任务不确定与嗅觉流形；口味板有 Seedance 短片与 Open Design 0.22.2。',
