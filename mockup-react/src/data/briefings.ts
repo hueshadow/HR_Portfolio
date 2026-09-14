@@ -115,6 +115,21 @@ export const briefings: Briefing[] = [
           { label: 'Auspia', url: 'https://auspia.ai/blog/google-analytics-dashboards-seo-reporting' },
         ],
       },
+      {
+        title: 'Viktor Oddy：MotionSites 给 AI coding 的网页动效资源板',
+        why: '9/13 帖：3D 站、动画渐变、motion sections + navbar/footer/CTA 灵感库——直接贴 Seedance/Motion Sites 种子。',
+        sources: [
+          { label: 'X', url: 'https://x.com/viktoroddy/status/2099152986102796467' },
+        ],
+      },
+      {
+        title: 'Alex Groberman：ChatGPT 约占 70% AI referral；B2C 从 AI 问答入口找软件',
+        why: 'GEO 种子线：Similarweb/Conductor 份额 + AI Overviews/ChatGPT/Perplexity 获客转移，不是泛 SEO。',
+        sources: [
+          { label: 'X', url: 'https://x.com/alexgroberman/status/2099164750567678157' },
+          { label: 'X', url: 'https://x.com/alexgroberman/status/2099134176049963019' },
+        ],
+      },
     ],
     interviews: [
       {
@@ -149,7 +164,7 @@ export const briefings: Briefing[] = [
         ],
       },
     ],
-    note: '窗口：2026-09-11 08:25 上海之后。世界模型该窗无新高质量项（Atlas 等已跳）。Open Design 仍停在 0.22.2。十字路口具身智能对谈 MLMbfXZZ2P0 约 42m42s 未达 45 分钟门槛，近失。',
+    note: '窗口：2026-09-11 08:25 上海之后。世界模型该窗无新高质量项（Atlas 等已跳）。Open Design 仍停在 0.22.2。X：Viktor MotionSites 2099152986102796467 等；Groberman GEO 2099164750567678157 等。十字路口 MLMbfXZZ2P0≈42m42s 近失。',
   },
   {
     date: '2026-09-11',
