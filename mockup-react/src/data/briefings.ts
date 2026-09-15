@@ -158,7 +158,7 @@ export const briefings: Briefing[] = [
         ],
       },
     ],
-    note: '窗口：2026-09-14 08:25 上海之后。已跳过 9/14 早报项（Amodei Pace / Altman IPO / RubyGems / Fields / tau 慢波 / 树突缩窄 / Dwarkesh RSI / MLST×Hughes 等）。METR HF 调查原文 8/26，InfoQ 9/14 转载不算新。Google GEO 官方指南 5 月旧文跳过。世界模型该窗无新高质量项。Open Design 近提交多为 fix，未单列。X taste 扫描若晚到将补记。',
+    note: '窗口：2026-09-14 08:25 上海之后。已跳过 9/14 早报项（Amodei Pace / Altman IPO / RubyGems / Fields / tau 慢波 / 树突缩窄 / Dwarkesh RSI / MLST×Hughes 等）。METR HF 调查原文 8/26，InfoQ 9/14 转载不算新。Google GEO 官方指南 5 月旧文跳过。世界模型该窗无新高质量项。Open Design 近提交多为 fix，未单列。X：窗内匹配 alexgroberman 2099528334074077499（+$100k AI 搜索流量）；viktoroddy Astra/MotionSites 两帖（06:21/06:24）与 groberman 35% discovery（06:48）在 08:25 窗前，下轮跳过。空线：XAMTO_AI / kookaking；loki/LerSent 未扫完。',
   },
   {
     date: '2026-09-14',
