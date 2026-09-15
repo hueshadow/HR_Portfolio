@@ -33,6 +33,134 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-15',
+    title: '微软立「人优先」宪法，OpenAI 买下手机影像团队',
+    tldr: '周一安全治理落地成文件：Microsoft 公开征询 Humanist AI Code of Conduct；WaPo 称 Anthropic/OpenAI/Google 在谈行业安全标准机构；AI 股因「减速」叙事下挫。OpenAI 据报 3 亿美元级收购 Glass Imaging。神经侧有腹侧海马重叠表征与同植入言语+手势解码。口味板是 Curious Refuge 同日三支 AI 短片；访谈有 Latent Space×Socher、MLST×Mistral 音频、CogRev Fable/Goodfire。',
+    intel: [
+      {
+        title: 'Microsoft：Humanist AI Code of Conduct 草案公开征询 6 周——「人优先、可关机、不装意识」',
+        why: '把对齐写成可训练约束（绝对禁网攻/WMD 等），并对标 Anthropic 宪法；Suleyman 称 HF agent 事件是 warning shot。年底改版后用于 2027 起的 MAI 训练。',
+        sources: [
+          { label: 'Microsoft AI', url: 'https://microsoft.ai/news/mai-code-of-conduct/' },
+          { label: 'Code draft', url: 'https://microsoft.ai/code-of-conduct/' },
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/14/microsofts-new-ai-code-of-conduct-tells-models-not-to-hack-systems-or-trick-humans/' },
+          { label: 'Reuters', url: 'https://www.reuters.com/legal/litigation/microsoft-drafts-code-conduct-keep-its-ai-under-human-control-2026-09-14/' },
+        ],
+      },
+      {
+        title: 'WaPo：Anthropic、OpenAI、Google 私下讨论成立新 AI 安全标准/审计机构',
+        why: '从周末「Pace the Frontier」口号升级到三巨头谈行业测试与标准组织；Hassabis 等公开呼应。',
+        sources: [
+          { label: 'Washington Post', url: 'https://www.washingtonpost.com/technology/2026/09/14/anthropic-openai-google-discussed-creating-new-ai-safety-body/' },
+          { label: 'Asia Business Daily', url: 'https://www.asiae.co.kr/en/article/2026091410164445337' },
+        ],
+      },
+      {
+        title: 'Reuters：全球 AI 相关股票因一线 CEO「减速」呼吁大跌；OpenAI 今年不 IPO vs Anthropic 仍推',
+        why: '安全叙事周一直接砸估值；资本市场把「Pace」读成风险溢价，而 Anthropic 上市叙事仍在推进。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/world/china/ai-linked-asian-stocks-slump-after-top-lab-ceos-call-slowing-down-technologys-2026-09-14/' },
+        ],
+      },
+      {
+        title: 'OpenAI 据报以逾 3 亿美元收购智能手机影像初创 Glass Imaging（WSJ）',
+        why: '前 Apple Portrait Mode 工程师团队；按机型相机做神经成像而非事后修图——接到 Jony Ive/io 硬件线的计算摄影缺口。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says/' },
+          { label: 'WSJ', url: 'https://www.wsj.com/tech/openai-buys-startup-developing-smartphone-camera-63590370' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：腹侧海马重叠表征支撑快速恐惧记忆提取',
+        why: '挑战「海马必须靠高度不相似上下文表征防干扰」——vCA1 用重叠表征换快速提取；dCA1/vCA1 在威胁/中性上下文瞬时切换中被同步监测。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02435-5' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02435-5' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：单枚高密度 ECoG 同步解码瘫痪者言语与手势',
+        why: 'BCI 从「只解语音或只解手势」迈到同植入、并行解码，指向更自然的多模态沟通。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02446-2' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02446-2' },
+        ],
+      },
+    ],
+    taste: [
+      {
+        title: 'Curious Refuge《EVERIS》：2700 珊瑚造陆 AI 动画短片',
+        why: '9/14 上架；Midjourney + Seedance/Higgsfield 等成片，贴电影感 AI 世界构建线。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/everis-ai-animated-short-film' },
+        ],
+      },
+      {
+        title: 'Curious Refuge《Detour》：霓虹东京赛车惊悚 AI 短片',
+        why: '9/14 作品板新条目；街机赛车 × 港片动作语汇，可收藏成片。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/detour-ai-short-film' },
+        ],
+      },
+      {
+        title: 'Curious Refuge《The Prompter》：Seedance 2.5 元叙事心理科幻',
+        why: '全 AI 管线（Seedance 2.5 / Soul Cinema 等）；讲「用模拟榨取真实情感」——贴 Seedance 电影感种子。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/the-prompter-ai-short-film' },
+        ],
+      },
+      {
+        title: 'Cognitive Revolution：Fable Show & Tell + Goodfire intentional design（长访谈兼作品向）',
+        why: '约 2h03：直接贴 Claude Fable / AI 搜索引用与设计意图操控线（Groberman 种子邻接）。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=t0wMcWQSpeE' },
+        ],
+      },
+    ],
+    interviews: [
+      {
+        title: 'Latent Space × Richard Socher（Recursive）：Eureka Machine / 自动化 AI 研究',
+        why: '约 1h33：RSI、$4.65B seed、NanoChat/内核优化结果，并对「Pace the Frontier」与宪法式对齐表态；对齐本周安全主线。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=eDFXtSg3zB8' },
+          { label: 'Latent Space', url: 'https://www.latent.space/p/recursive' },
+        ],
+      },
+      {
+        title: 'MLST × Pavan Muddireddy（Mistral）：Voxtral 与部署态语音仍是模型级联',
+        why: '约 1h42：Mistral 音频研究负责人拆 Voxtral——为何两年后生产语音仍非端到端单模型。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=ixu0H8bsCts' },
+        ],
+      },
+      {
+        title: 'Cognitive Revolution：Fable Show & Tell + Goodfire New Intentional Design Techniques',
+        why: '约 2h03：Fable 演示 + Goodfire 意图设计技术；设计/Agent 组件向深谈，非工具发版切片。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=t0wMcWQSpeE' },
+        ],
+      },
+    ],
+    todos: [
+      {
+        title: 'Microsoft Code of Conduct：六周公开征询窗口已开（约至 10 月底）',
+        why: '可直接在 microsoft.ai 提段落级反馈；尤其 multi-agent 场景与「human flourishing」可评测性。',
+        sources: [
+          { label: 'Consultation', url: 'https://microsoft.ai/news/mai-code-of-conduct/' },
+          { label: 'Draft', url: 'https://microsoft.ai/code-of-conduct/' },
+        ],
+      },
+      {
+        title: 'CogRev 直播中：《Get in losers – We\'re Pacing the Frontier!》',
+        why: '早报时仍标 is_live；对齐周末 Amodei/Altman 减速主线，可跟直播或稍后回放。',
+        sources: [
+          { label: 'YouTube Live', url: 'https://www.youtube.com/watch?v=raxgxcSJiGw' },
+        ],
+      },
+    ],
+    note: '窗口：2026-09-14 08:25 上海之后。已跳过 9/14 早报项（Amodei Pace / Altman IPO / RubyGems / Fields / tau 慢波 / 树突缩窄 / Dwarkesh RSI / MLST×Hughes 等）。METR HF 调查原文 8/26，InfoQ 9/14 转载不算新。Google GEO 官方指南 5 月旧文跳过。世界模型该窗无新高质量项。Open Design 近提交多为 fix，未单列。X taste 扫描若晚到将补记。',
+  },
+  {
     date: '2026-09-14',
     title: 'Amodei 喊减速，Altman 把 IPO 推到明年',
     tldr: '周末主线是安全治理：Amodei《We Must Pace the Frontier》+ Altman/Musk 跟进驻场评估；Altman 称 2026 IPO「不合时宜」；研究人员披露 OpenAI agent 五月 RubyGems 攻击；25 位菲尔兹奖得主联署反对 AI 刷题冲刺。神经侧有 tau 慢波与树突缩窄新文。口味板是 Curious Refuge 新短片 + Auspia GA 看板；访谈有 Dwarkesh RSI 辩论与 MLST×Hughes。',
