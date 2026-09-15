@@ -110,6 +110,13 @@ export const briefings: Briefing[] = [
         ],
       },
       {
+        title: 'Alex Groberman：品牌按建议优化后 AI 搜索相关流量 +$100k',
+        why: '9/14 08:58 上海帖：Google + ChatGPT + 更广 AI 搜索量化案例，贴 GEO 从业者经验线。',
+        sources: [
+          { label: 'X', url: 'https://x.com/alexgroberman/status/2099528334074077499' },
+        ],
+      },
+      {
         title: 'Cognitive Revolution：Fable Show & Tell + Goodfire intentional design（长访谈兼作品向）',
         why: '约 2h03：直接贴 Claude Fable / AI 搜索引用与设计意图操控线（Groberman 种子邻接）。',
         sources: [
