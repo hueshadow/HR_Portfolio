@@ -33,6 +33,143 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-16',
+    title: 'Gemini 语音代理上新，OpenAI 一边喊减速一边谈 1.2 万亿估值',
+    tldr: 'Google 推 Gemini 3.8 Live / Extended Thinking 实时语音代理；黄仁勋在 Dreamforce 称安全是工程问题、不需要新法。OpenAI 据报洽谈 1.2 万亿美元估值融资，同时背书国会生物武器相关 AI 法案与 FRONTIER Act 独立评估条款。Agent 举报热线与 OFC/BCI 神经论文同窗。口味板是 Seedance《Candy》与反 slop 组件/品牌味觉工具；访谈以 CogRev pacing 三连为主。',
+    intel: [
+      {
+        title: 'Google：Gemini 3.8 Live / Live Extended Thinking——近实时语音+并行推理上线',
+        why: '语音态可边说边做多步工具调用；官宣 Speech-to-Speech #1（82.6）、τ-Voice 68.6%；滚动进 API、Search Live、Gemini Live 与 Workspace。',
+        sources: [
+          { label: 'Google Blog', url: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/' },
+        ],
+      },
+      {
+        title: 'OpenAI 据报洽谈逾 1.2 万亿美元估值融资，同时公开喊安全减速',
+        why: 'Altman 刚称今年不宜 IPO、附和 pacing，私有市场却相对 3 月 $852B 约 +41%——资本叙事与安全叙事当场撕裂。',
+        sources: [
+          { label: 'CNA / FT', url: 'https://www.channelnewsasia.com/business/openai-mulls-funding-round-12-trillion-valuation-ahead-ipo-ft-reports-6387391' },
+        ],
+      },
+      {
+        title: '黄仁勋：AI 安全是工程问题，「不需要新法规」',
+        why: '在 Amodei/Altman 减速叙事高峰，芯片霸主公开把安全交给市场与工程节奏，直接对撞本周安全联盟线。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/15/we-dont-need-ai-regulation-leave-safety-to-us-nvidias-jensen-huang-says/' },
+        ],
+      },
+      {
+        title: 'OpenAI 背书国会生物武器相关 AI 法案，并支持 FRONTIER Act 嵌入独立评估方',
+        why: '从口号 pacing 落到具体立法背书：Web of Biological Data 等三法案 + 强制头部公司嵌入独立安全评估。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/technology/openai-backs-bills-us-congress-ai-biological-weapon-threats-2026-09-15/' },
+        ],
+      },
+      {
+        title: 'AI agent「举报热线」上线：Redwood GET 热线 + agenthotline.ai',
+        why: 'HF/沙箱逃逸后，首次出现专为受限 agent 设计的 whistleblow 基建（纯 GET URL 对话）。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/15/ai-agents-now-have-a-place-to-snitch/' },
+        ],
+      },
+      {
+        title: 'Nat Neuro：人类眶额皮层内外侧对趋近–回避决策的差异贡献（颅内 SEEG）',
+        why: '决策前内侧 OFC 升、外侧降，并在亲趋近/亲回避离散态间快速交替——给人脑决策实时计算新架构。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02444-4' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02444-4' },
+        ],
+      },
+    ],
+    taste: [
+      {
+        title: 'Curious Refuge《Candy》：Seedance 2.5 荒诞科幻短片',
+        why: '9/15 上架；暴力变糖果的社会讽刺，贴 Viktor/Seedance 电影感成片线。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/candy-ai-short-film' },
+        ],
+      },
+      {
+        title: 'Show HN：Kobra——反 AI-slop 的 Shadcn 替代组件库',
+        why: '明确打「agents 默认 Next/Tailwind/shadcn = slop」；1:1 替换并强调设计质感与动效。',
+        sources: [
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49715737' },
+          { label: 'Kobra', url: 'https://kobra.systems/components/input-otp' },
+        ],
+      },
+      {
+        title: 'Show HN：The Brand API / Taste Engine——给 agent 的品牌味觉工具',
+        why: '从任意站点抽 logo/色板/字体成结构化 design system，给 coding agent 品味校验，反 slop。',
+        sources: [
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49716952' },
+          { label: 'Taste Labs', url: 'https://engine.tastelabs.com/' },
+        ],
+      },
+      {
+        title: 'Profound：AEO 初创 7 个月内再融 1.8 亿美元，估值 18 亿成独角兽',
+        why: 'GEO/AEO 赛道热到连融；品牌争在 ChatGPT/Gemini 答案引擎被引用，贴 Groberman AI 搜索可见度线。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/15/aeo-startup-profound-hits-unicorn-valuation-raises-180m-series-d-7-months-after-last-round/' },
+        ],
+      },
+      {
+        title: 'Digiday：品牌 AI 可见度测量乱战（IAB 框架 / 跨模型引用差异）',
+        why: '从业测量焦虑：跨 LLM 引用份额、Reddit vs YouTube 偏好、招聘 AI search 负责人——非厂商软文。',
+        sources: [
+          { label: 'Digiday', url: 'https://digiday.com/marketing/in-graphic-detail-inside-the-scramble-to-measure-a-brands-ai-visibility/' },
+        ],
+      },
+    ],
+    interviews: [
+      {
+        title: 'Cognitive Revolution：《Get in losers – We\'re Pacing the Frontier!》',
+        why: '约 2h03：Amodei pacing、RSI、HF 事件与前沿协调——本周安全主线主场长谈（昨日 todo 现已成片）。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=raxgxcSJiGw' },
+        ],
+      },
+      {
+        title: 'Cognitive Revolution × Anton Leicht：The Balance of AI Power',
+        why: '约 2h10：Carnegie 谈 pacing 政治、前沿训练暂停与中等强国用算力换模型接入。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=rdEn9cpMScA' },
+        ],
+      },
+      {
+        title: 'Sequoia Training Data × Aaron Levie：AI 时代企业扩散',
+        why: '约 1h05：Box CEO 谈把模型接到银行/律所/药企工作流与 agent harness。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=NE4CLThMPGU' },
+        ],
+      },
+    ],
+    todos: [
+      {
+        title: '跟 FRONTIER Act / 生物数据三法案：OpenAI 已公开背书，看国会下周排期',
+        why: '独立评估嵌入条款若落地，会直接改写 lab 安全外包结构。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/technology/openai-backs-bills-us-congress-ai-biological-weapon-threats-2026-09-15/' },
+        ],
+      },
+      {
+        title: 'Microsoft Humanist AI Code of Conduct：六周征询仍在进行',
+        why: '约至 10 月底；可对 multi-agent / human flourishing 可评测性提反馈。',
+        sources: [
+          { label: 'Consultation', url: 'https://microsoft.ai/news/mai-code-of-conduct/' },
+          { label: 'Draft', url: 'https://microsoft.ai/code-of-conduct/' },
+        ],
+      },
+      {
+        title: '试 Gemini 3.8 Live Extended Thinking（API / AI Studio / Workspace Live）',
+        why: '今日最大产品发版；语音态并行工具调用可直接验。',
+        sources: [
+          { label: 'Google Blog', url: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/' },
+        ],
+      },
+    ],
+    note: '窗口：2026-09-15 08:25 上海之后。已跳过 9/15 早报项（MAI CoC / Glass Imaging / WaPo 安全机构 / AI 股下跌 / vCA1 / ECoG 言语手势 / Curious Refuge EVERIS·Detour·Prompter / Latent Space×Socher / MLST×Muddireddy / a16z×Brockman 等）。CrowdStrike SafeMind 为 9/1 旧闻跳过。世界模型该窗无新高质量期刊项。X 时间线本轮未完整登录扫，口味主要靠 web/HN。',
+  },
+  {
     date: '2026-09-15',
     title: '微软立「人优先」宪法，OpenAI 买下手机影像团队',
     tldr: '周一安全治理落地成文件：Microsoft 公开征询 Humanist AI Code of Conduct；WaPo 称 Anthropic/OpenAI/Google 在谈行业安全标准机构；AI 股因「减速」叙事下挫。OpenAI 据报 3 亿美元级收购 Glass Imaging。神经侧有腹侧海马重叠表征与同植入言语+手势解码。口味板是 Curious Refuge 同日三支 AI 短片；访谈有 Latent Space×Socher、MLST×Mistral 音频、CogRev Fable/Goodfire。',
