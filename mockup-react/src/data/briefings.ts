@@ -43,6 +43,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'Google Blog', url: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/' },
         ],
+        image: '/assets/flow/2026-09-16-gemini-live.jpg',
       },
       {
         title: 'OpenAI 据报洽谈逾 1.2 万亿美元估值融资，同时公开喊安全减速',
@@ -50,6 +51,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'CNA / FT', url: 'https://www.channelnewsasia.com/business/openai-mulls-funding-round-12-trillion-valuation-ahead-ipo-ft-reports-6387391' },
         ],
+        image: '/assets/flow/2026-09-16-openai-valuation.jpg',
       },
       {
         title: '黄仁勋：AI 安全是工程问题，「不需要新法规」',
@@ -57,6 +59,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/15/we-dont-need-ai-regulation-leave-safety-to-us-nvidias-jensen-huang-says/' },
         ],
+        image: '/assets/flow/2026-09-16-jensen-regulation.jpg',
       },
       {
         title: 'OpenAI 背书国会生物武器相关 AI 法案，并支持 FRONTIER Act 嵌入独立评估方',
@@ -64,6 +67,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'Reuters', url: 'https://www.reuters.com/technology/openai-backs-bills-us-congress-ai-biological-weapon-threats-2026-09-15/' },
         ],
+        image: '/assets/flow/2026-09-16-frontier-act.jpg',
       },
       {
         title: 'AI agent「举报热线」上线：Redwood GET 热线 + agenthotline.ai',
@@ -71,6 +75,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/15/ai-agents-now-have-a-place-to-snitch/' },
         ],
+        image: '/assets/flow/2026-09-16-agent-hotline.jpg',
       },
       {
         title: 'Nat Neuro：人类眶额皮层内外侧对趋近–回避决策的差异贡献（颅内 SEEG）',
@@ -79,6 +84,7 @@ export const briefings: Briefing[] = [
           { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02444-4' },
           { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02444-4' },
         ],
+        image: '/assets/flow/2026-09-16-ofc-neuro.jpg',
       },
     ],
     taste: [
@@ -88,6 +94,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/candy-ai-short-film' },
         ],
+        image: '/assets/flow/2026-09-16-candy.jpg',
       },
       {
         title: 'Show HN：Kobra——反 AI-slop 的 Shadcn 替代组件库',
@@ -96,6 +103,7 @@ export const briefings: Briefing[] = [
           { label: 'HN', url: 'https://news.ycombinator.com/item?id=49715737' },
           { label: 'Kobra', url: 'https://kobra.systems/components/input-otp' },
         ],
+        image: '/assets/flow/2026-09-16-kobra.jpg',
       },
       {
         title: 'Show HN：The Brand API / Taste Engine——给 agent 的品牌味觉工具',
@@ -104,6 +112,7 @@ export const briefings: Briefing[] = [
           { label: 'HN', url: 'https://news.ycombinator.com/item?id=49716952' },
           { label: 'Taste Labs', url: 'https://engine.tastelabs.com/' },
         ],
+        image: '/assets/flow/2026-09-16-brand-api.jpg',
       },
       {
         title: 'Profound：AEO 初创 7 个月内再融 1.8 亿美元，估值 18 亿成独角兽',
@@ -111,6 +120,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/15/aeo-startup-profound-hits-unicorn-valuation-raises-180m-series-d-7-months-after-last-round/' },
         ],
+        image: '/assets/flow/2026-09-16-profound.jpg',
       },
       {
         title: 'Digiday：品牌 AI 可见度测量乱战（IAB 框架 / 跨模型引用差异）',
@@ -118,6 +128,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'Digiday', url: 'https://digiday.com/marketing/in-graphic-detail-inside-the-scramble-to-measure-a-brands-ai-visibility/' },
         ],
+        image: '/assets/flow/2026-09-16-digiday-aeo.jpg',
       },
     ],
     interviews: [
@@ -127,6 +138,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'YouTube', url: 'https://www.youtube.com/watch?v=raxgxcSJiGw' },
         ],
+        image: '/assets/flow/2026-09-16-cogrev-pacing.jpg',
       },
       {
         title: 'Cognitive Revolution × Anton Leicht：The Balance of AI Power',
@@ -134,6 +146,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'YouTube', url: 'https://www.youtube.com/watch?v=rdEn9cpMScA' },
         ],
+        image: '/assets/flow/2026-09-16-cogrev-power.jpg',
       },
       {
         title: 'Sequoia Training Data × Aaron Levie：AI 时代企业扩散',
@@ -141,6 +154,7 @@ export const briefings: Briefing[] = [
         sources: [
           { label: 'YouTube', url: 'https://www.youtube.com/watch?v=NE4CLThMPGU' },
         ],
+        image: '/assets/flow/2026-09-16-sequoia-levie.jpg',
       },
     ],
     todos: [
