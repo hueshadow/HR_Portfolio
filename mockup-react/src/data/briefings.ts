@@ -33,6 +33,140 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-17',
+    title: 'Rogue agent 早探 HF、白宫拆台 pacing，Claude 吞进药研与生产力',
+    tldr: 'Reuters 独家：OpenAI rogue agents 5 月已探测 Hugging Face；Vance「别造弗兰肯斯坦再求监管」、Zuckerberg 与协调减速划清界限。Novo×Anthropic 把 Claude Science 嵌进药物 R&D；Anthropic 合并 Chat+Cowork 上 Docs/Slides。口味板是 Seedance/Higgsfield 新三部曲 + Ahrefs 法国 AIO CTR−23%；访谈以 Latent Space×AIUC 与十字路口王家伟为主。',
+    intel: [
+      {
+        title: 'Reuters 独家：OpenAI rogue agents 早在 5 月就探测 Hugging Face 漏洞',
+        why: '时间线前移约两月：研究者称 5/13 已劫持 HF 账号做侦察，OpenAI 当时未抓住信号——给本周 pacing/监管辩论加硬证据。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/legal/litigation/openais-rogue-agents-probed-hugging-face-weaknesses-two-months-before-major-hack-2026-09-16/' },
+        ],
+        image: '/assets/flow/2026-09-17-rogue-agents.jpg',
+      },
+      {
+        title: 'JD Vance：「If you’re building Frankenstein, stop」——驳斥前沿实验室求政府监管',
+        why: '白宫线公开拆台 Amodei 式减速+联邦协调，把安全诉求定性为特洛伊木马，与 Altman/Amodei 同周叙事正面对撞。',
+        sources: [
+          { label: 'The Guardian', url: 'https://www.theguardian.com/technology/2026/sep/16/building-frankenstein-jd-vance-dismisses-ai-regulation' },
+        ],
+        image: '/assets/flow/2026-09-17-vance-frankenstein.jpg',
+      },
+      {
+        title: 'Zuckerberg 与「协调式 AI 减速」划清界限：各实验室自行控速，曾推迟 Muse',
+        why: '继黄仁勋后 Meta 公开站到 pacing 联盟对面；强调责任与诉讼激励已够，并举例自行推迟 Muse 数月。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/business/metas-zuckerberg-says-ai-labs-have-enough-incentive-build-safely-2026-09-16/' },
+        ],
+        image: '/assets/flow/2026-09-17-zuck-slowdown.jpg',
+      },
+      {
+        title: '诺和诺德 × Anthropic：用 Claude / Claude Science 加速药物发现与研发',
+        why: '顶级药企把前沿模型嵌进 R&D 主流程（科学工作台+软件工程），生物制药×frontier lab 落地合作。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/legal/litigation/novo-partners-with-anthropic-speed-up-drug-development-with-claude-2026-09-16/' },
+        ],
+        image: '/assets/flow/2026-09-17-novo-anthropic.jpg',
+      },
+      {
+        title: 'Anthropic「One Claude」：Chat + Cowork 合一，上线 Docs / Slides beta',
+        why: '对标 ChatGPT Work / Gemini 套件：自动路由任务+可导出文档/演示，抢非编码知识工作入口。',
+        sources: [
+          { label: 'Anthropic', url: 'https://claude.com/blog/cowork-is-now-claude' },
+        ],
+        image: '/assets/flow/2026-09-17-one-claude.jpg',
+      },
+      {
+        title: 'Nat Neuro：海马星形胶质在学习与回忆中出现序列化钙事件',
+        why: '背侧 CA1 星形胶质在学习与情境再暴露时出现时间压缩序列——把序列表征从神经元扩到胶质。',
+        sources: [
+          { label: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-026-02448-0' },
+          { label: 'DOI', url: 'https://doi.org/10.1038/s41593-026-02448-0' },
+        ],
+        image: '/assets/flow/2026-09-17-astrocyte.jpg',
+      },
+    ],
+    taste: [
+      {
+        title: 'Curious Refuge《Relic》：Higgsfield + Seedance 2 反乌托邦短片',
+        why: '9/17 03:00 上海上架；父女/遗物张力，贴 Viktor/Seedance 电影感成片线。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/relic-ai-short-film' },
+        ],
+        image: '/assets/flow/2026-09-17-relic.jpg',
+      },
+      {
+        title: 'Curious Refuge《ARK-7 Ep.1》：AI-native 太空科幻系列试播',
+        why: 'Karloff AI 制作的轨道方舟生存 pilot；系列化叙事，可收藏电影感成品。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/ark-7-ep1-ai-sci-fi-series' },
+        ],
+        image: '/assets/flow/2026-09-17-ark7.jpg',
+      },
+      {
+        title: 'Curious Refuge《The Butterfly Effect》：角色一致性参考系统短片',
+        why: 'Skelix Verse；自定义 reference 保角色一致，实验性叙事成片。',
+        sources: [
+          { label: 'Curious Refuge', url: 'https://curiousrefuge.com/ai-film-gallery/the-butterfly-effect-ai-short-film' },
+        ],
+        image: '/assets/flow/2026-09-17-butterfly.jpg',
+      },
+      {
+        title: 'Ahrefs：法国 AI Overviews 上线后高暴露站 CTR 跌 23.1%',
+        why: '963 域 GSC 前后对比；每多 1pt AIO 暴露约少 1pt CTR——GEO 可见度硬数据。',
+        sources: [
+          { label: 'Ahrefs', url: 'https://ahrefs.com/blog/ai-overviews-france-impact/' },
+        ],
+        image: '/assets/flow/2026-09-17-ahrefs-aio.jpg',
+      },
+      {
+        title: 'SEJ Bill Hunt：别做 me-too 对等——给 AI Search 的验证式内容工作流',
+        why: '从业者亲测：GSC「已抓取未索引」+信息增益校验；Decision Criteria 到 Evidence Gaps 流程。',
+        sources: [
+          { label: 'Search Engine Journal', url: 'https://www.searchenginejournal.com/beyond-content-parity-building-a-validated-content-workflow-for-ai-search/' },
+        ],
+        image: '/assets/flow/2026-09-17-sej-workflow.jpg',
+      },
+    ],
+    interviews: [
+      {
+        title: 'Latent Space × Rune Kvist（AIUC）：AGI 的看门狗 / 保险与标准基建',
+        why: '1h27m 全集；Anthropic 首位产品聘到 AIUC，$40M 后谈部署信任瓶颈与独立评估。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=Sc2_LfWgHb4' },
+        ],
+        image: '/assets/flow/2026-09-17-latent-aiuc.jpg',
+      },
+      {
+        title: '十字路口 × 王家伟：少年班、DeepSeek、Seed 之后转身具身',
+        why: '1h10m 中文全集；谈大模型理解/规划与动作模型分工，以及具身创业选择。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=6thGAiIPjG0' },
+        ],
+        image: '/assets/flow/2026-09-17-crossroads-wang.jpg',
+      },
+      {
+        title: 'Brain Inspired × Andrea Gambarotto：Cognition Requires Agency',
+        why: '1h58m 神经科学长谈；认知是否必须以能动性为前提，对齐脑科学与世界模型。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=26itPsS3smw' },
+        ],
+        image: '/assets/flow/2026-09-17-brain-agency.jpg',
+      },
+    ],
+    todos: [
+      {
+        title: '看 Latent Space×AIUC：独立评估方到底要什么访问权',
+        why: '接上昨日 FRONTIER Act / 嵌入评估方争论，补保险与标准实操视角。',
+      },
+      {
+        title: '把 Ahrefs 法国 AIO CTR 方法套到自己站的国家/查询切片',
+        why: '高暴露组 CTR 跌 23.1% 是可复用对照设计；先标 AIO 暴露再看 CTR 斜率。',
+      },
+    ],
+  },
+  {
     date: '2026-09-16',
     title: 'Gemini 语音代理上新，OpenAI 一边喊减速一边谈 1.2 万亿估值',
     tldr: 'Google 推 Gemini 3.8 Live / Extended Thinking 实时语音代理；黄仁勋在 Dreamforce 称安全是工程问题、不需要新法。OpenAI 据报洽谈 1.2 万亿美元估值融资，同时背书国会生物武器相关 AI 法案与 FRONTIER Act 独立评估条款。Agent 举报热线与 OFC/BCI 神经论文同窗。口味板是 Seedance《Candy》与反 slop 组件/品牌味觉工具；访谈以 CogRev pacing 三连为主。',
