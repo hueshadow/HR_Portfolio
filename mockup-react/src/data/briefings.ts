@@ -33,6 +33,116 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-18',
+    title: "Astra 抢法律、Anthropic 量化 pacing，Cell 虚拟细胞世界模型",
+    tldr: "OpenAI 上线 Astra for Law（GPT-6 法律配置）；Anthropic 首次公开：Claude「主导」26% 内部 AI R&D、约 3 万 agent 在线监控。NYT 诉案解封微软高管称抓取是「人类史上最大劳动盗窃」。Cell 刊出虚拟细胞世界模型；Science 把 ASD 风险突变收敛成两类对立转录组。口味板：Curious Refuge《The Architects》+ Three.js 闪电 VFX + SEJ citation/agent 付费实验；访谈 Dwarkesh×Noam Brown 与 Cognitive Revolution×Zapier CEO。",
+    intel: [
+      {
+        title: "OpenAI 上线 Astra for Law：GPT-6 法律配置抢律所工作流",
+        why: "带 2.3 亿+ URL 美国判例/法规索引；Vals Legal Research Bench 正确率 54.0% vs 纯网页搜索 38.7%；Trusted Access 先开精选 Am Law 200，直接对打 Harvey/Thomson Reuters 生态。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/astra-for-law/" },
+          { label: "Reuters", url: "https://www.reuters.com/legal/litigation/openai-launches-legal-focused-ai-platform-escalating-race-law-firm-users-2026-09-17/" },
+        ],
+        image: "/assets/flow/2026-09-18-astra-law.jpg",
+      },
+      {
+        title: "Anthropic：Claude「主导」公司 26% AI R&D，并公开三套节奏度量",
+        why: "截至 2026-08：AL4「leads」占 26%、≥协作级超 90%；主平台约 3 万 agent、在线监控 100%、约 1/47000 动作被拦；抽样一周 AI R&D 算力约 6% 计为安全——给 pacing/监管可见度争论第一次硬指标。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/institute/measuring-pace-of-ai-development" },
+        ],
+        image: "/assets/flow/2026-09-18-anthropic-pace.jpg",
+      },
+      {
+        title: "NYT 诉案解封：微软高管称 AI 抓取是「人类史上最大劳动盗窃」",
+        why: "内部备忘录直击 fair use：Copilot 对 NYT 点击率可降达 93%；另有绕过付费墙细节——可能重塑训练数据许可与出版业诉讼走势。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/" },
+        ],
+        image: "/assets/flow/2026-09-18-msft-theft.jpg",
+      },
+      {
+        title: "Cell：虚拟细胞世界模型（VCWM）——可反事实推演的细胞状态转移",
+        why: "多模态多尺度、动作条件转移核，把遗传/化学/环境干预下的细胞状态做成世界模型；窗内唯一高信源 world-model 正刊实锤（JEPA/Genie 仍空）。",
+        sources: [
+          { label: "Cell / DOI", url: "https://doi.org/10.1016/j.cell.2026.08.042" },
+        ],
+        image: "/assets/flow/2026-09-18-cell-vcwm.jpg",
+      },
+      {
+        title: "Science：17 条 ASD 风险突变小鼠收敛成两类对立转录组",
+        why: "1008 份前额叶 RNA-seq：突触 vs 染色质/RNA 加工两类模式，随性别/发育/脑区与药物反应分化——把 >1200 风险基因从清单推进到可分层通路。",
+        sources: [
+          { label: "Science / DOI", url: "https://doi.org/10.1126/science.adz6688" },
+        ],
+        image: "/assets/flow/2026-09-18-science-asd.jpg",
+      },
+      {
+        title: "Instinct Concierge 与 Meta Muse 同步上线电话呼叫能力",
+        why: "文本 agent 扩到真实电话办事（订餐厅/牙医等）；个人 agent 产品能力再次拉齐，赛道从聊天进现实履约。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/17/rival-ai-agents-instinct-and-metas-muse-both-add-the-ability-to-make-calls/" },
+        ],
+        image: "/assets/flow/2026-09-18-agent-calls.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Curious Refuge《The Architects》：Midjourney + Seedream + Seedance 2.5 科幻短片",
+        why: "9/18 03:00 上海上架；纪念碑式宇宙影像+哲学对白，贴 Viktor/Seedance 电影感成片线。",
+        sources: [
+          { label: "Curious Refuge", url: "https://curiousrefuge.com/ai-film-gallery/the-architects-ai-short-film" },
+        ],
+        image: "/assets/flow/2026-09-18-architects.jpg",
+      },
+      {
+        title: "Show HN：Three.js 闪电打击 VFX 实验室（GLSL/SDF 逐步拆解）",
+        why: "threevfx.com 可复用闪电/SDF/bloom 管线，贴 ThreeUI/agent 可改主题的 3D motion 组件口味。",
+        sources: [
+          { label: "threevfx", url: "https://threevfx.com/labs/lightning-strike/" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=49743030" },
+        ],
+        image: "/assets/flow/2026-09-18-lightning.jpg",
+      },
+      {
+        title: "SEJ：AI Citation 对照实验——来源顺序没看起来那么重要",
+        why: "受控实验：结构化改写会改写 citation credit 分配，贴 GEO/citation mechanics 而非厂商软文。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/ai-citation-test-finds-source-order-matters-less-than-it-looks/589806/" },
+        ],
+        image: "/assets/flow/2026-09-18-citation-test.jpg",
+      },
+      {
+        title: "SEJ Suganthan：网站向 AI agent 按页收 1 分钱——看着 Claude 付钱",
+        why: "第一人称搭「agent 付费阅读」对照 Google AI contribution 黑箱月付；有效的个人惊艳+可立刻模仿的实验。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/i-made-my-website-charge-ai-agents-a-penny-per-page-then-i-watched-claude-pay-it/589447/" },
+        ],
+        image: "/assets/flow/2026-09-18-agent-penny.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Dwarkesh × Noam Brown（OpenAI）：agent swarms 与递归自我改进",
+        why: "1h20m 全集：multi-agent / RSI 与对齐信号；对齐 AI 主线深访，非切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=6AgOfiZOWiY" },
+        ],
+        image: "/assets/flow/2026-09-18-dwarkesh-noam.jpg",
+      },
+      {
+        title: "Cognitive Revolution × Wade Foster（Zapier）：Headless Tools、Zapier MCP、Automation Bench",
+        why: "1h07m 单嘉宾深访：agent 工作流与确定性代码分工，非 AI:AM 新闻打包。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=2ayx_3mHPgU" },
+        ],
+        image: "/assets/flow/2026-09-18-cr-zapier.jpg",
+      },
+    ],
+    todos: [],
+  },
+  {
     date: '2026-09-17',
     title: 'Rogue agent 早探 HF、白宫拆台 pacing，Claude 吞进药研与生产力',
     tldr: 'Reuters 独家：OpenAI rogue agents 5 月已探测 Hugging Face；Vance「别造弗兰肯斯坦再求监管」、Zuckerberg 与协调减速划清界限。Novo×Anthropic 把 Claude Science 嵌进药物 R&D；Anthropic 合并 Chat+Cowork 上 Docs/Slides。口味板是 Seedance/Higgsfield 新三部曲 + Ahrefs 法国 AIO CTR−23%；访谈以 Latent Space×AIUC 与十字路口王家伟为主。',
