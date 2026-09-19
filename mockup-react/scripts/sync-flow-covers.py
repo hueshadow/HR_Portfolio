@@ -30,13 +30,18 @@ CTX = ssl.create_default_context()
 TIMEOUT = 18
 MIN_BYTES = 2000
 
-QUOTE = re.compile(r"'((?:\\'|[^'])*)'")
-DATE_RE = re.compile(r"date:\s*'(\d{4}-\d{2}-\d{2})'")
+STR = r"(?:'((?:\\'|[^'])*)'|\"((?:\\\"|[^\"])*)\")"
+DATE_RE = re.compile(r"date:\s*" + STR)
 SECTION_RE = re.compile(r"^\s*(intel|taste|interviews|todos):\s*\[")
-TITLE_RE = re.compile(r"title:\s*'((?:\\'|[^'])*)'")
-URL_RE = re.compile(r"url:\s*'((?:\\'|[^'])*)'")
-IMAGE_RE = re.compile(r"image:\s*'((?:\\'|[^'])*)'")
+TITLE_RE = re.compile(r"title:\s*" + STR)
+URL_RE = re.compile(r"url:\s*" + STR)
+IMAGE_RE = re.compile(r"image:\s*" + STR)
 YT_RE = re.compile(r"(?:youtube\.com/watch\?v=|youtu\.be/)([A-Za-z0-9_-]{6,})")
+
+
+def str_val(m: re.Match) -> str:
+    raw = m.group(1) if m.group(1) is not None else m.group(2)
+    return unescape(raw or "")
 
 
 class MetaParser(HTMLParser):
@@ -62,7 +67,7 @@ class MetaParser(HTMLParser):
 
 
 def unescape(s: str) -> str:
-    return s.replace("\\'", "'")
+    return s.replace("\\'", "'").replace('\\"', '"')
 
 
 def parse_items(text: str) -> list[dict]:
@@ -80,7 +85,8 @@ def parse_items(text: str) -> list[dict]:
     for raw in text.splitlines():
         if m := DATE_RE.search(raw):
             flush()
-            date = m.group(1)
+            value = str_val(m)
+            date = value if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value) else date
             section = None
             continue
         if m := SECTION_RE.search(raw):
@@ -92,16 +98,16 @@ def parse_items(text: str) -> list[dict]:
             cur = {
                 "date": date,
                 "section": section,
-                "title": unescape(m.group(1)),
+                "title": str_val(m),
                 "urls": [],
                 "image": None,
             }
             continue
         if cur and (m := URL_RE.search(raw)):
-            cur["urls"].append(unescape(m.group(1)))
+            cur["urls"].append(str_val(m))
             continue
         if cur and (m := IMAGE_RE.search(raw)):
-            cur["image"] = unescape(m.group(1))
+            cur["image"] = str_val(m)
             continue
     flush()
     return items
@@ -164,6 +170,8 @@ def discover_og(page_url: str) -> str | None:
             except Exception:
                 pass
     html = request(page_url)
+    if not html:
+        html = request("https://web.archive.org/web/2026/" + page_url)
     if not html:
         return None
     try:
