@@ -1,22 +1,36 @@
 import type { Briefing, BriefingItem, SectionKey } from '../data/briefings'
 import { SECTION_META } from '../data/briefings'
+import { resolveCover } from '../data/resolveCover'
 
-function Item({ item, index, action }: { item: BriefingItem; index: number; action?: boolean }) {
+function Item({
+  date,
+  section,
+  item,
+  index,
+  action,
+}: {
+  date: string
+  section: SectionKey
+  item: BriefingItem
+  index: number
+  action?: boolean
+}) {
   const primary = item.sources?.[0]
-  const thumb = item.image ? (
+  const image = resolveCover(date, item, section)
+  const thumb = image ? (
     primary ? (
       <a href={primary.url} target="_blank" rel="noreferrer" className="flow-thumb">
-        <img src={item.image} alt="" />
+        <img src={image} alt="" />
       </a>
     ) : (
       <span className="flow-thumb">
-        <img src={item.image} alt="" />
+        <img src={image} alt="" />
       </span>
     )
   ) : null
 
   return (
-    <article className={`flow-item${item.image ? ' has-thumb' : ''}`}>
+    <article className={`flow-item${image ? ' has-thumb' : ''}`}>
       <span className="flow-index">{action ? '□' : String(index).padStart(2, '0')}</span>
       {thumb}
       <div className="flow-item-body">
@@ -61,6 +75,8 @@ export default function BriefingBody({ briefing }: { briefing: Briefing }) {
             {items.map((item, i) => (
               <Item
                 key={`${section.key}-${item.title}`}
+                date={briefing.date}
+                section={section.key as SectionKey}
                 item={item}
                 index={i + 1}
                 action={section.key === 'todos'}

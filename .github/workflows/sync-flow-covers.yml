@@ -1,0 +1,33 @@
+name: sync-flow-covers
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - mockup-react/src/data/briefings.ts
+
+permissions:
+  contents: write
+
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Scrape source og:image into flow-og
+        run: python3 mockup-react/scripts/sync-flow-covers.py
+      - name: Commit overlay if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mockup-react/src/data/coverOverrides.ts mockup-react/public/assets/flow-og
+          if git diff --cached --quiet; then
+            echo "no overlay changes"
+            exit 0
+          fi
+          git commit -m "chore(flow): sync source og covers into flow-og overlay"
+          git push
