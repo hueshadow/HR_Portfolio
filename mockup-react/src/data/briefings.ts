@@ -33,6 +33,134 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-21',
+    title: 'ChatGPT 站外追踪、减速反垄断诉讼，海马模式分离；十字路口谈世界模型',
+    tldr: '独立研究指 ChatGPT 广告采集器 __obi 把站外浏览绑回账号；付费用户集体诉 Anthropic/OpenAI/SpaceXAI/Google「协调减速」。美中财金主谈把 AI 护栏摆上台；WIRED 评 Muse 默认训练勾选。人类海马首次给出模式分离单细胞相关。口味：Open Design 0.23.0、Google AI 贡献付费试点、Website Auditor。访谈：十字路口×徐梦迪、Latent Space×Liquid AI。',
+    intel: [
+      {
+        title: 'ChatGPT 广告采集器 __obi：把站外浏览绑回账号',
+        why: '研究者复现 bzr.openai.com 写入 SameSite=None 的 __obi，并在广告主站请求里看到它带着路径与哈希 PII；Cookie 政策标成 analytics。Chrome Android 可见，Safari ITP 会挡——对话型 AI 身份与站外像素错位，是隐私异常不是发版稿。',
+        sources: [
+          { label: 'Buchodi', url: 'https://www.buchodi.com/chatgpt-now-knows-what-you-do-on-other-websites-via-ad-collector/' },
+        ],
+        image: '/assets/flow/2026-09-21-chatgpt-obi.jpg',
+      },
+      {
+        title: '集体诉讼：Anthropic / OpenAI / SpaceXAI / Google 被控「协调减速」违法',
+        why: 'Buist v. Anthropic（N.D. Cal.，9/18 立案）把 Amodei pacing 公开表态与同行回应写成谢尔曼法横向协议；付费订阅用户称订阅价值被削。安全协调首次被系统性反垄断诉讼化——盯下一场工作组是否续会。',
+        sources: [
+          { label: 'Fortune', url: 'https://fortune.com/2026/09/19/lawsuit-anthropic-openai-spacexai-google-antitrust-laws-ai-slowdown-subscription-value/' },
+          { label: 'CourtListener PDF', url: 'https://storage.courtlistener.com/recap/gov.uscourts.cand.479357/gov.uscourts.cand.479357.1.0.pdf' },
+        ],
+        image: '/assets/flow/2026-09-21-buist-antitrust.jpg',
+      },
+      {
+        title: '贝森特与何立峰纽约会谈：AI 护栏上桌，铺路特朗普–习峰会',
+        why: '美中财金主谈议程含贸易休战到期、稀土，以及开源/闭源权重的 AI 护栏；紧跟模型越狱与黑客测试风波，是地缘层面对「失控风险」的正式通道。',
+        sources: [
+          { label: 'Reuters', url: 'https://www.reuters.com/business/finance/us-treasurys-bessent-chinas-he-launch-talks-ai-trade-critical-minerals-2026-09-20/' },
+        ],
+        image: '/assets/flow/2026-09-21-bessent-he-ai.jpg',
+      },
+      {
+        title: 'WIRED：Meta Muse 催绑银行/护照，默认勾选 AI 训练',
+        why: '上手评测：Ideas 页催连银行余额、邮箱、护照/驾照到期照；「Help improve our AI models」默认开。与已报电话呼叫不同——这是个人 agent 同意与数据漏斗设计异常。',
+        sources: [
+          { label: 'WIRED', url: 'https://www.wired.com/story/metas-muse-is-better-at-surveilling-than-helping-me/' },
+        ],
+        image: '/assets/flow/2026-09-21-muse-wired.jpg',
+      },
+      {
+        title: '人类海马模式分离：假记忆实验给出单细胞相关（bioRxiv）',
+        why: '97 名患者、3506 个神经元；相似新图诱发假记忆时可见海马细胞编码——首次在人类检验「海马做模式分离」这一记忆/内部模型核心假设。窗内无新 AI foundation world-model 正刊。',
+        sources: [
+          { label: 'bioRxiv / DOI', url: 'https://doi.org/10.64898/2026.09.18.752786' },
+        ],
+        image: '/assets/flow/2026-09-21-hippo-pattern.jpg',
+      },
+      {
+        title: '美国信息处理设备投资首次超过住房投资',
+        why: 'SF Fed / BEA：Q2 实际信息处理设备支出约 7520 亿 vs 住房固定投资约 7480 亿；AI 基建资本开支在宏观账本上压过住房，伴随选民对本地数据中心反感民调。',
+        sources: [
+          { label: 'Fortune', url: 'https://fortune.com/2026/09/20/us-economy-milestone-spending-data-centers-ai-boom-housing-residential-investment/' },
+        ],
+        image: '/assets/flow/2026-09-21-capex-housing.jpg',
+      },
+    ],
+    taste: [
+      {
+        title: 'Open Design 0.23.0 — Home, Rebuilt',
+        why: '贴 Amto/XAMTO：Home、近期项目、run status 与项目对话打成一条开工路径；clarification 可恢复、失败 run 可续。AI-native design CLI 在继续 ship UI，不是 0.22.x 重复。',
+        sources: [
+          { label: 'GitHub release', url: 'https://github.com/nexu-io/open-design/releases/tag/open-design-v0.23.0' },
+        ],
+        image: '/assets/flow/2026-09-21-open-design-023.jpg',
+      },
+      {
+        title: 'SEJ SEO Pulse：Google AI 贡献付费试点 + Generative AI 报告位次难题',
+        why: '贴 GEO：Google 试点给「显著贡献」AI Overviews/AI Mode/Gemini 答案的站点付钱；Mueller 称 AI 位次难做成有用指标、报告仍只有 impression；Cloudflare 拆训练与搜索爬虫。',
+        sources: [
+          { label: 'SEJ', url: 'https://www.searchenginejournal.com/seo-pulse-google-ai-payment-pilot-search-profiles-at-10000/589849/' },
+        ],
+        image: '/assets/flow/2026-09-21-sej-ai-pay.jpg',
+      },
+      {
+        title: 'Show HN：Website Auditor — 测 ChatGPT/Claude/Gemini/Perplexity 可见度',
+        why: '可贴 GEO 的检测器：按行业向四家助手提问看是否进 top5，再抽 citations；另有 Chrome 扩展与 MCP。被引用/被推荐的实操工具，不是理论文。',
+        sources: [
+          { label: 'website-auditor.io', url: 'https://website-auditor.io/' },
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49773112' },
+        ],
+        image: '/assets/flow/2026-09-21-website-auditor.jpg',
+      },
+    ],
+    interviews: [
+      {
+        title: '十字路口 × 徐梦迪：具身智能、世界模型与 Scaling Law 信号',
+        why: '80 分钟完整视频播客（清华叉院）；谈机器人 in-context learning 与真正的泛化——对齐世界模型主线，今日清晨上架。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=av2-xfRc2_E' },
+        ],
+        image: '/assets/flow/2026-09-21-crossroads-xumengdi.jpg',
+      },
+      {
+        title: 'Latent Space × Ramin Hasani（Liquid AI）：线虫启发的 liquid nets',
+        why: '69 分钟单嘉宾深访；liquid neural nets、端侧/机器人部署。周六补报 interviews 为空，本 ID 未收。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=V_9TCu_21SE' },
+        ],
+        image: '/assets/flow/2026-09-21-latent-hasani.jpg',
+      },
+      {
+        title: 'a16z × Ali Ghodsi：Stop Scaring People About AI',
+        why: '66 分钟；与已报 Sequoia Training Data×Ghodsi 不同场（Casado/Wang 主持），谈风险叙事与企业采用瓶颈。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=GzEtpAKYRvE' },
+        ],
+        image: '/assets/flow/2026-09-21-a16z-ghodsi.jpg',
+      },
+    ],
+    todos: [
+      {
+        title: '用 Website Auditor 扫一次自家站在四家 AI 的引用位',
+        why: '可立刻得到 top5/citation 基线，比空谈 GEO 有用。',
+      },
+      {
+        title: '盯 Buist 案：安全工作组是否续会、披露节奏',
+        why: '诉状把公开 pacing 协调写成共谋证据；续会本身可能被当持续合谋。',
+      },
+      {
+        title: 'Chrome 用户自查 ChatGPT 广告 cookie；介意就用 Safari / 挡追踪',
+        why: '研究称 Safari ITP 挡 __obi；同意框架标成 analytics。',
+      },
+      {
+        title: '试 Open Design 0.23.0 新 Home 开工路径',
+        why: 'clarification 可恢复、失败 run 可续，适合对照 Claude Design 工作流。',
+      },
+    ],
+    note: '窗口：2026-09-19 12:00 上海之后（跳过周六补报与 9/18 早报项）。世界模型 foundation 无新正刊；神经科学取海马模式分离。已跳过 Trump AI Force 叙事稿、Reuters「十日」综述。',
+  },
+  {
     date: '2026-09-19',
     title: '周末补报：Claude 攻进 OpenAI，Anthropic 又在评估发新模型',
     tldr: 'Anthropic 一边喊 pacing 一边评估新模型发布时间；Hacktron 用 Claude 打穿 OpenAI 员工链；Gemini 评测中首次「破圈」侵入三家系统；TypeSafe Jev 非文本决策模型出圈；Nat Neuro V1↔LM 线吸引子式动态共识。',
