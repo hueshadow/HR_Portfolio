@@ -33,6 +33,124 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-22',
+    title: 'Muse 零日与亚马逊拉黑，多国要控 Frontier；海马威胁决策可分离',
+    tldr: 'Patrick Wardle 披露 Meta Muse macOS 零日可劫持听写终点与账号 token，亚马逊同日拉黑其购物代理。多国元首联署要求控制 Frontier AI；加拿大 BC 省就校园枪击起诉 OpenAI。noyb 曝欧盟拟把 AI 情境个人数据默认合法化。OpenAI 称内部数学模型再解百余开放题并设 IAS 顾问组。口味：Lighthouse ARD 审计、AI Mode 少点击实验、小米 MiMo Desktop。访谈：Latent Space×Jev、MLST×Mattick。',
+    intel: [
+      {
+        title: 'Meta Muse 零日：任意本地进程可劫持听写终点与账号 token',
+        why: 'Objective-See 的 Patrick Wardle：未文档化设置可被任意本地 app/终端改写，把听写终点指到攻击者服务器并拿走 Muse 认证 token，进而滥用其系统级权限；ClickFix 级感染即可。披露前约 12 小时亚马逊已以未授权 agent 为由拉黑 Muse 购物——高权限个人 agent 的安全与平台条款同日裂开。',
+        sources: [
+          { label: 'Ars Technica', url: 'https://arstechnica.com/security/2026/09/muse-metas-extraordinarily-privileged-ai-assistant-has-a-serious-0-day/' },
+          { label: 'The Verge', url: 'https://www.theverge.com/tech/998078/amazon-blocks-meta-muse-ai-agent-shopping' },
+        ],
+        image: '/assets/flow/2026-09-22-muse-0day.jpg',
+      },
+      {
+        title: '多国元首联署：要求控制 Frontier AI，并探索联合国级核验机构',
+        why: '芬兰总统官网 9/21 挂出 Stubb、Orpo、von der Leyen、Merz、Carney、Albanese 等联署声明：强制预部署测试与独立评估、跨境严重事故通报，并探索能设标准、做核验、在能力阈值跨越时召集国家的国际机构——把 pacing 从实验室口号抬进正式外交文本。',
+        sources: [
+          { label: 'President of Finland', url: 'https://www.presidentti.fi/en/a-call-for-control-of-frontier-ai-models/' },
+        ],
+        image: '/assets/flow/2026-09-22-frontier-control.jpg',
+      },
+      {
+        title: '加拿大 BC 省就 Tumbler Ridge 枪击案起诉 OpenAI 与 Altman',
+        why: '检察长称 ChatGPT 已触发内部审查却未向执法通报威胁，省级政府在加州起诉并索赔重建学校费用——产品安全追责从家属私诉升级为政府诉讼。OpenAI 称愿与政府合作；RCMP 刑侦仍在进行。',
+        sources: [
+          { label: 'CBC', url: 'https://www.cbc.ca/news/canada/british-columbia/bc-government-announce-update-openai-legal-action-9.7352395' },
+        ],
+        image: '/assets/flow/2026-09-22-bc-openai.jpg',
+      },
+      {
+        title: 'noyb：欧盟理事会泄密稿要把「AI 情境」个人数据默认合法化',
+        why: '爱尔兰轮值主席会文件拟让「AI 情境下」处理个人数据凭压倒性合法利益自动合法，覆盖非客户与历史聊天/社交数据且无需同意；Schrems 称为数字征收。同步收窄「个人数据」定义、限制主体权利——GDPR 红线可能为训练数据让路。',
+        sources: [
+          { label: 'noyb', url: 'https://noyb.eu/en/ai-eu-member-states-plan-digital-expropriation-europeans-interest-ai-companies' },
+        ],
+        image: '/assets/flow/2026-09-22-noyb-eu.jpg',
+      },
+      {
+        title: 'OpenAI：内部数学模型再解百余开放题，IAS 成立独立顾问组 AGMAI',
+        why: 'OpenAI 称 8/28 起训的内部模型除宣称 Navier–Stokes 外又解百余道长期开放题；与 IAS 托管的无偿独立顾问组 AGMAI（含 Tao、Gowers、Hairer、Witten 等）协调结果发布标准——数学能力冲击进入制度化应对，NS 主张仍在社区审查中。',
+        sources: [
+          { label: 'OpenAI', url: 'https://openai.com/index/advisory-group-on-mathematics-and-ai/' },
+        ],
+        image: '/assets/flow/2026-09-22-agmai.jpg',
+      },
+      {
+        title: '海马威胁觅食：反应逃逸与预期中止的表征可分离（bioRxiv v2）',
+        why: 'Redish 组伪捕食觅食任务 v2：撤退与中途中止虽终点相似，海马表征与运动动力学不同——威胁下「反应逃」与「预期焦虑决策」可分离，贴内部状态/世界模型主线。窗内无新 AI foundation world-model 正刊。',
+        sources: [
+          { label: 'bioRxiv / DOI', url: 'https://doi.org/10.64898/2026.04.17.719234' },
+        ],
+        image: '/assets/flow/2026-09-22-hippo-threat.jpg',
+      },
+    ],
+    taste: [
+      {
+        title: 'Lighthouse 13.5：Agentic Resource Discovery 审计进 DevTools',
+        why: '贴 GEO：experimental Agentic Browsing 验 ARD 目录（Agentmap / ai-catalog / /.well-known/ai-catalog.json），将进 Chrome DevTools 与 PageSpeed Insights——agent 如何发现你站工具的实操检查，与 llms.txt 并列 Agent Discoverability。',
+        sources: [
+          { label: 'SEJ', url: 'https://www.searchenginejournal.com/google-lighthouse-ai-agent-resource-discovery-audit/590274/' },
+        ],
+        image: '/assets/flow/2026-09-22-lighthouse-ard.jpg',
+      },
+      {
+        title: '田野实验：Google AI Mode 少送点击、体验更差',
+        why: '贴 GEO：宾大+东北大学跟踪约 1100 人真实搜索；强制 AI Mode 显著少外链点击、满意度与信任下降，部分人转向 Bing/DDG；去掉 AI Overview 反而增点击——直接反驳「用户更爱 AI Mode / 更多开放网页流量」叙事。',
+        sources: [
+          { label: 'SEJ', url: 'https://www.searchenginejournal.com/research-shows-google-ai-mode-sends-less-clicks-is-a-poor-user-experience/590221/' },
+        ],
+        image: '/assets/flow/2026-09-22-ai-mode-clicks.jpg',
+      },
+      {
+        title: 'Xiaomi MiMo Desktop：邀请制桌面多智能体出片/网页/3D',
+        why: '贴 Amto/Open Design 线：桌面端 agent 把幻灯片、网页、3D、App 生成与预览/点选精修打成一条路径，自进化引擎改自身代码；HN 窗内首现，非 Figma changelog。',
+        sources: [
+          { label: 'MiMo Desktop', url: 'https://mimo-ai.xiaomimimo.com/desktop/' },
+        ],
+        image: '/assets/flow/2026-09-22-mimo-desktop.jpg',
+      },
+    ],
+    interviews: [
+      {
+        title: 'Latent Space × Diogo Almeida：为什么做 Jev / System One',
+        why: '142 分钟单嘉宾深访：前 OpenAI 的 TypeSafe CEO 谈面向代码与可靠决策的 machine-native AI、RLCD vs RLHF、拒绝公榜与 intelligence per dollar——对齐 Agent 基建，非切片。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=cFx9Z3ZXca0' },
+        ],
+        image: '/assets/flow/2026-09-22-latent-jev.jpg',
+      },
+      {
+        title: 'MLST × Alexander Mattick：智能里信息为什么有代价',
+        why: '134 分钟完整研究对谈：从推理代价切入 Monte Carlo / GFlowNets / EBM / diffusion，批评部分 JEPA·world model 多为 branding，论证真实世界信息昂贵、约束优于纯 reward——贴世界模型理论。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=1S1B4XkFCD8' },
+        ],
+        image: '/assets/flow/2026-09-22-mlst-mattick.jpg',
+      },
+    ],
+    todos: [
+      {
+        title: '装了 Muse 的 Mac：暂勿给全盘权限；盯 Meta 补丁与 Wardle 后续披露',
+        why: '零日允许任意本地进程劫持 token；未修前缩小攻击面。',
+      },
+      {
+        title: '自站跑 Lighthouse 13.5 Agentic Resource Discovery / 准备 ard.json',
+        why: 'agent 发现工具目录将进 DevTools 与 PSI，比空谈 GEO 更可测。',
+      },
+      {
+        title: '盯欧盟理事会 Article 88bis 与爱尔兰主席提案',
+        why: '若通过，「AI 情境」训练数据默认合法会改合规底线。',
+      },
+      {
+        title: '抽空听 Latent Space×Jev 与 MLST×Mattick',
+        why: '今日两场都过 2 小时，分别贴 Agent 决策与世界模型批评。',
+      },
+    ],
+  },
+  {
     date: '2026-09-21',
     title: 'ChatGPT 站外追踪、减速反垄断诉讼，海马模式分离；十字路口谈世界模型',
     tldr: '独立研究指 ChatGPT 广告采集器 __obi 把站外浏览绑回账号；付费用户集体诉 Anthropic/OpenAI/SpaceXAI/Google「协调减速」。美中财金主谈把 AI 护栏摆上台；WIRED 评 Muse 默认训练勾选。人类海马首次给出模式分离单细胞相关。口味：Open Design 0.23.0、Google AI 贡献付费试点、Website Auditor。访谈：十字路口×徐梦迪、Latent Space×Liquid AI。',
