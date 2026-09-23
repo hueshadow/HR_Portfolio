@@ -33,6 +33,117 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-23',
+    title: 'Opus 5.5 与 GPT-6 Sol/Luna 同日开打；Muse 承认借鉴 OpenClaw',
+    tldr: 'Anthropic 在「放缓前沿」后首发 Claude Opus 5.5（Fable 级、约便宜 40%、最高档网安/生物护栏）；OpenAI 同日推 GPT-6 Sol/Luna，API 价腰斩并把 Astra 方法下沉。Meta 产品负责人承认 Muse 重度借鉴 OpenClaw；404 曝 Muse 外呼电话靠人工坐席层。OpenAI 标注承包商因用 AI 交差被清退。海马重放漂移–扩散模型刊于 PLOS Comp Biol。口味：Open Design 0.24.0、AI Search 数据源分层、Canonry。访谈：Latent Space×John Platt。',
+    intel: [
+      {
+        title: 'Anthropic 发布 Claude Opus 5.5：逼近 Fable，约便宜 40%，最高档护栏',
+        why: '「放缓前沿」呼吁后的首发模型：宣称多数工作达 Fable 5.1 水平，典型负载比 Opus 5 约省 40%；$4/$20 每百万 token，缓存读 $0.20。METR/Frontier Design 预发布外评；行为审计迄今最强，越界尝试约少 85%。因网安/生物能力贴近 Mythos/Fable，直接套用 Fable 级护栏与 Life Sciences / Cyber Verification——企业默认选型与安全默认同日改写。',
+        sources: [
+          { label: 'Anthropic', url: 'https://www.anthropic.com/claude-opus-5-5' },
+        ],
+        image: '/assets/flow/2026-09-23-opus-55.jpg',
+      },
+      {
+        title: 'OpenAI 推出 GPT-6 Sol / Luna：Astra 方法下沉，API 价腰斩',
+        why: '与 Opus 5.5 相差约 90 分钟对打：Sol/Luna 用 Astra 同类训练，相对 GPT-5.6 促销价输入/输出各砍 50%（Sol $2/$10，Luna $0.10/$0.50）。同步改进 GPT-6 提示缓存默认命中率、诊断面板与显式断点，缓存读享 90% 折扣——持久 Agent/Codex 的真实账单曲线被改。ChatGPT Work/Codex 已开，Chat 尚未。',
+        sources: [
+          { label: 'OpenAI', url: 'https://openai.com/index/introducing-gpt-6-sol-and-luna/' },
+          { label: 'OpenAI caching', url: 'https://openai.com/index/better-prompt-caching-for-gpt-6/' },
+        ],
+        image: '/assets/flow/2026-09-23-gpt6-sol-luna.jpg',
+      },
+      {
+        title: 'Meta 承认 Muse「重度借鉴」OpenClaw（含近同名 SOUL.md）',
+        why: 'MSL 产品负责人 Nat Friedman：Muse 从零写起，但产品「definitely heavily inspired」开源 OpenClaw；用户发现工作区文件名与 SOUL.md 内容几乎一致，他回应「Peter 把那些做对了」。个人 Agent 从「自研黑盒」变成可对标开源 harness 的复制战——与昨日零日/亚马逊拉黑是不同轴。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/22/meta-admits-muses-likeness-to-openclaw-isnt-a-coincidence/' },
+        ],
+        image: '/assets/flow/2026-09-23-muse-openclaw.jpg',
+      },
+      {
+        title: '404：Muse 外呼电话测试实际靠人工坐席层打完',
+        why: '对外仍是「Agent 替你打电话」，内部狗粮消息却写已加 human agent layer 才能完成外呼——个人 Agent 产品诚信与自动化边界的硬异常，叠在零日与 OpenClaw 借鉴叙事之上。',
+        sources: [
+          { label: '404 Media', url: 'https://www.404media.co/meta-tests-muse-ai-agent-calls-that-are-actually-made-by-humans-in-a-call-center/' },
+        ],
+        image: '/assets/flow/2026-09-23-muse-call-center.jpg',
+      },
+      {
+        title: 'OpenAI 标注承包商因用 AI 交差被清退',
+        why: '404：负责评测/防崩溃的承包商被抓用 AI（含语法/翻译工具）完成人审工作并遭立即移除；内部文件禁止评测员用 AI，且禁止透露检测线索。Mercor 证实违规即清退——「人类反馈」可信度与数据质量的直接冲击。',
+        sources: [
+          { label: '404 Media', url: 'https://www.404media.co/people-training-openais-ai-fired-for-using-ai-to-train-the-ai/' },
+        ],
+        image: '/assets/flow/2026-09-23-openai-contractors.jpg',
+      },
+      {
+        title: '海马重放：漂移–扩散动力学削弱布朗运动与「静止重放」叙事',
+        why: 'PLOS Comp Biol：可切换漂移–扩散 HMM 重析 CA1 线性轨道 SWR；真正有序重放约 4–5 m/s（远快于奔跑），纯布朗与大量静止重放被削弱，~100 ms 尺度 preplay <1%。窗内无新 AI foundation 世界模型正刊，这篇是海马系统最硬更新。',
+        sources: [
+          { label: 'PLOS Comp Biol / DOI', url: 'https://doi.org/10.1371/journal.pcbi.1014761' },
+        ],
+        image: '/assets/flow/2026-09-23-hippo-replay.jpg',
+      },
+    ],
+    taste: [
+      {
+        title: 'Open Design 0.24.0：会话与预览不丢，Novita BYOK',
+        why: '贴 Amto 线：越过昨日 0.23.0；26 PR——对话线程重载仍在、预览不再空白、Windows 首启握手修复，并加入 Novita（DeepSeek/MiniMax/Qwen 等）BYOK。开源本地设计 CLI 仍在快速迭代。',
+        sources: [
+          { label: 'GitHub Release', url: 'https://github.com/nexu-io/open-design/releases/tag/open-design-v0.24.0' },
+        ],
+        image: '/assets/flow/2026-09-23-open-design-024.jpg',
+      },
+      {
+        title: 'Chris Green：AI Search 该盯哪些数据源（Tier 分层表）',
+        why: '贴 GEO + Loki 式从业者笔记：按 grounding/训练/历史/推测分层，覆盖 Gemini Search、Bing/Copilot、Merchant/OpenAI 商品 feed、Maps/GBP/Yelp、Reddit、Hotel Center 等——立刻能对照自站信息源优先级，不是厂商软文。',
+        sources: [
+          { label: 'SEJ', url: 'https://www.searchenginejournal.com/which-data-sources-should-you-care-about-for-ai-search/590086/' },
+        ],
+        image: '/assets/flow/2026-09-23-ai-search-sources.jpg',
+      },
+      {
+        title: 'Canonry：开源「PostHog」式 AI 可见度（AEO/GEO）',
+        why: '贴 Groberman GEO：自托管盯 ChatGPT/Claude/Gemini/Perplexity 提及与引用；HN 窗内首发且仓库同日活跃，有别昨日已跳过的 Kelriva 测分产品。',
+        sources: [
+          { label: 'GitHub', url: 'https://github.com/Canonry/canonry' },
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49799873' },
+        ],
+        image: '/assets/flow/2026-09-23-canonry.jpg',
+      },
+    ],
+    interviews: [
+      {
+        title: 'Latent Space × John Platt：Google 的 AI Scientist 从自动化 Kaggle 长成',
+        why: '121 分钟单嘉宾：Google Fellow 谈 Empirical Research Assistance（ERA）——LLM+树搜索改进实验、气候建模、Gemini 2.0→2.5、reward hacking 与「别骗自己」的科学方法；对齐 Agent 科研加速，非切片。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=2xBSGluFkG0' },
+        ],
+        image: '/assets/flow/2026-09-23-latent-platt.jpg',
+      },
+    ],
+    todos: [
+      {
+        title: '在日常编码/Agent 负载上试 Opus 5.5 与 GPT-6 Sol 的成本曲线',
+        why: '同日两发都打「更强更便宜」；缓存读与默认 effort 决定真实账单。',
+      },
+      {
+        title: 'Open Design 升到 0.24.0，确认会话/预览持久化',
+        why: '上一轮还在 0.23.0；本版专修 run 不丢。',
+      },
+      {
+        title: 'Muse：继续缩权限；对照 OpenClaw SOUL.md 与人工外呼层',
+        why: '零日未清 + 开源 harness 借鉴 + 电话自动化名实不符，三条线叠在一起。',
+      },
+      {
+        title: '抽空听 Latent Space × John Platt（ERA / AI Scientist）',
+        why: '121 分钟，贴科研 Agent 与 reward hacking。',
+      },
+    ],
+  },
+  {
     date: '2026-09-22',
     title: 'Muse 零日与亚马逊拉黑，多国要控 Frontier；海马威胁决策可分离',
     tldr: 'Patrick Wardle 披露 Meta Muse macOS 零日可劫持听写终点与账号 token，亚马逊同日拉黑其购物代理。多国元首联署要求控制 Frontier AI；加拿大 BC 省就校园枪击起诉 OpenAI。noyb 曝欧盟拟把 AI 情境个人数据默认合法化。OpenAI 称内部数学模型再解百余开放题并设 IAS 顾问组。口味：Lighthouse ARD 审计、AI Mode 少点击实验、小米 MiMo Desktop。访谈：Latent Space×Jev、MLST×Mattick。',
