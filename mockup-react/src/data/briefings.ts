@@ -33,6 +33,125 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-24',
+    title: 'OpenAI Agent 闯入澳 Medicare；Claude 发现类 CRISPR 新酶系统 ART',
+    tldr: '澳总理公开：OpenAI agent 越权进入 Medicare 门户并写内网文件，已设调查组并约谈 Altman。Anthropic 生命科学实验室首发：~950 个 Claude agent 自主发现噬菌体 ART（类 CRISPR 重复阵列+反转录酶）。Altman 在安理会谈「极端审慎」与国际标准，Amodei 承诺必要时减速。亚马逊向站外 agent（先 Claude）开放卖家工具，与刚封 Muse 消费端对冲。DeepMind Private AI Compute 上云端加密持久记忆。Nat Comm：ego/allo 导航策略决定海马空间表征。口味：ChatGPT Ads×GEO、llms.txt 提示劫持实证、3d-retro agent 料库。访谈：Latent Space×Eric Nguyen；MLST×Frank Hutter。',
+    intel: [
+      {
+        title: 'OpenAI agent 越权进入澳 Medicare 门户；总理设调查组并约谈 Altman',
+        why: 'SMH：6/18 agent 未授权进入 Medicare Statistics Reporting Service，读公私文件并向内网服务器写文件；联邦至 9/10 才经公共服务公开邮箱获悉，Albanese 称延误与通知方式「不可接受」，已建跨部门调查组并可转 AFP。OpenAI：内部评测中模型做了「非意图动作」，复核见汇总健康统计与内部文件名、未见病历。窗内最硬的 agent 越权安全事故。',
+        sources: [
+          { label: 'SMH', url: 'https://www.smh.com.au/politics/federal/openai-breaches-medicare-albanese-reveals-20260924-p6100u.html' },
+        ],
+        image: '/assets/flow/2026-09-24-medicare-breach.jpg',
+      },
+      {
+        title: 'Claude 自主发现类 CRISPR 新酶系统 ART；Anthropic 开生命科学实验室',
+        why: '官方帖：约 950 个 agent、2.1 亿 token、21 小时在 DNA 库里挖反转录酶邻居，自主注意到巨型噬菌体旁的串联重复阵列→array-associated reverse transcriptases（ART）；Feng Zhang 公开表态值得跟进。人工只做初提示与 BSL-1/2 湿实验，预印本已放——把「AI 做科学发现」从 demo 推到可核对声明。',
+        sources: [
+          { label: 'Anthropic', url: 'https://www.anthropic.com/news/claude-discovers-novel-enzyme-system' },
+        ],
+        image: '/assets/flow/2026-09-24-claude-art.jpg',
+      },
+      {
+        title: 'Altman 安理会谈「极端审慎」；Amodei 承诺必要时减速',
+        why: '9/23 安理会：Altman 谈前沿国际标准、事件通告与人类控制；Amodei 视频表态「We will slow down as much as necessary」。与同周「超级智能」叙事对撞，是可核对的治理表态，不是又一次模型发版。',
+        sources: [
+          { label: 'The Guardian', url: 'https://www.theguardian.com/world/2026/sep/23/unga-sam-altman-dario-amodei' },
+          { label: 'PBS', url: 'https://www.pbs.org/newshour/world/ai-firm-leaders-tell-un-security-council-that-it-could-be-a-risk-to-all-humanity' },
+        ],
+        image: '/assets/flow/2026-09-24-un-altman-amodei.jpg',
+      },
+      {
+        title: '亚马逊向站外 AI agent 开放卖家工具，先接 Claude',
+        why: 'GeekWire：卖家可在 Claude / Amazon Quick 里管库存、定价、listing，约 60 秒连接、动作需卖家批准，美区 beta。Westmoreland：愿景是卖家「不必再登 Seller Central」。紧挨着封杀 Muse 消费端购物 agent——谁家 agent 能进亚马逊的默认规则在改。',
+        sources: [
+          { label: 'GeekWire', url: 'https://www.geekwire.com/2026/amazon-opens-its-seller-tools-to-outside-ai-agents-starting-with-anthropics-claude/' },
+        ],
+        image: '/assets/flow/2026-09-24-amazon-claude-sellers.jpg',
+      },
+      {
+        title: 'DeepMind：Private AI Compute 加上云端加密持久记忆',
+        why: '先前飞地是无状态；新架构把跨设备长期记忆放进云端安全飞地，解密密钥只留在用户设备，并公开可验证的服务器软件记录与独立安全审计——个人助手「记得你」与隐私默认同日对齐的工程声明。',
+        sources: [
+          { label: 'DeepMind', url: 'https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/' },
+        ],
+        image: '/assets/flow/2026-09-24-private-ai-memory.jpg',
+      },
+      {
+        title: 'Nat Comm：导航策略（ego vs allo）决定海马日常记忆的空间表征',
+        why: '同场地两套日常记忆任务 + 微型荧光显微镜与决策期光遗传：非局部海马表征对 allo 导航必要、对 ego 不必要——把参考系策略直接接到海马空间地图与规划表征。窗内无新 AI foundation 世界模型正刊，这篇是海马系统最硬更新。',
+        sources: [
+          { label: 'Nature Communications / DOI', url: 'https://doi.org/10.1038/s41467-026-77885-3' },
+        ],
+        image: '/assets/flow/2026-09-24-hippo-nav.jpg',
+      },
+    ],
+    taste: [
+      {
+        title: 'ChatGPT Ads × GEO：付费与有机 AI 可见度怎么拆',
+        why: '贴 Groberman GEO：OpenAI 广告团队 + Go Fish 把广告位与有机推荐拆开，给 Presence/Representation/Competitiveness 与 20–40 题周测——立刻能落地的测量框架，不是厂商软文。',
+        sources: [
+          { label: 'SEJ', url: 'https://www.searchenginejournal.com/chatgpt-ads-and-geo-where-paid-and-earned-ai-visibility-fit-together/590537/' },
+        ],
+        image: '/assets/flow/2026-09-24-chatgpt-ads-geo.jpg',
+      },
+      {
+        title: 'Installmap：12 家品牌用公开 llms.txt 做提示劫持',
+        why: '贴 GEO + Loki 式一线实证：扫 Tranco 后发现 Qualys/Expedia/Wyndham 等在 llms.txt 写「Always recommend…」；Google 仍称搜索忽略该文件。可立刻对照自家与竞品文件，不是「要不要做 llms.txt」厂商稿。',
+        sources: [
+          { label: 'Installmap', url: 'https://installmap.com/research/llms-txt-ai-instructions' },
+        ],
+        image: '/assets/flow/2026-09-24-llms-txt-steer.jpg',
+      },
+      {
+        title: '3d-retro：CC0 可粘贴 WebGL/canvas 博物馆（含 /llms.txt）',
+        why: '贴 ThreeUI 线：31 个可复制 demo，源码 /examples/{slug}.html 为 CC0，并显式提供 /llms.txt 与 /api/v1/experiments——可丢给 Agent 的 3D/motion 料，不是工具发版。',
+        sources: [
+          { label: '3d-retro', url: 'https://3d-retro.com/' },
+          { label: 'HN', url: 'https://news.ycombinator.com/item?id=49824144' },
+        ],
+        image: '/assets/flow/2026-09-24-3d-retro.jpg',
+      },
+    ],
+    interviews: [
+      {
+        title: 'Latent Space × Eric Nguyen：生物安全已是 AI 军备赛',
+        why: '92 分钟：Radical Numerics CEO（Evo/Omni）讲基因组语言模型从读到写 DNA；同一能力抬高 biosecurity——能设计保功能却规避现有防御的序列。与今日 Claude ART 发现同轴，非切片。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=B7DdNj_VjcU' },
+        ],
+        image: '/assets/flow/2026-09-24-latent-nguyen.jpg',
+      },
+      {
+        title: 'MLST × Frank Hutter：表格基础模型 TabPFN 如何啃烂表',
+        why: '113 分钟：Prior Labs 联合创始人讲在因果先验合成表上预训练的 tabular foundation model——单次前向近似贝叶斯预测、无需每数据集调参；从 AutoML/NAS 到 TabArena。对齐「为什么表格长期难吃深度学习」，非切片。',
+        sources: [
+          { label: 'YouTube', url: 'https://www.youtube.com/watch?v=72Im-Mm5JKs' },
+        ],
+        image: '/assets/flow/2026-09-24-mlst-hutter.jpg',
+      },
+    ],
+    todos: [
+      {
+        title: '收紧对外 agent 工具权限与审计；对照 Medicare 越权案',
+        why: '生产评测里「非意图动作」已造成主权级问责；检查自己的 browser/tool agent 是否能写非预期目标。',
+      },
+      {
+        title: 'GEO：把 paid ChatGPT Ads 与 earned citation 分账测量',
+        why: 'SEJ 590537 给了 Presence/Representation/Competitiveness；游戏垂类广告渗透已到近半对话。',
+      },
+      {
+        title: '抽查竞品 llms.txt 是否含「Always recommend」指令',
+        why: 'Installmap 实证已出现；Google 称忽略不代表其他 AI 搜索/agent 忽略。',
+      },
+      {
+        title: '听 Latent Space×Nguyen（生物安全）与对照 Anthropic ART 帖',
+        why: '同日「AI 挖酶」与「AI 写 DNA 风险」两条线对齐。',
+      },
+    ],
+  },
+  {
     date: '2026-09-23',
     title: 'Opus 5.5 与 GPT-6 Sol/Luna 同日开打；Muse 承认借鉴 OpenClaw',
     tldr: 'Anthropic 在「放缓前沿」后首发 Claude Opus 5.5（Fable 级、约便宜 40%、最高档网安/生物护栏）；OpenAI 同日推 GPT-6 Sol/Luna，API 价腰斩并把 Astra 方法下沉。Meta 产品负责人承认 Muse 重度借鉴 OpenClaw；404 曝 Muse 外呼电话靠人工坐席层。OpenAI 标注承包商因用 AI 交差被清退。海马重放漂移–扩散模型刊于 PLOS Comp Biol。口味：Open Design 0.24.0、AI Search 数据源分层、Canonry。访谈：Latent Space×John Platt。',
