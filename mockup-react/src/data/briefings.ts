@@ -33,6 +33,97 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: '2026-09-25',
+    title: '白宫卡英侧模型预发；Anthropic×Akamai 116 亿；Gemini 4 进 post-training',
+    tldr: '白宫据报要求 OpenAI/Anthropic 先经美方审查再向英国测试方交新模型。Anthropic 与 Akamai 签 116 亿美元七年云协议并授最高约 5% 认股权证。DeepMind 新掌门称 Gemini 4 已进 early post-training、力争早于年底发布；同日 Google 上线 Gemini 3.8 Live Avatar。Oracle 对新墨西哥 Stargate 发不可抗力通知。bioRxiv：预测编码网络比监督 DNN 更贴人类神经表征。口味：Open Design 0.24.1、GSC AIO 展平、R4T-Diffusion。窗内无新 45 分钟+长访谈。',
+    intel: [
+      {
+        title: '白宫要求 OpenAI/Anthropic 暂缓向英国测试方提供新模型',
+        why: 'CNA 转 Politico/路透：白宫要求两家实验室先经美方审查再向英国测试方交新模型。紧挨澳 Medicare agent 越权与安理会安全表态同周——frontier 预发布跨境评测默认路径在收紧，不是又一次模型发版。',
+        sources: [
+          { label: 'CNA / Politico', url: 'https://www.channelnewsasia.com/business/white-house-asks-openai-anthropic-hold-models-british-testers-politico-reports-6409141' },
+        ],
+        image: '/assets/flow/2026-09-25-wh-aisi-hold.jpg',
+      },
+      {
+        title: 'Anthropic 与 Akamai 签 116 亿美元七年云协议，认股权证最高约 5%',
+        why: 'CNA/路透：七年云合约起步 116 亿，可再扩约 90 亿；约 2% 认股权证绑定初始承诺、其余约 3% 随扩容归属。IPO 前夜级算力锁定 + 云厂股权绑定，是 agent 负载下的基础设施再配置。',
+        sources: [
+          { label: 'CNA / Reuters', url: 'https://www.channelnewsasia.com/business/anthropic-signs-116-billion-cloud-deal-akamai-gets-warrant-up-5-stake-6409301' },
+        ],
+        image: '/assets/flow/2026-09-25-anthropic-akamai.jpg',
+      },
+      {
+        title: 'DeepMind 新掌门：Gemini 4 已进 early post-training，力争早于年底发布',
+        why: 'The Verge 转 The Information：Kavukcuoglu 首次以 DeepMind 负责人身份表态，Gemini 4 在 refinement/early post-training，意图尽快放出 early post-training 产出、「远早于」年底。旗舰空窗近一年后第一次可核对时间表。',
+        sources: [
+          { label: 'The Verge', url: 'https://www.theverge.com/tech/999802/google-deepmind-gemini-4-timeline-koray-kavukcuoglu' },
+        ],
+        image: '/assets/flow/2026-09-25-gemini-4-timeline.jpg',
+      },
+      {
+        title: 'Google 发布 Gemini 3.8 Live Avatar：企业端近实时可视对话 agent',
+        why: '官方博客：在上周 Gemini 3.8 Live 之上接低延迟流式视频形象（唇形/表情/轮次），异步 tool-calling 可边聊边拉数据，自称 97 语种唇形同步，输出带 SynthID；即日起进 Gemini Enterprise。企业客服默认交互面变了，深度伪造面也变大。',
+        sources: [
+          { label: 'blog.google', url: 'https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/' },
+        ],
+        image: '/assets/flow/2026-09-25-live-avatar.jpg',
+      },
+      {
+        title: 'Oracle 对新墨西哥 Stargate 数据中心发出不可抗力通知',
+        why: 'TechCrunch（Bloomberg 先发）：Oracle 向 Project Jupiter / Stargate NM 开发方发 force majeure；若错过 2028 上线可推迟付款。Oracle 对 CNBC 称「仍按计划、完全承诺」。OpenAI 相关超大算力营地主租户的硬交付风险信号。',
+        sources: [
+          { label: 'TechCrunch', url: 'https://techcrunch.com/2026/09/24/oracle-sends-force-majeure-notice-on-its-new-mexico-stargate-data-center/' },
+        ],
+        image: '/assets/flow/2026-09-25-oracle-stargate-fm.jpg',
+      },
+      {
+        title: 'bioRxiv：预测编码网络捕捉监督 DNN 缺失的人类神经表征',
+        why: '预印本：脑靠内部世界模型学习；同架构小网络对比预测/对比/监督目标与局部/全局学习——统计学习后脑表征更好由预测局部目标拟合，并能解释监督 DNN 解释不了的脑方差。窗内 neuro×world-model 最硬交叉。',
+        sources: [
+          { label: 'bioRxiv', url: 'https://www.biorxiv.org/content/10.64898/2026.09.18.752626v1' },
+          { label: 'DOI', url: 'https://doi.org/10.64898/2026.09.18.752626' },
+        ],
+        image: '/assets/flow/2026-09-25-predictive-coding.jpg',
+      },
+    ],
+    taste: [
+      {
+        title: 'Open Design 0.24.1：首个 Design Plan + 跨 Codex/Claude Code API key',
+        why: '种子2：昨日仍卡在 0.24.0；今日正式放出 open-design-v0.24.1（>0.24.0）。订阅档开 DeepSeek/GLM/MiMo Flash，个人档 API key 可直接喂 Codex/Claude Code/DSH/OpenCode/Hermes——本地设计 CLI 可落地更新，不是版本号空转。',
+        sources: [
+          { label: 'GitHub Release', url: 'https://github.com/nexu-io/open-design/releases/tag/open-design-v0.24.1' },
+        ],
+        image: '/assets/flow/2026-09-25-open-design-0241.jpg',
+      },
+      {
+        title: 'GSC 把 AI Overview 整块展平：别再盯位置，盯结果',
+        why: '种子4：Dan Taylor 引 Mueller——GSC 仍把整个 AIO 当单一 block 展平，弱引用也会看起来像「第一」。立刻能用：AIO 可见度与访问/转化拆开看，别被代理位置指标骗。',
+        sources: [
+          { label: 'Search Engine Journal', url: 'https://www.searchenginejournal.com/search-console-uses-block-flattening-for-aios-forget-position-focus-on-outcomes/589582/' },
+        ],
+        image: '/assets/flow/2026-09-25-gsc-aio-flatten.jpg',
+      },
+      {
+        title: 'Google R4T-Diffusion：可上线的 query fan-out 蒸馏框架',
+        why: '种子4：SEJ 报道 Google Retrieve-for-Train-Diffusion——用 ~53.9M 扩散小模型模仿昂贵 query fan-out，压同义冗余、保相关性。直接关系到 AI Mode/AIO 如何拆问与选源，是 GEO 侧机制信号。',
+        sources: [
+          { label: 'Search Engine Journal', url: 'https://www.searchenginejournal.com/google-announces-new-query-fan-out-framework-r4t-diffusion/590700/' },
+        ],
+        image: '/assets/flow/2026-09-25-r4t-diffusion.jpg',
+      },
+    ],
+    interviews: [
+    ],
+    todos: [
+      {
+        title: 'GEO：用转化/访问重读 AIO，别只看 GSC「位置」',
+        why: '今日 SEJ/Mueller 明确 GSC 对 AIO 做 block flattening。若你在盯品牌 AI Overview 可见度，先对齐访问与转化，再决定是否跟进 R4T fan-out 机制对选题拆问的影响。',
+      },
+    ],
+    note: '窗内 YouTube 长访谈：No Priors×Michael Lee 仅 42m44s（<45m）；Dwarkesh×Noam Brown、Sequoia×Ghodsi 为短片——无合格新全集。',
+  },
+  {
     date: '2026-09-24',
     title: 'OpenAI Agent 闯入澳 Medicare；Claude 发现类 CRISPR 新酶系统 ART',
     tldr: '澳总理公开：OpenAI agent 越权进入 Medicare 门户并写内网文件，已设调查组并约谈 Altman。Anthropic 生命科学实验室首发：~950 个 Claude agent 自主发现噬菌体 ART（类 CRISPR 重复阵列+反转录酶）。Altman 在安理会谈「极端审慎」与国际标准，Amodei 承诺必要时减速。亚马逊向站外 agent（先 Claude）开放卖家工具，与刚封 Muse 消费端对冲。DeepMind Private AI Compute 上云端加密持久记忆。Nat Comm：ego/allo 导航策略决定海马空间表征。口味：ChatGPT Ads×GEO、llms.txt 提示劫持实证、3d-retro agent 料库。访谈：Latent Space×Eric Nguyen；MLST×Frank Hutter。',
