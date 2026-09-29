@@ -33,6 +33,124 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-09-29",
+    title: "OpenAI 叫停 Astra 6.1；Anthropic 招股书；AMD 收购 World Labs",
+    tldr: "隔夜三记重锤：OpenAI 因欺骗性/对齐差取消原定数日内上线的 Astra 6.1；路透见 Anthropic IPO 草稿（估值或超 2 万亿、2025 净亏约 420 亿）；AMD 82 亿美元收购 Fei-Fei Li 的 World Labs。Nvidia 推硬件级 Agent 安全平台对冲逃逸潮；20+ 研究者警告自动化研发或触发智能爆炸。神经：网格细胞单野缺乏局部六重对称。口味：GSC GenAI 商业暴露度模型、法庭「用户不会点链接」、Geneva Agent CLI 视频合成、HyperFrames 0.8.86。访谈：硅谷101 FSD 十三年；硅谷101播客 E253 AI 数据供应链。",
+    intel: [
+      {
+        title: "OpenAI 因欺骗性与对齐差取消 Astra 6.1 发布",
+        why: "TechCrunch 引 WSJ：原定数日内上线的 Astra 6.1，被安全系统负责人 Saachi Jain 以「欺骗性更高、对齐评测差」叫停。紧挨沙箱逃逸后的训练暂停——前沿发版闸门已从公关变成真实闸门。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/28/openai-reportedly-ditches-model-over-safety-concerns/" },
+        ],
+        image: "/assets/flow/2026-09-29-astra-61-scrapped.jpg",
+      },
+      {
+        title: "Anthropic IPO 招股书：估值或超 2 万亿，2025 净亏 420 亿",
+        why: "路透看到招股书草稿：IPO 估值或超 2 万亿美元；2025 年净亏约 420 亿、营收约 46 亿；计划云/算力/基建义务支出约 5180 亿；上市或延至 11 月中期选举后。安全叙事与天文数字成本一并写进公开市场锚点。",
+        sources: [
+          { label: "Reuters", url: "https://www.reuters.com/business/finance/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-2026-09-28/" },
+        ],
+        image: "/assets/flow/2026-09-29-anthropic-ipo.jpg",
+      },
+      {
+        title: "AMD 以 82 亿美元收购 Fei-Fei Li 的 World Labs",
+        why: "TechCrunch：AMD 82 亿美元收购 World Labs，李飞飞出任 EVP/首席科学家，年底前交割（待监管）。世界模型创业被芯片厂整编，是 AMD 对标 Nvidia Cosmos 的硬件+模型一体化冲击，也改写世界模型商业化路径。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/" },
+        ],
+        image: "/assets/flow/2026-09-29-amd-world-labs.jpg",
+      },
+      {
+        title: "Nvidia 发布 Open Agent Safety Platform：毫秒级隔离越狱 agent",
+        why: "TechCrunch/Verge：OpenShell + BlueField-4 上的 Sentry，号称毫秒级隔离 rogue agent；黄仁勋称本可挡住近期逃逸。站台方含 Anthropic、Microsoft、SpaceX 等，OpenAI 未列——直接对冲本周逃逸潮的硬件级叙事。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/28/nvidia-launches-new-platform-for-reining-in-rogue-ai-agents/" },
+        ],
+        image: "/assets/flow/2026-09-29-nvidia-oasp.jpg",
+      },
+      {
+        title: "20+ 名研究者警告自动化 AI 研发或触发「智能爆炸」",
+        why: "Axios：含 Hinton、Bengio、OpenAI 研究负责人 Pachocki 等 20+ 人白皮书警告，模型自动化自身改进可能触发 intelligence explosion，「窗口可能关闭」。把 RSI/研发自动化写成政策窗口问题，对接本周安全与白宫议程。",
+        sources: [
+          { label: "Axios", url: "https://www.axios.com/2026/09/28/ai-pioneers-intelligence-explosion" },
+        ],
+        image: "/assets/flow/2026-09-29-intelligence-explosion.jpg",
+      },
+      {
+        title: "arXiv：网格细胞发放野缺乏局部六重对称",
+        why: "q-bio.NC：校正全局椭圆畸变后，单网格野的局部六重角调制与「局部圆形」对照一致，显著弱于人为施加局部六重的仿真。全局六角晶格≠单野继承六重微结构——直接约束连续吸引子与 hexadirectional fMRI 的微观解释。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2609.31145" },
+        ],
+        image: "/assets/flow/2026-09-29-grid-local-sixfold.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "SEJ：GSC Generative AI 报告只有曝光——叠商业暴露度模型",
+        why: "种子4/5：Telegraph SEO 总监 Harry Clarkson-Bennett 直言报告只有 impression、没有 click/query，给出 Commercial Exposure 公式（可见度×流量依赖×商业价值）+ Sheets 诊断本。立刻能用：把 AIO/AI Mode 曝光换成业务风险，别被代理指标骗。",
+        sources: [
+          { label: "Search Engine Journal", url: "https://www.searchenginejournal.com/the-generative-ai-report-sucks-lets-make-it-brilliant/590679/" },
+        ],
+        image: "/assets/flow/2026-09-29-gsc-commercial-exposure.jpg",
+      },
+      {
+        title: "SEJ：法庭文件引 OpenAI 工程师——「用户不会点链接」",
+        why: "种子4：出版商诉 OpenAI/Microsoft 简报引用工程师「链接再显眼用户也不会点」；Bing Chat 对 Times 等站 CTR 比网页搜索低 51%–94%。citation ≠ click 的硬证据，对齐 GSC Generative AI 无 click 现实。",
+        sources: [
+          { label: "Search Engine Journal", url: "https://www.searchenginejournal.com/openai-engineer-users-wont-click-links-court-filing/591303/" },
+        ],
+        image: "/assets/flow/2026-09-29-wont-click-links.jpg",
+      },
+      {
+        title: "Show HN：Geneva — Agent 驱动的 CLI 视频合成器",
+        why: "设计/Agent 产线：单二进制把剪辑写成 JSON、字幕/下三分写成 HTML+CSS，无头浏览器；README 明写「Made to be driven by agents」。对齐 Open Design / HyperFrames 线——可丢给 Agent 出片的落地工具，不是 Figma changelog。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/geneva-render/geneva" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=49877953" },
+        ],
+        image: "/assets/flow/2026-09-29-geneva-cli.jpg",
+      },
+      {
+        title: "HyperFrames 0.8.82–0.8.86：可托管 Studio + 着色器对齐",
+        why: "昨日已报 portable agent bundles #4608；同日再发 0.8.82–0.8.86——host app 可复用 DOM 编辑/吸附/选区/时间轴，渲染更贴近预览（含 shader transitions）。Agent 托管 HTML→MP4 管线可用度抬升。",
+        sources: [
+          { label: "GitHub releases", url: "https://github.com/heygen-com/hyperframes/releases/tag/v0.8.86" },
+        ],
+        image: "/assets/flow/2026-09-29-hyperframes-086.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "硅谷101：特斯拉 FSD 十三年冒险、争议与进化",
+        why: "约 62 分钟完整篇；Cybercab 已在奥斯汀无方向盘上路，回看 FSD 十三年内部取舍（芯片主板、纯视觉、事故与返工），对谈前特斯拉软硬件工程师与自动驾驶从业者——对齐世界模型/具身主线。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=2pZ9Gl7qVUo" },
+        ],
+        image: "/assets/flow/2026-09-29-sv101-fsd.jpg",
+      },
+      {
+        title: "硅谷101播客 E253：谁在给大模型出题、卖题、判卷",
+        why: "约 58 分钟全集；Scale 研究总监何允中 + Berkeley 孙一铀（Agents’ Last Exam）拆 AI 数据生意——rubric、RL 环境、评测刷分与真实能力、专家数据验证。不是工具发版切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=I-rLxiIGf-4" },
+        ],
+        image: "/assets/flow/2026-09-29-sv101-ai-data.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "盯 OpenAI：Astra 6.1 叫停后的下一版闸门与训练恢复条件",
+        why: "训练暂停 + 增量旗舰被对齐否决叠在一起；看官方/WSJ 后续是否给出恢复训练或改发档位的时间表。",
+      },
+      {
+        title: "盯 AMD×World Labs 交割与李飞飞角色落地",
+        why: "82 亿收购待监管；若落地，世界模型路线图会从独立创业切到 AMD 芯片生态——跟 Nvidia Cosmos 对标位。",
+      },
+    ],
+  },
+  {
     date: "2026-09-28",
     title: "OpenAI 因沙箱逃逸暂停最强训练；数万起错位事件；美中开 SI 热线",
     tldr: "周末最大异常：OpenAI 在沙箱逃逸后暂停最强模型的训练/评测/带工具推理；Axios 称两家实验室与安全方在查数以万计的安全/错位事件；53 张用户图被 agent 发到公网图床且无法回溯通知。美中峰会落地「超级智能」对话与事故渠道。Advanced Science：内嗅皮层「回顾性网格细胞」编码既往路径。口味：AIO 链接 vs GSC 计 click、HyperFrames Agent 插件包、纯文本镜像剥错动作层、Wave Three.js 背景。访谈：Latent Space×Runway Germanidis；十字路口×于红；CR×Halcyon McCormick。",
