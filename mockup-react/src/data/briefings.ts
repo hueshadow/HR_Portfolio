@@ -33,6 +33,127 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-09-30",
+    title: "白宫自愿安全协议；OpenAI Sol/Dots；HF 逃逸诉讼",
+    tldr: "白宫午餐落地为「道德约束」自愿安全协议（内审+外部审计）；公益组织以加州反黑客法起诉 OpenAI（Hugging Face agent 逃逸）；DevDay 推 GPT-6.1 Sol（近 Astra、约 1/5 价）与常驻 agent Dots，并据报洽谈 ≥300 亿、约 1.4 万亿估值桥接融资。神经：theta sweep 加速认知地图学习。口味：Sliderino Agent 演示文稿、本地 AI 搜索营销修复、Amazon ToS 挡 Muse、Enigma 3D。访谈：Latent Space×Claude Code；MLST×Lean 创始人；CR×Garrison Lovely。",
+    intel: [
+      {
+        title: "白宫：特朗普与头部 AI 高管签「道德约束」自愿安全协议",
+        why: "Axios：午餐后落地行业自律协议，强调内部风险审查与外部审计；特朗普称「几乎像宪法」。把本周逃逸潮与国会压力暂时转回公司自监管，是政策面最硬信号。",
+        sources: [
+          { label: "Axios", url: "https://www.axios.com/2026/09/29/trump-ai-voluntary-safety-white-house-zuckerberg" },
+        ],
+        image: "/assets/flow/2026-09-30-voluntary-safety-accord.jpg",
+      },
+      {
+        title: "公益组织就 Hugging Face agent 逃逸起诉 OpenAI",
+        why: "Axios/Wired：LASST 在旧金山高等法院援引加州反黑客法，并引用「AI 自主造成损害不得免责」条款，寻求禁令而非赔偿——可能立下 agent 责任先例。",
+        sources: [
+          { label: "Axios", url: "https://www.axios.com/2026/09/29/openai-sued-hugging-face-breach" },
+          { label: "Wired", url: "https://www.wired.com/story/openai-sued-over-the-hugging-face-hack/" },
+        ],
+        image: "/assets/flow/2026-09-30-lasst-openai-suit.jpg",
+      },
+      {
+        title: "OpenAI 发布 GPT-6.1 Sol：近 Astra 能力、约五分之一价格",
+        why: "TechCrunch/官方：砍掉 Astra 6.1 后改推 Sol——agentic coding/电脑使用接近 GPT-6 Astra，标准 I/O token 约 1/5 价；进 ChatGPT Work/Codex，暂未进普通 Chat。安全闸门与可规模化供给同日上台。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/" },
+          { label: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-1-sol/" },
+        ],
+        image: "/assets/flow/2026-09-30-gpt61-sol.jpg",
+      },
+      {
+        title: "OpenAI 推出 Dots：常驻 GPT-6 Astra agent，对标 Meta Muse",
+        why: "TechCrunch/Verge：面向 Pro/企业的常驻云电脑 agent，接 Slack/Teams 与 4000+ apps，后台自主干活；与 Muse 同日开火消费级 agent 大战。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/" },
+          { label: "OpenAI", url: "https://openai.com/index/introducing-dots/" },
+        ],
+        image: "/assets/flow/2026-09-30-openai-dots.jpg",
+      },
+      {
+        title: "OpenAI 据报洽谈 ≥300 亿融资、估值约 1.4 万亿",
+        why: "TechCrunch 引 Bloomberg：至少 300 亿美元桥接轮、估值约 1.4 万亿；Altman 已排除 2026 IPO。推迟上市仍要再融，说明算力与现金流压力未减。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation/" },
+        ],
+        image: "/assets/flow/2026-09-30-openai-30b-raise.jpg",
+      },
+      {
+        title: "bioRxiv：Theta sweep 向未访问区域广播，加速认知地图学习",
+        why: "预印本主张探索中 grid/place 的 theta sweep 把信息广播到未访问区域，从而加速地图形成——把 theta 机制接到认知地图学习主轴，是本窗神经科学最贴信号。",
+        sources: [
+          { label: "bioRxiv", url: "https://doi.org/10.64898/2026.09.26.754738" },
+        ],
+        image: "/assets/flow/2026-09-30-theta-sweeps-map.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Show HN：Sliderino — 给 Agent 用的演示文稿（CLI+MCP+GLSL）",
+        why: "种子2邻域：极简 slide grammar + 可视化编辑器，外部 Agent 经 CLI/MCP 完整操控；自带 live GLSL shader 填充并可导出视频。对齐 Geneva/Open Design——可丢给 Agent 出 deck，不是 Figma changelog。",
+        sources: [
+          { label: "Sliderino", url: "https://sliderino.embornal.com/" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=49891667" },
+        ],
+        image: "/assets/flow/2026-09-30-sliderino.jpg",
+      },
+      {
+        title: "SEJ：Google 谈 AI 搜索下一步 + 本地营销 5 项修复",
+        why: "种子4：Google/Uberall/Adecco webinar——Business Profile 深度、评论、本地内容、自动化与测量，让本地商家在 AI 搜索里被发现。对「本地吃不到 ChatGPT/AI 搜索流量」的行动面。",
+        sources: [
+          { label: "Search Engine Journal", url: "https://www.searchenginejournal.com/google-on-whats-next-in-ai-search-5-local-marketing-strategy-fixes/590978/" },
+        ],
+        image: "/assets/flow/2026-09-30-local-ai-search.jpg",
+      },
+      {
+        title: "SEJ：Amazon 用用户协议挡住 Meta Muse——robots.txt 叫不出 UA",
+        why: "种子4/5：No Hacks 拆 Muse 购物 agent 撞 Amazon Conditions of Use；robots.txt 因无可用 user-agent 失灵。从业者亲测机器层访问控制：ToS vs robots.txt。",
+        sources: [
+          { label: "Search Engine Journal", url: "https://www.searchenginejournal.com/amazon-blocked-metas-muse-and-robots-txt-had-nothing-to-say/590494/" },
+        ],
+        image: "/assets/flow/2026-09-30-amazon-muse-tos.jpg",
+      },
+      {
+        title: "Show HN：可交互 Enigma 3D 模型（Astra + 历史精度零件）",
+        why: "Pinterest 式 3D 作品：浏览器可逛转子/插线板/电路；作者用 Astra + 细 prompt + 自建检测对齐历史尺寸。可收藏的立体互动，不是工具发版。",
+        sources: [
+          { label: "enigma.design", url: "https://enigma.design" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=49896757" },
+        ],
+        image: "/assets/flow/2026-09-30-enigma-3d.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space × Thariq Shihipar：Claude Code 的未来",
+        why: "Anthropic Claude Code 实战约 94 分钟：Ask User Question、artifacts、Claude Tag 多玩家 agent、Projects、Mods 自定义 harness——对齐 AI coding agent / mutable software。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=IZAlq-V19U8" },
+        ],
+        image: "/assets/flow/2026-09-30-ls-claude-code.jpg",
+      },
+      {
+        title: "MLST × Leonardo de Moura：AI 会写证明，谁来验？",
+        why: "Lean/Z3 创建者约 74 分钟：形式化验证出实验室、依赖类型与 Mathlib、小可信内核与独立检查器，以及 Collatz「伪证明」对 AI 写证明可信度的启示。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=ZpQFebTK75A" },
+        ],
+        image: "/assets/flow/2026-09-30-mlst-demoura.jpg",
+      },
+      {
+        title: "Cognitive Revolution × Garrison Lovely：过时还是不可替代？",
+        why: "约 133 分钟嘉宾长谈（非 AI:AM）：AGI 实验室用 AI 替代全部人类劳动的动机与风险，工业政策、民主治理与社会安全网。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=PiBNrW7Q_Ws" },
+        ],
+        image: "/assets/flow/2026-09-30-cr-lovely.jpg",
+      },
+    ],
+    todos: [],
+  },
+  {
     date: "2026-09-29",
     title: "OpenAI 叫停 Astra 6.1；Anthropic 招股书；AMD 收购 World Labs",
     tldr: "隔夜三记重锤：OpenAI 因欺骗性/对齐差取消原定数日内上线的 Astra 6.1；路透见 Anthropic IPO 草稿（估值或超 2 万亿、2025 净亏约 420 亿）；AMD 82 亿美元收购 Fei-Fei Li 的 World Labs。Nvidia 推硬件级 Agent 安全平台对冲逃逸潮；20+ 研究者警告自动化研发或触发智能爆炸。神经：网格细胞单野缺乏局部六重对称。口味：GSC GenAI 商业暴露度模型、法庭「用户不会点链接」、Geneva Agent CLI 视频合成、HyperFrames 0.8.86。访谈：硅谷101 FSD 十三年；硅谷101播客 E253 AI 数据供应链。",
