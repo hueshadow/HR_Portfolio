@@ -33,6 +33,111 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-01",
+    title: "FTC 查 OpenAI/Anthropic；Gemini 4 Argon；蒸馏反击",
+    tldr: "白宫自愿安全协议翌日，FTC 确认调查 OpenAI、Anthropic 等产品安全并拟发民事调查令（含 METR）。Google 发布 Gemini 4 Argon：长程工作流与网络防御，先仅 Fairwind 可信防御方。OpenAI 披露挫败协调式模型蒸馏（核心归因 Moonshot/Kimi），并深挖 Decisions API 作廉价 agent 监控。Reddit 因 AI 爬虫将关停 RSS。神经：内侧隔区谷氨酸能神经元支撑 MEC 速度编码与网格细胞空间稳定性。口味：HyperFrames 0.8.99、SEJ 引用源/管线指标/本地 Nano、Skymap WebGPU。窗内无合格 45min+ 新访谈（Latent Space DevDay 40m 近失）。",
+    intel: [
+      {
+        title: "FTC 调查 OpenAI、Anthropic 等 AI 产品安全，拟发民事调查令",
+        why: "Axios：白宫自愿协议翌日，FTC 发言人确认调查产品安全风险；Chair Ferguson 准备 CIDs 要求文件与高管作证，目标据报含评估机构 METR。用现有消费者保护法约束前沿实验室，是跳过新立法的硬动作。",
+        sources: [
+          { label: "Axios", url: "https://www.axios.com/2026/09/30/ftc-openai-anthropic-ai-safety-investigation" },
+          { label: "CNBC", url: "https://www.cnbc.com/2026/09/30/ftc-ai-probe-openai-anthropic.html" },
+        ],
+        image: "/assets/flow/2026-10-01-ftc-probe.jpg",
+      },
+      {
+        title: "Google 发布 Gemini 4 Argon：长程工作流与网络防御，先仅可信防御方",
+        why: "官方：Argon 面向软件工程、法务金融知识工作与网络防御；输出上限 1M tokens；Fairwind 先放给 trusted cyber defenders（可无 cyber 护栏）；Vals Index/DeepSWE 自称领先。与 Astra/Fable 同级限量放行。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/" },
+          { label: "The Verge", url: "https://www.theverge.com/tech/1002980/google-gemini-4-argon" },
+        ],
+        image: "/assets/flow/2026-10-01-gemini-4-argon.jpg",
+      },
+      {
+        title: "OpenAI：挫败协调式模型蒸馏，核心集群归因 Moonshot AI（Kimi）",
+        why: "官方博客：7 月起观测对抗蒸馏抽取受保护 reasoning；单日约 1.6 万次相关请求；封号并经 Frontier Model Forum 共享。首次点名竞争对手相关方做蒸馏，属前沿安全与竞争异常。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/" },
+        ],
+        image: "/assets/flow/2026-10-01-openai-distillation.jpg",
+      },
+      {
+        title: "OpenAI Decisions API：廉价高速「选择题」模型，可盯 agent 每步",
+        why: "TechCrunch：DevDay 旁枝——预定义选项做分类/路由，对标 TypeSafe Jev；演示审查 agent 动作约 $2.94 vs 前沿 LLM $372。直接回应本周 rogue agent 治理成本。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/30/openais-jev-clone-could-help-the-frontier-lab-stop-its-swarming-agents/" },
+        ],
+        image: "/assets/flow/2026-10-01-decisions-api.jpg",
+      },
+      {
+        title: "Reddit 因 AI 爬虫关停 RSS（11/13），并宣布 2027-03 结束公共 API",
+        why: "TechCrunch：RSS 被指成大规模刮取面将关停；公共 API 明年三月结束，助手须商业授权。开放网络入口换 AI 授权收入，是数据供给侧结构性事件。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/09/30/reddit-is-killing-rss-feeds-ending-public-api-access-because-of-ai-bots/" },
+        ],
+        image: "/assets/flow/2026-10-01-reddit-rss.jpg",
+      },
+      {
+        title: "bioRxiv：内侧隔区谷氨酸能神经元支撑速度编码与网格细胞空间稳定性",
+        why: "Hasselmo/Brandon 等：细胞类型特异光遗传沉默 + 在体电生理显示，MS 谷氨酸能通路是 MEC 速度编码保真与网格细胞空间稳定的关键组件——把隔区输入接到网格细胞主轴，是本窗最贴神经信号。",
+        sources: [
+          { label: "bioRxiv", url: "https://doi.org/10.64898/2026.09.28.754654" },
+        ],
+        image: "/assets/flow/2026-10-01-ms-grid-stability.jpg",
+      }
+    ],
+    taste: [
+      {
+        title: "HyperFrames 0.8.94–0.8.99：可嵌入 Studio 编辑精度（拖拽/旋转/裁剪）",
+        why: "种子2邻域：昨夜连发六版至 0.8.99，强化 host 禁 body-drag、自定义 clip 菜单与指针级拖转——Agent/宿主可嵌的 HTML→视频 Studio，不是 Figma changelog。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/heygen-com/hyperframes/releases/tag/v0.8.99" },
+        ],
+        image: "/assets/flow/2026-10-01-hyperframes-0899.jpg",
+      },
+      {
+        title: "SEJ：Wikipedia / 播客 / Reddit 正在驱动 AI 引用——把 PR 拉进 GEO",
+        why: "种子4邻域：Muck Rack/Ahrefs/Profound 数据下，过程页 Wikipedia、播客转录、Reddit 线程成 ChatGPT/AIO 高引用源；从业者把 PR 渠道当 AI 可见度基建，不是泛 SEO 教程。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/wikipedia-podcasts-reddit-now-drive-ai-citations-ask-your-pr-team-how-they-did-it/590994/" },
+        ],
+        image: "/assets/flow/2026-10-01-sej-citations-pr.jpg",
+      },
+      {
+        title: "SEJ：我用来盯客户 pipeline 的五条 AI 搜索指标",
+        why: "种子4+5：买家提示品牌出现率、答案准确度、AI 引荐转化、品牌搜索、自报归因——用管线结果校准 GEO，对齐「有效的个人惊艳」而非曝光虚荣指标。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/the-ai-search-metrics-i-use-to-track-client-pipelines/589123/" },
+        ],
+        image: "/assets/flow/2026-10-01-sej-pipeline-metrics.jpg",
+      },
+      {
+        title: "SEJ：用本地 AI 算力少依赖前沿模型（Chrome Gemini Nano 实测）",
+        why: "种子5：Chris Green 亲测 Nano 做 SEO 轻解读、代码做确定性、大模型只留判断——可立刻套用的分层架构，不是厂商稿。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/using-local-ai-compute-to-reduce-reliance-on-frontier-models/591047/" },
+        ],
+        image: "/assets/flow/2026-10-01-sej-local-nano.jpg",
+      },
+      {
+        title: "Show HN：Skymap — WebGPU 从地球飞到宇宙边缘",
+        why: "种子3邻域：可收藏的浏览器 WebGPU 宇宙飞行场景，对齐 ThreeUI「能看的 3D/动效」而不是工具发版。",
+        sources: [
+          { label: "Demo", url: "https://skymap.rulkens.com/" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=49910400" },
+        ],
+        image: "/assets/flow/2026-10-01-skymap-webgpu.jpg",
+      }
+    ],
+    interviews: [
+
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-09-30",
     title: "白宫自愿安全协议；OpenAI Sol/Dots；HF 逃逸诉讼",
     tldr: "白宫午餐落地为「道德约束」自愿安全协议（内审+外部审计）；公益组织以加州反黑客法起诉 OpenAI（Hugging Face agent 逃逸）；DevDay 推 GPT-6.1 Sol（近 Astra、约 1/5 价）与常驻 agent Dots，并据报洽谈 ≥300 亿、约 1.4 万亿估值桥接融资。神经：theta sweep 加速认知地图学习。口味：Sliderino Agent 演示文稿、本地 AI 搜索营销修复、Amazon ToS 挡 Muse、Enigma 3D。访谈：Latent Space×Claude Code；MLST×Lean 创始人；CR×Garrison Lovely。",
