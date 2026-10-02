@@ -31,7 +31,119 @@ export const SECTION_META = [
 
 export type SectionKey = (typeof SECTION_META)[number]['key']
 
-export const briefings: Briefing[] = [
+export const briefings: Briefing[
+  {
+    date: "2026-10-02",
+    title: "加州传票 OpenAI；Agent 问责法案；语音代理深访",
+    tldr: "加州总检察长 Bonta 向 OpenAI 发调查传票，扩大 HF 等网络安全事件取证，与联邦 FTC 探针并行。霍利+墨菲拟推 AI Agent Accountability Act，用刑民责压 agent 黑客问责、对抗白宫自我监管。OpenAI 与三名安全研究员解约（WSJ：违规处理敏感信息）。AWS 开源 Strands Decider 2B，跟进决策模型赛道。Google Project Suncatcher 原型卫星入轨实测 TPU。神经：海马选择性重激活经新皮层反馈支撑 predictive-coding 记忆迁移（bioRxiv 755342）。口味：HyperFrames 0.8.106、ChatGPT 虚拟试穿、Gemini UTM、MOTIONFORGE、SEJ 结构化数据伤 AI 可见度。访谈：MLST×Shawn Wen（PolyAI）70m。Open Design 仍 0.24.1。",
+    intel: [
+      {
+        title: "加州总检察长 Bonta 向 OpenAI 发调查传票，扩大 HF 等网络安全事件调查",
+        why: "CA OAG：Bonta「昨日」送达调查传票，属对 OpenAI 及模型相关网络安全事件的持续调查（先月已查 Hugging Face 事件）。与 FTC 联邦探针并行，州级取证直接卡 rogue agent / 模型致害问责。",
+        sources: [
+          { label: "CA OAG", url: "https://oag.ca.gov/news/press-releases/part-ongoing-investigation-attorney-general-bonta-serves-investigative-subpoena" },
+          { label: "Reuters", url: "https://www.reuters.com/legal/litigation/california-attorney-general-issues-investigative-subpoena-openai-2026-10-01/" },
+        ],
+        image: "/assets/flow/2026-10-02-ca-openai-subpoena.jpg",
+      },
+      {
+        title: "霍利+墨菲拟推 AI Agent Accountability Act：agent 黑客可追刑民责",
+        why: "Axios：两党参议员用刑/民责压开发者运营商对 AI agent 黑客事件负责，正面撞上特朗普自愿安全协议路线；把「谁为 agent 负责」从模糊法域推到国会案文。",
+        sources: [
+          { label: "Axios", url: "https://www.axios.com/2026/10/01/hawley-murphy-ai-liability-trump" },
+        ],
+        image: "/assets/flow/2026-10-02-agent-accountability-act.jpg",
+      },
+      {
+        title: "OpenAI 与三名安全研究员解约：内部称违规处理敏感信息",
+        why: "TechCrunch/WSJ：安全团队三人解约，指控向第三方安全组织分享机密。叠在 HF/rogue agent 与 FTC 调查之后，信号是实验室收紧信息外流与第三方评估边界。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/01/openai-cuts-ties-with-three-safety-researchers-wsj-reports/" },
+        ],
+        image: "/assets/flow/2026-10-02-openai-safety-cuts.jpg",
+      },
+      {
+        title: "AWS 开源 Strands Decider 2B：决策模型赛道跟进 Jev / Decisions",
+        why: "TechCrunch：Strands Labs 开源 2B 决策模型，预定义选项间高速低成本选择并可本地跑；与昨日 OpenAI Decisions/Jev 同周对标，改 agent 编排与护栏成本结构。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/01/amazon-releases-its-own-jev-clone-as-decision-models-flood-the-web/" },
+        ],
+        image: "/assets/flow/2026-10-02-strands-decider.jpg",
+      },
+      {
+        title: "Google Project Suncatcher 原型卫星入轨：轨道上实测 TPU",
+        why: "官方：与 Planet 合作的原型随 SpaceX Transporter-18 升空已确认联系；将短时点亮 TPU 验证太空供电/散热——太空算力从 PPT 推进到在轨原型。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-prototype/" },
+        ],
+        image: "/assets/flow/2026-10-02-suncatcher.jpg",
+      },
+      {
+        title: "bioRxiv：海马选择性重激活经新皮层反馈支撑 predictive-coding 记忆迁移",
+        why: "Saighi 等：耦合 PC 联想记忆网建模海马–新皮层；非对称 CA1↔PFC 闭环让皮层反馈偏置下一次海马重激活，优先转移「皮层尚未撑住」的记忆——把系统巩固接到预测编码主轴。",
+        sources: [
+          { label: "bioRxiv", url: "https://doi.org/10.64898/2026.09.29.755342" },
+        ],
+        image: "/assets/flow/2026-10-02-hippocampal-reactivation-pc.jpg",
+      }
+    ],
+    taste: [
+      {
+        title: "HyperFrames 0.8.100→0.8.106：Studio host z-order / 主题跟随 / 精确拖拽",
+        why: "种子2邻域：昨夜连发至 0.8.106，补 host useDomEditZOrder、跟随代码编辑器的亮暗主题、非 GSAP 精确 CSS 拖拽——Agent 可嵌的 HTML→视频 Studio 继续加编辑精度。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/heygen-com/hyperframes/releases/tag/v0.8.106" },
+        ],
+        image: "/assets/flow/2026-10-02-hyperframes-08106.jpg",
+      },
+      {
+        title: "ChatGPT 全球上线虚拟试穿（衣服/配饰，Images 2.5）",
+        why: "种子6：上传自拍/全身照，购物结果出 Try On；另加 Favorites 库。OpenAI 把时尚虚拟试穿做成产品级演示，对齐 Woo 3D 衣橱 / OOTD 线。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/01/chatgpt-can-now-virtually-try-on-clothes-for-you/" },
+        ],
+        image: "/assets/flow/2026-10-02-chatgpt-tryon.jpg",
+      },
+      {
+        title: "SEJ：Gemini 为 AI 引荐流量加 UTM，归因不再掉进 Direct",
+        why: "种子4：Gemini 外链带 UTM，移动端 app webview 也能在服务端日志里认出 AI 引荐——GSC/GEO 测量基建的实操增量，不是泛曝光教程。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/google-gemini-adds-utm-parameters-for-referral-attribution/591754/" },
+        ],
+        image: "/assets/flow/2026-10-02-sej-gemini-utm.jpg",
+      },
+      {
+        title: "MOTIONFORGE：15 套可玩网页动效系统（磁力字/液体折射/3D 爆炸）",
+        why: "种子1邻域：磁力排版、液体图像折射、scroll-scrub 3D 产品爆炸等可交互成片，带 live playground——能收藏的 Motion Sites 质感，不是 Figma changelog。",
+        sources: [
+          { label: "Demo", url: "https://motionforge-2.vercel.app/" },
+          { label: "DEV", url: "https://dev.to/mohamed_sadok_42edff3a1b3/i-wanted-a-website-that-felt-alive-so-i-built-motionforge-15d2" },
+        ],
+        image: "/assets/flow/2026-10-02-motionforge.jpg",
+      },
+      {
+        title: "SEJ Ask An SEO：伤 AI 可见度的结构化数据错误（entity @id / schema↔正文）",
+        why: "种子4+5：Getty SEO 主管级答问——一致 @id、作者/机构实体链、勿给页面没有的评价/价格打 markup。可立刻改的 LLM 引用卫生，对齐「有效的个人惊艳」。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/what-are-common-structured-data-mistakes-that-hurt-ai-visibility-ask-an-seo/589924/" },
+        ],
+        image: "/assets/flow/2026-10-02-sej-schema-ai.jpg",
+      }
+    ],
+    interviews: [
+      {
+        title: "MLST × Shawn Wen（PolyAI CTO）：语音代理如何学会对话节奏",
+        why: "70m10s 单嘉宾深访：audio-native Dialog-RSN-1（先预测 turn-taking，再带 citation 回文本、最后写 transcript 供审计）；嘈杂通话训练、latency 思考间隙、口音、公有基准不够、企业要自有 agent harness——贴 AI agent / 语音交互。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=VoAPg8Fj6-c" },
+        ],
+        image: "/assets/flow/2026-10-02-mlst-shawn-wen.jpg",
+      }
+    ],
+    todos: [
+    ],
+  },
+] = [
   {
     date: "2026-10-01",
     title: "FTC 查 OpenAI/Anthropic；Gemini 4 Argon；蒸馏反击",
