@@ -31,7 +31,126 @@ export const SECTION_META = [
 
 export type SectionKey = (typeof SECTION_META)[number]['key']
 
-export const briefings: Briefing[
+export const briefings: Briefing[] = [
+  {
+    date: "2026-10-05",
+    title: "白宫成立超级智能部队；OpenAI 安全报告负责人出走；Google 冻结开源赏金",
+    tldr: "特朗普正式成立 Super Intelligence Force（Clayton 挂帅、FTC 主席任副手、120 天交报告，章程写明防过度监管）。OpenAI 安全报告负责人 David Robinson 辞职并在《大西洋月刊》批「迭代部署」。Google 因 AI 垃圾报告激增冻结开源漏洞赏金至 2027。Apple 以 AI agent 为由收紧 macOS 完全磁盘访问。世界模型：Kepler 用可执行世界模型打满 ARC-AGI-3 公开集并自曝评测失效。神经：Nat Comm 人类 624 个单神经元显示语义预测自上而下重排音素表征。口味：Candy Paint 浏览器实时 MV、Viktor Oddy 液态玻璃 hero、HyperFrames 0.8.126、Ahrefs 品牌词 83% 出 AIO、Higgsfield AI Influencer。访谈：CR×DeepMind Gemini Robotics 2；a16z×OpenRouter/Replit。Open Design 仍 0.24.1。",
+    intel: [
+      {
+        title: "特朗普正式成立「超级智能部队」：Clayton 挂帅、FTC 主席任副手，120 天交报告",
+        why: "TechCrunch（10/4 23:15 CST，转引 Truth Social/WSJ）：Jay Clayton 任主席，FTC 主席 Ferguson、Emil Michael、Scott Kupor 任副主席；章程要应对「SI-enabled threats」同时「preventing overregulation」。9/30 只是提名传闻，这次是有章程、有班子的正式机构。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/04/trump-unveils-his-new-super-intelligence-force/" },
+        ],
+        image: "/assets/flow/2026-10-05-super-intelligence-force.jpg",
+      },
+      {
+        title: "OpenAI 安全报告负责人 David Robinson 辞职，在《大西洋月刊》批「迭代部署」",
+        why: "The Verge（10/3 22:31 CST）：他负责每次大模型发布附带的安全报告，在职 3.5 年；文中称「iterative deployment… guarantees periodic failures」，主张前沿实验室应像核电站、繁忙机场那样运作。与已报的三名研究员解约是不同事件，内部异议升级到路线本身。",
+        sources: [
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1004408/openai-safety-quits-sounding-the-alarm" },
+        ],
+        image: "/assets/flow/2026-10-05-openai-robinson-quits.jpg",
+      },
+      {
+        title: "Google 因 AI 垃圾报告激增，冻结开源漏洞赏金 OSS VRP 至 2027",
+        why: "TechCrunch（10/5 04:31 CST）：OSS VRP 自 10 月 1 日暂停，2027 年 Q1 再更新；Google 原话「significant rise in automated submissions, the vast majority of which are not valid」。头部厂商首次因 AI 提交洪水关停赏金线。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/04/google-froze-its-open-source-bug-bounty-program-due-to-a-significant-rise-in-ai-submissions/" },
+        ],
+        image: "/assets/flow/2026-10-05-google-oss-vrp-pause.jpg",
+      },
+      {
+        title: "Apple 以 AI agent 为由收紧 macOS「完全磁盘访问」",
+        why: "Apple Developer News（10/2）：今后授予该权限须「very explicit user action」，「As AI agents become increasingly capable and autonomous, the risks… will grow substantially」。直接影响桌面 agent（Muse、ChatGPT Mac 等）的权限路径；尚无实施版本/日期。",
+        sources: [
+          { label: "Apple Developer", url: "https://developer.apple.com/news/" },
+        ],
+        image: "/assets/flow/2026-10-05-apple-full-disk-access.jpg",
+      },
+      {
+        title: "世界模型：Kepler 把假设写成可执行世界模型，ARC-AGI-3 公开 25 游戏全满分",
+        why: "arXiv 2610.00834（周五批次，10/2 08:00 CST 上线，上轮未扫到）：冻结的单一 Claude Opus 5 配置拿到服务器验证 100.00 RHAE，约 $778；作者同时报告源码泄露致无效满分等 3 类评测失效，提示公开集已失去区分度。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.00834" },
+        ],
+        image: "/assets/flow/2026-10-05-kepler-arc-agi-3.jpg",
+      },
+      {
+        title: "神经：人类 624 个单神经元显示，语义预测自上而下重排音素表征",
+        why: "Nature Communications（10/3 19:24 CST）：前颞上回微电极记录中，词汇语义与音素处于不同神经子空间，音素对齐到词级语义而非自下而上累积；效应在相邻 ECoG 中看不到——语言 predictive coding 的单神经元级证据。",
+        sources: [
+          { label: "Nat Comm", url: "https://www.nature.com/articles/s41467-026-77942-x" },
+        ],
+        image: "/assets/flow/2026-10-05-speech-semantic-prediction.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Candy Paint：Claude Code 一天写出的浏览器实时钢琴 MV",
+        why: "种子1同路：Travis Fischer 用 Claude Code + Opus 5.5 写出转谱、编舞、镜头和渲染全链路，1,893 个音符各配光珠跳落，黑樱桃烤漆配金线的电影感；不用 Figma、不用生成视频，作者说自己只负责「品味和反馈」。有在线成片和源码。",
+        sources: [
+          { label: "项目页", url: "https://www.transitivebullsh.it/projects/candy-paint-music-video" },
+          { label: "在线", url: "https://candy-paint.vercel.app/" },
+        ],
+        image: "/assets/flow/2026-10-05-candy-paint.jpg",
+      },
+      {
+        title: "Viktor Oddy：Opus 5.5 一条 prompt 出液态玻璃 3D hero",
+        why: "种子本人（10/3 00:39 CST）：「No Spline. No Blender. No 3D designer. Just Opus 5.5 and 1 prompt」做液态玻璃 hero 区，附演示视频；同周还发了 GPT-6 Astra vs Opus 5.5 同 prompt 豪宅落地页 3D 视差对比（约 5.4 万次观看）。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2106061619176620344" },
+          { label: "对比帖", url: "https://x.com/viktoroddy/status/2106324239121100905" },
+        ],
+        image: "/assets/flow/2026-10-05-viktor-oddy-liquid-glass.jpg",
+      },
+      {
+        title: "HyperFrames 0.8.107→0.8.126：Studio 补齐音视频剪辑，新增 Edit with Framey",
+        why: "种子2邻域（agent 视频/设计引擎）：周末 20 个版本——音轨跟随片段、波形、响度归一与人声闪避、变速/冻结帧；宿主应用可跑 Studio agent 工具；motion-blur-streak skill；渲染等字体加载完可复现；新增 hyperframes open 命令。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/heygen-com/hyperframes/releases/tag/v0.8.126" },
+        ],
+        image: "/assets/flow/2026-10-05-hyperframes-08126.jpg",
+      },
+      {
+        title: "Ahrefs：品牌词搜索 83% 已出现 AI Overview",
+        why: "种子4/6 GEO 线：美国桌面品牌词 AIO 出现率从 7 月 61.3% 升到 9 月 73.3%，9/29 达 82.91%；品牌 AIO 最常引用 Wikipedia、YouTube、LinkedIn，并附追踪自家品牌的方法——硬数据说明品牌词流量正被 AIO 截走。",
+        sources: [
+          { label: "Ahrefs", url: "https://ahrefs.com/blog/ai-overviews-on-branded-searches/" },
+        ],
+        image: "/assets/flow/2026-10-05-ahrefs-aio-branded.jpg",
+      },
+      {
+        title: "Higgsfield AI Influencer：一张照片造虚拟人，丢进热门视频换装换景",
+        why: "设计板 + 种子6 穿搭线（10/3 04:31 CST）：官方演示约 301 万次观看；可从一张照片创建 AI 网红放进任意趋势视频，用 Genjutsu 控制每帧、换衣服/道具/场景。能直接看的 AI 影像成片。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield/status/2106119916479037742" },
+        ],
+        image: "/assets/flow/2026-10-05-higgsfield-ai-influencer.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Cognitive Revolution × Keerthana Gopalakrishnan：Gemini Robotics 2 与跨本体",
+        why: "91 分钟单嘉宾深谈（10/3 21:00 CST）：DeepMind 如何把推理模型 Gemini Robotics ER 2 和 VLA 执行层搭在一起，为什么灵巧操作和跨本体泛化比双足行走更难，以及物理 AI 的延迟、传感器失效与安全取舍。对齐具身/世界模型线。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=CVcyli4i5g0" },
+        ],
+        image: "/assets/flow/2026-10-05-cr-gemini-robotics-2.jpg",
+      },
+      {
+        title: "a16z × Alex Atallah（OpenRouter）+ Amjad Masad（Replit）：专精模型能否打赢上帝模型",
+        why: "48 分钟（10/3 22:30 CST）：OpenRouter 押注模型多样性与路由/融合（称约一半成本逼近前沿效果），Replit 从企业侧讲为何要自己掌握智能；还谈专精 agent 团队对比 god-agent、agent 间通信、模型是否会欺骗人。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=ekK8urKHPMQ" },
+        ],
+        image: "/assets/flow/2026-10-05-a16z-specialized-ai.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
   {
     date: "2026-10-02",
     title: "加州传票 OpenAI；Agent 问责法案；语音代理深访",
@@ -143,7 +262,6 @@ export const briefings: Briefing[
     todos: [
     ],
   },
-] = [
   {
     date: "2026-10-01",
     title: "FTC 查 OpenAI/Anthropic；Gemini 4 Argon；蒸馏反击",
