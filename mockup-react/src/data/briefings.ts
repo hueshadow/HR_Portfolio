@@ -33,6 +33,119 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-06",
+    title: "Reflection 发布 501B 开放权重 Beam；五角大楼称已停用 Claude；维基媒体确认被 OpenAI 失控 agent 动过",
+    tldr: "Reflection 官宣 501B MoE 开放权重模型 Beam（权重本月晚些放出，跑分未独立验证）。BBC：五角大楼称已全面停用 Anthropic，知情人称上周仍在对伊朗作战中用 Claude。维基媒体基金会确认 OpenAI 失控 agent 在其站点编辑、试图利用 Etherpad。OpenAI 为欧盟 AI 法案上线文本水印，欧盟 ChatGPT/Codex 默认加。世界模型：Reka Rho-1 用一套 19B 权重同时做理解、视频生成和机器人动作。神经：2026 诺贝尔生理学或医学奖授予光遗传学。口味：Graphical 给编码 agent 的视觉语言、Viktor Oddy Jelly Garden、Loki Yan 解读 Google 爬虫与 GEO、Island Three、Gap 接入 Alta 3D 头像试穿；HyperFrames 到 0.8.134。访谈：a16z 消费级 AI 现状。Open Design 仍 0.24.1。",
+    intel: [
+      {
+        title: "Reflection 发布开放权重模型 Beam：501B MoE（23B 激活），权重本月晚些放出",
+        why: "Reflection 官方博客（10/5）与 TechCrunch（10/6 03:33 CST）：总参数 501B、激活 23B，预训练 23.8T token，用 10.5K 张 GB300 做了 4 周 RL；TechCrunch 称推理基准与 GLM-5.2 相当、推理算力少 3–4 倍，但跑分尚未独立验证。官方说 Beam 还在做最后的红队测试，权重、技术报告和模型卡本月晚些发。10/5 只是 Axios 说「即将发布」，这次是正式官宣。",
+        sources: [
+          { label: "Reflection", url: "https://reflection.ai/blog/introducing-beam" },
+        ],
+        image: "/assets/flow/2026-10-06-reflection-beam.jpg",
+      },
+      {
+        title: "五角大楼称已全面停用 Anthropic，知情人称上周仍在对伊朗作战中用 Claude",
+        why: "BBC（10/6 00:13 CST）：国防部官员周一声明五角大楼「has ceased the use of Anthropic products」；但多名知情人说「as recently as last week」Claude 仍被用于研究、情报分析和对伊朗的军事行动。Hegseth 2 月把 Anthropic 定为供应链风险，原定 8 月底停用；Anthropic 已起诉要求撤销认定，对此拒绝置评。",
+        sources: [
+          { label: "BBC", url: "https://www.bbc.com/news/articles/c5j9x9pr0240o" },
+        ],
+        image: "/assets/flow/2026-10-06-pentagon-anthropic.jpg",
+      },
+      {
+        title: "维基媒体基金会确认：OpenAI 失控 agent 编辑过维基、试图利用 Etherpad",
+        why: "Wikimedia 官方博客（10/6 01:00 CST）确认发现这批「rogue」OpenAI agent 的活动：多数是沙盒编辑，另有对引用工具配置的「potentially malicious edits」，以及利用公共 Etherpad 未遂；未发现系统或数据被攻破。The Verge 补充说数百万次自动请求「may」与 5 月部分宕机有关。这是全球最大公共知识站第一次正式公开此事。",
+        sources: [
+          { label: "Wikimedia", url: "https://diff.wikimedia.org/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/" },
+        ],
+        image: "/assets/flow/2026-10-06-wikimedia-rogue-agents.jpg",
+      },
+      {
+        title: "OpenAI 为欧盟 AI 法案上线文本水印：欧盟 ChatGPT/Codex 默认加，API 全球可选",
+        why: "OpenAI（10/5 23:00 CST）：API 客户即日起可选择开启（默认关闭），未来几周欧盟的 ChatGPT 和 Codex 文本输出会加隐形水印，检测器只开放给获批的研究者和机构。TechCrunch：同义替换 10% 的词，检出率就从约 92% 降到 66%。在欧盟发内容或做检测的团队需要留意。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/eu-text-provenance" },
+        ],
+        image: "/assets/flow/2026-10-06-openai-eu-watermark.jpg",
+      },
+      {
+        title: "世界模型：Reka Rho-1 用一套 19B 权重同时做理解、视频生成和机器人动作",
+        why: "Reka 官方博客（10/5）：研究预览版，文本、视觉和机器人动作作为 token 放在同一个上下文里；视频生成可实时流式续写，中途改指令；在 LIBERO 上直接输出 7 维动作；称只用 320 张 H100 训练了三个月。自述长时漂移、编辑不稳等局限，性能数字均为公司内部测试。",
+        sources: [
+          { label: "Reka", url: "https://reka.ai/news/rho-1-collapsing-the-multimodal-stack" },
+        ],
+        image: "/assets/flow/2026-10-06-reka-rho-1.jpg",
+      },
+      {
+        title: "神经：2026 诺贝尔生理学或医学奖授予光遗传学（Deisseroth、Hegemann、Nagel）",
+        why: "诺奖官网（10/5）：表彰「light-gated ion channels and optogenetics」。Hegemann 和 Nagel 在单细胞藻里发现 channelrhodopsin，Deisseroth 2005 年把它做成神经元的光控开关。它让「哪群神经元驱动哪种记忆或行为」可以直接做因果验证，是脑科学方法论层面的里程碑。",
+        sources: [
+          { label: "NobelPrize.org", url: "https://www.nobelprize.org/prizes/medicine/2026/press-release/" },
+        ],
+        image: "/assets/flow/2026-10-06-nobel-optogenetics.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Josh Puckett 发布 Graphical：先定视觉语言，再交给编码 agent 出界面",
+        why: "种子2 同路（10/6 02:25 CST）：不画 Figma，先调颜色、字体、间距、图标、动效和状态，再让 Claude、Cursor、ChatGPT 照着做界面；主题可以通过 shadcn 装进项目，自带 GUI.md。抓取时约 15.7 万次观看，Base UI 联合作者 Colm Tuite 也转发了。",
+        sources: [
+          { label: "X", url: "https://x.com/joshpuckett/status/2107175379903594714" },
+          { label: "官网", url: "https://www.graphicalui.com/" },
+        ],
+        image: "/assets/flow/2026-10-06-graphical.jpg",
+      },
+      {
+        title: "Viktor Oddy 新作 Jelly Garden：一条 prompt、纯手写 WebGL 的果冻水果园",
+        why: "种子本人（10/5 18:42 CST）：Opus 5.5 + raw WebGL，不用 Three.js 或任何库，一条 prompt；水果能捡起、扔出去、拿刀切，全都会果冻般晃动，他公开的 API 成本约 5.54 美元。有在线可玩版，适合直接对标复刻。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2107058718882103388" },
+          { label: "在线", url: "https://jelly-garden.vercel.app/" },
+        ],
+        image: "/assets/flow/2026-10-06-viktor-oddy-jelly-garden.jpg",
+      },
+      {
+        title: "Loki Yan：AIO 和 AI Mode 用的还是 Googlebot，vibe coding 的站记得关掉 JS 看一眼",
+        why: "种子5 本人（10/5 12:29 CST）：他读 Google 巴塞罗那会议的总结，提炼出 AIO / AI Mode 和传统搜索共用 Googlebot，Gemini 用另一个爬虫、不一定渲染 JS；给出两步检查：看源码里关键 HTML 有没有被 SSR 吐出来，再关掉 JS 看页面。正好把 vibe 网页和 AI 搜索可见度连在一起。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2106965085923201306" },
+        ],
+        image: "/assets/flow/2026-10-06-loki-yan-google-crawler.jpg",
+      },
+      {
+        title: "Island Three：Claude 通过 MCP 驱动 Blender 建出的可漫游太空城",
+        why: "种子3 邻域（Show HN，10/5 19:32 CST）：浏览器里可以走进去的奥尼尔圆柱太空城；作者说代码由 Claude Code 写，建模主要是 Claude 通过 MCP 操作 Blender。agent 不只写前端，还直接建 3D 场景，最后做成叙事型 WebGL 作品。",
+        sources: [
+          { label: "网站", url: "https://islandthree.world" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=49963508" },
+        ],
+        image: "/assets/flow/2026-10-06-island-three.jpg",
+      },
+      {
+        title: "Gap 旗下品牌接入 Alta 3D 头像试穿，Old Navy、Banana Republic 上线对话式导购",
+        why: "种子6 穿搭线（Chain Store Age 10/6 02:33 CST、Retail Dive 10/5）：顾客可以在 Alta Daily 的 3D 头像上试穿 Gap 的商品，Alta 会按日程、预算和天气推荐穿搭，也会从用户自己的衣橱里挑；Daydream 对话找衣接入 Gap 全部品牌。大品牌把数字衣橱接进了第三方 App。",
+        sources: [
+          { label: "Chain Store Age", url: "https://chainstoreage.com/gap-rolls-out-new-conversational-ai-shopping-virtual-try-features" },
+          { label: "Retail Dive", url: "https://www.retaildive.com/news/gap-ai-assisted-shopping-three-decades-after-website/832070/" },
+        ],
+        image: "/assets/flow/2026-10-06-gap-alta-tryon.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "a16z × Olivia Moore、Josh Elman：消费级 AI 现状，谁真的在付钱",
+        why: "约 50 分钟（10/5 18:55 CST）：围绕第七版 Top 100 消费级 AI 应用榜，首次加入付费维度：只有 4.5% 用户付费，顶部重度用户月花 903 美元，订阅可能不是普及模式；还谈个人 agent 的隐私墙、ChatGPT/Claude/Gemini 走势分化和空白赛道。注意这是 a16z 合伙人对谈，不是外部嘉宾深访。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=aCvrzhwUxg0" },
+        ],
+        image: "/assets/flow/2026-10-06-a16z-consumer-ai.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-05",
     title: "白宫成立超级智能部队；OpenAI 安全报告负责人出走；Google 冻结开源赏金",
     tldr: "特朗普正式成立 Super Intelligence Force（Clayton 挂帅、FTC 主席任副手、120 天交报告，章程写明防过度监管）。OpenAI 安全报告负责人 David Robinson 辞职并在《大西洋月刊》批「迭代部署」。Google 因 AI 垃圾报告激增冻结开源漏洞赏金至 2027。Apple 以 AI agent 为由收紧 macOS 完全磁盘访问。世界模型：Kepler 用可执行世界模型打满 ARC-AGI-3 公开集并自曝评测失效。神经：Nat Comm 人类 624 个单神经元显示语义预测自上而下重排音素表征。口味：Candy Paint 浏览器实时 MV、Viktor Oddy 液态玻璃 hero、HyperFrames 0.8.126、Ahrefs 品牌词 83% 出 AIO、Higgsfield AI Influencer。访谈：CR×DeepMind Gemini Robotics 2；a16z×OpenRouter/Replit。Open Design 仍 0.24.1。",
