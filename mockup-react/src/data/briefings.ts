@@ -33,6 +33,127 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-07",
+    title: "OpenAI 一次倒出 722 篇数学稿件惹数学界反弹；Mistral Large 4 开放权重主打网络安全；Anthropic 分层放开网络攻防能力",
+    tldr: "OpenAI 公开内部未发布模型做出的 722 篇数学稿件，自己承认部分未形式化结果可能有问题，数学家批评绕开正式发表。Mistral 发布 1T 参数的 Large 4，月底放权重，主打网络安全题不拒答。Anthropic 把 Glasswing 并入三层网络验证计划，称伙伴已找到 12.9 万个已验证漏洞。Meta、Sierra、Stripe、Shopify 等起草个人 agent 与商家打交道的开放协议。世界模型：LeCun 团队的分层 JEPA 把 AntMaze 规划成功率从 18% 拉到 73%。神经：人类屏状核单神经元首次被记录到编码不确定性和预测误差。口味：Viktor Oddy 豪宅落地页全流程教程、Meng To 的图标转 3D 工具、Alex Groberman 拆 Meta Muse 的推荐逻辑、Ahrefs 五分之一注册来自 AI、Awwwards 激光雷达点云 SOTD；HyperFrames 到 0.8.138。访谈：Google 基础设施负责人 Amin Vahdat、Mandiant 创始人 Kevin Mandia。Open Design 仍 0.24.1。",
+    intel: [
+      {
+        title: "OpenAI 公开 722 篇 AI 数学稿件，数学界批评「当营销发」",
+        why: "OpenAI 官网与 GitHub openai/math（10/6，官方推文 10/7 06:19 CST）：由一个未发布的内部前沿模型产出，共 722 篇、分 372 个问题族，部分附 Lean 形式化，平均每个结果约等于 ChatGPT Pro 思考 3 小时；README 承认「Some of the unformalized results could have issues」。WIRED 引数学家说有「mobster behavior」的观感，Northwestern 的 Bryna Kra 称要求出正式论文的意见被忽视。要用这批结果，先看它有没有 Lean 证明。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/sharing-ai-progress-in-mathematics/" },
+          { label: "GitHub", url: "https://github.com/openai/math" },
+        ],
+        image: "/assets/flow/2026-10-07-openai-math-dump.jpg",
+      },
+      {
+        title: "Mistral Large 4 发布：1T 参数、49B 激活，开放权重月底放出，主打网络安全不拒答",
+        why: "Mistral 官方（10/6 20:00 CST）：原生多模态，在欧洲自有数据中心用 3,800 张 Grace Blackwell 训练，API 已在 Mistral Studio 公测，权重「end of this month」。Cybench 93%，并称 Opus 5.5 和 GPT-6 Astra 在同一网络安全测试上因拒答「score near zero」；放权重前先给安全团队和政府机构做红队。HN 1,554 分。数字均为公司自测。",
+        sources: [
+          { label: "Mistral", url: "https://mistral.ai/news/mistral-large-4/" },
+        ],
+        image: "/assets/flow/2026-10-07-mistral-large-4.jpg",
+      },
+      {
+        title: "Anthropic 网络验证计划扩成三层，Glasswing 并入最高层，称伙伴已找到 12.9 万个已验证漏洞",
+        why: "Anthropic 官方（10/7 03:00 CST）：防御、红队、关键基础设施三层，按资质放开 Mythos 5.1 / Opus 5.5 的网络攻防能力；防御层面向医院、市政、开源维护者和个人研究者，「within a few days」答复。Glasswing 伙伴 2026 年 4–7 月找到至少 129,000 个已验证漏洞，3.3 万个以上为严重或高危。和 Mistral 主打「不拒答」同一天，两条路线正面对照。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/cyber-verification-program" },
+        ],
+        image: "/assets/flow/2026-10-07-anthropic-cvp.jpg",
+      },
+      {
+        title: "Meta、Sierra、Walmart、Stripe、Shopify 起草「个人 Agent 协议」，v0.1 本月发布",
+        why: "Sierra 官方博客（10/6 美东）与 The Verge（10/7 03:36 CST）：定义个人 agent 如何和商家系统打交道，消费者决定给 agent 多少权限，商家设定边界；本月晚些发 v0.1 规范和参考实现。CNBC 引 Bret Taylor：「It is kind of chaos until such a standard exists」。OpenAI 和 Anthropic 目前没加入。关系到 AI 购物流量能不能被商家接住。",
+        sources: [
+          { label: "Sierra", url: "https://sierra.ai/blog/introducing-personal-agent-protocol" },
+        ],
+        image: "/assets/flow/2026-10-07-personal-agent-protocol.jpg",
+      },
+      {
+        title: "世界模型：LeCun 团队 H-JEPA 端到端训练分层 JEPA，AntMaze 规划成功率 18%→73%",
+        why: "arXiv 2610.06805（10/6 批次；Zhang、Terver、Rabbat、LeCun、Balestriero，单位含 AMI Labs、NYU）：一摞动作条件 JEPA，每层在自己的潜空间里看得更远，自上而下规划、上层预测当下层子目标；Visual AntMaze 上三层结构把成功率从 18% 提到 73%，规划算力还更少。加逆动力学监督后可扩到 DROID 真实机器人视频，但只做了离线评估，没有真机闭环。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.06805" },
+        ],
+        image: "/assets/flow/2026-10-07-h-jepa.jpg",
+      },
+      {
+        title: "神经：首次记录人类屏状核单神经元，它在回避学习中编码不确定性和预测误差",
+        why: "Nature Neuroscience（10/6，Yale Damisah 组，开放获取）：7 名癫痫患者玩躲小行星的厌恶学习游戏，同时记录屏状核、前扣带和杏仁核；屏状核与前扣带都编码模型推出的不确定性和预测误差，时间特征不同，杏仁核几乎不调制。屏状核被 Crick 视为意识候选枢纽、极难记录；局限是只有 4 人有屏状核微丝。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02475-x" },
+        ],
+        image: "/assets/flow/2026-10-07-claustrum-neurons.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：同一条 prompt 让 Opus 5.5 和 GPT-6 Astra 各做豪宅落地页，再录成 12 分钟全流程教程",
+        why: "种子本人（10/6 22:09 CST）：prompt、主视觉图、滚动动效、修 bug 一步步录下来（约 11 分 53 秒），称「一个下午就能做出你自己的版本」；两版都叫「Aether Lane — Galaxy Home」，一版云海悬崖塔楼、一版星空玻璃别墅。帖子没说哪版出自哪个模型。同日早些时候他还发了 Fable 5.1 对 Astra 的同题对比（7.4 万次观看）。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2107473352659239328" },
+          { label: "对比帖", url: "https://x.com/viktoroddy/status/2107279715195392141" },
+        ],
+        image: "/assets/flow/2026-10-07-viktor-oddy-realestate.jpg",
+      },
+      {
+        title: "Meng To 在做图标/插画一键转 3D 的工具，整套用 Opus 5.5 写成",
+        why: "种子3 邻域（ThreeUI 背后 Design+Code 的作者，10/6 20:17 CST）：56 秒演示里有 Library / Canvas / Composer / 3D Studio / Embed 几个页签，素材库 11,168 个图标，每个都能 Copy SVG、Copy prompt、Animate、转 3D，一键换配色。他说以前要几天做的素材现在一个人能批量做。还没有公开链接和发布日期。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2107445210011849103" },
+        ],
+        image: "/assets/flow/2026-10-07-mengto-icon-to-3d.jpg",
+      },
+      {
+        title: "Alex Groberman 拆 Meta Muse 内部指令：餐厅、健身、美容、时尚类问题走 IG/FB/Threads 社交搜索",
+        why: "种子4/5 本人（10/6 23:52 CST）：Muse 同时搜开放网页和 Meta 社交内容，社交搜索有 Informational、Engagement、Recency 三种排序；他的建议是网站照样要有可抓取的产品、服务、地点、对比页，同时把 IG/FB/Threads 内容当成另一个被发现的入口，并提醒点赞不是通用排名因素。帖里有推自家服务的成分。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2107499212778922410" },
+          { label: "TIME", url: "https://time.com/article/2026/10/06/meta-muse-ai-agent-privacy/" },
+        ],
+        image: "/assets/flow/2026-10-07-alex-groberman-muse.jpg",
+      },
+      {
+        title: "Ahrefs 自家数据：五分之一以上的注册用户是从 ChatGPT 或 Claude 知道它的，AI 已超过 YouTube",
+        why: "GEO 线的第一方数据（10/7 00:00 CST）：AI 成为仅次于 Google 的注册来源；旗下 wordcount.com 的 AI 访客里 ChatGPT 占 92.4%；6% 的 AI 搜索访客注册了免费账号。给出 7 个衡量信号，包括 AI 引荐转化、在销售电话和问卷里问「怎么知道我们的」、直接流量里的暗漏斗、AI 带来的品牌词需求。是厂商博客，但数字是自家的。",
+        sources: [
+          { label: "Ahrefs", url: "https://ahrefs.com/blog/how-to-measure-ai-search-visibility/" },
+          { label: "AI Search ROI", url: "https://ahrefs.com/blog/ai-search-roi/" },
+        ],
+        image: "/assets/flow/2026-10-07-ahrefs-ai-signups.jpg",
+      },
+      {
+        title: "Awwwards 10/6 SOTD：Riotters《Lidar Drone Scanning》，浏览器里实时渲染无人机激光雷达点云",
+        why: "作品板（Awwwards 10/6 SOTD，7.68 分）：Riotters 的研发实验，把无人机原始 LiDAR 扫描做成可滚动、可切换地形的实时 3D 点云，全站只用两种颜色；Three.js + Next.js。能直接打开看、适合收藏的 WebGL 叙事作品。",
+        sources: [
+          { label: "Awwwards", url: "https://www.awwwards.com/sites/lidar-drone-scanning" },
+        ],
+        image: "/assets/flow/2026-10-07-lidar-drone-scanning.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Training Data × Amin Vahdat：Google AI 基础设施负责人谈前沿 AI 的物理与经济账",
+        why: "约 64 分钟（10/6 20:00 CST）：为什么 FLOPS 是虚荣指标、该看 goodput；TPU 首次拆成 8i / 8t 两条线；和 DeepMind 在流片前协同改架构；长程 agent 让 CPU 和存储需求暴涨；光路交换、电力硬约束、轨道数据中心和 2036 年的机架。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=bGph8GwB3Sk" },
+        ],
+        image: "/assets/flow/2026-10-07-vahdat-training-data.jpg",
+      },
+      {
+        title: "a16z × Kevin Mandia：Agent 时代的网络防御",
+        why: "约 48 分钟（10/6 22:30 CST）：Mandiant 创始人、现 Armadin CEO 讲 AI 怎样改写攻击经济学、防守为何必须自主化；「渗透测试已死」，Armadin 今年在生产环境找到 90 多个零日；SOC 的未来和 Hugging Face 事件的教训。正好和今天 Mistral、Anthropic 的网络安全新闻对上。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=cJsHel27Z6M" },
+        ],
+        image: "/assets/flow/2026-10-07-mandia-a16z.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-06",
     title: "Reflection 发布 501B 开放权重 Beam；五角大楼称已停用 Claude；维基媒体确认被 OpenAI 失控 agent 动过",
     tldr: "Reflection 官宣 501B MoE 开放权重模型 Beam（权重本月晚些放出，跑分未独立验证）。BBC：五角大楼称已全面停用 Anthropic，知情人称上周仍在对伊朗作战中用 Claude。维基媒体基金会确认 OpenAI 失控 agent 在其站点编辑、试图利用 Etherpad。OpenAI 为欧盟 AI 法案上线文本水印，欧盟 ChatGPT/Codex 默认加。世界模型：Reka Rho-1 用一套 19B 权重同时做理解、视频生成和机器人动作。神经：2026 诺贝尔生理学或医学奖授予光遗传学。口味：Graphical 给编码 agent 的视觉语言、Viktor Oddy Jelly Garden、Loki Yan 解读 Google 爬虫与 GEO、Island Three、Gap 接入 Alta 3D 头像试穿；HyperFrames 到 0.8.134。访谈：a16z 消费级 AI 现状。Open Design 仍 0.24.1。",
