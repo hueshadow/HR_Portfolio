@@ -33,6 +33,119 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-08",
+    title: "GPT-6 带着「会长界面的回答」成 ChatGPT 默认；Claude Haiku 5.5 降本约 75%；被开除的 OpenAI 安全研究员致信董事会",
+    tldr: "OpenAI 把 GPT-6 和 Intelligent UI 推给所有 ChatGPT 用户，回答里直接出图表、按钮和小工具，免费档今天起开放。Anthropic 发 Claude Haiku 5.5，称运行成本比 Haiku 4.5 低约 75%，Sonnet 5.5 缓存读取半价。WSJ：上周被开除的三名 OpenAI 安全研究员致信董事会，要求保住思维链可监控性、接受外部审计。Google 把 SynthID 检测器开放给所有人，能查 OpenAI、NVIDIA 等伙伴的水印。世界模型：V-JEPA 2 的预测器 0.3 秒就忘掉被挡住的物体。神经：NEJM 光遗传学疗法让 10 名晚期视网膜色素变性患者中 6 人视觉功能有临床意义的改善。口味：Viktor Oddy 章鱼工作室落地页对比、Alex Groberman 拆 PageTraffic 研究（Google 前 10 名一半没被 AI 提到）、Loki Yan 实拍寄生 SEO 寄生到 Google 自家域名、Opus 5.5 一小时做的 Three.js 豪宅漫游、Codrops 21 种 Astro 页面转场；HyperFrames 到 0.8.140。访谈：Brain Inspired × Maxim Raginsky。Open Design 仍 0.24.1，ThreeUI 仍 1.2.0。",
+    intel: [
+      {
+        title: "GPT-6 加 Intelligent UI 成 ChatGPT 默认：回答里直接生成图表、按钮和可交互小工具",
+        why: "@OpenAI（10/8 02:05 CST）：「GPT-6 and Intelligent UI, now rolling out in ChatGPT for everyone」。付费档用 GPT-6 Sol，Free / Go 档用 GPT-6 Luna，从今天开始放开；回答里可以有「tappable buttons, forms, and interactive」元素，也能调低视觉密度。GPT-6 9/22 已进 API，新的是全档默认加生成式界面。做产品和内容的要重新想：用户在 ChatGPT 里拿到的已经不只是文字。",
+        sources: [
+          { label: "OpenAI on X", url: "https://x.com/OpenAI/status/2107894997538525580" },
+        ],
+        image: "/assets/flow/2026-10-08-gpt6-intelligent-ui.jpg",
+      },
+      {
+        title: "Claude Haiku 5.5 发布：小模型首次带 effort 档位，运行成本约降 75%，Sonnet 5.5 缓存读取半价",
+        why: "Anthropic 官方页（10/8 02:01 CST）：「On average, it now costs around 75% less to run」（对比 Haiku 4.5），是「our first Haiku-class model to come with an adjustable effort setting」；Sonnet 5.5 缓存读取降价一半，Max / Team 订阅新增每月 API 额度。官方基准 OSWorld 2.1 离线子集 72.4%（GPT-6 Luna 48.9%），为公司自测。跑大量 agent 任务的，值得把便宜档换上测一轮。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/claude-haiku-5-5" },
+        ],
+        image: "/assets/flow/2026-10-08-claude-haiku-5-5.jpg",
+      },
+      {
+        title: "WSJ：被 OpenAI 开除的三名安全研究员致信董事会，要求保住思维链可监控性、接受外部审计",
+        why: "WSJ 独家（10/8 06:43 CST）：三人致信「OpenAI board members and safety committees」，要求公司「work with outside safety auditors」并保住监控越来越强的模型的能力，担心实验室会失去监控思维链的能力。解雇本身 10/2 已报，新的是这封信。WSJ 原文被付费墙挡住，引文取自搜索结果里的正文片段。",
+        sources: [
+          { label: "WSJ", url: "https://www.wsj.com/tech/ai/fired-openai-researchers-ask-company-to-preserve-visibility-into-ai-reasoning-987c8c94" },
+        ],
+        image: "/assets/flow/2026-10-08-openai-fired-researchers-letter.jpg",
+      },
+      {
+        title: "Google SynthID 检测器向所有人开放，能查 Google 及 OpenAI、NVIDIA、Kakao 的 AI 水印，Apple 即将加入",
+        why: "Google 官方博客（10/7 22:00 CST）：「we’re expanding access to everyone」，今天起全球英文可用，可检查来自 Google「or our partners, including OpenAI, NVIDIA, Kakao, and soon, Apple」的图像、视频和音频；累计已给 1,800 亿张图片和视频加水印。做 AI 图像和视频的，可以拿自己的作品试一下会被怎么标。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/" },
+        ],
+        image: "/assets/flow/2026-10-08-synthid-detector-open.jpg",
+      },
+      {
+        title: "世界模型：V-JEPA 2 记不住被挡住的物体，编码器知道、预测器 0.3 秒就忘，3,000 步合成训练能补上",
+        why: "arXiv 2610.07355（10/7 批次）：冻结的 V-JEPA 2 预测器在物体被挡住后「loses a moving one within 0.3 s」，但编码器读出物体存在的准确度是 1.00；盒子关上半秒后，预测器输出里只有 2% 的场景还有球。只训练预测器 3,000 步合成容器场景，就把这个「信念」从 0.05 拉到 1.00，IntPhys-2019 从 84.2% 升到 93.3%。缺陷定位在预测器而非编码器；作者单位未核实。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.07355" },
+        ],
+        image: "/assets/flow/2026-10-08-vjepa2-object-permanence.jpg",
+      },
+      {
+        title: "神经：NEJM 光遗传学疗法加投影护目镜，让晚期视网膜色素变性盲人恢复部分视觉，10 人中 6 人有临床意义改善",
+        why: "NEJM（10/8 05:00 CST，Sahel、Roska 等，GenSight 资助）：单次眼内注射把光敏蛋白 ChrimsonR 送进幸存的视网膜神经节细胞，再用带摄像头的护目镜把画面转成光斑投回视网膜。「seven of the 10 participants had improved light sensitivity, and six made gains large enough to be considered clinically meaningful」，但「did not restore normal vision or the ability to read」。光遗传学刚拿诺奖，这是一个顶刊上的人体队列结果。NEJM 页面被拦截，细节来自匹兹堡大学新闻稿和 STAT。",
+        sources: [
+          { label: "NEJM", url: "https://www.nejm.org/doi/full/10.1056/NEJMoa2602215" },
+        ],
+        image: "/assets/flow/2026-10-08-nejm-optogenetic-vision.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：同一条 prompt 让 Fable 5.1 和 GPT-6 Astra 各做一个创意工作室落地页「Octopus Mentality」",
+        why: "10/7 09:11 CST：图用 Nano Banana 2.1 出，模型直接写站，带悬停和滚动动效。两版都是蓝底黄色衬线大字，Fable 版是写实橙色章鱼、光标能拨动触手，Astra 版是青花瓷章鱼。prompt 在 motionsites.ai 上公开，可以直接拿去复刻；他还在征集用他的 prompt 做出来的站。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2107639871934460340" },
+          { label: "Prompt", url: "https://motionsites.ai/?prompt=octopus-mentality" },
+        ],
+        image: "/assets/flow/2026-10-08-viktor-octopus-studio.jpg",
+      },
+      {
+        title: "Alex Groberman 拆 PageTraffic 研究：Google 前 10 名里一半从没被 ChatGPT、Gemini、Perplexity 提到，第 1 名也有 21% 完全缺席",
+        why: "10/7 20:40 CST：162 个电商购物问题、1,458 个回答，「Of 1,618 Google top-10 results, 50% were never named OR linked」；第 1 名出现在至少一个 AI 回答里的概率 79%，第 2 名 72%，第 3 名 64%。排名好不等于被 AI 推荐，这个比例能直接拿来跟客户解释。23:42 他又解读 Google 的「Good SEO is good GEO」，那篇文章是 6 月的，只算他的新解读。帖子带他自家工具推广。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2107813388076343447" },
+          { label: "跟帖", url: "https://x.com/alexgroberman/status/2107859240375509250" },
+        ],
+        image: "/assets/flow/2026-10-08-alex-pagetraffic-ai-vs-google.jpg",
+      },
+      {
+        title: "Loki Yan 实拍：寄生 SEO 寄生到 Google 自家域名，script.google.com/macros/ 下被收录 230 万个 URL",
+        why: "10/7 12:48 CST，他自己查到的现象加一个可验证的假设：「spam 系统有自己的生命周期，每次算法更新都会清零」，垃圾站专门卡更新窗口冲排名。能立刻做的事：「管好自己的子域名，前端代码不要有漏洞，特别是UGC页面，搜索页面」。他说已经联系了 Google 团队；同日还点评 SynthID 检测器恰好在 Spam 更新收尾时上线。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2107694562433196099" },
+        ],
+        image: "/assets/flow/2026-10-08-loki-parasite-seo-google-script.jpg",
+      },
+      {
+        title: "Opus 5.5 一小时做出 Three.js 阿拉伯豪宅 3D 漫游「Qasr al-Noor」，有导览和正午、黄金时刻、夜晚三种光线",
+        why: "@exploraX_（10/7 18:18 CST）：「i didn't give it a single reference image. just the prompt.」截图是沙漠里的白色宫殿、棕榈树和远处沙丘，底部有 TOUR / EXPLORE / SPACES 和光线切换。和 Viktor 的 Motion Sites 同一路，但这次是真 3D，站点公开在 GitHub Pages 上可以直接点。",
+        sources: [
+          { label: "X", url: "https://x.com/exploraX_/status/2107777623958917545" },
+          { label: "在线", url: "https://moh4696.github.io/qasr-al-noor/" },
+        ],
+        image: "/assets/flow/2026-10-08-explorax-qasr-al-noor.jpg",
+      },
+      {
+        title: "Codrops「Interlude」：Astro 上的 GSAP 页面转场起手模板，附 21 种转场可以直接抄改",
+        why: "Codrops（10/7 19:01 CST）：「A starter for custom GSAP page transitions on Astro's own client router, shared with 21 transitions to copy, adapt or learn from.」成套可复制的转场代码，适合直接丢给 agent 改主题和节奏。同日还放了一个用它做转场的免费家具店 Astro 模板。",
+        sources: [
+          { label: "Codrops", url: "https://tympanus.net/codrops/2026/10/07/interlude-astro-page-transitions/" },
+          { label: "模板", url: "https://tympanus.net/codrops/2026/10/07/isle-thorne-collective-astro-template/" },
+        ],
+        image: "/assets/flow/2026-10-08-codrops-interlude-astro.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Brain Inspired × Maxim Raginsky：用控制论看大脑和 AI",
+        why: "约 108 分钟（10/7 12:00 CST）：UIUC 教授 Raginsky 从控制论角度谈大脑与 AI。章节包括「Brains vs AI」「Is the brain a control system?」「Willems control」「Control vs cybernetics」「AGI」「Turing 1950」「Perceptual control theory and active inference」，和世界模型、主动推理这条线直接相关。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=BSntnkEqRY0" },
+        ],
+        image: "/assets/flow/2026-10-08-brain-inspired-raginsky.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-07",
     title: "OpenAI 一次倒出 722 篇数学稿件惹数学界反弹；Mistral Large 4 开放权重主打网络安全；Anthropic 分层放开网络攻防能力",
     tldr: "OpenAI 公开内部未发布模型做出的 722 篇数学稿件，自己承认部分未形式化结果可能有问题，数学家批评绕开正式发表。Mistral 发布 1T 参数的 Large 4，月底放权重，主打网络安全题不拒答。Anthropic 把 Glasswing 并入三层网络验证计划，称伙伴已找到 12.9 万个已验证漏洞。Meta、Sierra、Stripe、Shopify 等起草个人 agent 与商家打交道的开放协议。世界模型：LeCun 团队的分层 JEPA 把 AntMaze 规划成功率从 18% 拉到 73%。神经：人类屏状核单神经元首次被记录到编码不确定性和预测误差。口味：Viktor Oddy 豪宅落地页全流程教程、Meng To 的图标转 3D 工具、Alex Groberman 拆 Meta Muse 的推荐逻辑、Ahrefs 五分之一注册来自 AI、Awwwards 激光雷达点云 SOTD；HyperFrames 到 0.8.138。访谈：Google 基础设施负责人 Amin Vahdat、Mandiant 创始人 Kevin Mandia。Open Design 仍 0.24.1。",
