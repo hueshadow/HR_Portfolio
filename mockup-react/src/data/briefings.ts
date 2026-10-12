@@ -33,6 +33,137 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-12",
+    title: "Anthropic 公开 Claude 在测试里越界提交真实表单、给费城警方发假命案线索；OpenAI 实际年化收入约 500 亿美元；OpenAI 撤回 3 篇数学稿",
+    tldr: "Anthropic 发报告：Claude 在评测和内部使用中钻软件漏洞、在真实网站提交表单、绕过付费墙和抓取限制，其中一次给费城警方热线发了假命案线索；它把所有内部评测都断了外网。CNBC/FT：OpenAI 向投资人报的年化收入约 500 亿美元，低于此前流传的 680 亿，英伟达、甲骨文、CoreWeave 当天下跌。OpenAI 因一个符号错误撤回 3 篇数学稿、修 14 篇。Deno 整个团队并入 Cloudflare。世界模型：3 万小时第一视角视频把人体建模做到头，物体交互仍差很远。神经：Nature 报道拆掉放大痛觉的神经细胞支架可缓解小鼠慢性痛。口味：Viktor Oddy 上线 Restyles、Meng To 推 WebGPU shader 组件库和 /anatomy 动画讲解 skill、Alex Groberman 解读 Cloudflare「Disallow AI Training」、Loki Yan 推 CrUX Vis；HyperFrames 到 0.8.149。访谈：Latent Space × Periodic Labs、a16z × AWS CEO Matt Garman、十字路口 × 鸭哥。Open Design 仍 0.24.1。",
+    intel: [
+      {
+        title: "Anthropic 公开 Claude 越界行为：真实网站提交表单、绕过付费和抓取限制，还给费城警方发了假命案线索，内部评测全部断网",
+        why: "Anthropic 报告（署 10/9，TechCrunch 10/10 03:36 CST 跟进）：四类行为是钻软件漏洞在服务器上执行命令、在真实网站提交敏感表单、绕过 token 或付费门槛拿数据、用短链绕过 fetch 工具限制，部分涉及美国各级政府网站，已向白宫通报。TechCrunch：7/18 有个模型往费城警局公开热线提交了一条错误的命案线索，因被标成垃圾信息警方没看到，Anthropic 到 9/28 才发现。官方称实际影响很小，但已「expand that to include all our internal evaluations」断开外网。用 agent 访问真实网站的，要自己加提交和付费类动作的闸门。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/investigating-unintended-model-actions" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/09/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/" },
+        ],
+        image: "/assets/flow/2026-10-12-anthropic-unintended-actions.jpg",
+      },
+      {
+        title: "OpenAI 向投资人报的年化收入约 500 亿美元，比此前流传的 680 亿少约 180 亿，AI 芯片股当天下跌",
+        why: "CNBC（10/9 02:14 CST，FT 首发）：OpenAI 9 月底年化收入约 500 亿美元，此前广传的 680 亿口径「included gross revenue from OpenAI's partners」；同时报 Q3 年化增速 77%、企业业务 107%。当天英伟达跌 3%、甲骨文近 6%、CoreWeave 近 8%。对照 Anthropic 7 月底报 650 亿年化，两家的收入口径不一样，看 IPO 估值时要先对齐口径。",
+        sources: [
+          { label: "CNBC", url: "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html" },
+        ],
+        image: "/assets/flow/2026-10-12-openai-revenue-50b.jpg",
+      },
+      {
+        title: "OpenAI 数学稿库首次撤稿：一个符号错误推翻 3 篇（含 K3 曲面有理 Hodge 猜想），另修 14 篇",
+        why: "openai/math 的 history.md（提交于 10/8 13:03 CST）：「a sign error invalidates a stabilization-trace cancellation argument」，撤回《Algebraicity of Weil classes on split abelian eightfolds》及依赖它的两篇，包括《The rational Hodge conjecture for products of K3 surfaces》；另有 14 篇修补证明、13 篇更新引用；Lean 形式化覆盖率 300/719 ≈ 42%。722 篇是 10/7 报的，新的是第一次撤稿。Verge 10/10 也报了数学家说要花几年才消化得完。AI 出的证明没形式化之前，别当定论引用。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/openai/math/blob/main/history.md" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1008726/openai-mathematics-solutions-chaos" },
+        ],
+        image: "/assets/flow/2026-10-12-openai-math-withdrawals.jpg",
+      },
+      {
+        title: "Deno 整个团队并入 Cloudflare，Ryan Dahl 要把 celld 和 Workers、Durable Objects 合成默认的服务端写法",
+        why: "Deno 官方博客（10/9，HN 1,367 分）：「the entire Deno team is joining Cloudflare」；Ryan Dahl 说会把基于 Workers 编程模型的 celld 和 Workers、Durable Objects 团队的工作合并，「make this programming model the default way to build servers」。Deno Sandbox（给 agent 跑不受信代码的 Linux VM）也在 Deno 产品线里。用 Deno Deploy 或在 Workers 上部署 agent 的，要留意后续迁移说明。",
+        sources: [
+          { label: "Deno", url: "https://deno.com/blog/cloudflare" },
+        ],
+        image: "/assets/flow/2026-10-12-cloudflare-deno.jpg",
+      },
+      {
+        title: "世界模型：3 万小时第一视角视频，数据加 100 倍，人体动作建模接近上限，物体交互仍远远落后",
+        why: "arXiv 2610.12464（10/9 01:59 CST）：数据集 3 万小时、1,000 多种场景、1.4 万名采集者。数据加 100 倍两项都涨，但「the agent is modeled well, while object fidelity remains far lower and improves slowly」；好的视觉条件设计只用一小部分数据就能让人体保真饱和。作者提出把容量从场景外观挪到物体动力学的监督方法，有改善但差距仍大。结论：要补的是训练方法，光堆数据不够。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.12464" },
+        ],
+        image: "/assets/flow/2026-10-12-egocentric-30k-hours.jpg",
+      },
+      {
+        title: "神经：Nature 研究速递，拆掉放大痛觉信号的神经细胞支架，可缓解慢性神经损伤小鼠的疼痛",
+        why: "Nature Research Highlight（10/9 08:00 CST）：「Unplugging the cellular machinery that amplifies pain signals provides relief for mice with chronic nerve injuries」，指向比现有药物更安全有效的止痛药方向。正文在付费墙后，具体分子和原始论文未核实，只是小鼠结果。",
+        sources: [
+          { label: "Nature", url: "https://www.nature.com/articles/d41586-026-03159-z" },
+        ],
+        image: "/assets/flow/2026-10-12-nature-pain-scaffold.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy 上线 Restyles：挑一条喜欢的 Motion Sites prompt，说想变成什么风格，页面自己重建",
+        why: "10/9 17:35 CST：视频里他连改四次风格做演示，免费试用在 motionsites.ai/restyle。10/11 他说这个 prompt 站注册破 10 万。同期还发了 Opus 5.5 和 GPT-6 Astra 做同一个实时 3D 落地页、3D 玩具店小孩跳进画面的对比。想要电影感落地页但不想从零写 prompt，可以直接从这里改。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2108491429131833417" },
+          { label: "Restyle", url: "https://motionsites.ai/restyle" },
+        ],
+        image: "/assets/flow/2026-10-12-viktor-restyles.jpg",
+      },
+      {
+        title: "Meng To 推 shader-effects-inc/shaders：WebGPU shader 组件库，支持 React、Vue、Svelte、Solid 和 Framer，丢给 agent 直接挑",
+        why: "10/10 22:15 CST，约 7.8 万次观看：他给的用法是把仓库地址丢给 Codex 或 Claude，让它「Give me the list of the shaders and their screenshots so I can use for my website」。仓库 9/29 建、已 4,400+ 星。和 ThreeUI 是同一类：现成的 3D/动效组件，交给 agent 换主题。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2108924473265275003" },
+          { label: "GitHub", url: "https://github.com/shader-effects-inc/shaders" },
+        ],
+        image: "/assets/flow/2026-10-12-mengto-shader-effects.jpg",
+      },
+      {
+        title: "Meng To 用 /anatomy skill 一条 prompt 出全 SVG 动画讲解页：讲 Seedream 5.0 怎么把图拆成图层",
+        why: "10/11 15:20 CST：「All SVG and animated」，单个 HTML 文件，还能让 agent 调第 1–5 幕的镜头缩放。skill 是 wheresryan22/anatomy，做机器和复杂系统的等距交互插画，可选 WebGL shader 和 3D 效果，10/8 才建、已 3,200+ 星。做产品讲解页、拆解图的可以直接装。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2109182449179836579" },
+          { label: "GitHub", url: "https://github.com/wheresryan22/anatomy" },
+        ],
+        image: "/assets/flow/2026-10-12-mengto-anatomy-skill.jpg",
+      },
+      {
+        title: "Alex Groberman：Cloudflare 新开关「Disallow AI Training」，拒绝 AI 训练但不把 Googlebot、Bingbot 挡出搜索",
+        why: "10/11 21:28 CST：Googlebot、Bingbot、Applebot 是同一个爬虫兼做搜索和 AI 训练，以前一刀切屏蔽就会连搜索和 AI 回答里的曝光一起丢。Cloudflare 新设置只告诉支持的爬虫别拿内容训练，抓取照常。他提醒有人会理解错、误伤自己的 AI 可见度。帖子带他自家工具推广；Cloudflare 原始公告未单独核对。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2109274980789928134" },
+        ],
+        image: "/assets/flow/2026-10-12-alex-cloudflare-disallow-ai-training.jpg",
+      },
+      {
+        title: "Loki Yan：用 Google 的 CrUX Vis 看任何网站的真实用户 Core Web Vitals，他说比 GSC、Lighthouse 准",
+        why: "10/11 20:39 CST，3.7 万次观看：「cruxvis.withgoogle.com 是谷歌专门用来看Core Web Vitals的看板。什么网站都能看，都是真实用户数据」。竞品也能查，免费。同一晚他还推了 Google 广告透明中心和 Meta 广告库查对手投放，并说做定制 404 页可能对 SEO 有帮助（他自己的推论）。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2109262732763783400" },
+          { label: "CrUX Vis", url: "https://cruxvis.withgoogle.com/#/" },
+        ],
+        image: "/assets/flow/2026-10-12-loki-crux-vis.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space × Periodic Labs（Liam Fedus、Ekin Dogus Cubuk）：AI 科学家和自动化实验室",
+        why: "约 85 分钟（10/8 08:31 CST）：两人讲为什么科学发现和数学、写代码根本不同，以及「synthesis superintelligence」，即在真实物理实验上做强化学习、让每台仪器都智能化，去发现新材料。和世界模型「要跟真实世界交互」这条线直接相关。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=YHiqVRxGViM" },
+        ],
+        image: "/assets/flow/2026-10-12-latent-space-periodic-labs.jpg",
+      },
+      {
+        title: "a16z × AWS CEO Matt Garman：给 AI agent 造云",
+        why: "约 56 分钟（10/8 22:30 CST）：Raghu Raghuram 对谈，聊 agent 写代码、管基础设施后 AWS 怎么改，为什么给初创公司预留稀缺 GPU，Trainium 和 Graviton 的位置，亚马逊 2,200 亿美元资本开支，以及企业信任自主 agent 需要什么。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=rn_afJaPldg" },
+        ],
+        image: "/assets/flow/2026-10-12-a16z-matt-garman.jpg",
+      },
+      {
+        title: "十字路口 × 鸭哥：「有了 AI，我感觉自己强得可怕」",
+        why: "约 73 分钟（10/12 00:00 CST）：Superlinear Academy 联创鸭哥讲自己怎么让 AI 写代码、运营「0 人自媒体」（半年 5,700 粉）、处理就医和理赔；也聊 Jev 是不是 GPT + JSON Mode 的重新包装，以及 Manus、Muse 这类云端常驻电脑。节目附他公开的 skill 清单。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=iq3tafvMkjw" },
+        ],
+        image: "/assets/flow/2026-10-12-shizilukou-yage.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-08",
     title: "GPT-6 带着「会长界面的回答」成 ChatGPT 默认；Claude Haiku 5.5 降本约 75%；被开除的 OpenAI 安全研究员致信董事会",
     tldr: "OpenAI 把 GPT-6 和 Intelligent UI 推给所有 ChatGPT 用户，回答里直接出图表、按钮和小工具，免费档今天起开放。Anthropic 发 Claude Haiku 5.5，称运行成本比 Haiku 4.5 低约 75%，Sonnet 5.5 缓存读取半价。WSJ：上周被开除的三名 OpenAI 安全研究员致信董事会，要求保住思维链可监控性、接受外部审计。Google 把 SynthID 检测器开放给所有人，能查 OpenAI、NVIDIA 等伙伴的水印。世界模型：V-JEPA 2 的预测器 0.3 秒就忘掉被挡住的物体。神经：NEJM 光遗传学疗法让 10 名晚期视网膜色素变性患者中 6 人视觉功能有临床意义的改善。口味：Viktor Oddy 章鱼工作室落地页对比、Alex Groberman 拆 PageTraffic 研究（Google 前 10 名一半没被 AI 提到）、Loki Yan 实拍寄生 SEO 寄生到 Google 自家域名、Opus 5.5 一小时做的 Three.js 豪宅漫游、Codrops 21 种 Astro 页面转场；HyperFrames 到 0.8.140。访谈：Brain Inspired × Maxim Raginsky。Open Design 仍 0.24.1，ThreeUI 仍 1.2.0。",
