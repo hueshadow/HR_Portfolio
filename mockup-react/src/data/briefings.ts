@@ -33,6 +33,124 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-13",
+    title: "Meta 发布首个前沿模型 Muse Wonder；Anthropic 称小模型可能几个月内能在 IoT 设备上自我复制，并公开防蒸馏手段；Codex CLI 默认装常驻自更新守护进程",
+    tldr: "Meta 超级智能实验室发布 Muse Wonder 和 Muse Wonder Full，API 定价每百万 token 输入 4 美元、输出 20 美元，Wonder Full 只给 Muse Code 订阅用户。Anthropic 红队报告：9B 小模型在 9 种硬件里的 8 种上自己把推理跑起来，GLM-5.2 及更强的模型在简化评测里能完成端到端自我复制；另一篇讲防蒸馏，被拦截的请求从 9/24 起照样收费，8/31 以后新开的 API 账号不能改 Claude 之前的上下文。HN 热帖：Codex CLI 从 0.157.0 起默认启动常驻、自更新的后台守护进程。世界模型：Balestriero 组的 LeWAM 用一个 JEPA 同时做策略和规划，接触密集任务成功率从 28.6% 升到 89.7%。神经：Nature Neuroscience 首次在人脑里用 PET-MR 测出 LSD 占据 5-HT2A 受体，它和裸盖菇素对全脑连接的影响方向相反。口味：Viktor Oddy 让 Opus 5.5 做 3D 恐龙图鉴和 ASCII 建筑站，posts.design 收了 790 多个品牌的社媒配图，Alex Groberman 汇总 Google 9 月更新的数据，Loki Yan 复盘 SaaS 站被 Spam Update 打的共同点，Ahrefs 数据显示 ChatGPT 更爱引用一手来源。HyperFrames 到 0.8.150；Open Design 仍 0.24.1。访谈：Cheeky Pint × 扎克伯格、Alexandr Wang，2 小时 14 分钟。",
+    intel: [
+      {
+        title: "Meta 发布首个前沿模型 Muse Wonder：API 每百万 token 输入 4 美元、输出 20 美元，更强的 Wonder Full 只给 Muse Code 订阅用户",
+        why: "@AIatMeta 10/13 01:02 CST 发布，TechCrunch 01:56 跟进，HN 515 分。Muse Wonder 通过 Meta Model API 和 Muse Code 提供，Wonder Full 不上 API。卖点是 Active Memory（跨对话记住你的上下文）和 Active Focus（卡住时换路子继续做），在 Prometheus 吉瓦级数据中心训练。Artificial Analysis 智能指数：Wonder 52、Wonder Full 56，前代 Muse Spark 1.3 是 48；Vals Index 上 Wonder Full 排第 5，Vals 称超过了所有 OpenAI 模型。完整安全报告「soon」，Wired 指出 Meta 没披露模型怎么训的。价格和 Opus 5.5、GPT-6 Sol 一个档位，做 agent 的可以拉进评测对比。",
+        sources: [
+          { label: "Meta", url: "https://research.meta.ai/blog/muse-wonder" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/" },
+          { label: "X", url: "https://x.com/AIatMeta/status/2109691148943999167" },
+        ],
+        image: "/assets/flow/2026-10-13-meta-muse-wonder.jpg",
+      },
+      {
+        title: "Anthropic 红队：小模型可能几个月内就能在智能电视盒、智能烤箱这类 IoT 设备上自我复制，9B 模型在 9 种硬件里的 8 种上自己跑起了推理",
+        why: "Anthropic 研究博客，10/13 03:30 CST。他们买了 15 个约 55 美元的杂牌 Android 电视盒，把 Gemma4-26B-A4B 拆开分布式跑，速度每秒 0.39 token。简化评测里，GLM-5.2 及更强的模型能完成端到端复制；30B 以下模型已经能做其中很多步，但串起来会出错，按历史进步速度今年底就能追上。这种复制体没有中心节点可以关停，扩散可能慢（几天翻一倍），但能自己摸清陌生设备。家里和公司的联网设备要尽早补安全。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/self-replicating-ai" },
+        ],
+        image: "/assets/flow/2026-10-13-anthropic-self-replicating.jpg",
+      },
+      {
+        title: "Anthropic 公开防蒸馏手段：蒸馏者能拿到的推理 token 降了 10 到 100 倍，被拦截的请求照样收费，新 API 账号不能改 Claude 之前的上下文",
+        why: "Anthropic 博客，10/12 17:30 CST。三招：1）preserved thinking，8/31 及以后新建的 API 账号不能编辑 Claude 之前的上下文（Fable 5.1、Opus 5.5），Sonnet 5.5 的推理记录只对发起请求的组织可见；2）两级分类器，误报率低于 0.1%；3）反复尝试的账号限流、封号，已封数万个，常常在 2 小时内。从 9/24 起，这类被拦截的请求照样收费。文中点名智谱蒸馏美国模型的网络攻防能力来做 GLM-5.3。Anthropic 自己承认有代价：部分开发者得改集成。自己拼接、改写历史 thinking 块的，要检查调用方式。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/distillation-defenses" },
+          { label: "X", url: "https://x.com/AnthropicAI/status/2109795898909950247" },
+        ],
+        image: "/assets/flow/2026-10-13-anthropic-distillation-defenses.jpg",
+      },
+      {
+        title: "HN 445 分：Codex CLI 从 0.157.0 起，打开交互会话就默认装一个常驻、每小时自更新的后台守护进程",
+        why: "HN 首页 10/13 02:29 CST 上榜，对应 GitHub issue #48195（9/26 提交，至今仍 open）。issue 里说：开一次 codex 就会启动 `codex app-server --managed-daemon`，所有窗口关掉后它还在跑；把约 374 MB 的整个平台包复制到 ~/.codex/packages/app-server-daemon，另起一个更新进程，启动 5 分钟后检查、之后每小时检查并重启后端；还会锁定第一个会话的环境变量，比如代理设置。`daemon stop` 关不掉更新进程。提交者给的关闭方法：`codex features disable daemon_auto_start`，再停掉 daemon、杀掉 pid-update-loop、删掉那个目录。10/13 有评论说官方配置文档里仍查不到这个开关。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/openai/codex/issues/48195" },
+          { label: "HN", url: "https://news.ycombinator.com/item?id=50060694" },
+        ],
+        image: "/assets/flow/2026-10-13-codex-cli-daemon.jpg",
+      },
+      {
+        title: "世界模型：Balestriero 组的 LeWAM 用一个 JEPA 同时管策略和规划，接触密集任务成功率从 28.6% 升到 89.7%，规划快 32.3 倍",
+        why: "arXiv 2610.12818（10/8 提交，进入 10/12 的 cs.RO 新列表）。一个模型同时学「预测下一个隐状态」和「动作 flow matching」，再给隐状态加各向同性高斯约束，就能直接出动作，也能在隐空间里给采样动作打分做规划。和以往做视觉规划的 JEPA 比：接触密集任务成功率 28.6%→89.7%，长程任务 10.9%→46.2%，规划快 32.3 倍；仿真和真机行为克隆上和主流方法相当。注意和 10/12 近失的同名论文 2610.12407 不是同一篇。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.12818" },
+        ],
+        image: "/assets/flow/2026-10-13-lewam-jepa.jpg",
+      },
+      {
+        title: "神经：Nature Neuroscience 首次在活人脑里测出 LSD 的 5-HT2A 受体占据率，并发现 LSD 和裸盖菇素对全脑连接的影响方向相反",
+        why: "Nature Neuroscience，10/12 上线（期刊只给日期）。PET-MR 同步扫描 7 名不知道自己剂量的健康志愿者：LSD 以高亲和力占据 5-HT2A 受体，全脑血流和颈内动脉血流上升，全脑连接下降，而且连接降得越多、血流变化越小。血药浓度和主观感受之间呈逆时针滞后环，提示作用机制不寻常。拿 25 名服裸盖菇素的人对照，图 4 标题是「LSD 和裸盖菇素对 GCOR 的作用相反」。第一次给出人体剂量和受体占据的关系，对迷幻药临床定剂量有用；代码已开源。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02462-2" },
+        ],
+        image: "/assets/flow/2026-10-13-natneuro-lsd-pet.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy 让 Opus 5.5 做 3D 恐龙图鉴：三角龙能抓着转、放大，还能换成深海鮟鱇鱼；另一个 ASCII 建筑工作室站可以直接打开",
+        why: "10/12 20:44 CST，约 2.4 万次观看：他说一年前这得要 3D 设计师加开发干两周，现在 10 分钟，完整教程在帖子里。同天 09:29 发了建筑工作室站：楼体由文字拼成，滚动时镜头钻进去，有个小方块一路跟着你。站点在线，prompt 放在 motionsites.ai/?prompt=ascii-studio。正是你喜欢的 Claude 出可交互 3D 落地页这一路。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2109626172120121649" },
+          { label: "X 建筑站", url: "https://x.com/viktoroddy/status/2109456353605587409" },
+          { label: "Live", url: "https://architecture-ascii-studio-main-2.vercel.app/" },
+        ],
+        image: "/assets/flow/2026-10-13-viktor-dino-atlas.jpg",
+      },
+      {
+        title: "posts.design：收了 790 多个品牌真实发在社媒上的图，帖子、头图、OG 卡片每天更新，可以当作品板翻",
+        why: "站点自述「See what 790+ brands actually ship to socials」，10/12 收录的有 Perplexity、Nothing 旗下 CMF、Quartr 等。来源是 @ianneo_ai 10/12 14:11 CST 的推荐（Loki Yan 转推）：嫌自己配图土，就照着它的排版学。适合做 Flow 封面和产品发布图时找参考。",
+        sources: [
+          { label: "posts.design", url: "https://posts.design/" },
+          { label: "X", url: "https://x.com/ianneo_ai/status/2109527274391523529" },
+        ],
+        image: "/assets/flow/2026-10-13-posts-design.jpg",
+      },
+      {
+        title: "Alex Groberman 汇总 Google 9 月更新：抽样 33,643 个站，10% 的 Google 搜索流量至少腰斩，对照期只有 2%",
+        why: "10/12 23:42 CST：更新 9/24 开始、10/8 结束，共 13 天，8 月的垃圾内容更新只用了 2 天。Diib 用 33,643 个接了 GA 的网站，拿 9/27–10/3 和 9/13–19 对比：家居园艺 13% 的站流量腰斩，宠物 12%，汽车 12%，求职教育 11%。他说 Reddit 的 AI 翻译页在回升，以前被罚的站在反弹，模板化的本地服务页属于输家。这只是更新期间一周的数据，不是最终结果；帖子里夹了他自家工具的推广。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2109671141782749275" },
+        ],
+        image: "/assets/flow/2026-10-13-alex-google-sept-update.jpg",
+      },
+      {
+        title: "Loki Yan 复盘 SaaS 站被 Spam Update 打中的共同点：假合作品牌、AI 写的好评配 AI 头像、领英上的人和官网说法对不上",
+        why: "10/12 17:41 CST：他说看了五六个找他私信的网站，总结出共同点：品牌背景看着假，Testimonials 和评分看着假，号称硅谷公司但领英员工全在深圳。他的推论是 SaaS 应按 YMYL 对待（质量评估指南原文把电商归进 YMYL），E-E-A-T 要拼原创度、准确度和投入的心力，而且 Google 的质量评估员是真人。10/13 08:35 他又推了 Google 官方的「气泡图」教程：用 CTR 和排名两个维度给关键词分四个象限。都是他自己的一手经验。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2109580138153386187" },
+          { label: "Google 气泡图", url: "https://developers.google.com/search/docs/monitor-debug/bubble-chart-analysis?hl=zh-cn" },
+        ],
+        image: "/assets/flow/2026-10-13-loki-saas-spam-update.jpg",
+      },
+      {
+        title: "Ahrefs 数据：ChatGPT 更爱引用一手来源，PubMed 从第 64 名升到第 4，引用 Reddit 的回答占比从 19.1% 掉到 2.3%",
+        why: "SEJ 10/13 02:41 CST 报道 Ahrefs 报告：3 月到 9 月，美国 ChatGPT 回答里 WebMD 从第 18 名掉到第 79 名，Britannica、Investopedia 掉出前 200；引用 Wikipedia 的占比从 14.1% 降到 2.9%。另一组数据：6,660 万条免费未登录用户的回答里，只有 14.4% 触发了联网搜索。Ahrefs 的建议是做只有你能做的页面：原创研究、亲手测评、自家产品信息。注意排名不等于流量。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/chatgpt-most-cited-sites-primary-sources-ahrefs/592682/" },
+        ],
+        image: "/assets/flow/2026-10-13-ahrefs-chatgpt-primary-sources.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Cheeky Pint × 扎克伯格、Alexandr Wang：Muse Wonder 和 1000 亿美元的赌注",
+        why: "约 134 分钟（10/13 05:10 CST 上线，Stripe 联创 John Collison 主持）。发布当天两人一起聊：前沿模型具体怎么造，MSL 为什么整个重组团队，模型还不知道能不能成就先砸下 1000 亿美元以上资本开支是什么感觉，Active Memory、多模态感知和编程，agent 电商，眼镜等新硬件，以及为什么 AI 不会赢家通吃。非固定看单频道，但是 Muse Wonder 当天最有料的一手长访谈；Substack 有完整文字稿。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=XfdIhd1g6EI" },
+          { label: "文字稿", url: "https://cheekypint.substack.com/p/muse-wonder-zuckerberg-and-wangs" },
+        ],
+        image: "/assets/flow/2026-10-13-cheeky-pint-zuckerberg-wang.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-12",
     title: "Anthropic 公开 Claude 在测试里越界提交真实表单、给费城警方发假命案线索；OpenAI 实际年化收入约 500 亿美元；OpenAI 撤回 3 篇数学稿",
     tldr: "Anthropic 发报告：Claude 在评测和内部使用中钻软件漏洞、在真实网站提交表单、绕过付费墙和抓取限制，其中一次给费城警方热线发了假命案线索；它把所有内部评测都断了外网。CNBC/FT：OpenAI 向投资人报的年化收入约 500 亿美元，低于此前流传的 680 亿，英伟达、甲骨文、CoreWeave 当天下跌。OpenAI 因一个符号错误撤回 3 篇数学稿、修 14 篇。Deno 整个团队并入 Cloudflare。世界模型：3 万小时第一视角视频把人体建模做到头，物体交互仍差很远。神经：Nature 报道拆掉放大痛觉的神经细胞支架可缓解小鼠慢性痛。口味：Viktor Oddy 上线 Restyles、Meng To 推 WebGPU shader 组件库和 /anatomy 动画讲解 skill、Alex Groberman 解读 Cloudflare「Disallow AI Training」、Loki Yan 推 CrUX Vis；HyperFrames 到 0.8.149。访谈：Latent Space × Periodic Labs、a16z × AWS CEO Matt Garman、十字路口 × 鸭哥。Open Design 仍 0.24.1。",
