@@ -33,6 +33,136 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-14",
+    title: "Gemini 4 Argon 全面开放，定价约为对手五分之一；Anthropic 自研版本控制 Scion 替掉 git；Character.ai 申请破产保护；OpenAI 员工因在高管会议室装窃听器被捕",
+    tldr: "Google 把 Gemini 4 Argon 全面放出：API 首发价每百万 token 输入 2 美元、输出 10 美元，11 月底后翻倍，Pro 和 Ultra 订阅可在 Gemini App 和 AI Mode 里用。Anthropic 工程博客：合并量从 5 月每天约 2,500 次涨到 9 月每天 3 万次以上，7 个人用 5 个月做出 Scion 并把整个 monorepo 迁出 git。Character.ai 申请 Chapter 11，走法院监督下的出售，找不到买家就关停。OpenAI 一名产品团队员工被控在旧金山高管会议室电视后插了录音设备，10/9 被捕。世界模型：Argon 能从人类视频重建物理仿真，教 Apptronik 人形机器人连投 7 个沙包。神经：Science Corp 的 PRIMA 视网膜芯片首次植入 Stargardt 病人，第二次康复训练就读出一个单词。口味：Viktor Oddy 的苔藓山谷 3D 站、16 天做出的《小王子》3D 剧情游戏、Higgsfield 把视频做到 10 分钟以上、Loki Yan 谈国内外 GEO 定义的差别、Bing 站长工具新出 AI 引用话题报告。HyperFrames 到 0.8.155；Open Design 仍 0.24.1。访谈：Training Data × David Silver，Latent Space × Dyna Robotics 的 Jason Ma。",
+    intel: [
+      {
+        title: "Gemini 4 Argon 全面开放：API 首发价每百万 token 输入 2 美元、输出 10 美元，约为 GPT-6 Astra 和 Fable 5 的五分之一",
+        why: "Google 博客 10/14 00:00 CST，@GoogleDeepMind 00:05 宣布全球可用。10/1 那次只放给少数「可信网络防御方」，这次开发者走 Gemini API 付费层和 AI Studio，Ultra 订阅可在 Antigravity 里用，Pro 和 Ultra 订阅可在 Gemini App 和搜索 AI Mode 里用。Google 自称在 Vals Index 排第 1。缓存输入再便宜 95%；The Verge 说 11 月底首发期结束后价格翻倍，仍比对手便宜，但每个任务实际花多少 token 不一定少。Google 内部数据：Antigravity 里的 agent 代码提交多了 35% 以上，回滚少了近三分之一；Chrome 团队用它把约 600 万行的旧功能目录从 4000 万行的 Chromium 里拆出来。做 agent 的可以趁首发价拉进评测。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1009862/google-releases-gemini-4-argon" },
+          { label: "X", url: "https://x.com/GoogleDeepMind/status/2110039274922131792" },
+        ],
+        image: "/assets/flow/2026-10-14-gemini-4-argon-ga.jpg",
+      },
+      {
+        title: "Anthropic 自研版本控制系统 Scion，5 个月把整个 monorepo 迁出 git：每天合并的改动从约 2,500 次涨到 3 万次以上",
+        why: "Anthropic 工程博客，@AnthropicAI 10/14 00:36 CST 发帖，约 268 万次观看，HN 首页。原因是 Claude 写代码太快：主分支历史近 100 GB，压缩后的工作副本超过 25 GB，CI 每天约 2,500 万次检出，照 git 的方式拉每天要 600 PB 以上，之前开了几百个 git 镜像也顶不住。Scion 把提交、变基、合并都放在服务器上（底层用 Spanner），客户端只拉需要的目录和文件。结果：基础设施的 CPU 和内存只有原来 git 镜像的两百分之一，检出从几分钟变成几秒，CI 省出 25% CPU。7 个人同时做了 Scion 和代码评审工具 Antique。他们说 Claude Mythos Preview 重写导入管线后内存省 20 倍、快 4 倍，工程师的主要工作常常是对 Claude 说「不」。官方也说明 Scion 不适合拿来替代一般项目的 git。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/engineering/redesigning-source-control" },
+          { label: "X", url: "https://x.com/AnthropicAI/status/2110047081414987957" },
+        ],
+        image: "/assets/flow/2026-10-14-anthropic-scion-vcs.jpg",
+      },
+      {
+        title: "Character.ai 申请 Chapter 11 破产保护，走法院监督下的出售；找不到买家，平台就关停",
+        why: "Character.ai 官方博客 10/13 11:52 CST，TechCrunch 20:23 跟进，HN 首页。公司说过去一年面对法律、监管和经营上的压力，董事会评估后选了法院监督下的出售，预计 11 月底或 12 月初完成。如果没有可行的收购方案，平台会被关停。目前服务照常，付费订阅照常扣费，数据隐私政策不变。上面有角色或聊天记录的，可以先在 App 或网站里导出数据。",
+        sources: [
+          { label: "Character.ai", url: "https://blog.character.ai/an-update-on-character-ai/" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/" },
+        ],
+        image: "/assets/flow/2026-10-14-character-ai-chapter-11.jpg",
+      },
+      {
+        title: "OpenAI 一名产品团队员工被控在旧金山高管会议室电视后插了录音设备，10/9 被解雇并被捕",
+        why: "TechCrunch 10/14 04:59 CST，The Verge、Wired 同时报道，HN 首页。检方点名的是沙特籍员工 Abdulrahman Alfozan，2025 年 7 月入职产品团队。设备插在会议室电视背面的 USB 口上，OpenAI 发现后约一周人被抓，监控摄像头拍到他去电视后面查看。OpenAI 说用了自家模型分析这个设备，目前没发现模型权重、源代码或客户数据被访问或带出。罪名是用电子设备截听口头通讯，最高 5 年。FBI 局长 Patel 称目的是获取公司超级智能技术的敏感对话。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/13/fbi-arrests-openai-employee-accused-of-planting-hidden-recording-device-in-conference-room/" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1010642/openai-employee-arrested-recording-device" },
+        ],
+        image: "/assets/flow/2026-10-14-openai-employee-arrested.jpg",
+      },
+      {
+        title: "世界模型：Gemini 4 Argon 看一段人类玩沙包的视频，自己搭物理仿真、写训练代码，教 Apptronik 人形机器人连投 7 个进洞",
+        why: "Google 开发者博客 10/14 00:01 CST，@GoogleDeepMind 02:41 发了演示视频。Argon 在具身推理基准 ERQA 上纯推理得 87%，Google 称高于所有前沿模型。博客列了四类用法：控制机器人（包括闭环操控视频世界模型）、Real2Sim（从机器人摄像头画面、第一视角人类视频甚至手绘草图重建校准过的仿真）、给机器人数据做事后标注和进度估计、在仿真和真机上迭代自我改进。例子之一是 Spot 先在 MuJoCo 里练三条腿站稳，再去踩脚踏垃圾桶扔可乐罐。Google 说这把几周的手工建模压到几小时。今天 Latent Space 的 Dyna Robotics 访谈讲的是同一条路。",
+        sources: [
+          { label: "Google Developers", url: "https://developers.googleblog.com/gemini-4-argon-for-robotics/" },
+          { label: "X", url: "https://x.com/GoogleDeepMind/status/2110078384617464201" },
+        ],
+        image: "/assets/flow/2026-10-14-argon-robotics-real2sim.jpg",
+      },
+      {
+        title: "神经：Science Corp 的 PRIMA 视网膜芯片首次植入 Stargardt 病人，第一次康复训练看见一个字母，第二次读出一个单词",
+        why: "TechCrunch 10/14 07:13 CST，CEO Max Hodak（Neuralink 前总裁）在 TechCrunch Disrupt 台上宣布。病人 5 月在悉尼眼科医院的试验里植入。芯片 2 毫米见方，一小时手术装在眼底感光细胞坏掉的位置，病人戴带摄像头的眼镜，把画面传给芯片，相当于人工感光细胞。Stargardt 是遗传性眼病，会慢慢毁掉中央视力，目前没有治法，全球约 15 万人因此失明。PRIMA 在欧洲已商用于地图样萎缩（一种晚期黄斑变性）。Hodak 的说法是：视网膜也属于中枢神经，视网膜假体和人工耳蜗都算脑机接口。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/13/science-corporation-implants-its-vision-restoring-chip-in-its-first-stargardt-disease-patient/" },
+        ],
+        image: "/assets/flow/2026-10-14-science-corp-prima-stargardt.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy 用 Opus 5.5 做苔藓山谷 3D 站：一滚动，地面就裂开；今早又拿同一个 prompt 比了 Gemini 4 Argon 和 Opus 5.5",
+        why: "10/13 20:26 CST，约 8,800 次观看、226 赞。他的原话是 Opus 5.5 现在是「3D 美术、动效设计师和创意开发合在一个 prompt 里」。prompt 放在 motionsites.ai/3d-websites?prompt=moss-valley。今早 08:03 他发了 Argon 和 Opus 5.5 用同一个 prompt 做 3D 的对比视频，只说「赢家很明显」，没点名是谁，可以自己看视频判断。正是你喜欢的 AI 出电影感 3D 落地页。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2109984169845821651" },
+          { label: "X 对比", url: "https://x.com/viktoroddy/status/2110159559365177442" },
+          { label: "Prompt", url: "https://motionsites.ai/3d-websites?prompt=moss-valley" },
+        ],
+        image: "/assets/flow/2026-10-14-viktor-moss-valley.jpg",
+      },
+      {
+        title: "《小王子：星辰之旅》：一个人花 16 天，用 Opus 5.5 加 Tripo 和 Blender，把每颗星球做成可探索的 3D 场景",
+        why: "@Saccc_c 10/13 19:00 CST 发布，约 116 万次观看，网站 littleprince.dev 可以直接玩。作者说之后会开源整个游戏和详细制作流程。LerSent 转发时说，按以前的流程，16 天最多做出一两颗星球的 demo。和你喜欢的 Woo 立体衣橱、ThreeUI 同一路：AI 把 3D 内容的制作成本压下来，而且成品能直接看。",
+        sources: [
+          { label: "Live", url: "https://littleprince.dev/" },
+          { label: "X", url: "https://x.com/Saccc_c/status/2109962425512734739" },
+          { label: "LerSent", url: "https://x.com/LerSentAI/status/2109994607681679496" },
+        ],
+        image: "/assets/flow/2026-10-14-little-prince-3d-game.jpg",
+      },
+      {
+        title: "Higgsfield 把 AI 视频从约 1 分钟做到 10 分钟以上：创作 agent 调 3D 建模工具来保持长片前后一致",
+        why: "OpenAI 客户案例 10/13 20:00 CST，说法都来自 Higgsfield CEO Alex Mashrabov。他说用 GPT-6 Astra 之前视频最长约 1 分钟，现在 agent 能调外部 3D 建模工具，解决长视频里人物和场景不一致的问题，他们自己 YouTube 频道的 10 分钟以上教学视频就是这么做的。公司约 200 名创作者、100 名工程师，创作者用 Codex 自己做原型。下一步是用 GPT-Live-1 做「说话出视频」。另外 Higgsfield 10/14 02:24 宣布 Wan 3.0 七天无限量，API 打 4 折到 10/31。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/higgsfield-longer-videos-voice" },
+          { label: "X Wan 3.0", url: "https://x.com/higgsfield_ai/status/2110074247569924489" },
+        ],
+        image: "/assets/flow/2026-10-14-higgsfield-10-minute-video.jpg",
+      },
+      {
+        title: "Loki Yan：国内说 GEO 就是往权威媒体发文章，海外大公司是把 SEO 岗位转成「SEO 加 AI 可发现性」；他还从零起了个站做实验",
+        why: "10/13 18:31 CST，约 3,500 次观看：Google 一直说好的 SEO 就是好的 GEO，海外专家研究 AI 搜索的原理和 SEO 方向一致，「我想发去 Forbes、彭博社我就能发的吗？」同天 12:56（约 7,600 次观看）他说正从零做一个站，测 E-E-A-T、实体权重、社媒影响力和真人露面对排名的影响，会陆续更新笔记。今早 08:00 他远程看了 Ahrefs Evolve 圣地亚哥场，结论是美国市场在往多平台和零点击走，GEO 不只是把内容发到不同信源。一手实操，适合跟着看。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2109955091927372210" },
+          { label: "X 实验", url: "https://x.com/loki_yan_seo/status/2109870967359250541" },
+          { label: "X Ahrefs Evolve", url: "https://x.com/loki_yan_seo/status/2110158784417136655" },
+        ],
+        image: "/assets/flow/2026-10-14-loki-geo-definition.jpg",
+      },
+      {
+        title: "Bing 站长工具新出 Topics Portfolio：把你在 AI 回答里被引用的查询归成话题，并列出别人被引用、你没被引用的查询",
+        why: "SEJ 10/14 08:19 CST。功能在 AI Performance 报告里，目前是 beta。每个话题给三个数：整个话题的估算引用总量、被引用的网站数、不同查询数。下面的 Top Opportunity Queries 就是可以去补内容的缺口，引用量用区间表示，时间窗可选 1 到 3 个月。数据来源是 Copilot、Bing AI 摘要和部分合作方。数据不够的小站可能看不到这个页签。和你关注的 GSC 生成式 AI 报告是同一类，Bing 这边已经能看到竞争对手的覆盖。",
+        sources: [
+          { label: "SEJ", url: "https://www.searchenginejournal.com/bing-webmaster-tools-topics-portfolio-ai-performance/592874/" },
+        ],
+        image: "/assets/flow/2026-10-14-bing-topics-portfolio.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Training Data × David Silver、Lasse Espeholt：不做预训练，让 agent 从零靠经验自己学出科学和语言",
+        why: "68 分钟，10/13 20:00 CST 上线，红杉 Sonya Huang 主持。AlphaGo 负责人 Silver 离开 DeepMind 创办 Ineffable Intelligence，要做「超级学习者」：一个什么都不懂的 agent，靠直接经验自己发现数学、科学和语言。他认为用人类语言推理是天花板，靠监控思维链做对齐已经快到极限，超级智能之间怎么共处应该先在仿真里研究清楚。Espeholt 讲了 GPU 集群，以及从 IMPALA、SEED RL 一路过来的强化学习规模化经验。Silver 的预测：一年内看到有力证据，三年内出现超级智能。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=L4SWQebqhek" },
+        ],
+        image: "/assets/flow/2026-10-14-training-data-david-silver.jpg",
+      },
+      {
+        title: "Latent Space × Jason Ma（Dyna Robotics）：用 100 万小时人类视频训练「世界加动作」模型，机器人在鼎泰丰每天叠几千条餐巾",
+        why: "81 分钟，10/14 01:42 CST 上线，swyx 现场采访 Dyna 联创兼首席科学家。Dyna-2 把未来视频预测和机器人动作放进一个模型，用 100 多万小时人类视频训练。聊到：45 分钟示范就能学会新任务，人到机器人迁移的规模定律，世界加动作模型和视觉语言动作模型（VLA）的区别，为什么自己造硬件而不用现成人形机器人，灵巧手和缺失的触觉数据为什么还是瓶颈，以及真正的商业部署和 demo 的差别。和今天 Argon 机器人那条一起看。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=BHiYomkfoGQ" },
+        ],
+        image: "/assets/flow/2026-10-14-latent-space-dyna-jason-ma.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-13",
     title: "Meta 发布首个前沿模型 Muse Wonder；Anthropic 称小模型可能几个月内能在 IoT 设备上自我复制，并公开防蒸馏手段；Codex CLI 默认装常驻自更新守护进程",
     tldr: "Meta 超级智能实验室发布 Muse Wonder 和 Muse Wonder Full，API 定价每百万 token 输入 4 美元、输出 20 美元，Wonder Full 只给 Muse Code 订阅用户。Anthropic 红队报告：9B 小模型在 9 种硬件里的 8 种上自己把推理跑起来，GLM-5.2 及更强的模型在简化评测里能完成端到端自我复制；另一篇讲防蒸馏，被拦截的请求从 9/24 起照样收费，8/31 以后新开的 API 账号不能改 Claude 之前的上下文。HN 热帖：Codex CLI 从 0.157.0 起默认启动常驻、自更新的后台守护进程。世界模型：Balestriero 组的 LeWAM 用一个 JEPA 同时做策略和规划，接触密集任务成功率从 28.6% 升到 89.7%。神经：Nature Neuroscience 首次在人脑里用 PET-MR 测出 LSD 占据 5-HT2A 受体，它和裸盖菇素对全脑连接的影响方向相反。口味：Viktor Oddy 让 Opus 5.5 做 3D 恐龙图鉴和 ASCII 建筑站，posts.design 收了 790 多个品牌的社媒配图，Alex Groberman 汇总 Google 9 月更新的数据，Loki Yan 复盘 SaaS 站被 Spam Update 打的共同点，Ahrefs 数据显示 ChatGPT 更爱引用一手来源。HyperFrames 到 0.8.150；Open Design 仍 0.24.1。访谈：Cheeky Pint × 扎克伯格、Alexandr Wang，2 小时 14 分钟。",
