@@ -33,6 +33,136 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-15",
+    title: "八个州起诉 OpenAI 称 ChatGPT 对孩子不安全；OpenAI 反指前员工带 100 多份产品文件投奔 Apple；Google 给 1 万名科学家免费开 Argon 最高档半年；Mistral 收购设计工作室 New Material",
+    tldr: "爱荷华、堪萨斯、亚利桑那等八个州分头起诉 OpenAI，说它误导公众 ChatGPT 安全、收集未成年人数据。OpenAI 在和 Apple 的商业机密官司里反手提交文件，称一名前员工带走 100 多份含未发布设备图片和供应商资料的文件，给 Apple 高层做过演示。Google DeepMind 宣布给 1 万名科学家免费开放 Antigravity 最高用量档 6 个月，Scale AI 的 HSS 榜 Argon 以 55.4% 排第一。Mistral 收购做了六年 AI 产品设计的 New Material，成立 Solutions Design 团队。世界模型：WorldOracle 基准拿同一组动作对比世界模型预测和真机执行。神经：Nature 用全息光遗传刺激约 20 个运动皮层神经元，就能让小鼠做出学会的动作。口味：Higgsfield Katana 动效进了 Claude、Viktor Oddy 的 Gemini 4 3D 站教程、Argon 做的交互生物图谱、Loki Yan 用 Google Trends 查品牌实体、用 Ahrefs 拆 Gamma 的 370 万月自然流量。HyperFrames 到 0.8.158；Open Design 仍 0.24.1。访谈：a16z × Nathan Lambert、Cognitive Revolution × Alan Chan、张小珺 × Dyna 创始人 Lindon Gao。",
+    intel: [
+      {
+        title: "八个州分头起诉 OpenAI：称 ChatGPT 对孩子不安全、误导公众、收集未成年人数据",
+        why: "The Verge 10/15 05:11 CST（转引路透）。起诉方是爱荷华、堪萨斯、内布拉斯加、西弗吉尼亚、阿肯色、亚利桑那、爱达荷、蒙大拿八个州，各自按本州消费者保护法起诉，说 OpenAI 把 ChatGPT 包装成「安全、适合青少年」的工具，实际对脆弱用户有害，还没挡住未成年人使用、收集了他们的数据；诉状把最近的 rogue AI 黑客事件也列为「鲁莽」的证据。OpenAI 回应说已经做了针对年龄的保护措施。八个州同时出手，做面向青少年或陪伴类 AI 产品的要预期合规门槛继续抬高。",
+        sources: [
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1011500/openai-state-lawsuits-chatgpt-safety" },
+        ],
+        image: "/assets/flow/2026-10-15-eight-states-sue-openai.jpg",
+      },
+      {
+        title: "OpenAI 反指控：前员工带走 100 多份产品文件，含未发布设备图片，入职 Apple 后给高层做过演示",
+        why: "The Verge 10/15 00:43 CST（转引路透）。这是 Apple 起诉 OpenAI 窃取机密那场官司的反击：OpenAI 周三提交文件，称一名未具名前员工把 100 多份文件发到私人邮箱，内容包括至少一款未发布设备的图片、供应商信息、工程数据、外观处理标准和硬件涂层密封报告，之后向 Apple 高层（含亚洲运营副总裁）做过演示。OpenAI 还把 Apple 本周发布的 HomeView 智能屏等新硬件和这次演示联系起来；The Verge 提醒 Apple 的智能屏已传了好几年。AI 硬件这条线，两家现在互相指控。",
+        sources: [
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1011276/openai-employee-unreleased-product-plans" },
+        ],
+        image: "/assets/flow/2026-10-15-openai-apple-trade-secrets.jpg",
+      },
+      {
+        title: "Google 给 1 万名科学家免费开 Antigravity 最高用量档 6 个月；Argon 在 Scale 的 HSS 榜以 55.4% 排第一",
+        why: "@GoogleDeepMind 10/15 01:25 CST 发长串：Argon 已用在量子计算、核聚变、蛋白设计上，其中把酶工程压缩到几个小时，设计出 5 个经实验验证的丝氨酸酯酶；同时宣布给 1 万名科学家免费开放 Google Antigravity 最高用量档 6 个月。Scale AI 03:37 发帖（Demis Hassabis 转发）：Argon 在 Humanity's Sixth Sense 基准拿 55.4%，略高于 GPT-6-Astra 的 53.6%，这个榜考的是推断看不见的物体、预测接下来会发生什么、理解人的行为。Argon 本身昨天已报，新东西是科研免费名额和第三方榜单；身边有做科研的可以去申请。",
+        sources: [
+          { label: "X · Google DeepMind", url: "https://x.com/GoogleDeepMind/status/2110421873242861711" },
+          { label: "X · 酶工程", url: "https://x.com/GoogleDeepMind/status/2110421871103730104" },
+          { label: "X · Scale AI", url: "https://x.com/ScaleAILabs/status/2110455008450040176" },
+        ],
+        image: "/assets/flow/2026-10-15-argon-for-science-10k.jpg",
+      },
+      {
+        title: "Mistral 收购 AI 产品设计工作室 New Material，新设 Solutions Design 团队",
+        why: "New Material 10/14 22:00 CST 官宣，@MistralAI 22:30 欢迎。New Material 做了六年 AI 原生工具和产品，合作方包括福特、纳达尔、Wellcome Trust 和 AmLaw 50 律所。并入后成立 Solutions Design 团队，跨设计、工程和 AI，跟客户一起开发，把真实部署的反馈直接接回 Mistral 的产品。Mistral 设计负责人 Zach Krasner 说好设计是交付强 AI 方案的关键。前沿实验室开始成建制收设计团队，设计在企业 AI 交付里的位置在上升。",
+        sources: [
+          { label: "New Material", url: "https://newmaterial.ai/stories/newmaterial-joins-mistral" },
+          { label: "X · Mistral", url: "https://x.com/MistralAI/status/2110377713525796942" },
+        ],
+        image: "/assets/flow/2026-10-15-mistral-acquires-new-material.jpg",
+      },
+      {
+        title: "WorldOracle：拿同一组动作，对比世界模型的预测和真机执行结果",
+        why: "arXiv 2610.18826，10/13 提交、10/14 清单上线，作者有 Ming-Yu Liu、Yuke Zhu、Dhruv Shah 等。给定同一个初始画面和同一串底层动作，看动作条件世界模型预测的画面能不能复现真实世界发生的事，包括物理后果和任务状态变化。从四个方面打分：物理状态对不对、交互位置对不对、关键交互区域保真度、多视角动作是否一致。评测集是多段长 episode，成功和失败的执行都有。测了 7 个代表模型，各有强项和失败模式。数据、评测代码和排行榜会公开，做机器人世界模型的终于有了对照真机的标尺。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.18826" },
+        ],
+        image: "/assets/flow/2026-10-15-worldoracle-benchmark.jpg",
+      },
+      {
+        title: "Nature：全息光遗传同步刺激约 20 个运动皮层神经元，小鼠就做出学会的动作",
+        why: "Nature 10/14 在线。小鼠学会按压杠杆后，研究者用双光子成像加全息光遗传，挑出初级运动皮层 L2/3 里在动作开始前就放电的约 20 个神经元，短暂同步刺激，小鼠就做出像学会的动作，其他 M1 神经元也跑出学会时的活动模式。每次诱发动作的差异，可以从刺激前 M1 的初始状态预测。有时刺激只产生学会的活动、不产生动作，说明这段活动不只是动作的反映，可以由内部产生。小鼠不投入任务时刺激无效；刺激动作开始后才放电的神经元也无效。支持运动皮层主动生成学会的动作，前提是状态准备好、触发够精确。",
+        sources: [
+          { label: "Nature", url: "https://www.nature.com/articles/s41586-026-11174-3" },
+        ],
+        image: "/assets/flow/2026-10-15-nature-motor-cortex-ensembles.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Higgsfield Katana 动效进了 Claude：问一句，几个小时后拿到完整产品发布片",
+        why: "@higgsfield 10/14 22:35 CST，约 15 万次观看：Katana for Motion Design 通过 Higgsfield MCP 在 Claude 里可用，@higgsfield_ai 随后连发十几条样片（主机发布从 8-bit 到电影感 3D、流媒体 App 发布片、响度表动效）。正对「AI 做电影感动效成片、不走 Figma」这条线；你已经连了 Higgsfield，可以直接试一条自己的发布片。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield/status/2110378916963876908" },
+        ],
+        image: "/assets/flow/2026-10-15-higgsfield-katana-in-claude.jpg",
+      },
+      {
+        title: "Viktor Oddy：用 Gemini 4 做 3D 机构官网，录了完整教程",
+        why: "@viktoroddy 10/14 18:17 CST，302 赞：「Gemini 4 正在终结 5 万美元的机构网站」，附完整教程视频；他自己说用的 prompt 放在 motionsites.ai（finsmith 那条）。跟你的第一条种子同一个人、同一路数，这次换成 Gemini 4 出 3D 网页。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2110314094142411207" },
+          { label: "Prompt", url: "https://motionsites.ai/3d-websites?prompt=finsmith" },
+        ],
+        image: "/assets/flow/2026-10-15-viktor-gemini4-3d-site.jpg",
+      },
+      {
+        title: "Argon 在 Antigravity 里做的交互生物图谱：从阳光下的叶片一路滚到叶绿体",
+        why: "@GoogleAI 10/14 23:29 CST：五个阶段的交互式视觉图谱，滚动就能从叶片放大到亚细胞的叶绿体，带流畅动画。属于「丢给 Agent 就能出的高质量网页 3D/动效」，适合拿来对照自己的滚动叙事页。",
+        sources: [
+          { label: "X", url: "https://x.com/GoogleAI/status/2110392574754107405" },
+        ],
+        image: "/assets/flow/2026-10-15-argon-biology-visual-atlas.jpg",
+      },
+      {
+        title: "Loki Yan：用 Google Trends 查你的品牌是不是 Google 认的「实体」",
+        why: "@loki_yan_seo 10/14 22:26 CST：在 Trends 里搜品牌，看 Google 把它识别成什么，Workbuddy 不被识别为 AI Agent，Manus 被识别了；他的判断是 AIO、AI Mode、Gemini 只会推荐「实体」。同天 19:38 那条（82 赞）讲先做关键词研究，再把关键词映射到 URL，按业务把页面挂在 Hub 下，每个 URL 对应一组互不蚕食的词。都是从业者自己的打法，正是你说的「有效的个人经验」。",
+        sources: [
+          { label: "X · 实体", url: "https://x.com/loki_yan_seo/status/2110376681630536174" },
+          { label: "X · KW Mapping", url: "https://x.com/loki_yan_seo/status/2110334471144890690" },
+        ],
+        image: "/assets/flow/2026-10-15-loki-trends-entity-check.jpg",
+      },
+      {
+        title: "用 Ahrefs 拆 Gamma 的 370 万月自然流量：多语言首页、可收录的用户文档、交付物模板页",
+        why: "@illyism 10/14 09:38 CST，192 赞，Loki Yan 转发：Gamma 把首页翻成 4 种语言（/es /ru /pt-br /id），带来约 50 万月访问且几乎没竞争；用户公开的演示文稿放在 /docs/ 下可被收录，等于意外的寄生 SEO；不写泛博客，直接做「pitch deck template」这类交付物页面。附了在 Ahrefs 里找竞品这类机会的步骤，能马上照做。",
+        sources: [
+          { label: "X", url: "https://x.com/illyism/status/2110183507062567236" },
+        ],
+        image: "/assets/flow/2026-10-15-gamma-organic-teardown.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "a16z × Nathan Lambert：开放模型还追得上 OpenAI 和 Anthropic 吗",
+        why: "58 分钟，10/14 22:30 CST 上线。a16z 的 Lisha Li 对谈 Trillium 创始人 Nathan Lambert：前沿实验室在算力、资本、开新训练范式上有结构优势，中国开放模型跟得很紧；拆分其中多少靠蒸馏、多少靠人才，为什么算力仍是硬约束，数据、RL 环境和后训练怎样决定差距。正好接上本周 Google、Meta 重回前沿的讨论。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=BKuK0M6oDTI" },
+        ],
+        image: "/assets/flow/2026-10-15-a16z-nathan-lambert-open-models.jpg",
+      },
+      {
+        title: "Cognitive Revolution × Alan Chan（GovAI）：怎么管住自主 AI 智能体",
+        why: "2 小时 17 分，10/14 15:50 CST 上线。GovAI 研究员 Alan Chan 谈实时监控、智能体身份标识、最近的 rogue agent 事件，以及训练和测试阶段缺少同步监控为什么是眼下的安全漏洞；也讲思维链可解释性的局限，和自动化 AI 研发需要什么具体触发条件。跟今天八州诉状引用 rogue AI 事件是同一个话题。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=SBlVJyoT3IM" },
+        ],
+        image: "/assets/flow/2026-10-15-cognitive-revolution-alan-chan-agents.jpg",
+      },
+      {
+        title: "张小珺 × Lindon Gao（Dyna Robotics 创始人）：在机器人迷雾里找清晰",
+        why: "2 小时 51 分，10/15 08:00 CST 上线。Dyna 走和 Physical Intelligence 不同的路：不先做通用「大脑」，而是以具体工作流为单位做产品研究。昨天推的 Latent Space 那期是 Dyna 研究员 Jason Ma 讲规模化，这期是创始人讲路线选择和取舍，两期对照着听。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=iDaxRNIddME" },
+        ],
+        image: "/assets/flow/2026-10-15-zhangxiaojun-lindon-gao-dyna.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-14",
     title: "Gemini 4 Argon 全面开放，定价约为对手五分之一；Anthropic 自研版本控制 Scion 替掉 git；Character.ai 申请破产保护；OpenAI 员工因在高管会议室装窃听器被捕",
     tldr: "Google 把 Gemini 4 Argon 全面放出：API 首发价每百万 token 输入 2 美元、输出 10 美元，11 月底后翻倍，Pro 和 Ultra 订阅可在 Gemini App 和 AI Mode 里用。Anthropic 工程博客：合并量从 5 月每天约 2,500 次涨到 9 月每天 3 万次以上，7 个人用 5 个月做出 Scion 并把整个 monorepo 迁出 git。Character.ai 申请 Chapter 11，走法院监督下的出售，找不到买家就关停。OpenAI 一名产品团队员工被控在旧金山高管会议室电视后插了录音设备，10/9 被捕。世界模型：Argon 能从人类视频重建物理仿真，教 Apptronik 人形机器人连投 7 个沙包。神经：Science Corp 的 PRIMA 视网膜芯片首次植入 Stargardt 病人，第二次康复训练就读出一个单词。口味：Viktor Oddy 的苔藓山谷 3D 站、16 天做出的《小王子》3D 剧情游戏、Higgsfield 把视频做到 10 分钟以上、Loki Yan 谈国内外 GEO 定义的差别、Bing 站长工具新出 AI 引用话题报告。HyperFrames 到 0.8.155；Open Design 仍 0.24.1。访谈：Training Data × David Silver，Latent Space × Dyna Robotics 的 Jason Ma。",
