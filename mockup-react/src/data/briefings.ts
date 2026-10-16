@@ -33,6 +33,122 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-16",
+    title: "Meta 开源 Muse Spark Open，可在两台 Mac Studio 本地跑；Anthropic 给 METR「类员工」访问；Axios：FTC 向 OpenAI、Anthropic 发安全调查令；OpenAI 推 Rosalind 高校计划",
+    tldr: "Meta 放出 Muse Spark Open：816B 总参、42B 激活、百万上下文，官方称可用两台 M5 Ultra Mac Studio 加 MLX 在桌面跑。Anthropic 让 METR 六人团队拿到接近内部风控的工具与权限，并承诺不可否决其风险报告发表。Axios：FTC 向 OpenAI 和 Anthropic 发民事调查令，要安全事故、护栏、营销与隐私材料，还计划传唤高管。OpenAI 推出 Rosalind Academic Plan，美国高校实验室可申请最多 30 个免费席位一年（暂不含 API）。CERN 与 Mistral 签意向，要做对撞物理 Large Physics Model。神经：Nature Neuroscience 的 Seal 用时空 AI 预测发育脑基因调控，并在自闭症 WGS 里看到胎儿兴奋性神经元上的新生调控变异负担。世界模型线窗内无强新论文。口味：Viktor Oddy 一句话出电影感落地页、Alex Groberman 拆 Fable 5.1 的搜索/打开/引用路径、Loki Yan 预判 10–11 月 Panda 级更新绑 AI Overview、Meng To 的 REA 家电反编译 skill、Open Design 升到 0.25.0。HyperFrames 到 0.8.162。访谈：a16z × Terry Angelos 谈 agent 代付。",
+    intel: [
+      {
+        title: "Meta 开源 Muse Spark Open：816B/42B 激活、百万上下文，可在两台 Mac Studio 本地跑",
+        why: "Meta 研究博客 10/16 01:08 CST，@AIatMeta 同发。官方称这是迄今最强的美国开源权重模型：原生多模态，816B 总参、42B 激活、100 万 token 上下文；并说是同类里第一个能用两台 Apple M5 Ultra Mac Studio 加最新 MLX 在桌面跑的。权重上 Hugging Face，API 走 Together、Fireworks、Groq 等。本地 Agent/编码和数据不出域突然多了一条实路；TechCrunch、The Verge 同日跟进。",
+        sources: [
+          { label: "Meta", url: "https://research.meta.ai/blog/muse-spark-open" },
+          { label: "X · Meta AI", url: "https://x.com/AIatMeta/status/2110779754274292212" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/" },
+        ],
+        image: "/assets/flow/2026-10-16-muse-spark-open.jpg",
+      },
+      {
+        title: "Anthropic 给 METR「类员工」级访问：六人嵌入，风险报告不可被否决发表",
+        why: "Anthropic 官网 10/16 01:27 CST。已让 METR 六人团队入驻，硬件、办公室和内部工具「大致对齐自家风险评估团队」；METR 可独立发表风险、事件与实践分析，Anthropic「不能否决发表」，只能对客户数据、特权信息和模型架构等狭类要求删改。另有 SecureBio、Accenture 等更低层级评估合作。第三方安全监督从读报告，变成驻场监察官模式。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/an-update-on-independent-evaluators" },
+          { label: "X · Anthropic", url: "https://x.com/AnthropicAI/status/2110784662071398807" },
+        ],
+        image: "/assets/flow/2026-10-16-anthropic-metr-employee-like.jpg",
+      },
+      {
+        title: "Axios：FTC 向 OpenAI、Anthropic 发出民事调查令，聚焦安全事故与消费者保护",
+        why: "Axios 10/16 约 03:46 CST 独家，The Verge 转述。FTC 向两家发 civil investigative demands，每份逾 50 页，要安全事故与防护实践文件，并索取营销材料和隐私政策；消息源称还会向第三方 AI 组织发令，并「计划强制顶尖 AI 高管作证」。OpenAI 发言人说会「建设性配合」。Agent 逃逸和测试事故，从披露阶段进入联邦执法取证。",
+        sources: [
+          { label: "Axios", url: "https://www.axios.com/2026/10/15/ftc-openai-anthropic-ai-safety-investigation" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1012368/the-ftc-reportedly-subpoenaed-openai-and-anthropic-for-info-on-ai-security-incidents" },
+        ],
+        image: "/assets/flow/2026-10-16-ftc-cid-openai-anthropic.jpg",
+      },
+      {
+        title: "OpenAI 推出 Rosalind Academic Plan：美国高校实验室可获赞助版 GPT-Rosalind",
+        why: "OpenAI 博客 10/16 05:15 CST，@OpenAI 同发。面向美国高校合格实验室：最多 30 个 Business Standard 席位免费最多 12 个月，经 trusted-access 批准后可用 GPT-Rosalind；研究数据默认不用于训练；「目前不含 API」。覆盖药物/蛋白设计、诊断、疫苗、基因治疗等。生命科学专用模型从产品叙事落到可申请的教席通道。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-the-rosalind-academic-plan/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2110841898076418336" },
+        ],
+        image: "/assets/flow/2026-10-16-openai-rosalind-academic.jpg",
+      },
+      {
+        title: "CERN × Mistral 签意向：共建对撞物理「Large Physics Model」",
+        why: "CERN 官网 10/15 18:50 CST，@MistralAI 同步。双方签 statement of intent，长期合作做科学发现用基础模型；目标是「第一个对撞物理基础模型」，用 LHC 上数十亿次模拟质子–质子碰撞预训练，服务碰撞重建、粒子识别、异常信号和探测器设计评估。目前只有意向，未见权重或时间表。",
+        sources: [
+          { label: "CERN", url: "https://home.cern/cern-and-mistral-join-forces-to-accelerate-ai-for-science/" },
+          { label: "X · Mistral", url: "https://x.com/MistralAI/status/2110684732103041474" },
+        ],
+        image: "/assets/flow/2026-10-16-cern-mistral-lpm.jpg",
+      },
+      {
+        title: "Nature Neuroscience：Seal 用时空 AI 预测发育脑基因调控与变异效应",
+        why: "Nat Neuro 技术报告，刊出日 10/15（Hao、Park、Theesfeld、Troyanskaya）。Seal 是可解释迁移学习框架，在 26 个脑区 × 30 种细胞 × 7 个发育阶段上做序列→表达与变异效应预测；用到 GWAS 和 Simons Simplex Collection 自闭症全基因组时，「在短暂的胎儿兴奋性神经元里看到显著的新生调控变异负担」。代码在 github.com/FunctionLab/Seal。神经发育疾病机制从 GWAS 黑箱，往可解释细胞状态再走一步。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02470-2" },
+        ],
+        image: "/assets/flow/2026-10-16-natneuro-seal.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：一句话出电影感落地页，「Design is officially solved」",
+        why: "@viktoroddy 10/15 19:09 CST：一条 prompt、大约十分钟，出电影感 Motion Site 落地页，配视频；口头禅是「没理由再为落地页雇设计师」。跟你的第一条种子同一人、同一路数，是成品动效站，不是工具发版。后续还贴了 prompt 商店入口。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2110689591883940240" },
+        ],
+        image: "/assets/flow/2026-10-16-viktor-motion-solved.jpg",
+      },
+      {
+        title: "Alex Groberman：Fable 5.1 下 Claude 怎么搜、打开、引用、推荐网站",
+        why: "@alexgroberman 10/15 20:54 CST，四张截图：Fable 5.1 已进所有 Claude 套餐后，系统提示如何决定搜哪些站、打开哪些、引用哪些、推荐哪些。正对 GEO / AI 搜索可见度种子——讲的是引用机制，不是 GSC 界面新闻。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2110715971942158604" },
+        ],
+        image: "/assets/flow/2026-10-16-alex-fable51-cite.jpg",
+      },
+      {
+        title: "Loki Yan：预判 10–11 月有 Panda 级更新，打 Listicles/假站，并绑 AI Overview",
+        why: "@loki_yan_seo 10/15 21:31 CST：结合 TaylorDanRW 的模型与自己的判断，认为下一波会打 listicle、假社交/假品牌/假作者站和 AI 垃圾站，而且和 AI Overview / AI Mode 绑在一起。从业者预判，不是厂商 SEO 教程。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2110725202661556713" },
+        ],
+        image: "/assets/flow/2026-10-16-loki-panda-aio-forecast.jpg",
+      },
+      {
+        title: "Meng To：REA skill——把家里的灯、门、空调、机器人反编译成 Mac 状态 App",
+        why: "@MengTo 10/15 22:59 CST，约 4.7 万次观看、1500+ 收藏：用 skill + prompt 反编译任意家电，再 vibe-code 出 Mac 状态 App；仓库 github.com/morluto/rea。属于可丢给 Agent 的成品 skill 演示，贴 AI-native 设计/CLI 这条线。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2110747334888083690" },
+          { label: "GitHub", url: "https://github.com/morluto/rea" },
+        ],
+        image: "/assets/flow/2026-10-16-mengto-rea-home-devices.jpg",
+      },
+      {
+        title: "Open Design 0.25.0 Steadier Ground：工作区级最近项目、更安静的自动诊断",
+        why: "GitHub release 10/15 22:44 CST（上次早报还停在 0.24.1）。改动包括：最近项目跟着当前 workspace（#8442）、自动诊断少吵多留痕迹（#8488/#8461）、Windows 上轮转日志的同意边界（#8487）。窗内没有 @XAMTO_AI 发帖，但版本本身是第二条种子的信号。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/nexu-io/open-design/releases/tag/open-design-v0.25.0" },
+        ],
+        image: "/assets/flow/2026-10-16-open-design-0250.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "a16z × Terry Angelos（VGS）：AI agent 能替你花钱之后会发生什么",
+        why: "50 分 31 秒，10/15 21:55 CST 上线。VGS 的 Terry Angelos 对谈 a16z 的 Alex Rampell：agentic commerce、agent 代付与新支付基建、agentic token、买错货时的消费者保护、商户阻力和信贷风控变化。不是工具发版，是 agent 经济落地时支付层怎么改。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=q8cb1XL9sXA" },
+        ],
+        image: "/assets/flow/2026-10-16-a16z-terry-angelos-agent-payments.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-15",
     title: "八个州起诉 OpenAI 称 ChatGPT 对孩子不安全；OpenAI 反指前员工带 100 多份产品文件投奔 Apple；Google 给 1 万名科学家免费开 Argon 最高档半年；Mistral 收购设计工作室 New Material",
     tldr: "爱荷华、堪萨斯、亚利桑那等八个州分头起诉 OpenAI，说它误导公众 ChatGPT 安全、收集未成年人数据。OpenAI 在和 Apple 的商业机密官司里反手提交文件，称一名前员工带走 100 多份含未发布设备图片和供应商资料的文件，给 Apple 高层做过演示。Google DeepMind 宣布给 1 万名科学家免费开放 Antigravity 最高用量档 6 个月，Scale AI 的 HSS 榜 Argon 以 55.4% 排第一。Mistral 收购做了六年 AI 产品设计的 New Material，成立 Solutions Design 团队。世界模型：WorldOracle 基准拿同一组动作对比世界模型预测和真机执行。神经：Nature 用全息光遗传刺激约 20 个运动皮层神经元，就能让小鼠做出学会的动作。口味：Higgsfield Katana 动效进了 Claude、Viktor Oddy 的 Gemini 4 3D 站教程、Argon 做的交互生物图谱、Loki Yan 用 Google Trends 查品牌实体、用 Ahrefs 拆 Gamma 的 370 万月自然流量。HyperFrames 到 0.8.158；Open Design 仍 0.24.1。访谈：a16z × Nathan Lambert、Cognitive Revolution × Alan Chan、张小珺 × Dyna 创始人 Lindon Gao。",
