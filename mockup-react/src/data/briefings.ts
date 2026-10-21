@@ -157,6 +157,231 @@ export const briefings: Briefing[] = [
     note: "窗内未单列：世界模型 WildAWM（https://x.com/zhaoywang_CS/status/2112614057354125385）；神经科学 Nature Neuroscience ABCA1 帕金森（https://www.nature.com/articles/s41593-026-02487-7）。",
   },
   {
+    date: "2026-10-20",
+    title: "OpenAI：GPT-6 攻下 COBOL、Fortran 等冷门语言；Reuters：OpenAI 赶在 Anthropic IPO 前加速约 300 亿美元融资；Anthropic OSS Scanner 公开推广；MiniMax 发 M3.1 Flash",
+    tldr: "OpenAI 发 MultiLangBench：GPT-6 Astra 在 20 种语言上平均 87.4%（GPT-5.6 Sol 26.8%），COBOL 从 10.9% 到 72.1%，评测集开源。Reuters 独家：OpenAI 想赶在 Anthropic 11 月中 IPO 前把约 300 亿美元融资提前落地，估值超 1.4 万亿，SoftBank、MGX 在谈。Anthropic 公开推广 OSS Scanner：约 650 个项目申请、收 114 个，严重 77、高危 803，挖出一个已修复的 curl CVE，报告未经人工核验。MiniMax 发 M3.1 Flash：DeepSWE 73.7%、OSWorld V2 61.7，输入 $0.15 / 输出 $0.60 每百万 token，权重后续开放。Skyfall 发 SKY-001，自称首个工程世界模型，主攻 CAD/BIM。Nature 评论：Seth、Block、Tononi 认为现有 AI 没有意识，沿当前路线也许永远不会有。口味：Viktor Oddy 一条 prompt 出 3D 蜜蜂落地页、Alex Groberman 拆微软零售 AEO/GEO、Loki Yan 亲测 Screaming Frog、Higgsfield 用 M3.1 Flash 做动态排版短片、Gemini 4 Argon 把桌面照片变成 3D 赛道。访谈：a16z × 前 Plaid CTO Jean-Denis Greze，约 62 分钟。",
+    intel: [
+      {
+        title: "OpenAI：GPT-6 攻下 COBOL、Fortran 等冷门语言",
+        why: "OpenAI 10/20 06:30 CST。冷门语言支撑银行、气象、核安全等老系统，模型以前几乎写不动。新评测 MultiLangBench 让模型从零做 SQLite 兼容引擎，覆盖 20 种语言：GPT-6 Astra 平均 87.4%，GPT-5.6 Sol 26.8%；COBOL 10.9%→72.1%，OCaml 25.6%→85.8%，Fortran 21.4%→83.5%。COBOL 迁到其他语言的隐藏测试上，GPT-6.1 Sol 低推理 86.6%、高推理 97.9%。评测集开源。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/low-resource-programming-languages/" },
+        ],
+        image: "/assets/flow/2026-10-20-openai-gpt6-cobol.jpg",
+      },
+      {
+        title: "Reuters 独家：OpenAI 赶在 Anthropic IPO 前加速约 300 亿美元融资",
+        why: "Reuters 10/20 07:18 CST，U.S. News 转载。消息源称 OpenAI 想赶在 Anthropic 11 月中旬 IPO 前把约 300 亿美元融资提前落地，估值超 1.4 万亿美元；SoftBank、阿布扎比 MGX 在谈。两家lab 的资本窗口叠在一起，定价和锁定期都会被对方节奏牵着走。",
+        sources: [
+          { label: "Reuters / U.S. News", url: "https://money.usnews.com/investing/news/articles/2026-10-19/exclusive-openai-seeks-to-accelerate-fundraising-ahead-of-anthropic-ipo-sources-say" },
+        ],
+        image: "/assets/flow/2026-10-20-openai-30b-fundraise.jpg",
+      },
+      {
+        title: "Anthropic OSS Scanner 公开推广：收 114 个项目，挖出已修复的 curl CVE",
+        why: "Anthropic 10/20 05:47 CST。把 Glasswing 那套 Claude 扫漏洞能力做成开源维护者可报名的免费通道：约 650 个项目申请、收下 114 个；扫描出严重 77、高危 803，并挖出一个已修复的 curl CVE。报告直接由最强模型发出、未经人工核验；要报名需向 github.com/anthropics/oss-scanner 提 PR。维护者换的是速度，付的是自己消化误报。",
+        sources: [
+          { label: "Anthropic", url: "https://red.anthropic.com/oss-scanner" },
+        ],
+        image: "/assets/flow/2026-10-20-anthropic-oss-scanner.jpg",
+      },
+      {
+        title: "MiniMax 发布 M3.1 Flash：DeepSWE 73.7%，权重后续开放",
+        why: "MiniMax 10/19。匿名跑过超 200 万亿 token 的 Space Bunny 就是它的早期版。官方称 agent / 编码 / Computer Use / 网络安全有代际提升，在线推理快约 3 倍、用量成本降约 70%。DeepSWE 73.7%，OSWorld V2 61.7；定价每百万 token 输入 $0.15、输出 $0.60、缓存读 $0.015。API 和 MiniMax Code 已上，权重后续开放。",
+        sources: [
+          { label: "MiniMax", url: "https://www.minimax.io/blog/minimax-m31f" },
+        ],
+        image: "/assets/flow/2026-10-20-minimax-m31-flash.jpg",
+      },
+      {
+        title: "Skyfall AI 发布 SKY-001，自称首个工程世界模型",
+        why: "Skyfall 10/20 01:58 CST。主攻 CAD/BIM，不当通用视频世界模型卖。自报 CAD 任务 3.9 秒、$0.005，精度接近 GPT-6 Astra（199 秒）。工程软件这条世界模型线第一次有人把延迟和单价写成产品数字；数字是官方自评。",
+        sources: [
+          { label: "Skyfall", url: "https://skyfall.ai/blog/introducing-sky-001" },
+        ],
+        image: "/assets/flow/2026-10-20-skyfall-sky-001.jpg",
+      },
+      {
+        title: "Nature 评论：Seth、Block、Tononi 认为 AI 没有意识、也许永远不会有",
+        why: "Nature 评论 10/19 19:43 CST。Anil Seth、Ned Block、Giulio Tononi 三人写：现有硅基数字系统没有主观体验，沿当前路线也不太可能有。三条理由：智能≠意识；计算功能主义不成立；大脑不是「肉做的电脑」。针对 Anthropic 今年声称在 Claude 里看到意识计算签名、以及「AI 福利/权利」讨论，他们认为假阳性的代价更大。",
+        sources: [
+          { label: "Nature", url: "https://www.nature.com/articles/d41586-026-03313-7" },
+        ],
+        image: "/assets/flow/2026-10-20-nature-ai-consciousness.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy 一条 prompt 让 Claude 做出 3D 蜜蜂滚动落地页，附 9 分钟录屏",
+        why: "@viktoroddy。匹配：Viktor 电影感动效落地页种子。一条 prompt、附 9 分钟录屏。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2112157968548741463" },
+        ],
+        image: "/assets/flow/2026-10-20-viktor-3d-bee.jpg",
+      },
+      {
+        title: "Alex Groberman 拆解微软给零售商的 AEO/GEO 指南",
+        why: "@alexgroberman。匹配：GEO / AI 搜索可见度。微软面向零售商的 AEO/GEO 操作手册，不是厂商公关稿。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2112168798669373717" },
+        ],
+        image: "/assets/flow/2026-10-20-alex-ms-aeo-geo.jpg",
+      },
+      {
+        title: "Loki Yan 亲测推荐 Screaming Frog（可自托管、带 MCP）",
+        why: "@loki_yan_seo。匹配：从业者亲测工具。可自托管、带 MCP，适合把站点审计接到 agent 工作流。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2112015156201087419" },
+        ],
+        image: "/assets/flow/2026-10-20-loki-screaming-frog.jpg",
+      },
+      {
+        title: "Higgsfield 用 MiniMax M3.1 Flash 做电影感动态排版短片",
+        why: "@higgsfield_ai。匹配：AI 影片成品向。用当天发布的 M3.1 Flash 做动态排版，不是工具发版公告。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield_ai/status/2112284622264692980" },
+        ],
+        image: "/assets/flow/2026-10-20-higgsfield-minimax-type.jpg",
+      },
+      {
+        title: "Gemini 4 Argon 把桌面照片变成可玩的 3D 赛道",
+        why: "@Google。匹配：从照片重建可玩 3D 场景。桌面实拍进 Argon，出来能开的赛道。",
+        sources: [
+          { label: "X", url: "https://x.com/Google/status/2112199261899411579" },
+        ],
+        image: "/assets/flow/2026-10-20-gemini-3d-track.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "a16z × Jean-Denis Greze（前 Plaid CTO），约 62 分钟",
+        why: "为什么深：为什么关掉还在赚钱的 AI 报税业务；怎么和 token 供应商竞争；Agent 对广告模式的冲击。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=o_5f4N6Nq80" },
+        ],
+        image: "/assets/flow/2026-10-20-a16z-jean-denis-greze.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "维护开源项目可向 Anthropic OSS Scanner 提 PR 报名",
+        why: "免费、用最强模型扫仓库；报告不经人工核验。符合基础设施/安全关键、能消化误报的项目，向 github.com/anthropics/oss-scanner 加 project.yaml。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/anthropics/oss-scanner" },
+        ],
+      },
+      {
+        title: "评估老代码迁移可试 MultiLangBench",
+        why: "OpenAI 把 20 语种从零写 SQLite 引擎和 COBOL 行为保持迁移都开源了。若你在盘 COBOL/Fortran/VB 遗产，先看自己语言的分，再决定要不要拿 GPT-6 试迁。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/low-resource-programming-languages/" },
+        ],
+      },
+    ],
+  },
+  {
+    date: "2026-10-19",
+    title: "Claude Mythos 5 自主改进 8 类量子电路；Anthropic 设 Public Benefit Fund；ChatGPT 上线 Slides；商务部科技部就约 23 项 AI 技术出口管制征求意见",
+    tldr: "Anthropic：Claude Mythos 5 在评测闭环里自主改进 8 类量子电路，最长无人值守约 53 小时；椭圆曲线点加一门设计门数比已发表方案少约 17 倍，DQI 解码器小约 12 倍，合作方哈佛、QuEra。Anthropic 设 Public Benefit Fund：先拿 5% 股份，估值每涨 50% 追加 2%；全资 LLC，不做游说；加上创始人和员工认捐，合计约 20% 用于公益。ChatGPT 上线 Slides，可从对话、文件或大纲生成幻灯片并实时协同，导出 PPT/PDF/Google Slides，面向 Pro/Business/Enterprise。商务部、科技部就约 23 项 AI 技术列入出口管制清单征求意见（10/16 16:00 发布，11/15 截止），门槛含 ≥10^26 FLOPs、≥2 万亿参数或公开榜单前十，已开源成果豁免。ChatGPT Voice 推送 GPT-Live-1.1，新增多语种语音。口味：Viktor Oddy 的 Roadster 小游戏、Alex Groberman 看到 GSC 里的 AI Search 流量并拆四助手引用重叠、Loki Yan 的 SEO skills、Meng To 给 Roadster 做落地页。访谈：Latent Space「High Taste Testers」第 1 期，约 90 分钟。",
+    intel: [
+      {
+        title: "Claude Mythos 5 在评测循环里自主改进 8 类量子电路",
+        why: "Anthropic 10/16。给 Mythos 5 八类量子电路的自然语言规格和自动评分器，它在闭环里自己改设计。椭圆曲线点加那条最长无人值守约 53 小时：一门设计比已发表方案多用 12% 量子比特、门数少约 17 倍；DQI 的 Reed–Solomon 解码器门数小约 12 倍。合作方哈佛 Susanne Yelin、Mikhail Lukin 与 QuEra。论文 arXiv:2610.22367。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/designing-efficient-quantum-circuits" },
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.22367" },
+        ],
+        image: "/assets/flow/2026-10-19-claude-mythos5-quantum.jpg",
+      },
+      {
+        title: "Anthropic 设立 Public Benefit Fund：先拿 5% 股份，估值每涨 50% 追加 2%",
+        why: "Anthropic 10/18。公益股权从创始人认捐，变成随估值自动加码的公司级机制。待股东批准：先承诺 5% 股份，董事会可在估值每涨 50% 时再加 2%。全资 LLC，不做游说或政治捐赠。叠加创始人 80% 股权认捐和员工配捐，合计约 20% 股份用于公益。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/public-benefit-fund" },
+        ],
+        image: "/assets/flow/2026-10-19-anthropic-pbf.jpg",
+      },
+      {
+        title: "ChatGPT 上线 Slides：从对话、文件或大纲生成幻灯片",
+        why: "OpenAI 发布说明。ChatGPT 第一次把「做完就能拿去开会」的幻灯片做成一等公民：对话、文件或大纲都能生成，实时协同编辑，导出 PPT / PDF / Google Slides。面向 Pro / Business / Enterprise。",
+        sources: [
+          { label: "OpenAI Help", url: "https://help.openai.com/en/articles/6825453-chatgpt-release-notes" },
+        ],
+        image: "/assets/flow/2026-10-19-chatgpt-slides.jpg",
+      },
+      {
+        title: "商务部、科技部就约 23 项 AI 技术列入出口管制清单征求意见",
+        why: "商务部、科技部 10/16 16:00 发布，11/15 截止。约 40 项技术里 23 项是 AI。大模型核心技术（权重、关键检查点、源码、架构、训练优化、推理加速）门槛：训练算力 ≥10^26 FLOPs、参数 ≥2 万亿，或公开评测全球前十，满足任一即受限。已通过开源或论文进入公共领域的成果豁免；API/SaaS 不按模型技术出口管。",
+        sources: [
+          { label: "On The Wire", url: "https://onthewire.ai/article/china-proposes-export-controls-on-23-ai-technologies-from-large-models-to-agents" },
+        ],
+        image: "/assets/flow/2026-10-19-china-ai-export-controls.jpg",
+      },
+      {
+        title: "ChatGPT Voice 推送 GPT-Live-1.1，新增多语种语音",
+        why: "OpenAI 发布说明。Voice 从英语为主扩到日常能用的多语种直播：新增法语、德语、印地语、日语、韩语、墨西哥西班牙语。模型号 GPT-Live-1.1。",
+        sources: [
+          { label: "OpenAI Help", url: "https://help.openai.com/en/articles/6825453-chatgpt-release-notes" },
+        ],
+        image: "/assets/flow/2026-10-19-chatgpt-voice-live-11.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy 浏览器里能开着飞的小游戏 Roadster",
+        why: "@viktoroddy 10/18 08:06 CST。匹配：Viktor 电影感动效 / 可玩网页种子。浏览器里开着飞，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2111609842184130875" },
+        ],
+        image: "/assets/flow/2026-10-19-viktor-roadster.jpg",
+      },
+      {
+        title: "Alex Groberman：在 GSC 里看到 AI Search 流量",
+        why: "@alexgroberman 10/17 23:48 CST。匹配：GEO / AI 搜索可见度。Search Console 里开始出现 AI Search 流量行，从业者实拍，不是厂商教程。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2111484443726852385" },
+        ],
+        image: "/assets/flow/2026-10-19-alex-gsc-ai-search.jpg",
+      },
+      {
+        title: "Alex Groberman：四个 AI 助手的引用约 73% 只出现在一个里，GEO 要分平台做",
+        why: "@alexgroberman 10/17 21:18 CST。匹配：GEO 分平台。四个助手的引用重叠很低，约 73% 只出现在其中一个——一套内容打所有模型不成立。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2111446634299310287" },
+        ],
+        image: "/assets/flow/2026-10-19-alex-geo-one-assistant.jpg",
+      },
+      {
+        title: "Loki Yan 整理 SEO skills，按具体任务拆开用",
+        why: "@loki_yan_seo 10/16 20:40 CST。匹配：从业者把 SEO 工作拆成可调用 skill，而不是一锅端的「做 SEO」提示词。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2111074790270493081" },
+        ],
+        image: "/assets/flow/2026-10-19-loki-seo-skills.jpg",
+      },
+      {
+        title: "Meng To 用 Pika × ChatGPT 插件给 Roadster 做落地页",
+        why: "@MengTo 10/17 11:13 CST。匹配：从业者亲测的 AI 影片/落地页流程。给 Viktor 的 Roadster 做落地页，Pika 接 ChatGPT 插件。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2111294425959923839" },
+        ],
+        image: "/assets/flow/2026-10-19-mengto-roadster-landing.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space「High Taste Testers」第 1 期，约 90 分钟：Dev Day 后圆桌",
+        why: "为什么深：Dev Day 后高口味测评者圆桌，聊 Dots、助手形态、决策模型、通宵 Agent；现场还对产品藏得太深、笔记本不敢关提出异议。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=ZOH8Q401vt0" },
+        ],
+        image: "/assets/flow/2026-10-19-latent-space-high-taste.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-16",
     title: "Meta 开源 Muse Spark Open，可在两台 Mac Studio 本地跑；Anthropic 给 METR「类员工」访问；Axios：FTC 向 OpenAI、Anthropic 发安全调查令；OpenAI 推 Rosalind 高校计划",
     tldr: "Meta 放出 Muse Spark Open：816B 总参、42B 激活、百万上下文，官方称可用两台 M5 Ultra Mac Studio 加 MLX 在桌面跑。Anthropic 让 METR 六人团队拿到接近内部风控的工具与权限，并承诺不可否决其风险报告发表。Axios：FTC 向 OpenAI 和 Anthropic 发民事调查令，要安全事故、护栏、营销与隐私材料，还计划传唤高管。OpenAI 推出 Rosalind Academic Plan，美国高校实验室可申请最多 30 个免费席位一年（暂不含 API）。CERN 与 Mistral 签意向，要做对撞物理 Large Physics Model。神经：Nature Neuroscience 的 Seal 用时空 AI 预测发育脑基因调控，并在自闭症 WGS 里看到胎儿兴奋性神经元上的新生调控变异负担。世界模型线窗内无强新论文。口味：Viktor Oddy 一句话出电影感落地页、Alex Groberman 拆 Fable 5.1 的搜索/打开/引用路径、Loki Yan 预判 10–11 月 Panda 级更新绑 AI Overview、Meng To 的 REA 家电反编译 skill、Open Design 升到 0.25.0。HyperFrames 到 0.8.162。访谈：a16z × Terry Angelos 谈 agent 代付。",
