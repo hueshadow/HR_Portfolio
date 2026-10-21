@@ -33,6 +33,130 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-21",
+    title: "WSJ：Anthropic 上半年净亏损超 800 亿美元，营收 163 亿美元；OpenAI 收购 Orchestra Bio 并入 Rosalind；Claude 公开蝎毒结合物实测设计；Mistral 发布 Voxtral 3",
+    tldr: "Reuters 转述 WSJ：Anthropic IPO 招股书草案首次给出上半年数字，截至 6/30 营收 163 亿美元（去年同期 11 亿），净亏损超 800 亿（去年同期 130 亿，其中 720 亿为融资工具估值变动的会计费用），AI 基础设施支出近 90 亿美元约翻四倍；Reuters 未独立核实，Anthropic 未回应。OpenAI 收购 Orchestra Bio，团队并入 GPT-Rosalind 与 Rosalind Workbench，生命科学线从模型和工作台伸到药物项目管理。Anthropic 让 Claude 设计蝎毒神经毒素蛋白结合物，211 个实测设计全部公开，17 个达标，不声称抗毒血清。Mistral 发布 Voxtral 3：转写、TTS 与基于 LiveKit 的语音 Agent SDK，可自托管、价格很低。DeepSeek 开源生产推理框架 DeepInfer 与 deepseek-recipe。Aleksander Madry 回 OpenAI 做安全，Altman 公开确认。口味：Viktor Oddy 的 Meadowbell 农场动画落地页、Meng To 用 Three.js 规划机位再交给 Kling 4.0、Google Merchant Center AI Performance Insights、Open Design 0.26.0、Awwwards SOTD Cartier。访谈：Cognitive Revolution × Alex Rives（约 63 分钟），a16z × Karan Singhal（约 56 分钟）。",
+    intel: [
+      {
+        title: "WSJ：Anthropic 上半年净亏损超 800 亿美元，营收 163 亿美元",
+        why: "Reuters 转述 WSJ，10/21 03:40 CST。Anthropic IPO 招股书草案首次出现上半年数字，影响对它和 OpenAI 的估值。截至 6/30 半年营收 163 亿美元（去年同期 11 亿）；净亏损超 800 亿（去年同期 130 亿），其中 720 亿为融资工具估值变动的会计费用；AI 基础设施支出近 90 亿美元约翻四倍。Reuters 未独立核实，Anthropic 未回应。",
+        sources: [
+          { label: "Reuters", url: "https://www.streetinsider.com/Reuters/Anthropic+logged+net+loss+of+over+%2480+billion+in+first+half+of+2026%2C+WSJ+reports/27210198.html" },
+        ],
+        image: "/assets/flow/2026-10-21-anthropic-h1-loss-80b.jpg",
+      },
+      {
+        title: "OpenAI 收购 Orchestra Bio，并入 Rosalind 生命科学线",
+        why: "OpenAI 10/21 02:10 CST。生命科学业务从模型+科研工作台延伸到药物研发项目管理。Orchestra Bio 是人与 agent 协同推进药物项目的平台（如生产失败时算出受影响的临床时间线并比较方案）；团队并入 GPT-Rosalind + Rosalind Workbench。原文提到 Novo Nordisk、Moderna。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/openai-to-acquire-orchestra-bio/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2112607347688583586" },
+        ],
+        image: "/assets/flow/2026-10-21-openai-orchestra-bio.jpg",
+      },
+      {
+        title: "Anthropic：Claude 设计蝎毒神经毒素蛋白结合物，211 个实测设计全部公开",
+        why: "Anthropic 10/21 00:18 CST。AI 在少量人工引导下跑完一轮湿实验验证设计，聚焦被忽视的热带病，数据全开。内部研究模型在 Claude Science 跑 64 小时、人工追问 4 次；12 个工具、318,484 个设计、约 1 万 GPU 小时；Adaptyv Bio 与 Twist 实测 211 个，17 个达标，最强 Cn2-B1/B2 个位数 nM；多毒素通用结合物全部失败；未做细胞/动物中和，不声称抗毒血清。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/claude-scorpion-toxin-binder-design" },
+          { label: "X · Anthropic", url: "https://x.com/AnthropicAI/status/2112579251555721573" },
+        ],
+        image: "/assets/flow/2026-10-21-claude-scorpion-binders.jpg",
+      },
+      {
+        title: "Mistral 发布 Voxtral 3：转写、TTS 与语音 Agent SDK",
+        why: "Mistral 10/21 00:00 CST。欧洲可自托管的整套语音 agent 方案，价格很低。转写 50+ 语言，实时版延迟 <500ms；Mini 转写 $0.0035/分钟，实时 $0.008/分钟；TTS 35+ 语言 $13/百万字符；Agent SDK 基于 LiveKit，单轮 <1 秒，配 Mistral Small 4 约 $0.04/分钟。对比数据为官方自评。",
+        sources: [
+          { label: "Mistral", url: "https://mistral.ai/news/voxtral-3" },
+          { label: "X · Mistral", url: "https://x.com/MistralAI/status/2112574615318876178" },
+        ],
+        image: "/assets/flow/2026-10-21-mistral-voxtral-3.jpg",
+      },
+      {
+        title: "DeepSeek 开源生产推理框架 DeepInfer 与 deepseek-recipe",
+        why: "@deepseek_ai 10/20 17:30 CST。中国实验室开源线上真实推理栈，对降推理成本有直接参考。支撑 DeepSeek-V4.1-Flash 大规模推理，含高性能 kernel、分布式推理、投机解码、结构化输出；deepseek-recipe 为与官方 API 一致的 token 编解码组件；后续新模型推理代码也放此仓库。",
+        sources: [
+          { label: "X · DeepSeek", url: "https://x.com/deepseek_ai/status/2112476496283775135" },
+          { label: "GitHub", url: "https://github.com/deepseek-ai/DeepInfer" },
+        ],
+        image: "/assets/flow/2026-10-21-deepseek-deepinfer-open.jpg",
+      },
+      {
+        title: "Aleksander Madry 回 OpenAI 做安全，Altman 公开确认",
+        why: "Altman 帖 10/21 05:10 CST。OpenAI 在超级智能安全/安保上补核心人手。Madry 称之前离开「更像一段休假」，将加入 @merettm 推进安全与安保；Altman 称「面对超级智能时的安全与安保挑战极其巨大」。",
+        sources: [
+          { label: "X · Sam Altman", url: "https://x.com/sama/status/2112652656602923366" },
+          { label: "X · Aleksander Madry", url: "https://x.com/aleks_madry/status/2112231448103239998" },
+        ],
+        image: "/assets/flow/2026-10-21-madry-returns-openai.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy《POV: your website just touched grass》Meadowbell 农场动画落地页 hero，附免费 prompt",
+        why: "@viktoroddy 10/21 07:34 CST。匹配：Viktor 电影感动效落地页种子。附免费 prompt。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2112689019394101429" },
+          { label: "X · prompt", url: "https://x.com/viktoroddy/status/2112689507346874374" },
+        ],
+        image: "/assets/flow/2026-10-21-viktor-meadowbell-hero.jpg",
+      },
+      {
+        title: "Meng To：先用 Three.js 规划机位，再用 Kling 4.0 做动漫短片（8 条长帖）",
+        why: "@MengTo 10/20 23:41 CST。匹配：从业者亲测的 AI 影片流程（如 dolly-zoom 生成更像拉远）；可能是合作推广。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2112569902255288362" },
+        ],
+        image: "/assets/flow/2026-10-21-mengto-kling4-camera-plan.jpg",
+      },
+      {
+        title: "Alex Groberman：Google Merchant Center「AI Performance Insights」报告开放",
+        why: "@alexgroberman 10/20 23:17 CST。匹配：GEO / AI 搜索可见度。覆盖美加澳印新英文对话式购物查询，看 AI 声量份额，分发现/评估/准备购买三阶段；仅自然流量。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2112563927095902361" },
+        ],
+        image: "/assets/flow/2026-10-21-google-merchant-ai-insights.jpg",
+      },
+      {
+        title: "Open Design 0.26.0「Share, Review, Refine」",
+        why: "GitHub release 约 10/20 22:35 CST。匹配：开源本地设计 CLI。Motion Design 可导出 MP4；一个链接让甲方在浏览器看、试、定点评论，评论同步回项目交给 Agent 改；BYOK 自定义模型。",
+        sources: [
+          { label: "GitHub", url: "https://github.com/nexu-io/open-design/releases" },
+        ],
+        image: "/assets/flow/2026-10-21-open-design-0-26.jpg",
+      },
+      {
+        title: "Awwwards SOTD：makemepulse《Cartier – Le Chœur des Pierres》",
+        why: "Awwwards 10/20 16:03 CST。奢侈品高级珠宝沉浸式网页叙事。",
+        sources: [
+          { label: "Awwwards", url: "https://www.awwwards.com/sites/cartier-le-choeur-des-pierres" },
+        ],
+        image: "/assets/flow/2026-10-21-awwwards-cartier-choeur.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Cognitive Revolution《A World Model of Life》，嘉宾 Alex Rives（Biohub 科学负责人、ESM 蛋白语言模型发起人），约 63 分钟",
+        why: "为什么深：虚拟细胞卡在测量而非架构；细胞状态转移模型约 5 年内可做；湿实验当验证器的生物版 RLVR。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=l6DPAwgUr-8" },
+        ],
+        image: "/assets/flow/2026-10-21-cogrev-alex-rives.jpg",
+      },
+      {
+        title: "a16z Podcast：OpenAI 健康 AI 研究负责人 Karan Singhal 对谈 Jay Rughani，约 56 分钟",
+        why: "为什么深：为何用通用模型+各训练阶段加医疗数据而非小医疗模型；医学共识落地滞后 5–17 年；HealthBench 评测方法；称每周 3 亿多人用 ChatGPT 问健康。",
+        sources: [
+          { label: "YouTube", url: "https://youtu.be/9n0MI4D7TCM" },
+        ],
+        image: "/assets/flow/2026-10-21-a16z-karan-singhal.jpg",
+      },
+    ],
+    todos: [
+    ],
+    note: "窗内未单列：世界模型 WildAWM（https://x.com/zhaoywang_CS/status/2112614057354125385）；神经科学 Nature Neuroscience ABCA1 帕金森（https://www.nature.com/articles/s41593-026-02487-7）。",
+  },
+  {
     date: "2026-10-16",
     title: "Meta 开源 Muse Spark Open，可在两台 Mac Studio 本地跑；Anthropic 给 METR「类员工」访问；Axios：FTC 向 OpenAI、Anthropic 发安全调查令；OpenAI 推 Rosalind 高校计划",
     tldr: "Meta 放出 Muse Spark Open：816B 总参、42B 激活、百万上下文，官方称可用两台 M5 Ultra Mac Studio 加 MLX 在桌面跑。Anthropic 让 METR 六人团队拿到接近内部风控的工具与权限，并承诺不可否决其风险报告发表。Axios：FTC 向 OpenAI 和 Anthropic 发民事调查令，要安全事故、护栏、营销与隐私材料，还计划传唤高管。OpenAI 推出 Rosalind Academic Plan，美国高校实验室可申请最多 30 个免费席位一年（暂不含 API）。CERN 与 Mistral 签意向，要做对撞物理 Large Physics Model。神经：Nature Neuroscience 的 Seal 用时空 AI 预测发育脑基因调控，并在自闭症 WGS 里看到胎儿兴奋性神经元上的新生调控变异负担。世界模型线窗内无强新论文。口味：Viktor Oddy 一句话出电影感落地页、Alex Groberman 拆 Fable 5.1 的搜索/打开/引用路径、Loki Yan 预判 10–11 月 Panda 级更新绑 AI Overview、Meng To 的 REA 家电反编译 skill、Open Design 升到 0.25.0。HyperFrames 到 0.8.162。访谈：a16z × Terry Angelos 谈 agent 代付。",
