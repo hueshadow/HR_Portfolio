@@ -33,6 +33,120 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-22",
+    title: "主动式 Agent 进入正面战场（Claude Duet）；AI 找到的 PHP 核弹级漏洞今早要补；世界模型把人形机器人训练压到 1 卡 3 小时；Nature 绘出岛叶「身体感受图」",
+    tldr: "Anthropic 开放 Claude Duet 研究预览：主动式 Agent 会找你、离开后继续干活、动手前先确认，和 Meta Muse、OpenAI Dots 正面竞争个人入口。OpenAI「Patch the Planet」联合维护者披露 PHP 引擎两处 CVSSv4 9.2 漏洞（PHP2Shell），补丁已发、Cloudflare 规则已上线，PHP 约占 70% 网站。OpenAI 模型和 Codex 上架 Google Cloud Model Garden，Google Cloud 自称同时提供 Gemini、Claude、GPT 三家闭源前沿模型。GPT-Rosalind 数千 Agent 32 分钟读完小鼠全脑 CRISPR 图谱，提出 DCTN1 与胆固醇运输假说。SuperMimic 可微世界模型把人形全身控制训练压到 1 GPU 3 小时，覆盖 129,514 段动作并迁移到 Unitree G1。Nature 绘出迄今最细人脑岛叶图谱。口味：Viktor Oddy 清洁能源「最安静的网站」、Meng To HTML Demo skill、Higgsfield 用纯代码把 Claude Duet 做成 3D、村田俊英 Colorfigures、Loki Yan 观察 Agent O。访谈：Matthew Berman × Sam Altman（约 45 分钟）。",
+    intel: [
+      {
+        title: "Anthropic 开放 Claude Duet 研究预览：主动式 Agent App",
+        why: "@claudeai 10/22 03:09 CST。Claude 从「你问它答」变成会主动找你、离开后继续干活、动手前先确认的常驻助理，和 Meta Muse、OpenAI Dots 正面竞争个人 Agent 入口。原帖：「It comes to you with what needs your attention, completes tasks you ask of it, keeps working when you step away, and checks with you before it acts on your behalf.」",
+        sources: [
+          { label: "X · Claude", url: "https://x.com/claudeai/status/2112984664256241837" },
+        ],
+        image: "/assets/flow/2026-10-22-claude-duet.jpg",
+      },
+      {
+        title: "AI 发现 PHP 引擎两处严重漏洞（PHP2Shell，CVSS 9.2），今天要补",
+        why: "OpenAI 10/21 22:04 CST。OpenAI「Patch the Planet」联合维护者提前两个月准备修复；PHP 约占 70% 网站，官方称为近年影响最大的漏洞之一，补丁已发、Cloudflare 规则已上线。手上有 PHP/WordPress 站点的今天就该升级。OpenAI 原帖称修复「required a major change to the PHP engine. Every site using PHP can now safely upgrade」；PHP Foundation 预告 10/21 14:00 UTC 发版、两个 CVSSv4 9.2 漏洞。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2112907856018309586" },
+        ],
+        image: "/assets/flow/2026-10-22-php2shell.jpg",
+      },
+      {
+        title: "OpenAI 模型和 Codex 上架 Google Cloud Model Garden",
+        why: "@OpenAI 10/22 03:23 CST（Google Cloud 公告 10/21 21:19）。Google Cloud 成为同时提供 Gemini、Claude、GPT 三家闭源前沿模型的云，企业选模型不再绑定云厂商。@OpenAI：「We're bringing our frontier models and Codex agentic workflows to Google Cloud's Model Garden」；@googlecloud：「the only hyperscale cloud provider offering access to all three leading closed source LLMs」。",
+        sources: [
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2112988118471295323" },
+          { label: "X · Google Cloud", url: "https://x.com/googlecloud/status/2112896659608785181" },
+        ],
+        image: "/assets/flow/2026-10-22-openai-google-cloud.jpg",
+      },
+      {
+        title: "GPT-Rosalind 数千 Agent 32 分钟读完小鼠全脑 CRISPR 图谱，提出神经退行新线索",
+        why: "OpenAI 10/21 21:32 CST。AI 直接在脑科学数据上提出可检验机制——DCTN1（Perry 综合征相关）被敲除后胆固醇合成基因上调，假说是胆固醇没送到神经元需要的位置。与 PerturbAI、Scripps Research 合作，「thousands of GPT-Rosalind agents worked in parallel… millions of mouse brain cells… in just 32 minutes」，并扩大合作找新药靶点。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/scaling-ai-research-for-complex-biological-data/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2112899854569762936" },
+        ],
+        image: "/assets/flow/2026-10-22-rosalind-dctn1.jpg",
+      },
+      {
+        title: "SuperMimic：一个可微世界模型，把人形全身控制训练压到 1 GPU 3 小时",
+        why: "Qiayuan Liao 10/21 23:56 CST。世界模型第一次在算力上（不只是样本效率）明显赢过无模型 RL——覆盖 129,514 段动作，超过需 128 GPU×7 天的 SONIC，并迁移到真机 Unitree G1。作者原帖「reduces GPU-hours by more than 1000×… surpasses the state of the art (128 GPUs, 7 days) with 1 GPU in 3 hours」；UC Berkeley Abbeel / Sreenath 组。",
+        sources: [
+          { label: "X · Qiayuan Liao", url: "https://x.com/qiayuanliao/status/2112936035911135695" },
+          { label: "SuperMimic", url: "https://supermimic.github.io" },
+        ],
+        image: "/assets/flow/2026-10-22-supermimic.jpg",
+      },
+      {
+        title: "Nature：迄今最细的人脑岛叶图谱，揭示大脑如何「讲述」身体感受",
+        why: "Nature 10/21（推文 23:48 CST）。87 名植入电极患者、十余年电刺激实验：后岛叶产生特定部位的痛/热/麻，中岛叶产生恶心、胸闷等内脏感，前岛叶与认知情绪区对话——岛叶「不只是读取身体，也在影响身体该如何被感受」。Nature 新闻（Gemma Conroy）引用 Stanford Josef Parvizi；论文 Quabs et al., doi 10.1038/s41586-026-11175-2。",
+        sources: [
+          { label: "Nature", url: "https://www.nature.com/articles/d41586-026-03334-2" },
+        ],
+        image: "/assets/flow/2026-10-22-nature-insula.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：「最安静的网站」——清洁能源落地页，漂浮岩石、坠落的太阳能板、滚动后落入安静花园，Opus 5.5 生成",
+        why: "@viktoroddy 10/21 19:34 CST。匹配：Viktor 电影感 AI 网页动效种子同一线。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2112870128652267809" },
+        ],
+        image: "/assets/flow/2026-10-22-viktor-garden.jpg",
+      },
+      {
+        title: "Meng To 开源 HTML Demo skill：把 App 演示直接画成 HTML 动画，可循环、可拖动、任意尺寸清晰、支持减少动态",
+        why: "@MengTo 10/21 17:49 CST。匹配：能丢给 Agent 的动效组件/skill。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2112843787777249661" },
+          { label: "fil.design", url: "https://fil.design/skills/html-demo" },
+        ],
+        image: "/assets/flow/2026-10-22-mengto-html-demo.jpg",
+      },
+      {
+        title: "Higgsfield：Opus 5.5 用纯代码动画把 Claude Duet 角色做成 3D",
+        why: "@higgsfield_ai 10/22 08:17 CST。匹配：AI 代码驱动的 3D/motion 成片。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield_ai/status/2113062105901658126" },
+        ],
+        image: "/assets/flow/2026-10-22-higgsfield-duet-3d.jpg",
+      },
+      {
+        title: "村田俊英 推 Colorfigures：给 Claude 装上 skill，就能用手绘等距（isometric）风格画日常物件，按钮可点，复古可爱",
+        why: "@kookaking 10/21 20:15 CST。匹配：ThreeUI 种子同作者、可交给 Agent 的视觉 skill。",
+        sources: [
+          { label: "X", url: "https://x.com/kookaking/status/2112880359012782550" },
+        ],
+        image: "/assets/flow/2026-10-22-colorfigures.jpg",
+      },
+      {
+        title: "Loki Yan 一线观察：「GEO 的变种 Agent O 估计快来了，我已经看到很多 GSC 的 Query 是 Agent 在内部浏览器去谷歌搜出来的结果」",
+        why: "@loki_yan_seo 10/21 16:26 CST。匹配：从业者亲测经验 + AI 搜索可见度。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2112822882674049290" },
+        ],
+        image: "/assets/flow/2026-10-22-loki-agent-o.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Matthew Berman × Sam Altman（约 45 分钟）",
+        why: "@MatthewBerman 10/21 23:35 CST 发布。为什么深：谈 AI 发现新药与新知识、递归自我改进的风险、算力与自研芯片、为 Agent 设计的新硬件、AI 意识之争、ChatGPT 太顺从；不是切片。注：Forward Future 频道不在默认看单，全片在 X 原帖。",
+        sources: [
+          { label: "X", url: "https://x.com/MatthewBerman/status/2112930776811806874" },
+        ],
+        image: "/assets/flow/2026-10-22-altman-berman.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-21",
     title: "WSJ：Anthropic 上半年净亏损超 800 亿美元，营收 163 亿美元；OpenAI 收购 Orchestra Bio 并入 Rosalind；Claude 公开蝎毒结合物实测设计；Mistral 发布 Voxtral 3",
     tldr: "Reuters 转述 WSJ：Anthropic IPO 招股书草案首次给出上半年数字，截至 6/30 营收 163 亿美元（去年同期 11 亿），净亏损超 800 亿（去年同期 130 亿，其中 720 亿为融资工具估值变动的会计费用），AI 基础设施支出近 90 亿美元约翻四倍；Reuters 未独立核实，Anthropic 未回应。OpenAI 收购 Orchestra Bio，团队并入 GPT-Rosalind 与 Rosalind Workbench，生命科学线从模型和工作台伸到药物项目管理。Anthropic 让 Claude 设计蝎毒神经毒素蛋白结合物，211 个实测设计全部公开，17 个达标，不声称抗毒血清。Mistral 发布 Voxtral 3：转写、TTS 与基于 LiveKit 的语音 Agent SDK，可自托管、价格很低。DeepSeek 开源生产推理框架 DeepInfer 与 deepseek-recipe。Aleksander Madry 回 OpenAI 做安全，Altman 公开确认。口味：Viktor Oddy 的 Meadowbell 农场动画落地页、Meng To 用 Three.js 规划机位再交给 Kling 4.0、Google Merchant Center AI Performance Insights、Open Design 0.26.0、Awwwards SOTD Cartier。访谈：Cognitive Revolution × Alex Rives（约 63 分钟），a16z × Karan Singhal（约 56 分钟）。",
