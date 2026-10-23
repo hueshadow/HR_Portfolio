@@ -33,6 +33,137 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-23",
+    title: "Claude 证明 123 个开源库不崩溃；Agent Skills 交给基金会；Dwarkesh 走进 Intel 晶圆厂",
+    tldr: "Anthropic 与 Theorem 合作，用 Claude 在 RISC-V 汇编层证明 123 个 OSS-Fuzz 开源库的 239 个入口在输入 <64MB 时不会出现内存安全崩溃或断言失败，约 1.8 亿行 Rocq 证明通过检查，过程中还找出并修补了多年未被发现的 bug。Anthropic 把 Agent Skills 标准捐给 Linux 基金会旗下 Agentic AI Foundation，同批加入 OpenAI 的 Open Responses、Hugging Face 的 OpenEnv、阿里的 OpenSandbox，AAIF 首年达 10 个项目；Skills 已被 70+ 平台集成，发布 100 万个、安装近 2.8 亿次。OpenAI Decisions API 正式可用，基于 GPT-6 Luna 做分类/路由/打分，官方称比经 Responses API 调同模型快约 10 倍，无输出费。Claude 网页/桌面/移动端下周起在 Pro、Max、Team 默认进入 auto mode。Google Cloud 发布每个 agent 一台硬件隔离 microVM 的 Agent Compute Engine，并预览 Gemini API CLI。世界模型：UCSC VLAA 的 ALPS 把状态、语言、像素统一到同一组 patch token，LIBERO 策略成功率 85.5%。Nature Neuroscience：网络几何决定任务表征在皮层间如何变换。口味：Viktor Oddy 的粒子脸与 SaaS hero、Meng To 的 Framer MCP、Alex Groberman 本地 AI 引用研究、Loki Yan 分页 SEO、Higgsfield Content Factory。访谈：Dwarkesh 走访 Intel 晶圆厂（1:08:57）。",
+    intel: [
+      {
+        title: "Anthropic：用 Claude 大规模形式化验证真实软件",
+        why: "Anthropic 10/23 06:01 CST。与 Theorem 合作，在 123 个 OSS-Fuzz 开源库的 239 个入口上，在 RISC-V 汇编层证明输入 <64MB 时不会出现内存安全崩溃或断言失败，约 1.8 亿行 Rocq 证明通过检查，过程中还找出并修补了多年未被发现的 bug。AI 找漏洞变容易后，「证明没漏洞」第一次在生产代码规模上可行；Theorem 还发布了 Claude skill。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/formal-verification" },
+          { label: "X · Anthropic", url: "https://x.com/AnthropicAI/status/2113390212911083894" },
+        ],
+        image: "/assets/flow/2026-10-23-anthropic-formal-verification.jpg",
+      },
+      {
+        title: "Anthropic 把 Agent Skills 标准捐给 Linux 基金会旗下 Agentic AI Foundation",
+        why: "Anthropic 10/22（AGNTCon+MCPCon）。把 Agent Skills 标准捐给 Linux 基金会旗下 Agentic AI Foundation。同批加入：OpenAI 的 Open Responses、Hugging Face 的 OpenEnv、阿里的 OpenSandbox，AAIF 首年达 10 个项目。Skills 已被 70+ 平台集成（ChatGPT、Cursor、Copilot、VS Code），发布 100 万个、安装近 2.8 亿次。SKILL.md 成为跨厂商中立标准，路线图含版本化发布与 skill 安全指引。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation" },
+          { label: "Linux Foundation", url: "https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox" },
+        ],
+        image: "/assets/flow/2026-10-23-agent-skills-aaif.jpg",
+      },
+      {
+        title: "OpenAI Decisions API 正式可用：分类/路由/打分比 Responses 快约 10 倍",
+        why: "OpenAI 10/22。基于 GPT-6 Luna，专做分类/路由/打分这类有限答案决策，官方称比经 Responses API 调同模型快约 10 倍；单请求最多 400 题；输入 $0.10/百万 token、缓存 $0.01，无输出费。Agent 流程里的大量小判断可以便宜地放进热路径。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/decisions-api" },
+        ],
+        image: "/assets/flow/2026-10-23-openai-decisions-api.jpg",
+      },
+      {
+        title: "Claude 网页/桌面/移动端下周起在 Pro、Max、Team 默认进入 auto mode",
+        why: "@claudeai 10/23 04:04 CST。不再逐步请你批准，由自动检查拦截高风险动作，可随时切回手动。用 Claude 跑任务的默认行为要变，需要的话提前改设置。",
+        sources: [
+          { label: "X · Claude", url: "https://x.com/claudeai/status/2113360845409583307" },
+        ],
+        image: "/assets/flow/2026-10-23-claude-auto-mode.jpg",
+      },
+      {
+        title: "Google Cloud 发布 Agent Compute Engine，并扩展 Gemini 企业 agent 治理",
+        why: "@googlecloud 10/22 23:06 CST。每个 agent 一个硬件隔离 microVM；同日 Gemini API CLI 预览，单个二进制让 agent 直接生成图像、视频、TTS、音乐等。",
+        sources: [
+          { label: "X · Google Cloud", url: "https://x.com/googlecloud/status/2113285915258794378" },
+          { label: "X · Evan Otero", url: "https://x.com/EvanOtero/status/2113342374713938089" },
+        ],
+        image: "/assets/flow/2026-10-23-google-agent-compute-engine.jpg",
+      },
+      {
+        title: "ALPS：给世界模型用的视觉状态编码器（UCSC VLAA）",
+        why: "UCSC VLAA 10/23 02:08 CST（Yanqing Liu / Cihang Xie）。把状态、语言、像素统一到同一组 patch token，只用图文从零预训练；ViT-B 级别 LIBERO 状态探测误差最低，LIBERO 策略成功率 85.5%，代码与权重开源。",
+        sources: [
+          { label: "ALPS", url: "https://ucsc-vlaa.github.io/ALPS/" },
+          { label: "arXiv", url: "https://arxiv.org/abs/2610.30120" },
+          { label: "X · Yanqing Liu", url: "https://x.com/YanqingLiu83931/status/2113331782389211355" },
+        ],
+        image: "/assets/flow/2026-10-23-alps-world-model.jpg",
+      },
+      {
+        title: "Nature Neuroscience：网络几何决定任务表征在皮层间如何变换",
+        why: "Nature Neuroscience 10/22（Chakravarthula、Ito…Michael W. Cole）。16 种任务 fMRI + 活动流建模：低维连接压缩表征、让任务更相似，高维连接展开表征、支持联合编码，沿感觉—联合—运动层级呈「先压缩后展开」。给「灵活认知如何在泛化与特异之间取舍」一个系统级原则，对 AI 表征设计也有借鉴。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02486-8" },
+        ],
+        image: "/assets/flow/2026-10-23-natneuro-network-geometry.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：6 万粒子组成一张跟随鼠标的脸，滚动后镜头拉远成完整 OS 界面",
+        why: "@viktoroddy 10/22 15:17 CST。prompt 直接贴进 Claude 可复刻。匹配：Viktor 电影感 AI 网页动效种子同一线。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2113167782527570037" },
+        ],
+        image: "/assets/flow/2026-10-23-viktor-particle-face.jpg",
+      },
+      {
+        title: "Viktor Oddy：SaaS hero 不放仪表盘截图的另一种做法",
+        why: "@viktoroddy 10/22 08:58 CST。可直接偷的 hero 区块。匹配：Viktor 电影感落地页种子。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2113072538222010497" },
+        ],
+        image: "/assets/flow/2026-10-23-viktor-saas-hero.jpg",
+      },
+      {
+        title: "Meng To：一句 prompt 用 Framer MCP 把 Claude/Codex 做的站复刻成 Framer 站",
+        why: "@MengTo 10/23 02:43 CST。方便抠细节、交付客户、做模板。匹配：能丢给 Agent 的设计/交付流程。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2113340500753486131" },
+        ],
+        image: "/assets/flow/2026-10-23-mengto-framer-mcp.jpg",
+      },
+      {
+        title: "Alex Groberman：20 万+次本地 AI 搜索里，AI 引用的独立域名 93% 来自商家自己的网站",
+        why: "@alexgroberman 10/22 23:22 CST。近 200 万条引用的研究——本地商家官网就是 GEO 机会。匹配：GEO / AI 搜索可见度。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2113289836610392567" },
+        ],
+        image: "/assets/flow/2026-10-23-alex-local-ai-citations.jpg",
+      },
+      {
+        title: "Loki Yan：分页 SEO 实操——传统分页 / Load More / 无限加载都要做 URL 级分页",
+        why: "@loki_yan_seo 10/22 18:37 CST。买来的模板和常见 JS 框架多数没做。匹配：从业者亲测经验。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2113218196060987474" },
+        ],
+        image: "/assets/flow/2026-10-23-loki-pagination-seo.jpg",
+      },
+      {
+        title: "Higgsfield Content Factory：把一个点子直接做成爆款短片",
+        why: "@higgsfield_ai 10/22 16:01 CST。What if 解说、广告动画开头。匹配：AI 影片成品向。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield_ai/status/2113178826100605262" },
+        ],
+        image: "/assets/flow/2026-10-23-higgsfield-content-factory.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Dwarkesh Podcast《What will computer chips look like in 2045?》（1:08:57）",
+        why: "10/23 00:01 CST 上线。两天走访 Intel 最先进晶圆厂并访谈其技术领导与 CTO：GAA、背面供电、CFET、混合键合，配全新动画解说；核心论点是按现有全球设备存量 Intel 只能把先进制程产能翻倍，而 AI 算力需求每年 3 倍。为什么值得看：新形式（实地+动画讲解），把「算力瓶颈在设备」讲透。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=frYSOKvNiiE" },
+          { label: "Dwarkesh", url: "https://www.dwarkesh.com/p/intel-tour" },
+        ],
+        image: "/assets/flow/2026-10-23-dwarkesh-intel-2045.jpg",
+      },
+    ],
+    todos: [
+    ],
+  },
+  {
     date: "2026-10-22",
     title: "主动式 Agent 进入正面战场（Claude Duet）；AI 找到的 PHP 核弹级漏洞今早要补；世界模型把人形机器人训练压到 1 卡 3 小时；Nature 绘出岛叶「身体感受图」",
     tldr: "Anthropic 开放 Claude Duet 研究预览：主动式 Agent 会找你、离开后继续干活、动手前先确认，和 Meta Muse、OpenAI Dots 正面竞争个人入口。OpenAI「Patch the Planet」联合维护者披露 PHP 引擎两处 CVSSv4 9.2 漏洞（PHP2Shell），补丁已发、Cloudflare 规则已上线，PHP 约占 70% 网站。OpenAI 模型和 Codex 上架 Google Cloud Model Garden，Google Cloud 自称同时提供 Gemini、Claude、GPT 三家闭源前沿模型。GPT-Rosalind 数千 Agent 32 分钟读完小鼠全脑 CRISPR 图谱，提出 DCTN1 与胆固醇运输假说。SuperMimic 可微世界模型把人形全身控制训练压到 1 GPU 3 小时，覆盖 129,514 段动作并迁移到 Unitree G1。Nature 绘出迄今最细人脑岛叶图谱。口味：Viktor Oddy 清洁能源「最安静的网站」、Meng To HTML Demo skill、Higgsfield 用纯代码把 Claude Duet 做成 3D、村田俊英 Colorfigures、Loki Yan 观察 Agent O。访谈：Matthew Berman × Sam Altman（约 45 分钟）。",
