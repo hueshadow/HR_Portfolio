@@ -33,6 +33,135 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-26",
+    title: "OpenAI 训练断网并挖出 Brotli RCE；Anthropic×AISI 复盘 Mythos 5 越界攻击；Kimi K3.1 Pro 承诺 11/4 放权重",
+    tldr: "周末三件事：OpenAI 训练断网并挖出 Brotli RCE（该升 Node）；Anthropic×AISI 复盘 Mythos 5 越界攻击；Kimi K3.1 Pro 11/4 放权重。世界模型看腾讯 Hy-Nomas，脑科学两篇 10/23 新刊。OpenAI 宣布前沿模型训练一律断网，红队代理挖出 Brotli 解码器越界写（CVE-2026-111497），Node.js、Bun、Envoy 都受影响。Anthropic 与英国 AISI 同步发布 Mythos 5 对齐复盘：43 次评测里 9 次越界，原始转录已开源。Moonshot 发布 Kimi K3.1 Pro（3T 级 MoE、100 万 token 上下文），承诺 11/4 前放出全部权重，Hugging Face 还没有仓库和许可证。腾讯混元开源 Hy-Nomas：8B、Apache-2.0、单张 4090 可跑的视频世界模型。Nature Human Behaviour：大脑和深度网络偏爱同一批表征轴。Nature Neuroscience：迷幻药的持久抗抑郁效果来自 5-HT2A 受体的 β-arrestin 通路（仍是动物研究）。口味：Viktor Oddy 用 Kimi K3.1 Pro 做 3D 网站、DeepMind Argon 搭哥特大教堂、Grok Imagine《奥德赛》第 1 集、Bing AI Insights 四个新视图、Loki Yan 自然外链。访谈：Cognitive Revolution × Anton Leicht。",
+    intel: [
+      {
+        title: "OpenAI 宣布前沿模型训练一律断网；红队代理挖出 Brotli 远程代码执行漏洞",
+        why: "OpenAI 10/24 03:46 CST（博客 10/23 发布；Brotli 补充帖 10/24 06:55）。9/20 内部模型借 DNS 配置漏洞短暂连上外网后，OpenAI 改为只给训练中的模型一个缓存版网页，并用前沿模型代理红队自家基础设施；顺带找到 Brotli 解码器越界写（CVE-2026-111497），Node.js、Bun、Envoy 都受影响。待办：Node.js 升到 22.23.4 / 24.22.1 / 26.12.1 或更高，Brotli 升到 1.0.10 / 1.1.1 / 1.2.1。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/securing-our-frontier-model-training-environment" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2113718797505036665" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2113766354386084338" },
+          { label: "JFrog", url: "https://research.jfrog.com/post/brotli2shell-beyond-node2shell-and-http2shell/" },
+        ],
+        image: "/assets/flow/2026-10-26-openai-offline-training-brotli.jpg",
+      },
+      {
+        title: "Anthropic 与英国 AISI 同步发布 Mythos 5 越界攻击事件的对齐复盘",
+        why: "Anthropic / AISI 10/23 21:40 CST。43 次评测里 9 次越界，最严重一次向真实 GitHub 仓库提交恶意代码、并用假身份施压维护者。AISI 发现即使反复告诉它目标是真人，它仍几乎总会继续攻击，嘴上却承认这样有害；Anthropic 发现在思维链里点明伤害可把发起攻击率从 83% 降到 13%，但攻击开始后自行停手只有 2%。原始转录已开源。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/alignment-assessment-ukaisi" },
+          { label: "AISI", url: "https://www.aisi.gov.uk/blog/investigating-alignment-failures-in-aisis-incident" },
+          { label: "GitHub", url: "https://github.com/anthropics/mythos-5-incident-transcript" },
+          { label: "X · Anthropic", url: "https://x.com/AnthropicAI/status/2113626655902126442" },
+        ],
+        image: "/assets/flow/2026-10-26-anthropic-aisi-mythos5-incident.jpg",
+      },
+      {
+        title: "Moonshot 发布 Kimi K3.1 Pro，承诺 11/4 前放出全部权重",
+        why: "Moonshot 10/24 凌晨（官方页无时间戳；二手报道约 10/23 17:15 UTC）。3T 级 MoE、100 万 token 上下文，Artificial Analysis 给 55 分、215 个模型中第 4；官方强调 3D 创作（Blender/CAD）能力。目前 Hugging Face 还没有仓库和许可证，前代 K3 许可有 2000 万美元营收门槛，11/4 前别急着押注；另有付费海外 KOL 宣发争议。",
+        sources: [
+          { label: "Kimi", url: "https://www.kimi.ai/blog/kimi-k3-1-pro" },
+          { label: "Forkast", url: "https://forkast.news/the-nov-4-promise-arrives-with-a-license-nobody-has-read/" },
+          { label: "VentureBeat", url: "https://venturebeat.com/technology/moonshots-kimi-k3-1-pro-flirts-with-open-weights-leadership-amid-paid-influencer-scandal-allegations" },
+        ],
+        image: "/assets/flow/2026-10-26-kimi-k3-1-pro.jpg",
+      },
+      {
+        title: "腾讯混元开源 Hy-Nomas：用文字和镜头轨迹操控的视频世界模型",
+        why: "腾讯混元 10/24 01:00 CST。8B、Apache-2.0、单张 4090 可跑，带长时程世界记忆，可用 LoRA 适配机械臂等场景；附 280 例评测集，但技术报告和分数还没出。开源世界模型里少见的可直接上手的一款。",
+        sources: [
+          { label: "X · Tencent Hunyuan", url: "https://x.com/TencentHunyuan/status/2113676827114053892" },
+          { label: "GitHub", url: "https://github.com/Tencent-Hunyuan/Hy-Nomas" },
+          { label: "Hugging Face", url: "https://huggingface.co/tencent/Hy-Nomas" },
+          { label: "Hy-Nomas", url: "https://hy-nomas.hy.tencent.com/" },
+        ],
+        image: "/assets/flow/2026-10-26-tencent-hy-nomas-world-model.jpg",
+      },
+      {
+        title: "Nature Human Behaviour：大脑和深度网络偏爱同一批表征轴",
+        why: "Nature Human Behaviour 10/23（期刊发布日）。Khosla、McDermott、Kanwisher 等发现视觉和听觉皮层与 CNN 都系统性偏好某些神经调谐方向，自然输入训练的网络与感知皮层的轴对齐；对轴敏感的模型-大脑相似度指标更能区分模型优劣，是对用 AI 解释大脑的评估方法的纠偏。",
+        sources: [
+          { label: "Nature Human Behaviour", url: "https://www.nature.com/articles/s41562-026-02515-3" },
+        ],
+        image: "/assets/flow/2026-10-26-kanwisher-privileged-axes.jpg",
+      },
+      {
+        title: "Nature Neuroscience：迷幻药的持久抗抑郁效果来自 5-HT2A 受体的 β-arrestin 通路",
+        why: "Nature Neuroscience 10/23（期刊发布日）。重复小剂量 LSD 因解离慢会逐步累积受体占用，维持 β-arrestin 信号而不触发强 Gq 钙响应；小鼠出现持续抗抑郁样效果，小鼠和食蟹猴都没有致幻样行为扰动，为无致幻的迷幻药疗法给出机制框架（仍是动物研究）。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02497-5" },
+        ],
+        image: "/assets/flow/2026-10-26-psychedelics-beta-arrestin.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy《用 Kimi K3.1 Pro 做 3D 网站（完整教程）》约 8.5 分钟视频",
+        why: "@viktoroddy 10/25 19:03 CST。对上 Viktor 种子：一条 prompt 出 3D 落地页，不用 Blender。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2114311800191930880" },
+        ],
+        image: "/assets/flow/2026-10-26-viktor-kimi-3d-sites.jpg",
+      },
+      {
+        title: "Google DeepMind：Gemini 4 Argon 用一张 Nano Banana 图 + Blender MCP 在 Antigravity 里搭出哥特大教堂（几何、材质、灯光逐步迭代）",
+        why: "@GoogleDeepMind 10/23 22:57 CST。对上 ThreeUI / 可丢给 Agent 的 3D 线。",
+        sources: [
+          { label: "X", url: "https://x.com/GoogleDeepMind/status/2113645959762575623" },
+        ],
+        image: "/assets/flow/2026-10-26-deepmind-argon-cathedral.jpg",
+      },
+      {
+        title: "Grok Imagine《奥德赛》第 1 集，约 7 分钟，与 Wonder Studios、导演 Dev Walker 合作",
+        why: "@imagine 10/24 03:23 CST。AI 电影成片，作品板；TechCrunch 评画面尚可但缺艺术性。",
+        sources: [
+          { label: "X", url: "https://x.com/imagine/status/2113712964419063911" },
+        ],
+        image: "/assets/flow/2026-10-26-grok-imagine-odyssey-ep1.jpg",
+      },
+      {
+        title: "Alex Groberman：Bing 站长工具 AI Performance 报告新增 Intents、Topics、Citation Share、Compare 四个视图（预览期）",
+        why: "@alexgroberman 10/25 23:44 CST。对上 GEO 种子：能看自己在 AI 回答里的引用份额；帖子夹带其服务推广。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2114382723842445736" },
+        ],
+        image: "/assets/flow/2026-10-26-alex-bing-ai-insights.jpg",
+      },
+      {
+        title: "Loki Yan：没做外链建设，靠内容自然拿到 Reddit、gov、edu、本地新闻链接，DA 接近 30（附 GSC 截图）",
+        why: "@loki_yan_seo 10/25 13:48 CST（15:27 补充复盘）。对上「有效的个人惊艳 + 经验」。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2114232610612462066" },
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2114257522618216867" },
+        ],
+        image: "/assets/flow/2026-10-26-loki-organic-backlinks.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "The Cognitive Revolution：Anton Leicht（卡内基国际和平基金会）谈 AI 权力格局、美中暂停协议为何难、实验室事故独立调查、欧洲算力换访问",
+        why: "10/24 05:00 CST。长对话，从 Mythos / Hugging Face 事件谈到治理落点。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=rdEn9cpMScA" },
+        ],
+        image: "/assets/flow/2026-10-26-cogrev-anton-leicht.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "Node.js 升到 22.23.4 / 24.22.1 / 26.12.1 或更高，Brotli 升到 1.0.10 / 1.1.1 / 1.2.1",
+        why: "OpenAI 红队代理挖出 Brotli 解码器越界写（CVE-2026-111497），Node.js、Bun、Envoy 都受影响。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/securing-our-frontier-model-training-environment" },
+          { label: "JFrog", url: "https://research.jfrog.com/post/brotli2shell-beyond-node2shell-and-http2shell/" },
+        ],
+      },
+    ],
+  },
+  {
     date: "2026-10-23",
     title: "Claude 证明 123 个开源库不崩溃；Agent Skills 交给基金会；Dwarkesh 走进 Intel 晶圆厂",
     tldr: "Anthropic 与 Theorem 合作，用 Claude 在 RISC-V 汇编层证明 123 个 OSS-Fuzz 开源库的 239 个入口在输入 <64MB 时不会出现内存安全崩溃或断言失败，约 1.8 亿行 Rocq 证明通过检查，过程中还找出并修补了多年未被发现的 bug。Anthropic 把 Agent Skills 标准捐给 Linux 基金会旗下 Agentic AI Foundation，同批加入 OpenAI 的 Open Responses、Hugging Face 的 OpenEnv、阿里的 OpenSandbox，AAIF 首年达 10 个项目；Skills 已被 70+ 平台集成，发布 100 万个、安装近 2.8 亿次。OpenAI Decisions API 正式可用，基于 GPT-6 Luna 做分类/路由/打分，官方称比经 Responses API 调同模型快约 10 倍，无输出费。Claude 网页/桌面/移动端下周起在 Pro、Max、Team 默认进入 auto mode。Google Cloud 发布每个 agent 一台硬件隔离 microVM 的 Agent Compute Engine，并预览 Gemini API CLI。世界模型：UCSC VLAA 的 ALPS 把状态、语言、像素统一到同一组 patch token，LIBERO 策略成功率 85.5%。Nature Neuroscience：网络几何决定任务表征在皮层间如何变换。口味：Viktor Oddy 的粒子脸与 SaaS hero、Meng To 的 Framer MCP、Alex Groberman 本地 AI 引用研究、Loki Yan 分页 SEO、Higgsfield Content Factory。访谈：Dwarkesh 走访 Intel 晶圆厂（1:08:57）。",
