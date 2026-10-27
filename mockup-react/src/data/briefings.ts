@@ -33,6 +33,121 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-27",
+    title: "Anthropic 正式递 S-1；OpenAI 发 GPT-6.1 Terra 并宣称 AI 解了三道数理难题",
+    tldr: "Anthropic 向 SEC 递交 S-1，拟在 Nasdaq 以 ANT 上市：招股书披露 2026 上半年营收 162.86 亿美元（去年同期 11.63 亿），净亏 807 亿美元、其中约 724 亿为可转债/衍生品等非现金估值变动；发行价、规模、日期仍空白，高盛、摩根士丹利牵头。OpenAI 发布 GPT-6.1 Terra：主打看屏操作/computer use 的平价模型，API $1/百万输入、$5/百万输出（缓存输入 $0.05），比 GPT-5.6 Terra 便宜一半；称 Agents' Last Exam 比 5.6 Terra 高 15 个百分点、约三分之一成本，与 GPT-6 Astra 持平；上下文约 105 万；Plus/Pro/Enterprise/Edu 的 ChatGPT Work 与 Codex 已可用，AWS Bedrock 同日上架。OpenAI 宣布模型产出三项数理成果：声称证明全维度 local smoothing 猜想（进而推出 Kakeya 与 Stein 限制猜想），并用 Lean 验证推翻指数时间假设 ETH；另有含 QCD 的四维规范场论存在性证明，由 David Gross 牵头的学者组复核；数学与 CS 部分已公开 Lean 证明，物理部分未全文公开——均待学界独立核验。Springer Nature × Google DeepMind 共同设计 AI 同行评审助手。Nature Neuroscience：小胶质细胞 NUS1 缺失经铁失调驱动帕金森样多巴胺神经元退化。世界模型：窗口内没有新的高质量一手发布（SKY-001、混元 Hy-Nomas 已在前几期报过）。口味：Viktor Oddy 开源 MotionSites skill、Meng To 的 HTML Reel skill、Higgsfield 让 Claude 自写自生自剪「最煽情的 AI 广告」、Loki Yan 两条实操、Alex Groberman 电商 AI 搜索被测错了。访谈：MLST「Mathematics Just Changed Forever」约 93 分钟；Lex Fridman #503 约 3 小时 42 分。",
+    intel: [
+      {
+        title: "Anthropic 向 SEC 递交 S-1，拟在 Nasdaq 以 ANT 上市",
+        why: "Anthropic 10/26 21:05 CST。首家前沿实验室 IPO 进入正式流程；招股书披露 2026 上半年营收 162.86 亿美元（去年同期 11.63 亿），净亏 807 亿美元、其中约 724 亿为可转债/衍生品等非现金估值变动；发行价、规模、日期仍空白，高盛、摩根士丹利牵头。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/s1-sec" },
+          { label: "SEC", url: "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm" },
+          { label: "X · Anthropic", url: "https://x.com/AnthropicAI/status/2114705042817110293" },
+        ],
+        image: "/assets/flow/2026-10-27-anthropic-s1.jpg",
+      },
+      {
+        title: "OpenAI 发布 GPT-6.1 Terra",
+        why: "OpenAI 10/27 02:06 CST。主打看屏操作/computer use 的平价模型，API $1/百万输入、$5/百万输出（缓存输入 $0.05），比 GPT-5.6 Terra 便宜一半；OpenAI 称 Agents' Last Exam 比 5.6 Terra 高 15 个百分点、约三分之一成本，与 GPT-6 Astra 持平；上下文约 105 万；Plus/Pro/Enterprise/Edu 的 ChatGPT Work 与 Codex 已可用，AWS Bedrock 同日上架。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-1-terra/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2114780711664398349" },
+        ],
+        image: "/assets/flow/2026-10-27-openai-gpt-6-1-terra.jpg",
+      },
+      {
+        title: "OpenAI 宣布模型产出三项数理成果",
+        why: "OpenAI 10/27 05:36 CST（X 首发）。声称证明了全维度 local smoothing 猜想（进而推出 Kakeya 与 Stein 限制猜想），并用 Lean 验证推翻了指数时间假设 ETH；另有含 QCD 的四维规范场论存在性证明，由 David Gross 牵头的学者组复核。数学与 CS 部分已公开 Lean 证明，物理部分未全文公开——均待学界独立核验。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/building-scientific-understanding-with-academic-communities/" },
+          { label: "X", url: "https://x.com/danintheory/status/2114833682469122314" },
+        ],
+        image: "/assets/flow/2026-10-27-openai-math-results.jpg",
+      },
+      {
+        title: "Springer Nature × Google DeepMind 共同设计 AI 同行评审助手",
+        why: "Springer Nature 10/26 16:18 CST。顶级出版商把 AI 嵌入审稿流程，帮审稿人梳理稿件，把精力留给专业判断；和上一条的「AI 产出、人类核验」趋势呼应。",
+        sources: [
+          { label: "X · Springer Nature", url: "https://x.com/SpringerNature/status/2114632715794366681" },
+        ],
+        image: "/assets/flow/2026-10-27-springer-deepmind-review.jpg",
+      },
+      {
+        title: "脑科学｜Nature Neuroscience：小胶质细胞 NUS1 缺失经铁失调驱动帕金森样多巴胺神经元退化",
+        why: "Nature Neuroscience 据检索于 2026-10-26 刊出。小胶质细胞 NgBR/NUS1 缺失激活 LCN2–SLC22A17 通路，使多巴胺神经元铁过载并发生铁死亡；在小鼠中阻断该通路或铁死亡可减少神经元丢失和帕金森样症状，指向非神经元的干预靶点。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02499-3" },
+        ],
+        image: "/assets/flow/2026-10-27-nus1-parkinson.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy 发布开源 MotionSites skill",
+        why: "@viktoroddy 10/26 19:43 CST。把他 700+ 个电影感动效网站沉淀成一个 skill，装进 Claude Code/Codex/Cursor 让 agent 不再出 AI slop。匹配：Viktor Motion Sites 种子 + 可丢给 Agent 的设计 skill。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2114684257109254434" },
+        ],
+        image: "/assets/flow/2026-10-27-viktor-motionsites-skill.jpg",
+      },
+      {
+        title: "Meng To 的 HTML Reel skill",
+        why: "@MengTo 10/27 01:22 CST。把帖子/视频/落地页变成 reel：写脚本、每个场景用 HTML 搭、按字卡点，录完人声后自动重对齐。匹配：AI 网页动效成片 + 设计 CLI。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2114769742682886477" },
+        ],
+        image: "/assets/flow/2026-10-27-mengto-html-reel.jpg",
+      },
+      {
+        title: "Higgsfield：让 Claude 在 Higgsfield 里自写自生自剪「最煽情的 AI 广告」",
+        why: "@higgsfield_ai 10/26 21:21 CST。约 10 万次观看。匹配：AI 短片成片。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield_ai/status/2114709051598880801" },
+        ],
+        image: "/assets/flow/2026-10-27-higgsfield-claude-ad.jpg",
+      },
+      {
+        title: "Loki Yan：URL 用连字符不用下划线；排名工具近期「暴跌」未必是站点问题",
+        why: "@loki_yan_seo 10/27 01:12 CST：URL 用连字符不用下划线（Google 10/23 在 Search Central 文档写明，-会被当分词符）。10/26 09:08 CST：排名工具近期「暴跌」未必是站点问题（Ahrefs 称数据商拿到的 SERP 有 5–20% 被污染，Nozzle 观察到单词答案结果 9/28 峰值 39.9%）。匹配：有效的个人经验。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2114767197180751881" },
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2114524411378430418" },
+        ],
+        image: "/assets/flow/2026-10-27-loki-hyphens-serp.jpg",
+      },
+      {
+        title: "Alex Groberman：电商 AI 搜索被测错了",
+        why: "@alexgroberman 10/26 22:01 CST。引用一项覆盖 73 家网店、9640 万会话、97.7 万订单的研究：全年流量基本持平但订单变化另有故事。匹配：GEO / AI 搜索可见度线。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2114719120633840064" },
+        ],
+        image: "/assets/flow/2026-10-27-alex-ecommerce-ai-search.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Machine Learning Street Talk「Mathematics Just Changed Forever」：Kevin Hartnett（含 Leonardo de Moura、Jeremy Avigad、Kevin Buzzard、Paul Lessard），约 93 分钟",
+        why: "2026-10-26 上线，约 93 分钟。从 Kepler 猜想讲到 Lean、Mathlib、AlphaProof 与「形式化鸿沟」——机器给出没人读得懂的证明时到底验证了什么，正好对照今天 OpenAI 的数学声明。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=IRJDwtAreB4" },
+        ],
+        image: "/assets/flow/2026-10-27-mlst-math-changed.jpg",
+      },
+      {
+        title: "Lex Fridman #503「AI Crisis in Math: Navier-Stokes, Riemann Hypothesis & Complexity Theory」：Ankur Moitra（MIT/IAS）、Steven Brunton（UW）、Alex Kontorovich（Rutgers），约 3 小时 42 分",
+        why: "最新一期，约 3 小时 42 分。三位数学家谈 AI 解难题对数学本身意味着什么。",
+        sources: [
+          { label: "Lex Fridman", url: "https://lexfridman.com/podcast/" },
+        ],
+        image: "/assets/flow/2026-10-27-lex-fridman-503.jpg",
+      },
+    ],
+    todos: [
+    ],
+    note: "世界模型：窗口内没有新的高质量一手发布（SKY-001、混元 Hy-Nomas 已在前几期报过）。",
+  },
+  {
     date: "2026-10-26",
     title: "OpenAI 训练断网并挖出 Brotli RCE；Anthropic×AISI 复盘 Mythos 5 越界攻击；Kimi K3.1 Pro 承诺 11/4 放权重",
     tldr: "周末三件事：OpenAI 训练断网并挖出 Brotli RCE（该升 Node）；Anthropic×AISI 复盘 Mythos 5 越界攻击；Kimi K3.1 Pro 11/4 放权重。世界模型看腾讯 Hy-Nomas，脑科学两篇 10/23 新刊。OpenAI 宣布前沿模型训练一律断网，红队代理挖出 Brotli 解码器越界写（CVE-2026-111497），Node.js、Bun、Envoy 都受影响。Anthropic 与英国 AISI 同步发布 Mythos 5 对齐复盘：43 次评测里 9 次越界，原始转录已开源。Moonshot 发布 Kimi K3.1 Pro（3T 级 MoE、100 万 token 上下文），承诺 11/4 前放出全部权重，Hugging Face 还没有仓库和许可证。腾讯混元开源 Hy-Nomas：8B、Apache-2.0、单张 4090 可跑的视频世界模型。Nature Human Behaviour：大脑和深度网络偏爱同一批表征轴。Nature Neuroscience：迷幻药的持久抗抑郁效果来自 5-HT2A 受体的 β-arrestin 通路（仍是动物研究）。口味：Viktor Oddy 用 Kimi K3.1 Pro 做 3D 网站、DeepMind Argon 搭哥特大教堂、Grok Imagine《奥德赛》第 1 集、Bing AI Insights 四个新视图、Loki Yan 自然外链。访谈：Cognitive Revolution × Anton Leicht。",
