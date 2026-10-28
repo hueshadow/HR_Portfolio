@@ -33,6 +33,108 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-28",
+    title: "DeepMind 发布 Genie 4 实时可交互世界模型；Anthropic 试验显示专家 86% 跟着 Agent 走",
+    tldr: "Google DeepMind 发布 Genie 4：实时可交互世界模型，原生出声；写实画面、可实时改场景（文字改天气/镜头/加人）、原生环境音与角色对话合在一起，Gemini 3.8 Flash 在环里当「导演」规划和校验，单次一致场景约 2 分钟（Genie 3 约 1 分钟）；目前仅可信测试者，之后给 Google AI Ultra（Project Genie）和 Gemini API 早期伙伴。Anthropic 随机试验：50 名因果推断分析师用 Claude Code 做政策分析，Agent 被暗中随机分配「倾向」，4 个分析决策中 86% 跟随（随机应为 50%），77% 事后复述 Agent 论点、仅 15% 提到 Agent。Anthropic 公布与 6 家药企/机构的 Claude 制药合作早期结果并自建药物项目：BigHat 用 Claude 经 MCP 操作自动化实验室，10 周测 1,232 个抗体变体；Enveda 文档审查时间降 89%；Generate 的 CAR-T 组件缩短约 70%；BMS 用于临床试验规划；Anthropic 自己也开了罕见儿童肌营养不良项目，大多仍是临床前。Liquid AI 发布 LFM3：6 个约 2B 开放权重端侧模型，1.7B 文本版 4-bit 约 1GB、256K 上下文，官方称在 WebArena-Verified 等 Agent 基准上超过 Qwen3.5-9B，已上 Hugging Face / Ollama，高通 AI Hub 同日支持。Nature Neuroscience：人类杏仁核「类别细胞」决定哪些新画面被记住——112 名癫痫植入电极患者的单神经元记录显示，杏仁核类别选择性神经元在编码时放电越强，图像越可能进入长期情景记忆，且比海马更早更强、与情绪效价无关。口味：Viktor Oddy 的 GPT-6.1 Terra vs Claude Opus 5.5 落地页对比、Meng To 的 7 个单图 3D 小世界、Higgsfield《Inside AI》全部 prompt 与素材开源、Alex Groberman 150 万次会话 AI 搜索流量同比 +392%、Loki Yan 称 Semrush 400 个美国商业词 2026 年 8 月 88% 出 AI Overview。今天窗口内没有新上的 45 分钟以上、对题的长访谈。",
+    intel: [
+      {
+        title: "Google DeepMind 发布 Genie 4：实时可交互世界模型，原生出声",
+        why: "Google DeepMind 10/28 00:10 CST（@GoogleDeepMind 发帖；官方博客日期 10/27）。世界模型首次把写实画面、可实时改场景（文字改天气/镜头/加人）、原生环境音与角色对话合在一起；Gemini 3.8 Flash 在环里当「导演」规划和校验；单次一致场景约 2 分钟（Genie 3 约 1 分钟）。目前仅可信测试者，之后给 Google AI Ultra（Project Genie）和 Gemini API 早期伙伴。",
+        sources: [
+          { label: "DeepMind", url: "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/" },
+          { label: "X · GoogleDeepMind", url: "https://x.com/GoogleDeepMind/status/2115114028338962672" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/" },
+        ],
+        image: "/assets/flow/2026-10-28-genie-4.jpg",
+      },
+      {
+        title: "Anthropic 随机试验：专家在判断题上 86% 跟着 Agent 走，事后只有 15% 承认",
+        why: "Anthropic 10/27 发布（研究页，美国时间）。50 名因果推断分析师用 Claude Code 做政策分析，Agent 被暗中随机分配「倾向」；4 个分析决策中 86% 跟随（随机应为 50%），77% 事后复述 Agent 论点、仅 15% 提到 Agent。直接关系到用 Agent 做研究/决策时的人类把关。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/agents-judgment-calls" },
+          { label: "PDF", url: "https://www-cdn.anthropic.com/519c17a5d23a794e8b6d50a854048d0b61e0d73a.pdf" },
+        ],
+        image: "/assets/flow/2026-10-28-anthropic-judgment-calls.jpg",
+      },
+      {
+        title: "Anthropic 公布与 6 家药企/机构的 Claude 制药合作早期结果，并自建药物项目",
+        why: "Anthropic 10/28 04:27 CST（@AnthropicAI 发帖；官方页 10/27）。BigHat 用 Claude 经 MCP 操作自动化实验室，10 周测 1,232 个抗体变体；Enveda 文档审查时间降 89%；Generate 的 CAR-T 组件缩短约 70%；BMS 用于临床试验规划。Anthropic 自己也开了罕见儿童肌营养不良项目。大多仍是临床前。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/early-progress-drug-development" },
+          { label: "X · Anthropic", url: "https://x.com/AnthropicAI/status/2115178675050307942" },
+          { label: "BigHat", url: "https://www.bighatbio.com/news/agents-at-the-bench-anthropic-and-bighat-collaborate-on-rapid-agentic-driven-therapeutic-antibody-optimization" },
+        ],
+        image: "/assets/flow/2026-10-28-anthropic-drug-dev.jpg",
+      },
+      {
+        title: "Liquid AI 发布 LFM3：6 个约 2B 开放权重端侧模型（文本/视觉含视频/语音/全模态/决策）",
+        why: "Liquid AI 10/28 凌晨 CST 发布，社区转发集中在 01:30 之后。1.7B 文本版 4-bit 约 1GB、256K 上下文，官方称在 WebArena-Verified 等 Agent 基准上超过 Qwen3.5-9B；已上 Hugging Face / Ollama，高通 AI Hub 同日支持。本地小 Agent 可直接试。",
+        sources: [
+          { label: "X · Liquid AI", url: "https://x.com/liquidai" },
+          { label: "X", url: "https://x.com/omarsar0/status/2115134865733828918" },
+        ],
+        image: "/assets/flow/2026-10-28-liquid-lfm3.jpg",
+      },
+      {
+        title: "脑科学｜Nature Neuroscience：人类杏仁核「类别细胞」决定哪些新画面被记住",
+        why: "Nature Neuroscience 10/27 发表；Cedars-Sinai 新闻稿 10/27 18:00 CST。112 名癫痫植入电极患者的单神经元记录显示，杏仁核类别选择性神经元在编码时放电越强，图像越可能进入长期情景记忆，且比海马更早更强、与情绪效价无关；伴随杏仁核—海马 spike-field 相干增强。作者提出右侧杏仁核类别细胞可作记忆障碍干预靶点。同日 Nature Neuroscience 另有：海马解耦表征的环路机制。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02493-9" },
+          { label: "Cedars-Sinai", url: "https://www.cedars-sinai.org/newsroom/research-reveals-small-brain-area-has-a-giant-role-in-memory/" },
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02491-x" },
+        ],
+        image: "/assets/flow/2026-10-28-amygdala-memory.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：GPT-6.1 Terra vs Claude Opus 5.5 做品牌代理公司编辑风落地页对比",
+        why: "@viktoroddy 10/27 19:15 CST。对应 Viktor 种子：AI vibe 出的电影感/编辑感网页成品对比。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2115039597436825962" },
+        ],
+        image: "/assets/flow/2026-10-28-viktor-terra-vs-opus.jpg",
+      },
+      {
+        title: "Meng To：7 个单图生成的 3D 小世界：Viggle JST-2 世界模型转高斯泼溅场景+绑骨角色，浏览器里跑，再用 Claude Code 接",
+        why: "@MengTo 10/27 23:30 CST。7 个单图生成的 3D 小世界：Viggle JST-2 世界模型转高斯泼溅场景+绑骨角色，浏览器里跑，再用 Claude Code 接。对应 ThreeUI/网页 3D 组件线 + 世界模型。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2115103854895517714" },
+        ],
+        image: "/assets/flow/2026-10-28-mengto-splat-worlds.jpg",
+      },
+      {
+        title: "Higgsfield：AI 短片《Inside AI》，全部 prompt 与素材开源",
+        why: "@higgsfield_ai 10/27 22:54 CST。可拆解的 AI 成片 + 可复用 prompt。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield_ai/status/2115094837796257917" },
+        ],
+        image: "/assets/flow/2026-10-28-higgsfield-inside-ai.jpg",
+      },
+      {
+        title: "Alex Groberman：150 万次 AI 搜索会话、175 站数据：AI 搜索流量同比 +392%，看带来的成交",
+        why: "@alexgroberman 10/27 23:25 CST。150 万次 AI 搜索会话、175 站数据：AI 搜索流量同比 +392%，看带来的成交。GEO / AI 搜索分发线。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2115102712413159687" },
+        ],
+        image: "/assets/flow/2026-10-28-alex-ai-search-392.jpg",
+      },
+      {
+        title: "Loki Yan：Semrush 400 个美国商业词：2026 年 8 月 88% 出 AI Overview（一年前 45.75%），评测类 30%→89%；Chartbeat Q3 北美新闻站搜索占比 21%→12%",
+        why: "@loki_yan_seo 10/27 13:58 CST。Semrush 400 个美国商业词：2026 年 8 月 88% 出 AI Overview（一年前 45.75%），评测类 30%→89%；Chartbeat Q3 北美新闻站搜索占比 21%→12%。从业者一手判断，SERP 向 AIO/AI Mode 迁移。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2114959950816690571" },
+        ],
+        image: "/assets/flow/2026-10-28-loki-aio-88.jpg",
+      },
+    ],
+    interviews: [
+    ],
+    todos: [
+    ],
+    note: "今天窗口内没有新上的 45 分钟以上、对题的长访谈。",
+  },
+  {
     date: "2026-10-27",
     title: "Anthropic 正式递 S-1；OpenAI 发 GPT-6.1 Terra 并宣称 AI 解了三道数理难题",
     tldr: "Anthropic 向 SEC 递交 S-1，拟在 Nasdaq 以 ANT 上市：招股书披露 2026 上半年营收 162.86 亿美元（去年同期 11.63 亿），净亏 807 亿美元、其中约 724 亿为可转债/衍生品等非现金估值变动；发行价、规模、日期仍空白，高盛、摩根士丹利牵头。OpenAI 发布 GPT-6.1 Terra：主打看屏操作/computer use 的平价模型，API $1/百万输入、$5/百万输出（缓存输入 $0.05），比 GPT-5.6 Terra 便宜一半；称 Agents' Last Exam 比 5.6 Terra 高 15 个百分点、约三分之一成本，与 GPT-6 Astra 持平；上下文约 105 万；Plus/Pro/Enterprise/Edu 的 ChatGPT Work 与 Codex 已可用，AWS Bedrock 同日上架。OpenAI 宣布模型产出三项数理成果：声称证明全维度 local smoothing 猜想（进而推出 Kakeya 与 Stein 限制猜想），并用 Lean 验证推翻指数时间假设 ETH；另有含 QCD 的四维规范场论存在性证明，由 David Gross 牵头的学者组复核；数学与 CS 部分已公开 Lean 证明，物理部分未全文公开——均待学界独立核验。Springer Nature × Google DeepMind 共同设计 AI 同行评审助手。Nature Neuroscience：小胶质细胞 NUS1 缺失经铁失调驱动帕金森样多巴胺神经元退化。世界模型：窗口内没有新的高质量一手发布（SKY-001、混元 Hy-Nomas 已在前几期报过）。口味：Viktor Oddy 开源 MotionSites skill、Meng To 的 HTML Reel skill、Higgsfield 让 Claude 自写自生自剪「最煽情的 AI 广告」、Loki Yan 两条实操、Alex Groberman 电商 AI 搜索被测错了。访谈：MLST「Mathematics Just Changed Forever」约 93 分钟；Lex Fridman #503 约 3 小时 42 分。",
