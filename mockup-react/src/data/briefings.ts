@@ -33,6 +33,139 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-10-29",
+    title: "Gemini 4 Carbon 冲顶网络与长程任务；Copilot Fusion GA；Connected Apps 开放；中风 Htr2b 巨噬新轴",
+    tldr: "Google DeepMind 发布 Gemini 4 Carbon：官方称在 Artificial Analysis Intelligence Index v5.0 排名第一（59），网络安全基准 SEC-bench Pro 88.2% / ExploitGym 54.8% / CWE-bench 71.0%；先给部分网络防御方与 Fairwind 伙伴，价同 Argon 入门价。GitHub Copilot Fusion 正式 GA：按任务路由/编排多模型（Standard/High/Max），Coding Agent Index 上 Fusion Max 约 60、官方称约一半 API 成本与约 40% 更短耗时；付费计划限时模型费用 7 折。Google 推出 Connected Apps Platform 预览：开发者用云端 MCP 或 Android MCP（AppFunctions）一次接入 Search 与 Gemini；Adobe / Experian / Localiza / Peloton 已在 Gemini 上线，未来几周进 Search，目前分阶段开放。Anthropic AI for Science 扩到 20 家基金会/机构/课题组（含 FlyWire 连接组学等），继续发免费 Claude 额度。脑科学：Nature Neuroscience 中风后 Htr2b⁺ 单核巨噬细胞的血清素信号促进吞噬、减轻脑损伤；Nature 报道 VAMP7 外吐介导的突触前稳态可塑性。口味：Viktor Claude 做 3D agent hero、OpenDesign 免费 Motion 品牌视频（adidas/Figma/TE OB-4）、Meng To 用 Dola 给 ThreeUI 出发布海报、Alex 买家意图搜索 96% 出 AIO、Higgsfield Playable 把广告变成可玩手游。长访谈：Latent Space《Why Agents Love Supabase》（Paul Copplestone & Ant Wilson，77 分钟）；The Cognitive Revolution《Freedom of Action: America's ASI Strategy》（RAND Joel Predd / Ben Boudreaux / Matt Chessen，约 1h49）。窗口内无新的世界模型一手发布。",
+    intel: [
+      {
+        title: "Google DeepMind 发布 Gemini 4 Carbon：网络安全与长程工程任务冲顶，先放防御方",
+        why: "@GoogleDeepMind 10/29 01:02 CST（博客日期 10/28）。官方称 Carbon 是下一款 frontier 模型，在更新后的 Artificial Analysis Intelligence Index v5.0 排第一（59）；SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0%；内部称安全代码生成成功率相对 Argon 超 2×，高严重错位告警降约 80%，Gray Swan IPI 攻击成功率 0.0%。本周起给部分网络防御方，再经 Fairwind 扩伙伴；入门价同 Argon（$2/$10 per MTok）。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/" },
+          { label: "X · GoogleDeepMind", url: "https://x.com/GoogleDeepMind/status/2115489356437651654" },
+        ],
+        image: "/assets/flow/2026-10-29-gemini-4-carbon.jpg",
+      },
+      {
+        title: "GitHub Copilot Fusion 正式 GA：按任务自动路由/编排多模型",
+        why: "GitHub Changelog 10/28。选 Fusion 后按 Standard/High/Max 尽力程度路由；支持 Single / Cascade / Critique 工作流。官方称 Artificial Analysis Coding Agent Index 上 Fusion Max 得分 60（距 Claude Code+Opus 5.5 Max 约 2 分），约一半平均 API 成本、约一半 token、约 40% 更短耗时。VS Code / Copilot app / CLI / JetBrains 可用；付费计划限时 Fusion 模型费用 30% 折扣。",
+        sources: [
+          { label: "GitHub Changelog", url: "https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion/" },
+          { label: "GitHub Universe", url: "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/" },
+        ],
+        image: "/assets/flow/2026-10-29-copilot-fusion.jpg",
+      },
+      {
+        title: "Google Connected Apps Platform 预览：一次接入 Search + Gemini（MCP）",
+        why: "Google 博客 10/28。开发者用云端 MCP 或 Android MCP（AppFunctions）在 Connected Console 注册/测试/提交，可选上线 Search、Gemini 或两者。Adobe、Experian、Localiza、Peloton 已在 Gemini 上线，未来几周进 Search；Calm 也将双端上线。分阶段开放，文档在 developers.google.com/connected-apps。对做 Agent 分发/GEO 的人：入口进了搜索与 Gemini 对话。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/technology/developers-tools/connected-apps-one-place/" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/" },
+          { label: "X · Loki Yan", url: "https://x.com/loki_yan_seo/status/2115588527501312001" },
+        ],
+        image: "/assets/flow/2026-10-29-google-connected-apps.jpg",
+      },
+      {
+        title: "Anthropic AI for Science 扩到 20 家基金会/机构/课题组",
+        why: "Anthropic 10/28。在个人科学家额度之外，向 Sloan / Simons / Schmidt Sciences / NSF / CAS 等基金会与 STScI、Sanger、Crick、EMBL、Gladstone 等机构发免费 Claude 额度；点名项目含 Princeton FlyWire（果蝇全脑连接组）、Columbia LEAP、Broad gnomAD、Tau Ceti（Lean 自动形式化）等。HHMI Janelia 的 Model Hardware Standard（Agent 安全操作实验仪器）仍在 research preview。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions" },
+        ],
+        image: "/assets/flow/2026-10-29-anthropic-ai-for-science.jpg",
+      },
+      {
+        title: "脑科学｜Nature Neuroscience：中风后 Htr2b⁺ 单核巨噬细胞的血清素信号促进吞噬、减轻脑损伤",
+        why: "Nature Neuroscience Published 28 October 2026。Htr2b⁺ MDM 在梗死周边聚集；敲除 Htr2b 损害碎屑清除、加重损伤；激动剂或激活 Tfe3 可恢复溶酶体发生并改善预后；鼻喷激动剂路径。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02482-y" },
+        ],
+        image: "/assets/flow/2026-10-29-natneuro-htr2b-stroke.jpg",
+      },
+      {
+        title: "脑科学｜Nature：VAMP7 外吐介导的突触前稳态可塑性",
+        why: "Nature Published 28 October 2026。高频刺激把 VAMP7 送到膜上，经 syntaxin 抑制 P/Q 型钙通道、降低释放概率；Vamp7 敲除使 FOS⁺ 神经元倍数上升。",
+        sources: [
+          { label: "Nature", url: "https://www.nature.com/articles/s41586-026-11201-3" },
+        ],
+        image: "/assets/flow/2026-10-29-nature-vamp7.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：用 Claude 做出带渐变屏脸的 glossy 3D AI agent hero（无 Spline/Blender）",
+        why: "@viktoroddy 10/28 20:32 CST。对应 Viktor Motion Sites 种子：可复用 prompt 的电影感/3D 网页 hero，免费 prompt 在 motionsites.ai。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2115421452853997771" },
+          { label: "Prompt", url: "https://motionsites.ai/?prompt=nova-agent-hero" },
+        ],
+        image: "/assets/flow/2026-10-29-viktor-agent-hero.jpg",
+      },
+      {
+        title: "OpenDesign：免费 Motion 品牌视频（adidas / Figma / TE OB-4）",
+        why: "@OpenDesignHQ。对应 Open Design / anti-slop motion 种子：免费品牌视频演示，含 adidas / Figma / TE OB-4。",
+        sources: [
+          { label: "X", url: "https://x.com/OpenDesignHQ/status/2115377716556148868" },
+        ],
+        image: "/assets/flow/2026-10-29-opendesign-motion.jpg",
+      },
+      {
+        title: "Meng To：Dola 一句话+一张截图，给 ThreeUI 出 3 条发布路线与 Seedream 海报",
+        why: "@MengTo 10/28 19:52 CST。对应 ThreeUI / 可丢给 Agent 的 3D·发布视觉线：保留真实 UI 截图进海报，再用 Seedance 出 5 秒 motion。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2115411286356001001" },
+        ],
+        image: "/assets/flow/2026-10-29-mengto-dola-threeui.jpg",
+      },
+      {
+        title: "Alex Groberman：买家意图搜索上 96%「best X for Y」等商业修饰词出 AI Overviews",
+        why: "@alexgroberman。买家意图搜索上 96%「best X for Y」等商业修饰词出 AIO。对应 GEO / AI 搜索可见度种子。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2115432414919237943" },
+        ],
+        image: "/assets/flow/2026-10-29-alex-aio-buyer-intent.jpg",
+      },
+      {
+        title: "Higgsfield Playable：把爆款广告视频变成可玩手游/试玩广告",
+        why: "@higgsfield 10/29 03:39 CST。丢 gameplay 视频/截图/prompt → 生成带病毒机制的手游，Enterprise 可做成 playable ad。设计/成片可收藏向。",
+        sources: [
+          { label: "X", url: "https://x.com/higgsfield/status/2115528864340525176" },
+        ],
+        image: "/assets/flow/2026-10-29-higgsfield-playable.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space《Why Agents Love Supabase》：Paul Copplestone & Ant Wilson，77 分钟",
+        why: "Latent Space 10/28 上线，77 分钟长谈（非切片）。两位创始人首次同台聊为何 frontier 模型做 app 后端几乎都先推 Supabase：无 Docker 本地后端、声明式 schema 进 Git、Compute 贴着 Postgres 跑，以及 Select 上的 Build/Operate/Scale。对齐 AI Agent 基建。",
+        sources: [
+          { label: "Latent Space", url: "https://latent.space/p/supabase/" },
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=zHG6sAss_kE" },
+        ],
+        image: "/assets/flow/2026-10-29-latent-space-supabase.jpg",
+      },
+      {
+        title: "The Cognitive Revolution《Freedom of Action: America's ASI Strategy》w/ RAND Joel Predd, Ben Boudreaux, Matt Chessen（约 1h49）",
+        why: "10/28 上线长谈；ASI 战略七原型/五枢纽，美方行动自由与地缘 AI 对齐。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=vFfPWL9cRPI" },
+          { label: "Cognitive Revolution", url: "https://www.cognitiverevolution.ai/freedom-of-action-america-s-asi-strategy-w-rand-s-joel-predd-ben-boudreaux-matt-chessen/" },
+        ],
+        image: "/assets/flow/2026-10-29-cogrev-asi-strategy.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "有 Copilot 的话：模型选择器切 Fusion（先 Standard）看路由是否省 token",
+        why: "Fusion 刚 GA，付费计划还有限时 30% 模型费折扣；管理员还可限制 Fusion 可用模型池。",
+      },
+      {
+        title: "若做面向美区的 Agent/应用：看 Connected Apps 预览文档并评估 MCP 接入",
+        why: "入口同时进 Gemini 与后续 Search；分阶段开放，需看是否符合当前资格。",
+      },
+    ],
+    note: "扫描窗口：2026-10-28 08:15 上海之后。已跳过昨日已报：Genie 4、Anthropic judgment-calls、制药早期进展、LFM3、杏仁核记忆等。窗口内无新的世界模型一手发布。Anthropic Frontier Red Team Chrome/Safari 等漏洞链帖标注日期 10/27，落在昨窗外故未重报。",
+  },
+  {
     date: "2026-10-28",
     title: "DeepMind 发布 Genie 4 实时可交互世界模型；Anthropic 试验显示专家 86% 跟着 Agent 走",
     tldr: "Google DeepMind 发布 Genie 4：实时可交互世界模型，原生出声；写实画面、可实时改场景（文字改天气/镜头/加人）、原生环境音与角色对话合在一起，Gemini 3.8 Flash 在环里当「导演」规划和校验，单次一致场景约 2 分钟（Genie 3 约 1 分钟）；目前仅可信测试者，之后给 Google AI Ultra（Project Genie）和 Gemini API 早期伙伴。Anthropic 随机试验：50 名因果推断分析师用 Claude Code 做政策分析，Agent 被暗中随机分配「倾向」，4 个分析决策中 86% 跟随（随机应为 50%），77% 事后复述 Agent 论点、仅 15% 提到 Agent。Anthropic 公布与 6 家药企/机构的 Claude 制药合作早期结果并自建药物项目：BigHat 用 Claude 经 MCP 操作自动化实验室，10 周测 1,232 个抗体变体；Enveda 文档审查时间降 89%；Generate 的 CAR-T 组件缩短约 70%；BMS 用于临床试验规划；Anthropic 自己也开了罕见儿童肌营养不良项目，大多仍是临床前。Liquid AI 发布 LFM3：6 个约 2B 开放权重端侧模型，1.7B 文本版 4-bit 约 1GB、256K 上下文，官方称在 WebArena-Verified 等 Agent 基准上超过 Qwen3.5-9B，已上 Hugging Face / Ollama，高通 AI Hub 同日支持。Nature Neuroscience：人类杏仁核「类别细胞」决定哪些新画面被记住——112 名癫痫植入电极患者的单神经元记录显示，杏仁核类别选择性神经元在编码时放电越强，图像越可能进入长期情景记忆，且比海马更早更强、与情绪效价无关。口味：Viktor Oddy 的 GPT-6.1 Terra vs Claude Opus 5.5 落地页对比、Meng To 的 7 个单图 3D 小世界、Higgsfield《Inside AI》全部 prompt 与素材开源、Alex Groberman 150 万次会话 AI 搜索流量同比 +392%、Loki Yan 称 Semrush 400 个美国商业词 2026 年 8 月 88% 出 AI Overview。今天窗口内没有新上的 45 分钟以上、对题的长访谈。",
