@@ -456,4 +456,12 @@ export const coverOverrides: Record<string, string> = {
   "2026-10-29::Viktor Oddy：用 Claude 做出带渐变屏脸的 glossy 3D AI agent hero（无 Spline/Blender）": "/assets/flow-og/2026-10-29-taste-01-viktor-agent-hero.jpg",
   "2026-10-29::脑科学｜Nature Neuroscience：中风后 Htr2b⁺ 单核巨噬细胞的血清素信号促进吞噬、减轻脑损伤": "/assets/flow-og/2026-10-29-intel-05-natneuro-htr2b-stroke.jpg",
   "2026-10-29::脑科学｜Nature：VAMP7 外吐介导的突触前稳态可塑性": "/assets/flow-og/2026-10-29-intel-06-nature-vamp7.jpg",
+  "2026-11-02::Alex Groberman：Google「Good SEO is good GEO」——品牌怎么进 AI 搜索": "/assets/flow-og/2026-11-02-taste-04-alex-groberman-google-good-seo-is-good-g.jpg",
+  "2026-11-02::Cognitive Revolution AI:AM：Mistral Large 4 + AI 网络威胁（Michael Freeman × Sagar Vaze）": "/assets/flow-og/2026-11-02-interviews-01-cognitive-revolution-ai-am-mistral-large.jpg",
+  "2026-11-02::Loki Yan：Ads×GSC 丢给 Claude，揪广告烧钱但 SEO 差的词": "/assets/flow-og/2026-11-02-taste-05-loki-yan-ads-gsc-claude-seo.jpg",
+  "2026-11-02::Meng To：Opus 5.5 全 three.js 游戏预告片再加一刀": "/assets/flow-og/2026-11-02-taste-03-meng-to-opus-5-5-three-js.png",
+  "2026-11-02::Meng To：Stageshow agent skill——立刻避开 AI slop": "/assets/flow-og/2026-11-02-taste-02-meng-to-stageshow-agent-skill-ai-slop.png",
+  "2026-11-02::Mistral Large 4（Le Chonk）开权重：1T MoE，coding + 防御网络安全": "/assets/flow-og/2026-11-02-intel-04-mistral-large-4-le-chonk-1t-moe-coding.jpg",
+  "2026-11-02::OpenAI / Google 等：robots.txt 共享 AI 训练偏好信号（IETF AIPREF）": "/assets/flow-og/2026-11-02-intel-01-openai-google-robots-txt-ai-ietf-aipref.png",
+  "2026-11-02::Viktor Oddy：会眨眼回看你的电影感作品集落地页": "/assets/flow-og/2026-11-02-taste-01-viktor-oddy.jpg",
 }
