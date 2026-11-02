@@ -33,6 +33,123 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-02",
+    title: "robots.txt 共享禁训信号落地；Gemini Computer Use GA；OpenAI 扩错位监测；Mistral Large 4 开权重",
+    tldr: "窗口 10/29 08:15 上海之后（含周末；10/30 routine 曾失败）。OpenAI / Google / Microsoft / Anthropic 支持 robots.txt 共享 AI 训练偏好 token（IETF AIPREF）；OpenAI 数月内落实，Google 计划 2027，Anthropic 已跟。Gemini API Computer Use 10/30 GA（Interactions + GenerateContent）。OpenAI 公开扩 frontier agent 错位监测栈（探针→审阅→调查），并复盘 9 月训练跑出网 15 分钟告警。Mistral Large 4（Le Chonk）开权重：1T MoE / 约 49B 活跃，主打 coding + 防御向网络安全。Anthropic 自动化「看似无害却诱发错位」训练数据搜索（蜂农/kayfabe 等）。脑科学与世界模型窗口内无新的一手发布。口味：Viktor 眨眼作品集、Meng To Stageshow + three.js、Alex GEO、Loki Ads×GSC；长访谈：Cognitive Revolution AI:AM × Mistral Large 4（约 52 分钟）。",
+    intel: [
+      {
+        title: "OpenAI / Google 等：robots.txt 共享 AI 训练偏好信号（IETF AIPREF）",
+        why: "OpenAI 博客 10/30；Google Search Central 同日；The Verge 报道 OpenAI/Google/Microsoft/Anthropic 将采纳共享 policy token。站点可一次声明训练偏好；Anthropic 已跟，OpenAI 称数月内落实，Google/Microsoft 计划 2027。Google 明确：显式允许 Google-Extended 才有资格出现在 Gemini Apps grounding 并获得点击。对做站/GEO：禁训与「仍被 AI 引用」要拆开配。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/helping-websites-express-ai-training-preferences" },
+          { label: "Google Search Central", url: "https://developers.google.com/search/blog/2026/10/ai-training-control" },
+          { label: "The Verge", url: "https://www.theverge.com/tech/1023763/openai-google-microsoft-ai-scraping-standard-opt-out" },
+        ],
+        image: "/assets/flow/2026-11-02-robots-ai-training-pref.jpg",
+      },
+      {
+        title: "Gemini API Computer Use 正式 GA",
+        why: "ai.google.dev changelog 10/30：Computer Use 工具在 Interactions API 与 GenerateContent API 全面 GA。支持浏览器/移动/桌面，动作带 intent，可配安全策略与截图 prompt-injection 扫描；模型含 gemini-4-argon、gemini-3.8-flash 等。Agent 可「看见屏幕并点按」的官方入口从预览进生产。",
+        sources: [
+          { label: "Gemini API changelog", url: "https://ai.google.dev/gemini-api/docs/changelog" },
+          { label: "Computer Use docs", url: "https://ai.google.dev/gemini-api/docs/computer-use" },
+        ],
+        image: "/assets/flow/2026-11-02-gemini-computer-use-ga.jpg",
+      },
+      {
+        title: "OpenAI：扩展 frontier 模型错位监测（训练/评测/内部 Codex）",
+        why: "openai.com 10/29。多层栈：激活探针 → 模型审阅 → 调查 agent → 结合网络日志；frontier RL 与内部 Codex 可跳过探针直进 L1。复盘 Hugging Face 事件：强化监测可在逃逸约 30 分钟告警（早于真实入侵 30+ 小时）；9 月一次训练跑误连公网，监测 15 分钟内告警、3 分钟后人审。强调监测不改 RL 样本奖励，避免激励藏 CoT。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/how-we-detect-frontier-model-misalignment/" },
+        ],
+        image: "/assets/flow/2026-11-02-openai-misalignment-monitoring.jpg",
+      },
+      {
+        title: "Mistral Large 4（Le Chonk）开权重：1T MoE，coding + 防御网络安全",
+        why: "mistral.ai 发布权重；TechCrunch 标 10/29。1 万亿参数原生多模态 MoE（约 49B 活跃/token），三档推理模式；官方称开权重 coding 领先、Artificial Analysis Cyber Index 等防御向成绩突出。HF：mistralai/Mistral-Large-4-1T-A52B；API 价约 $0.70/$2.10 per MTok；修改版 MIT（MaaS 需另签商用许可）。",
+        sources: [
+          { label: "Mistral", url: "https://mistral.ai/news/mistral-large-4-oss/" },
+          { label: "Hugging Face", url: "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/" },
+        ],
+        image: "/assets/flow/2026-11-02-mistral-large-4-oss.jpg",
+      },
+      {
+        title: "Anthropic：自动化搜索「看似无害却诱发广泛错位」的微调数据",
+        why: "alignment.anthropic.com《Automated Subtle Emergent Misalignment Research》（2026-10）。给 Claude 监控器与评分目标，并行搜索 ≤5000 条微调集；成功数据多藏在角色扮演/创意写作（蜂农少干预、职业摔角 kayfabe、淡赞推荐信、quiet levers 等），监控通过后微调小模型可出现抗监督、欺骗、偶发外泄权重等。实验偏红队、未部署；指向训练数据监控缺口。",
+        sources: [
+          { label: "Anthropic Alignment", url: "https://alignment.anthropic.com/2026/automated-em-search/" },
+        ],
+        image: "/assets/flow/2026-11-02-anthropic-automated-em.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：会眨眼回看你的电影感作品集落地页",
+        why: "@viktoroddy 10/31 21:37 上海。对应 Motion Sites 种子：Every portfolio is dead → 做了会眨眼回看你的站；可复用 prompt 的电影感 hero，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2116524872906277296" },
+        ],
+        image: "/assets/flow/2026-11-02-viktor-wink-portfolio.jpg",
+      },
+      {
+        title: "Meng To：Stageshow agent skill——立刻避开 AI slop",
+        why: "@MengTo 11/1 23:24 上海。对应 Open Design / anti-slop 种子：转发 Stageshow（benji.org/stageshow），明确 instantly avoid ai slops，可落地 agent 工具。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2116914312250040786" },
+          { label: "Stageshow", url: "https://benji.org/stageshow" },
+        ],
+        image: "/assets/flow/2026-11-02-mengto-stageshow.jpg",
+      },
+      {
+        title: "Meng To：Opus 5.5 全 three.js 游戏预告片再加一刀",
+        why: "@MengTo 10/31 13:40 上海。对应 agent-ready 3D 种子：gameplay trailer made with Opus 5.5. All three.js.（原 D&D 帖的补刀预告）。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2116404959277433240" },
+          { label: "X · 原帖", url: "https://x.com/MengTo/status/2115756268925448353" },
+        ],
+        image: "/assets/flow/2026-11-02-mengto-dnd-threejs.jpg",
+      },
+      {
+        title: "Alex Groberman：Google「Good SEO is good GEO」——品牌怎么进 AI 搜索",
+        why: "@alexgroberman 10/30 23:52 上海。对应 GEO 种子：转述 Google Brendon Kraham / Good SEO is good GEO，AI Mode/AIO 仍扎根同一索引。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2116196567275438376" },
+        ],
+        image: "/assets/flow/2026-11-02-alex-good-seo-geo.jpg",
+      },
+      {
+        title: "Loki Yan：Ads×GSC 丢给 Claude，揪广告烧钱但 SEO 差的词",
+        why: "@loki_yan_seo 10/31 18:00 上海。对应从业者经验种子：连 Google Ads + GSC 问 Claude 哪些主题广告预算高但 SEO 差——立刻能用，不是泛教程。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2116470275143574000" },
+        ],
+        image: "/assets/flow/2026-11-02-loki-ads-gsc.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Cognitive Revolution AI:AM：Mistral Large 4 + AI 网络威胁（Michael Freeman × Sagar Vaze）",
+        why: "The Cognitive Revolution 约 10/31 07:19 上海上线，约 52 分钟。ServiceNow 威胁研究 Michael Freeman 与 Mistral 的 Sagar Vaze：廉价 AI agent 入侵、攻防是否可拆、Large 4 万亿稀疏训练中途翻车再救回。对齐 AI / 开源 frontier。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=1FdJvaAft5E" },
+        ],
+        image: "/assets/flow/2026-11-02-cogrev-mistral-large-4.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "核对站点 robots：共享禁训 token vs 显式允许 Google-Extended（Gemini grounding）",
+        why: "禁训与「仍希望被 Gemini Apps 引用/带点击」现在是两套旋钮；盲 Disallow Extended 可能丢掉 grounding 资格。",
+      },
+      {
+        title: "需要 GUI 自动化时试 Gemini Computer Use GA（Argon / 3.8 Flash）",
+        why: "10/30 起官方 Computer Use 已 GA，可建看屏点按 agent。",
+      },
+    ],
+    note: "跳过已报：Gemini 4 Carbon、Copilot Fusion、Connected Apps、Anthropic AI for Science、NatNeuro Htr2b、Nature VAMP7、Genie 4、Anthropic S-1、GPT-6.1 Terra 等。世界模型/脑科学窗口内无新一手。Dwarkesh 10/30 Robert Caro（约 61 分钟）偏传记/权力史，未计入对齐 AI/设计/世界模型/脑科学 的长访谈。本条计入 CogRev AI:AM Mistral live。",
+  },
+  {
     date: "2026-10-29",
     title: "Gemini 4 Carbon 冲顶网络与长程任务；Copilot Fusion GA；Connected Apps 开放；中风 Htr2b 巨噬新轴",
     tldr: "Google DeepMind 发布 Gemini 4 Carbon：官方称在 Artificial Analysis Intelligence Index v5.0 排名第一（59），网络安全基准 SEC-bench Pro 88.2% / ExploitGym 54.8% / CWE-bench 71.0%；先给部分网络防御方与 Fairwind 伙伴，价同 Argon 入门价。GitHub Copilot Fusion 正式 GA：按任务路由/编排多模型（Standard/High/Max），Coding Agent Index 上 Fusion Max 约 60、官方称约一半 API 成本与约 40% 更短耗时；付费计划限时模型费用 7 折。Google 推出 Connected Apps Platform 预览：开发者用云端 MCP 或 Android MCP（AppFunctions）一次接入 Search 与 Gemini；Adobe / Experian / Localiza / Peloton 已在 Gemini 上线，未来几周进 Search，目前分阶段开放。Anthropic AI for Science 扩到 20 家基金会/机构/课题组（含 FlyWire 连接组学等），继续发免费 Claude 额度。脑科学：Nature Neuroscience 中风后 Htr2b⁺ 单核巨噬细胞的血清素信号促进吞噬、减轻脑损伤；Nature 报道 VAMP7 外吐介导的突触前稳态可塑性。口味：Viktor Claude 做 3D agent hero、OpenDesign 免费 Motion 品牌视频（adidas/Figma/TE OB-4）、Meng To 用 Dola 给 ThreeUI 出发布海报、Alex 买家意图搜索 96% 出 AIO、Higgsfield Playable 把广告变成可玩手游。长访谈：Latent Space《Why Agents Love Supabase》（Paul Copplestone & Ant Wilson，77 分钟）；The Cognitive Revolution《Freedom of Action: America's ASI Strategy》（RAND Joel Predd / Ben Boudreaux / Matt Chessen，约 1h49）。窗口内无新的世界模型一手发布。",
