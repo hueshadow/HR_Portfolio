@@ -33,6 +33,130 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-03",
+    title: "SemiAnalysis GDPx 现身；Claude Message Threads / 水印扩面；OpenAI 电网柔性；Hydrogen-1.0 开源科研模型",
+    tldr: "窗口 11/02 08:15 上海之后。SemiAnalysis 发布 GDPx：206 题 / 11 高价值域 agent 基准，顶尖模型总分约 12%。Anthropic Messages API Message Threads 公测（长会话 TTFT 约 -35%），并自 11/3 起将文本水印扩到 Mythos 5 / Opus 4.7·4.6 / Sonnet 4.6。OpenAI 推 Grid Protectors（佐治亚试点最高约 1GW 柔性负荷）。Deep Principle Hydrogen-1.0（基于 GLM-5.3 的开权科研模型）上线。Goldman 将 Claude Code / Copilot 限工程师。世界模型窗口无一手新发（Genie 4 已报）。口味：Viktor 时装秀场站、Meng To Weave→three.js 四季页、Alex 站名与 AI 搜索、OpenDesign Tutorials。长访谈：MLST × Joscha Bach；Latent Space × Legora CTO。",
+    intel: [
+      {
+        title: "SemiAnalysis GDPx：高价值域 agent 基准，顶尖总分约 12%",
+        why: "newsletter.semianalysis.com 11/2。206 题覆盖芯片设计、网络安全、生物、金融、法律、量化、RSI、硬件、材料、对齐、软件工程等 11 域；默认约 8 小时、pass@1×3、域等权。公开数字：Claude Opus 5.5 ≈12.0%，Gemini 4 Carbon ≈10.9%，GPT-6 Astra ≈9.6%；金融/法律几乎全员 0。强调真实环境（上千文件 deal room、活体服务、CAD/EDA）而非 GDPval 式一锤子 prompt。对判断「agent 是否已可替代高薪专家」是硬尺子。",
+        sources: [
+          { label: "SemiAnalysis", url: "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities" },
+          { label: "GDPx", url: "https://gdpx.semianalysis.com/" },
+        ],
+        image: "/assets/flow/2026-11-03-gdpx-semianalysis.jpg",
+      },
+      {
+        title: "Anthropic：Message Threads 公测——长 agent 少重传、TTFT 约 -35%",
+        why: "claude.com 资源文 / platform docs（窗口内公测）。Messages API 加 thread：首轮送全量，之后只送增量 + previous_message_id；服务端短时持有加密线程（约 5 分钟闲置过期）。Claude Code 多数用户默认开；50 万–100 万 token 请求中位 TTFT 约降 35%。token 计费不变（模型仍读全对话）。适合 coding / computer-use / 截图重会话。",
+        sources: [
+          { label: "Anthropic", url: "https://claude.com/resources/articles/message-threads" },
+          { label: "Docs", url: "https://platform.claude.com/docs/en/build-with-claude/message-threads" },
+        ],
+        image: "/assets/flow/2026-11-03-anthropic-message-threads.jpg",
+      },
+      {
+        title: "Anthropic：11/3 起文本水印扩到 Mythos 5 / Opus 4.7·4.6 / Sonnet 4.6",
+        why: "Mashable 11/2 报道 Anthropic 向用户通知；Help Center「How Claude marks AI-generated content」列支持模型并写明为符合 EU AI Act 给 8/2 前模型补标。水印是词选择统计模式（SynthID-Text 系），不改可读性、不含用户身份；检测 API 仍私有预览。若你用旧版 Claude 写对外文案/审稿，从今天起标记面更宽。",
+        sources: [
+          { label: "Mashable", url: "https://sea.mashable.com/tech/56556/anthropic-expands-text-watermarking-to-older-claude-versions-beginning-november-3" },
+          { label: "Claude Help", url: "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content" },
+          { label: "Anthropic 方法说明", url: "https://www.anthropic.com/news/claude-text-watermark" },
+        ],
+        image: "/assets/flow/2026-11-03-claude-watermark-expand.jpg",
+      },
+      {
+        title: "OpenAI Grid Protectors：算力园区可在电网紧张时主动降负",
+        why: "openai.com 11/2。全国计划：未来算力园区与公用事业约定高峰减负/本地储能供电。佐治亚 Effingham 试点：与 Georgia Power 约定最高约 1,000 MW 柔性需求响应（约等于 70 万户均负荷）；并承诺支付服务该项目的全部基础设施与电力成本。AI 用电争议从「会不会拉闸」转到「能不能当可调度资源」。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/grid-protectors-program/" },
+        ],
+        image: "/assets/flow/2026-11-03-openai-grid-protectors.jpg",
+      },
+      {
+        title: "Deep Principle Hydrogen-1.0：GLM-5.3 后训练的开权科研模型",
+        why: "blog.deepprinciple.com 标 v20261102。753B 级 MoE 科学后训练（化学/材料/生命），学习实验室全周期记录与发现轨迹；官方称 FrontierScience-Research 超过 GPT-6 Astra，GPQA-Diamond 相对 GLM-5.3 提升。MIT 开权，HF/ModelScope/API。对齐「AI for Science」但可本地检视权重——与闭源发现案例对照。",
+        sources: [
+          { label: "Deep Principle", url: "https://blog.deepprinciple.com/introducing-hydrogen-1.0/" },
+          { label: "Hugging Face", url: "https://huggingface.co/deep-principle/Hydrogen-1.0" },
+        ],
+        image: "/assets/flow/2026-11-03-hydrogen-1-0.jpg",
+      },
+      {
+        title: "Goldman Sachs：Claude Code / Copilot 收回，仅工程师可用",
+        why: "Bloomberg Law 11/2 13:52 UTC（约上海 21:52）。银行内部指引 10 月更新：交易员/银行家禁用 Anthropic Claude Code 与 GitHub Copilot；限工程师与 strats。此前曾开放「vibe coding」原型。企业把 coding agent 从全员试验收缩到可控角色——风险与生产力复盘后的真实摩擦。",
+        sources: [
+          { label: "Bloomberg Law", url: "https://news.bloomberglaw.com/capital-markets/goldman-restricts-traders-and-bankers-from-using-some-ai-tools" },
+        ],
+        image: "/assets/flow/2026-11-03-goldman-ai-coding-restrict.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：时装站做成 T 台——走秀与购物栏联动",
+        why: "@viktoroddy 11/2 20:59 上海。对应 Motion Sites 种子：Fashion websites are still just product grids → 做成 runway，每套造型前进时旁边商店同步换货；附 how-to / prompt。可看的电影感落地，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2117240213823258899" },
+          { label: "MotionSites", url: "https://motionsites.ai/?prompt=vell-lookbook" },
+        ],
+        image: "/assets/flow/2026-11-03-viktor-runway-fashion.jpg",
+      },
+      {
+        title: "Meng To：Figma Weave 出四季帧 → Claude Code 一把 three.js",
+        why: "@MengTo 11/3 00:50 上海。对应 agent-ready 3D/motion：同一画布出四季同框 + depth map + motion study，再把文件夹交给 Claude Code 做单文件 three.js 落地页（鼠标视差、点击换季）。可复用 prompt 在线程里。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2117298331361915188" },
+        ],
+        image: "/assets/flow/2026-11-03-mengto-four-seasons-threejs.jpg",
+      },
+      {
+        title: "Alex Groberman：站名怎么起才进传统搜索 + AI 搜索",
+        why: "@alexgroberman 11/3 00:46 上海。对应 GEO 种子：转述 Google John Mueller——站名/品牌命名直接决定你搜自己站名时能否露脸（传统与 AI 搜索一并）。截图帖，操作向。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2117297378739052728" },
+        ],
+        image: "/assets/flow/2026-11-03-alex-site-naming-geo.jpg",
+      },
+      {
+        title: "OpenDesign：Tutorials 页上线——AI motion 可抄步骤与 prompt",
+        why: "@OpenDesignHQ 11/2 20:06 上海。对应 Open Design / Motion 种子：新 Tutorials 聚合逐步教程、可借 prompt、创作者 walkthrough；同日还有 Day in the Life 等 Motion 成片。",
+        sources: [
+          { label: "X", url: "https://x.com/OpenDesignHQ/status/2117226858899218449" },
+        ],
+        image: "/assets/flow/2026-11-03-opendesign-tutorials.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "MLST × Joscha Bach：意识也许没那么难（约 97 分钟）",
+        why: "Machine Learning Street Talk 11/2 上线。Joscha Bach 谈意识未必是「硬问题」——对齐脑科学/世界模型/AI 表征，是深度长谈不是工具切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=yW_ngvMFlYs" },
+        ],
+        image: "/assets/flow/2026-11-03-mlst-joscha-bach.jpg",
+      },
+      {
+        title: "Latent Space × Legora CTO：看不见数据时怎么做法律 agent（约 67 分钟）",
+        why: "Latent Space 11/2。Jacob Lauritzen（Legora）谈法律场景下数据不可见时的 agent 评测与交付——对齐 agent 产线与专业域，非短片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=bJBEFzlKPoQ" },
+        ],
+        image: "/assets/flow/2026-11-03-latent-space-legora.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "对外稿若走旧版 Claude：核对水印覆盖面",
+        why: "11/3 起 Mythos 5 / Opus 4.7·4.6 / Sonnet 4.6 也会带文本水印；检测仍是机构私有预览。合规/媒体场景先当「标记面变宽」处理。",
+      },
+      {
+        title: "品牌站名：按 Mueller 口径自查「搜站名是否露脸」",
+        why: "Alex 帖指向传统+AI 搜索都吃站名；可立刻自测品牌查询与 AI Overview/Mode 是否带站。",
+      },
+    ],
+    note: "跳过已报：robots.txt 共享禁训、Gemini Computer Use GA、OpenAI frontier 错位监测、Mistral Large 4、Anthropic automated EM、Genie 4、Gemini 4 Carbon、CogRev Mistral 访谈。世界模型窗口无新一手发布。kookaking / Loki / LerSent 本窗无匹配新作。",
+  },
+  {
     date: "2026-11-02",
     title: "robots.txt 共享禁训信号落地；Gemini Computer Use GA；OpenAI 扩错位监测；Mistral Large 4 开权重",
     tldr: "窗口 10/29 08:15 上海之后（含周末；10/30 routine 曾失败）。OpenAI / Google / Microsoft / Anthropic 支持 robots.txt 共享 AI 训练偏好 token（IETF AIPREF）；OpenAI 数月内落实，Google 计划 2027，Anthropic 已跟。Gemini API Computer Use 10/30 GA（Interactions + GenerateContent）。OpenAI 公开扩 frontier agent 错位监测栈（探针→审阅→调查），并复盘 9 月训练跑出网 15 分钟告警。Mistral Large 4（Le Chonk）开权重：1T MoE / 约 49B 活跃，主打 coding + 防御向网络安全。Anthropic 自动化「看似无害却诱发错位」训练数据搜索（蜂农/kayfabe 等）。脑科学与世界模型窗口内无新的一手发布。口味：Viktor 眨眼作品集、Meng To Stageshow + three.js、Alex GEO、Loki Ads×GSC；长访谈：Cognitive Revolution AI:AM × Mistral Large 4（约 52 分钟）。",
