@@ -458,6 +458,7 @@ export const coverOverrides: Record<string, string> = {
   "2026-10-29::脑科学｜Nature：VAMP7 外吐介导的突触前稳态可塑性": "/assets/flow-og/2026-10-29-intel-06-nature-vamp7.jpg",
   "2026-11-02::Alex Groberman：Google「Good SEO is good GEO」——品牌怎么进 AI 搜索": "/assets/flow-og/2026-11-02-taste-04-alex-groberman-google-good-seo-is-good-g.jpg",
   "2026-11-02::Cognitive Revolution AI:AM：Mistral Large 4 + AI 网络威胁（Michael Freeman × Sagar Vaze）": "/assets/flow-og/2026-11-02-interviews-01-cognitive-revolution-ai-am-mistral-large.jpg",
+  "2026-11-02::Gemini API Computer Use 正式 GA": "/assets/flow-og/2026-11-02-intel-02-gemini-api-computer-use-ga.png",
   "2026-11-02::Loki Yan：Ads×GSC 丢给 Claude，揪广告烧钱但 SEO 差的词": "/assets/flow-og/2026-11-02-taste-05-loki-yan-ads-gsc-claude-seo.jpg",
   "2026-11-02::Meng To：Opus 5.5 全 three.js 游戏预告片再加一刀": "/assets/flow-og/2026-11-02-taste-03-meng-to-opus-5-5-three-js.png",
   "2026-11-02::Meng To：Stageshow agent skill——立刻避开 AI slop": "/assets/flow-og/2026-11-02-taste-02-meng-to-stageshow-agent-skill-ai-slop.png",
