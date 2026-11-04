@@ -33,6 +33,120 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-04",
+    title: "Google 校园把 Gemini+Search 默认关掉；DeepMind 化学 agent 技能；ChatGPT 搜索量自称约 Google 两成；Apple 把恋爱 AI 标 18+",
+    tldr: "窗口 11/03 08:15 上海之后。Google 教育：K-12 学生账号的 Gemini / Notebook / Classroom Gemini / Search 默认全关，需管理员显式打开（关 AI 会连 Search 一起丢）。DeepMind 给 Antigravity 上 Cheminformatics Skills，肺癌案例约 1 小时走完检索→MMPA→合成路线。OpenAI Adam Fry：ChatGPT 类搜索查询量约等于 Google 的 20%，周活约 12 亿。Apple App Store「Dating and Relationships」描述符覆盖真人约会与恋爱/性向虚拟伴侣，最低 18+（11/16 起问卷；全量 2027-01-12）。Anthropic 修订 S-1 风险披露：内部估计未来模型可能「即将」触及 RSP「AI 显著加速研发」阈值。口味：Viktor MotionSites 工具栈 + 日夜切换太阳能 hero；Meng To 平面户型滚成 3D 房；Alex 品牌靠 AI 搜索多赚 5 万美元；Loki 亲测 GEO 不必另起炉灶。长访谈：窗口内无新的 45min+ 对齐集。",
+    intel: [
+      {
+        title: "Google 教育：K-12 默认关掉 Gemini 与 Search，管理员显式开启才给",
+        why: "blog.google 教育博文 11/3；NYT / Verge / AP 同日。覆盖 Gemini、Gemini Notebook、Classroom 内 Gemini、Google Search——学生账号默认全关，直到学校管理员打开。教育 VP Chris Phillips 称 Search 与 AI 深度耦合，关 AI 会连 Search 一起不可用。同日 Guided Learning 全球进 Classroom，Search 试点稍后在部分美国学校。学校等于被迫在「接受捆绑 AI」与「丢掉 Search」之间选。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/" },
+          { label: "NYT", url: "https://www.nytimes.com/2026/11/03/us/google-search-schools-restrict-ai.html" },
+          { label: "The Verge", url: "https://www.theverge.com/tech/1025411/google-turn-off-search-ai-features" },
+        ],
+        image: "/assets/flow/2026-11-04-google-k12-search-ai-optin.jpg",
+      },
+      {
+        title: "DeepMind：Antigravity 上线 Cheminformatics Skills——约 1 小时走完药物设计环",
+        why: "deepmind.google 11/3。以 crizotinib→lorlatinib 刚性化为例：agent 从文献抽数千化合物、做 matched molecular pair、训效力模型、提新大环与合成路线；底层 RDKit + ChEMBL/PubChem，模型管编排、确定性工具算分子。Science 插件可装；企业账号可用；另开 1 万科学家 6 个月最高用量免费申请。对齐「AI for Science」且是可装技能，不是又一篇演示片。",
+        sources: [
+          { label: "DeepMind", url: "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/" },
+        ],
+        image: "/assets/flow/2026-11-04-deepmind-cheminformatics-antigravity.jpg",
+      },
+      {
+        title: "OpenAI：ChatGPT 类搜索量自称约 Google 的 20%；周活约 12 亿",
+        why: "The Verge / Big Technology 11/3。ChatGPT 消费产品负责人 Adam Fry：凡触发网页搜索的提问计一次；未公开 Google 体量来源与方法。另称 60 天内周活 10 亿→12 亿，语音相关周活约 2.5 亿，每周约 15 亿张图。对比当年 Bing 约 3% 份额叙事——搜索习惯在迁，但查询量≠广告收入。",
+        sources: [
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1025482/openai-says-chatgpt-is-catching-up-to-google-in-search" },
+          { label: "Big Technology", url: "https://www.bigtechnology.com/p/openai-chatgpt-search-is-about-20" },
+        ],
+        image: "/assets/flow/2026-11-04-openai-chatgpt-search-20pct.jpg",
+      },
+      {
+        title: "Apple：约会与恋爱向 AI 伴侣一律最低 18+",
+        why: "TechCrunch 11/3 07:38 PST；Apple Developer 11/2 公告。App Store Connect 新增「Dating and Relationships」内容描述：真人约会/关系，或与虚拟伴侣进行性/浪漫互动——一律最低 18+。11/16 起更新问卷须申报；全部 App 须在 2027-01-12 前完成。另有「Shared Location」描述符。Character.AI / Replika 类与带 NSFW 解锁的伴侣 App 首当其冲。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/11/03/apple-restricts-dating-apps-and-ai-companions-to-users-18-and-up/" },
+          { label: "Apple Developer", url: "https://developer.apple.com/news/?id=yxkh08us" },
+        ],
+        image: "/assets/flow/2026-11-04-apple-dating-ai-18plus.jpg",
+      },
+      {
+        title: "Anthropic 修订 S-1：未来模型或「即将」触及 AI 加速研发阈值",
+        why: "SEC S-1/A（11/2 递交）+ 11/3 跟进解读。风险因素新表述：内部估计与对未来模型的预期显示，公司可能即将满足 Responsible Scaling Policy 对「dramatically accelerated progress attributable to AI」的定义；当前模型尚未被标为超阈值，仍在评估。并承认过去曾未能及时识别加速。同披露 Q3 营收约 170 亿美元、算力相关承诺约 8954 亿美元——IPO 叙事里「AI 帮 AI 研发」从口号变成可被起诉的风险文字。",
+        sources: [
+          { label: "SEC S-1/A", url: "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm" },
+          { label: "CNBC", url: "https://www.cnbc.com/2026/11/02/anthropic-ant-s-1-quarter-financials.html" },
+          { label: "Gadgeteer 11/3", url: "https://the-gadgeteer.com/2026/11/03/anthropic-tells-ipo-investors-its-ai-builds-ai-threshold-may-be-imminent/" },
+        ],
+        image: "/assets/flow/2026-11-04-anthropic-s1a-rsp-threshold.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：做 AI 网页动效只要这三件套",
+        why: "@viktoroddy 11/3 19:51 上海。对应 Motion Sites 种子：列出 studio.motionsites.ai（对话改站）+ motionsites.ai 800+ 3D/motion prompt（丢进 Claude 就出）+ land-book 灵感库；附演示视频。可收藏的成品工作流，不是发版新闻。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2117585451502719144" },
+          { label: "MotionSites Studio", url: "https://studio.motionsites.ai" },
+        ],
+        image: "/assets/flow/2026-11-04-viktor-ai-design-toolkit.jpg",
+      },
+      {
+        title: "Viktor：太阳能公司 hero——一键日夜，整栋房子沉雾再浮起",
+        why: "@viktoroddy 11/3 11:19 上海。对应电影感 landing：toggle 切换昼夜，房屋沉入雾中再以新光浮起；prompt 链到 motionsites.ai lumen-roof-hero。可看的成片级段落。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2117456425245200595" },
+          { label: "Prompt", url: "https://motionsites.ai/?prompt=lumen-roof-hero" },
+        ],
+        image: "/assets/flow/2026-11-04-viktor-solar-day-night-hero.jpg",
+      },
+      {
+        title: "Meng To：平面户型随滚动长成 3D 房子（Opus 5.5 × three.js）",
+        why: "@MengTo 11/3 10:40 上海。对应 agent-ready 3D/ThreeUI 线：建筑 × 网页 × 3D，GitHub Sam1983Aing/casa-serra 可抄；称 Opus 5.5 对 three.js 很猛。可丢给 Agent 改主题灯光运动。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2117446870033445104" },
+          { label: "GitHub", url: "https://github.com/Sam1983Aing/casa-serra" },
+        ],
+        image: "/assets/flow/2026-11-04-mengto-casa-serra-threejs.jpg",
+      },
+      {
+        title: "Alex Groberman：按这篇做，品牌从 Google+ChatGPT 等多捞 5 万美元",
+        why: "@alexgroberman 11/3 00:51 上海（帖内 16:51 UTC）。对应 GEO 种子：跟进站名帖，称有品牌照文章做完后从 Google / ChatGPT / Claude / Perplexity 等 AI 搜索多拿 5 万+ 美元流量相关收入；截图实证向。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2117660881878409710" },
+        ],
+        image: "/assets/flow/2026-11-04-alex-50k-ai-search.jpg",
+      },
+      {
+        title: "Loki Yan：GEO 我今年没专门做过——该做的 SEO/社媒/红人照做",
+        why: "@loki_yan_seo 11/3 20:49 上海。对应「有效个人惊艳」种子：从业者亲测反共识——不做 Reddit/博客/找信源特供 GEO；该 SEO 继续 SEO、社媒与 influencer 照旧。四图长帖，经验流不是厂商稿。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2117600151045046309" },
+        ],
+        image: "/assets/flow/2026-11-04-loki-geo-no-special.jpg",
+      },
+    ],
+    interviews: [],
+    todos: [
+      {
+        title: "做教育/校园产品：核对 Google「关 AI=关 Search」捆绑时间表",
+        why: "管理员控制将在数月后落地；若客户是 K-12，要准备无 Search 时的替代入口与沟通话术。",
+      },
+      {
+        title: "GEO：先审计站名与基础 SEO，再决定要不要单独立项",
+        why: "Loki 帖 + Alex 站名/流量帖同窗——可先自测品牌词在传统搜索与 AI 答案里是否露脸，避免空转「为 GEO 而 GEO」。",
+      },
+      {
+        title: "带恋爱向 AI 伴侣的 App：11/16 前补 Dating and Relationships 申报",
+        why: "Apple 最低 18+；未申报可能卡审。含角色扮演女友/男友功能的产品优先排查。",
+      },
+    ],
+    note: "跳过已报：SemiAnalysis GDPx、Message Threads、Claude 水印扩面、Grid Protectors、Hydrogen-1.0、Goldman 限 coding agent、robots.txt 共享禁训、Computer Use GA、frontier 错位监测、Mistral Large 4、automated EM、Gemini 4 Carbon、Genie 4。世界模型本窗无新一手发布。长访谈本窗无新 45min+ 对齐集（Dwarkesh 11/2 历史题材未计入）。OpenDesignHQ / LerSent / kookaking ThreeUI 本窗无更匹配新作。",
+  },
+  {
     date: "2026-11-03",
     title: "SemiAnalysis GDPx 现身；Claude Message Threads / 水印扩面；OpenAI 电网柔性；Hydrogen-1.0 开源科研模型",
     tldr: "窗口 11/02 08:15 上海之后。SemiAnalysis 发布 GDPx：206 题 / 11 高价值域 agent 基准，顶尖模型总分约 12%。Anthropic Messages API Message Threads 公测（长会话 TTFT 约 -35%），并自 11/3 起将文本水印扩到 Mythos 5 / Opus 4.7·4.6 / Sonnet 4.6。OpenAI 推 Grid Protectors（佐治亚试点最高约 1GW 柔性负荷）。Deep Principle Hydrogen-1.0（基于 GLM-5.3 的开权科研模型）上线。Goldman 将 Claude Code / Copilot 限工程师。世界模型窗口无一手新发（Genie 4 已报）。口味：Viktor 时装秀场站、Meng To Weave→three.js 四季页、Alex 站名与 AI 搜索、OpenDesign Tutorials。长访谈：MLST × Joscha Bach；Latent Space × Legora CTO。",
