@@ -33,6 +33,141 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-05",
+    title: "OpenAI 一次扫出 948 个 Linux 提权；Claude 解出原核 vault 结构；收 Pierre；Meta 收 Conductor；Images 2.6",
+    tldr: "窗口 11/04 08:15 上海之后。OpenAI 官博：upcoming cyber 模型流水线 mid-October 跑出 1,724 个可复现漏洞、948 个可用 Linux LPE，API 成本约 121 万美元，并与维护者/Patch the Planet 上报补丁。Anthropic 生物实验室用 Claude 走完检索→纯化→cryo-EM，解出首个噬菌体蛋白 L05 组装的原核/噬菌体源 vault（96 拷贝，约 9.5 MDa）。OpenAI 收购 Pierre 补 Codex 的 Git/审阅层；Meta 收购多智能体编码平台 Conductor（云 11/20 关停）。Images 2.6 上线 GIF 且约快 50%。Nat Neuro：人类枕叶/内侧颞叶单神经元编码快速学会的视觉信息。口味：Viktor AI 3D 站全流程、Meng To Opus×Claude Code、Alex GEO 两帖、Astra 数字衣橱演示。长访谈：Latent Space × AIEi Shanghai；Brain Inspired × Michael Cole（Brain Flows）。",
+    intel: [
+      {
+        title: "OpenAI：一次扫描产出 948 个可用 Linux 本地提权，并自动打补丁",
+        why: "openai.com 11/4；官方 X 11/4 23:13 UTC（约 11/5 07:13 上海）。upcoming cyber 模型流水线：发现→动态复现→可利用性评估→补丁。mid-October 一跑：复现 1,724 个漏洞，291 个信息泄露 PoC + 948 个可用 LPE；API 成本约 $1,213,430（约 $1,279/LPE）。称至少 10 种对其与外部专家而言新颖的利用技术；正与 Linux 维护者及 Patch the Planet 合作上报。防御方含义：未打满补丁的低权限账户对有资源攻击者≈root；要靠沙箱/隔离缩爆炸半径。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/a-thousand-fewer-paths-to-root/" },
+          { label: "X", url: "https://x.com/OpenAI/status/2118119451401048497" },
+        ],
+        image: "/assets/flow/2026-11-05-openai-948-linux-lpe.jpg",
+      },
+      {
+        title: "Anthropic：Claude 协助解出首个原核/噬菌体来源 vault 粒子 3D 结构",
+        why: "anthropic.com/research 11/4；官方 X 约 11/5 04:11 上海。生物实验室把 Claude 嵌进序列检索、DNA 设计、约 90 分钟纯化与 34 小时内首个结构模型；L05 噬菌体蛋白 96 拷贝组装约 9.5 MDa、约 54×45 nm 的 vault。预印本已投 bioRxiv。AI-for-science 可工程化纳米胶囊线索，不是演示片。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/investigating-vault-particles-with-claude" },
+          { label: "X", url: "https://x.com/AnthropicAI/status/2118073665296228863" },
+        ],
+        image: "/assets/flow/2026-11-05-anthropic-vault-particles-claude.jpg",
+      },
+      {
+        title: "OpenAI 收购 Pierre：把 Code Storage / Trees / Diffs 收进 Codex",
+        why: "openai.com 11/4。Pierre 的 Trees、Diffs 已在 Codex 里用；Highlights 做流式高亮。收购后要把 Code Storage 的存码与 Git 历史并入 Codex，并衔接自研 Pando。开源继续开源；成交前独立、须监管批准。agent 编码之外抢审阅/存储层。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/openai-to-acquire-pierre/" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1026315/openai-is-acquiring-software-startup-pierre-computer-company" },
+        ],
+        image: "/assets/flow/2026-11-05-openai-acquire-pierre.jpg",
+      },
+      {
+        title: "Meta 收购 Conductor：多智能体并行编码；云服务 11/20 关停",
+        why: "TechCrunch 11/4 13:10 PST（约 11/5 05:10 上海）。Conductor 可云/本地/手机拉多 agent 分区协作。Holtz：加入 Meta，盼与 Wang、Friedman 共事；核心功能续用至明年初，唯云 11/20 停并删云数据。用云的团队要迁。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/" },
+        ],
+        image: "/assets/flow/2026-11-05-meta-acquire-conductor.jpg",
+      },
+      {
+        title: "OpenAI Images 2.6：约快 50%，上 GIF；API 有 Flare / Sunburst",
+        why: "openai.com 11/4。ChatGPT/Codex/API 全球可用；称周产图约 40 亿。Flare 低质约 6 秒，Sunburst 更高一致；markup 进 API、可出 SVG。GIF 让吉祥物/产品镜头直接成循环动效。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-images-2-6/" },
+        ],
+        image: "/assets/flow/2026-11-05-openai-images-2-6.jpg",
+      },
+      {
+        title: "Nat Neuro：人类枕叶/内侧颞叶单神经元编码「快速学会」的视觉信息",
+        why: "Nature Neuroscience 2026-11-04（s41593-026-02496-6）。13 名癫痫患者录 1,104 个单神经元；Mooney 图识别学习前约 4%→学习后约 83%；OC/MTL 学习后出现选择性与可解码性。few-shot 视觉学习的人类单细胞证据，对齐感知/世界模型线。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02496-6" },
+        ],
+        image: "/assets/flow/2026-11-05-nat-neuro-mooney-learning.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：AI 3D 网站真实工作流全拆解（含全部 prompt）",
+        why: "@viktoroddy 11/4 20:39 上海。对应 Motion Sites：完整 breakdown + 每步 prompt 视频；约 3.9 万曝光。可收藏工作流，不是发版新闻。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2117959947204092218" },
+        ],
+        image: "/assets/flow/2026-11-05-viktor-ai-3d-workflow.jpg",
+      },
+      {
+        title: "Meng To：13 分钟用 Claude Code + Opus 5.5 搭 3D 网站",
+        why: "@MengTo 11/4 22:51 上海。Mobbin 参考→一条 prompt 含计划/相机→分清真 3D 与手绘；约 13 分钟演示。agent-ready 3D 流程片。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2117993128133296426" },
+        ],
+        image: "/assets/flow/2026-11-05-mengto-claude-opus-3d-site.jpg",
+      },
+      {
+        title: "Alex：12.9 万站分析——拿 ChatGPT 流量的第一秘密",
+        why: "@alexgroberman 11/4 22:08 上海。129,000 站 / 216,524 页 / 10 万 prompts；对齐 AI 搜索检索-评估-复用。从业者向。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2117982403604238650" },
+        ],
+        image: "/assets/flow/2026-11-05-alex-129k-chatgpt-traffic.jpg",
+      },
+      {
+        title: "Alex：Reddit 诉 Perplexity——起诉书里拆开 AI 搜索怎么干活",
+        why: "@alexgroberman 11/5 00:41 上海。诉讼材料露出 Perplexity/ChatGPT/Claude/Google 实际路径与站内流量拿法。可据此改站。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2118020922955505893" },
+        ],
+        image: "/assets/flow/2026-11-05-alex-reddit-perplexity-ai-search.jpg",
+      },
+      {
+        title: "Astra 演示：照片穿搭 → 可浏览数字衣橱",
+        why: "@MilksandMatcha 11/5 08:01 上海（演示 @cdngdev）。对应 LerSent 数字衣橱线：把自己穿衣照片变成可浏览 wardrobe；称 OpenAI Astra 爆款 demo 之一。窗口内 LerSent 无新作，用这条补时尚 OOTD 产品交互。",
+        sources: [
+          { label: "X", url: "https://x.com/MilksandMatcha/status/2118131616577200313" },
+        ],
+        image: "/assets/flow/2026-11-05-astra-digital-wardrobe.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space：Behind Latent Space — AIEi Shanghai 台前幕后（约 72 分钟）",
+        why: "YouTube 11/4，约 72 分钟。swyx × Galen Gao：Latent Space/AIE 起源、AI engineer 职衔、Kill My SaaS、中美社区差、首届 AIEi Shanghai。深谈非工具切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=QmDLDy3ZSNE" },
+          { label: "Latent Space", url: "https://latent.space/youtube/" },
+        ],
+        image: "/assets/flow/2026-11-05-latent-space-aiei-shanghai.jpg",
+      },
+      {
+        title: "Brain Inspired 249：Michael Cole — Brain Flows are the Units of Cognition（约 102 分钟）",
+        why: "braininspired.co / YouTube，录制/发布 11/4，时长 01:41:42。Rutgers Cole Lab；新书 Brain Flows。从功能连接与 activity flow modeling 谈到认知控制、创造力、意识、精神健康，并对照当前 AI 缺 global flow hierarchy / 具身与价值锚定。神经科学×AI 深访。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=jbqLZoRGuUM" },
+          { label: "Brain Inspired", url: "https://braininspired.co/podcast/249/" },
+        ],
+        image: "/assets/flow/2026-11-05-brain-inspired-michael-cole.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "用 Conductor 云：11/20 前迁出并备份",
+        why: "Meta 收购后云关停并删数据。",
+      },
+      {
+        title: "自管 Linux / 容器栈：核对补丁节奏与沙箱隔离",
+        why: "OpenAI 948 LPE 叙事把「未打满补丁的低权限」抬到≈root；优先打补丁 + Firecracker/gVisor 类隔离。",
+      },
+      {
+        title: "GEO：对照 Alex 两帖审计品牌在 ChatGPT/Claude/Perplexity 的露脸",
+        why: "12.9 万站结论 + Reddit 诉讼材料同窗。",
+      },
+    ],
+    note: "跳过已报：Google K-12、Cheminformatics、ChatGPT≈Google 20%、Apple 恋爱 AI 18+、S-1 RSP、昨报口味。窗前：FlashProve、LLMJacking、athenaPatient、Revolut GLM。未纳入：Claude Code 游戏规则微调、Google 健康评测白皮书、Gemini Voice Remixing、MoWorld 2.0（二手报道）、Cat Wu 转 OpenAI、Daybreak Red GovCloud（AWS 更早披露）。OpenDesign/kookaking/Loki/LerSent 本窗无更匹配一手。",
+  },
+  {
     date: "2026-11-04",
     title: "Google 校园把 Gemini+Search 默认关掉；DeepMind 化学 agent 技能；ChatGPT 搜索量自称约 Google 两成；Apple 把恋爱 AI 标 18+",
     tldr: "窗口 11/03 08:15 上海之后。Google 教育：K-12 学生账号的 Gemini / Notebook / Classroom Gemini / Search 默认全关，需管理员显式打开（关 AI 会连 Search 一起丢）。DeepMind 给 Antigravity 上 Cheminformatics Skills，肺癌案例约 1 小时走完检索→MMPA→合成路线。OpenAI Adam Fry：ChatGPT 类搜索查询量约等于 Google 的 20%，周活约 12 亿。Apple App Store「Dating and Relationships」描述符覆盖真人约会与恋爱/性向虚拟伴侣，最低 18+（11/16 起问卷；全量 2027-01-12）。Anthropic 修订 S-1 风险披露：内部估计未来模型可能「即将」触及 RSP「AI 显著加速研发」阈值。口味：Viktor MotionSites 工具栈 + 日夜切换太阳能 hero；Meng To 平面户型滚成 3D 房；Alex 品牌靠 AI 搜索多赚 5 万美元；Loki 亲测 GEO 不必另起炉灶。长访谈：窗口内无新的 45min+ 对齐集。",
