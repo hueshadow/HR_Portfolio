@@ -33,6 +33,122 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-06",
+    title: "OpenAI 正式发 GPT-6 Cyber；Claude 上个人理财 beta；Cat Wu 转 OpenAI；世界模型要算「可用性」；No Priors×Vlad",
+    tldr: "窗口 11/05 08:15 上海之后。OpenAI 官宣 GPT-6 Cyber（ExploitGym 48.5%，对齐 Critical；Daybreak Blue/Red 扩防者；Firefox 81 个高危、昨日 Linux 流水线即此模型）。Anthropic Claude Personal Finance beta：美区 Pro/Max/Ultra 经 Plaid 只读连银行。Cat Wu（Claude Code 产品负责人）加入 OpenAI Core Products。FrontierPhysics / Science's Last Exam：端到端科研 agent 仍难（Opus 5.5 约 27.4%）。北大团队世界模型综述：关键从画得真到「算得值」（AGC）。口味：Viktor MotionSites MCP、MengTo REA-growth skill、Alex SaaS 买家先问 AI、LerSent Image2.6 多角度动作。访谈：No Priors×Robinhood CEO Vlad Tenev（约 54 分）。",
+    intel: [
+      {
+        title: "OpenAI 正式发布 GPT-6 Cyber：防者窗口内的 Critical 级安全 agent",
+        why: "openai.com 11/5；官方 X 11/5 17:09 UTC（约 11/6 01:09 上海）。ExploitGym 48.5%（相对 GPT-5.6 Cyber 提升约 51%）；越界 honeypot 对齐约 99.93%→带部署提示 100%。已助 Mozilla 落地 Firefox 81 个此前未知高危；昨日披露的 Linux 948 LPE 流水线即此模型。Preparedness 网络安全标为 Critical。Daybreak Blue（验证漏洞/补丁少拒答）与 Daybreak Red（授权更深利用）扩给更多组织；另开 Critical Infrastructure 组与 Frontline Defenders 补贴。待办：做安全研究的可申请 Daybreak。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-cyber" },
+          { label: "X", url: "https://x.com/OpenAI/status/2118390190246879554" },
+        ],
+        image: "/assets/flow/2026-11-06-openai-gpt-6-cyber.jpg",
+      },
+      {
+        title: "Anthropic：Claude Personal Finance beta——Plaid 只读连银行，美区 Pro/Max/Ultra",
+        why: "claude.com + TechCrunch 11/5 10:00 PST（约 11/6 02:00 上海）。侧边栏 Personal Finance：经 Plaid 自连银行/卡，问「这月钱去哪了」等自然语言；只读，不能转账/投资；无广告无自推产品。可见余额、近两年流水等；Hub 内对话不用于训练。对标 ChatGPT 理财能力，隐私争议仍在。",
+        sources: [
+          { label: "Anthropic", url: "https://claude.com/resources/articles/introducing-personal-finance-in-claude" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/11/05/claude-can-now-analyze-your-spending-with-its-new-personal-finance-tool/" },
+        ],
+        image: "/assets/flow/2026-11-06-claude-personal-finance.jpg",
+      },
+      {
+        title: "Cat Wu（Claude Code 产品负责人）加入 OpenAI Core Products",
+        why: "Business Insider 2026-11-05T00:57Z（约 11/5 08:57 上海）；她本人 X 宣布。上周离开 Anthropic，现向 Tibo Sottiaux 汇报，协同 Nick Turley（企业）与 Ashley Alexander（消费）。对齐 Codex vs Claude Code 的产品战；昨报笔记曾暂缓，今天一手确认落点。",
+        sources: [
+          { label: "Business Insider", url: "https://www.businessinsider.com/cat-wu-joins-openai-from-anthropic-product-lead-coup-2026-11" },
+        ],
+        image: "/assets/flow/2026-11-06-cat-wu-openai.jpg",
+      },
+      {
+        title: "FrontierPhysics / Science's Last Exam：端到端科研 agent 仍远未过关",
+        why: "FrontierPhysics arXiv 2611.06910（11/4 窗内可见）+ SLE sciences-last-exam.org（X 讨论热于 11/5）。56 个物理学家自研任务；Claude Opus 5.5 总通过率约 27.4%（168 次里约 46）；失败主因是严谨推理与专家直觉，不是缺知识点。SLE：113 公开任务、六能力+端到端。对齐「AI for Science」要从 demo 进到可发表工作流。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2611.06910" },
+          { label: "SLE", url: "https://sciences-last-exam.org/" },
+        ],
+        image: "/assets/flow/2026-11-06-frontierphysics-sle.jpg",
+      },
+      {
+        title: "世界模型综述：别只追求「画得真」，要学会何时停止想象",
+        why: "EurekAlert 2026-11-05；论文 Song et al., The Innovation Insights（doi 10.59717/j.tiis.2026.100018）。北大王健骁等提出「计算可用性鸿沟」与指标 AGC（单位算力带来的动作收益）。同卡上 V-JEPA 2-AC 规划延迟 240s→16s、成功率 80%→100%；ComVLA 通信量与算力大降。机器人/自动驾驶不能无限做梦——要对齐世界模型线。",
+        sources: [
+          { label: "EurekAlert", url: "https://www.eurekalert.org/news-releases/1150579" },
+          { label: "The Innovation", url: "https://www.the-innovation.org/article/doi/10.59717/j.tiis.2026.100018" },
+        ],
+        image: "/assets/flow/2026-11-06-world-models-computational-usability.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：MotionSites MCP——800+ 动效/3D 站一键进 AI",
+        why: "@viktoroddy 11/5 19:17 上海。种子 Motion Sites 线：MCP 把最大动画 3D 网站库接进 Claude/Cursor 类 agent，一点从 prompt 或代码开建。https://motionsites.ai/mcp",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2118301566776254723" },
+        ],
+        image: "/assets/flow/2026-11-06-viktor-motionsites-mcp.jpg",
+      },
+      {
+        title: "Meng To 推 REA-growth：开源拆任意公司增长蓝图的 skill",
+        why: "@MengTo 11/6 00:47 上海（引用原作者）。点名公司→时间线上 SEO/AEO/广告/社媒动作；示例 Lovable teardown 约 $0.58；repo github.com/superdesigndev/treg。agent-ready 增长/品牌拆解，对齐 Open Design / CLI skill 线。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2118384737626857724" },
+          { label: "skill", url: "https://treg.to/rea-growth" },
+          { label: "repo", url: "https://github.com/superdesigndev/treg" },
+        ],
+        image: "/assets/flow/2026-11-06-mengto-rea-growth.jpg",
+      },
+      {
+        title: "Alex：SaaS 买家先搜评价、比替代、再问 ChatGPT/Gemini/Perplexity",
+        why: "@alexgroberman 11/5 22:00 上海。GEO 种子续：demo 前的 AI 搜索路径已改采购；引用其 Reddit/Perplexity 帖。从业者口吻，不是厂商稿。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2118342638399332699" },
+        ],
+        image: "/assets/flow/2026-11-06-alex-saas-buyers-ai-search.jpg",
+      },
+      {
+        title: "LerSent：Image 2.6 一次出游戏角色多角度待机/攻击——精灵图 skill 可删",
+        why: "@LerSentAI 11/5 10:48 上海。一致性+流畅度演示；同窗还有国内 lucy3.5 平替实时换装（约 3 毛/分钟）帖。对齐时尚/角色 OOTD 与虚拟试衣产品线。",
+        sources: [
+          { label: "X", url: "https://x.com/LerSentAI/status/2118173626424025414" },
+        ],
+        image: "/assets/flow/2026-11-06-lersent-image26-sprites.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "No Priors：Robinhood CEO Vlad Tenev——Tokenization / Agentic Trading / Harmonic（约 54 分钟）",
+        why: "YouTube 11/5，时长约 54:08。代币化股票扩至 120+ 国、agentic trading 护栏、Harmonic「数学超智」。AI×金融产品深访，非工具切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=yULk8eNa2mg" },
+        ],
+        image: "/assets/flow/2026-11-06-no-priors-vlad-tenev.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "做漏洞研究：申请 OpenAI Daybreak（Blue/Red）",
+        why: "GPT-6 Cyber 经 Daybreak 放量给防者。",
+      },
+      {
+        title: "美区 Claude Pro+：可试用 Personal Finance（只读+Plaid）",
+        why: "beta 本周滚动。",
+      },
+      {
+        title: "设计/动效：试 motionsites.ai/mcp + REA-growth skill",
+        why: "今日口味板可动手项。",
+      },
+      {
+        title: "Conductor 云用户：仍须 11/20 前迁出",
+        why: "昨报 Meta 收购后续。",
+      },
+    ],
+    note: "跳过已报：Linux 948 LPE 细节、vault 粒子、Pierre、Conductor、Images 2.6、Nat Neuro Mooney、昨报口味与 Latent Space/Brain Inspired。窗前或二手：Claude Code 子 agent 状态行 99% 降本（changelog 10/31）、FlashProve、Notion 共享记忆（一手时点不清）。OpenDesign/kookaking/Loki 本窗无更匹配一手。",
+  },
+  {
     date: "2026-11-05",
     title: "OpenAI 一次扫出 948 个 Linux 提权；Claude 解出原核 vault 结构；收 Pierre；Meta 收 Conductor；Images 2.6",
     tldr: "窗口 11/04 08:15 上海之后。OpenAI 官博：upcoming cyber 模型流水线 mid-October 跑出 1,724 个可复现漏洞、948 个可用 Linux LPE，API 成本约 121 万美元，并与维护者/Patch the Planet 上报补丁。Anthropic 生物实验室用 Claude 走完检索→纯化→cryo-EM，解出首个噬菌体蛋白 L05 组装的原核/噬菌体源 vault（96 拷贝，约 9.5 MDa）。OpenAI 收购 Pierre 补 Codex 的 Git/审阅层；Meta 收购多智能体编码平台 Conductor（云 11/20 关停）。Images 2.6 上线 GIF 且约快 50%。Nat Neuro：人类枕叶/内侧颞叶单神经元编码快速学会的视觉信息。口味：Viktor AI 3D 站全流程、Meng To Opus×Claude Code、Alex GEO 两帖、Astra 数字衣橱演示。长访谈：Latent Space × AIEi Shanghai；Brain Inspired × Michael Cole（Brain Flows）。",
