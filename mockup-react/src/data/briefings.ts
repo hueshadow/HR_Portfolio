@@ -33,6 +33,154 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-09",
+    title: "DeepMind agent 推进旧版 RSA 密码分析；Claude 用「做梦」整理记忆；BioBasicsBench；ChatGPT 商家可见度仪表盘；Meta 蒸馏 Muse Wonder；Latent Space 三连",
+    tldr: "窗口 11/06 08:15 上海之后（含周末）。DeepMind：人类引导的 AI agent 对遗留 1024-bit RSA 做出两项密码分析推进（现代 2048+ 按论文不受影响）。Anthropic：agent memory 工程文，dreaming 离线纠错/建 wiki。OpenAI×Ligo：BioBasicsBench 100 项湿实验判读（Astra xhigh 66.7%）。OpenAI 据报测试 ChatGPT Business Hub：商家 impression/click 图表（GEO 一手数据）。Meta：用 Muse Wonder 训出的 Active Memory/Focus 专用模型下放到 Muse/Meta AI，并上线 Spaces。神经：Science Advances MUSIC 术后硬膜外超声接口。口味：Viktor MotionSites Studio、MengTo three.js 房间、Alex 四家 AI 引用分裂、Viktor 时装 lookbook、Loki IP 跳转坑。访谈：Latent Space×Mihail Eric / Jamin Ball / Fabian Theis。",
+    intel: [
+      {
+        title: "DeepMind：人类引导的 AI agent 对遗留 1024-bit RSA 做出两项密码分析推进",
+        why: "@GoogleDeepMind 11/7 01:20 上海。官方帖：Guided by humans, our models uncovered two major weaknesses in legacy 1024-bit RSA cryptosystems；并强调现代 2048-bit+ 仍安全。工作论文：复现 Shea 等人 1024-bit 实例时第一个根约 391 CPU core-years（比原计算少约 3.5×）；两名协作 agent 在不到四天内设计、运行并调试；PKCS#1 v1.5 在调用方控制超过半个数据块（或 1024-bit 下 64 字节摘要）后难度不再高于无限制 oracle。待办：残留 1024-bit 签名接口加速退役。",
+        sources: [
+          { label: "X DeepMind", url: "https://x.com/GoogleDeepMind/status/2118755418675765656" },
+          { label: "PDF", url: "https://storage.googleapis.com/deepmind-media/papers/Faster_Affine_Root_and_a_1024bit%20Computation.pdf" },
+        ],
+        image: "/assets/flow/2026-11-09-deepmind-rsa-1024.jpg",
+      },
+      {
+        title: "Anthropic：Agent memory——Claude 用「做梦」离线整理、纠错并组织记忆",
+        why: "anthropic.com 11/6；@AnthropicAI 11/7 05:16 上海。dreaming=idle 时对照 transcript 纠错、建 wiki、把重要笔记抬到会话注入层。CL-Bench：Opus 5 起能把失败写成已验证规则。Pokémon：Sonnet 3.7 写 413 文件拿 1 徽章，Fable 5 写 9 文件拿 4 徽章；错误 PokéCenter 方位经 dreaming 改正后才回到 Mt. Moon。Stainless 约 35 万文件/4.2 亿 token：dreaming 128 轮 wiki 答题 13%→48%；wiki+搜索 61% vs 仅搜索 53%。Claude Code auto memory 只预加载 MEMORY.md 前 200 行或 25KB。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/research/components-of-agent-memory" },
+          { label: "X", url: "https://x.com/AnthropicAI/status/2118814753154064501" },
+        ],
+        image: "/assets/flow/2026-11-09-anthropic-agent-memory-dreaming.jpg",
+      },
+      {
+        title: "OpenAI×Ligo：BioBasicsBench——测 agent 解读湿实验原始数据",
+        why: "openai.com 11/6；@OpenAI 11/7 03:08 上海。100 项任务：凝胶/显微/测序/仪器导出等日常湿实验，不是论文精修图。xhigh 下 GPT-6 Astra 平均 66.7% 可用分（95% CI 60.3–73.1%），GPT-5.6 Sol 43.8%。Astra 能认出通道重叠与错误抗生素对照，但仍会让先验压过对照、忽略相反液泡对比、菌落多计约 12%。官博：「Higher benchmark scores do not yet mean models can make reliable judgments in the lab.」",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science" },
+          { label: "X", url: "https://x.com/OpenAI/status/2118782708767965238" },
+        ],
+        image: "/assets/flow/2026-11-09-openai-biobasicsbench.jpg",
+      },
+      {
+        title: "OpenAI 据报测试 ChatGPT Business Hub：商家可见度 impression + click",
+        why: "Search Engine Land 11/6 10:54 ET（约 11/7 00:54 上海）；Juozas Kaziukėnas 截图。未正式上线。验证商家（如连 Shopify）可看每日「被 ChatGPT 提及次数」与站外点击图；可更新商品/信息、部署业务 agent 答客问。不提供 prompt、用户数据或竞品排名——需外接 prompt 监测才解释涨跌。对齐 GEO：一手可见度数据。",
+        sources: [
+          { label: "Search Engine Land", url: "https://searchengineland.com/openai-testing-business-tools-to-track-performance-within-chatgpt-500841" },
+        ],
+        image: "/assets/flow/2026-11-09-openai-chatgpt-business-hub.jpg",
+      },
+      {
+        title: "Meta：Muse Wonder 蒸馏的专用模型下放到 Muse / Meta AI；Spaces 上线",
+        why: "research.meta.ai 11/6；@AIatMeta 11/7 02:14 上海。未把旗舰 Wonder 直接铺量，而是用 Wonder 训出的 specialized 版本带来 Active Memory / Active Focus。自报：Personal Superintelligence Index 38%→47%；Active Memory 正确用关键上下文 76%→90%，关键信息遗忘约降 2.4×；意外卡点日常任务完成率 +67%（自报，无第三方复现）。Spaces：自然语言生成可置顶/定时的迷你应用，Muse 可用处同步开放。",
+        sources: [
+          { label: "Meta Research", url: "https://research.meta.ai/blog/specialized-models-for-muse-and-metaai" },
+          { label: "Spaces", url: "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app/" },
+          { label: "X", url: "https://x.com/AIatMeta/status/2118768974779634084" },
+        ],
+        image: "/assets/flow/2026-11-09-meta-muse-specialized-spaces.jpg",
+      },
+      {
+        title: "Science Advances：MUSIC——术后临时硬膜外超声神经接口",
+        why: "Science Advances 2026-11-06（Vol.12 Issue 45）。Kerensky 等：Multimodal Ultrasound System for Injury Care，减压术后置于硬膜外，约 45×10×3 mm，B 超+Doppler+未来聚焦超声驱动。仿真/台架/人尸/猪实验可观察脊髓结构、血肿与沟动脉区域 Doppler；健康猪上聚焦超声后见血流速度变化（可行性，非疗效）。明确不直接几何分辨沟动脉管腔；组织学每组 N=2。急性 SCI 术后监测从全身血压替代指标走向局部接口。",
+        sources: [
+          { label: "Science Advances", url: "https://www.science.org/doi/10.1126/sciadv.aeg2342" },
+        ],
+        image: "/assets/flow/2026-11-09-science-advances-music-ultrasound.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：MotionSites Studio——描述业务，AI 定制动效站",
+        why: "@viktoroddy 11/8 17:53 上海。种子 Motion Sites 线新产品向：studio.motionsites.ai；「your AI just hired a designer」——选设计、AI 定制图/视频并建站。与已报 MotionSites MCP 不同帖。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2119367586676908080" },
+          { label: "Studio", url: "https://studio.motionsites.ai/" },
+        ],
+        image: "/assets/flow/2026-11-09-viktor-motionsites-studio.jpg",
+      },
+      {
+        title: "Meng To：Opus 5.5 在 three.js 重建房间，给教程做 3D 动效",
+        why: "@MengTo 11/8 00:22 上海。约 1418 like / 1477 bookmark。对齐 Three.js agent 组件线与 UI/3D web motion。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2119103146974957675" },
+        ],
+        image: "/assets/flow/2026-11-09-mengto-threejs-room.jpg",
+      },
+      {
+        title: "Alex：四家 AI 搜索引用高度分裂——73% 站只出现在一家，四家都有仅 2.2%",
+        why: "@alexgroberman 11/8 00:52 上海。Prefer 同批 80 问×四家共 960 答、1329 被引站；966 只出现在一家，29 家四家都有。Perplexity 均 19.48 源/答 vs ChatGPT 3.05；同问三次重叠 Perplexity 96% / ChatGPT 37% / Gemini 35%。Reddit 在 207/960 条出现但 Claude 零引。GEO 种子续：平台引用不可互换。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2119110779505185068" },
+        ],
+        image: "/assets/flow/2026-11-09-alex-ai-citation-fragmentation.jpg",
+      },
+      {
+        title: "Viktor：一句 prompt 出时装 lookbook——3D 跑道转盘 + Shopify",
+        why: "@viktoroddy 11/7 06:37 上海。「Fashion brands are spending $50K on lookbook sites. This one was built from one prompt.」3D 跑道、look 上产品钉、尺码与 bundle；续帖开源 prompt。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2118835087366291650" },
+        ],
+        image: "/assets/flow/2026-11-09-viktor-fashion-lookbook.jpg",
+      },
+      {
+        title: "Loki Yan：按 IP 语言自动跳转会把 AI Agent 搞糊涂",
+        why: "@loki_yan_seo 11/7 06:53 上海。从业者坑：IP/语言硬跳转让抓取与 agent 路径混乱。有效个人经验，非厂商稿。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2118839299361947673" },
+        ],
+        image: "/assets/flow/2026-11-09-loki-ip-language-redirect.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space：[One Million AI Engineer Special] Mihail Eric——斯坦福怎么教 AI-Native 工程（约 121 分钟）",
+        why: "YouTube 11/9 05:23 上海，时长约 2:00:45。coding agent 能写完往年作业后，CS146S 改成读陌生仓库、提 patch、当面解释；拆 agent loop/harness/context、agent-ready 仓库、code review 瓶颈与 Stripe Minions 式后台 agent。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=dpY7YzZo4kE" },
+        ],
+        image: "/assets/flow/2026-11-09-latent-space-mihail-eric.jpg",
+      },
+      {
+        title: "Latent Space：Jamin Ball——Anthropic 为何现在上市？（约 102 分钟）",
+        why: "YouTube 11/7 10:49 上海，约 1:42:28。Altimeter partner；从 S-1 到 Nasdaq 与 GPU/数据中心融资逻辑；拆 2026 上半年财报口径与 serving 成本。录于 10/29；嘉宾披露 Altimeter 持仓。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=P735f1xlpL0" },
+        ],
+        image: "/assets/flow/2026-11-09-latent-space-jamin-ball.jpg",
+      },
+      {
+        title: "Latent Space：Fabian Theis——迷你脑、心跳类器官与预测生物学的 AI（约 51 分钟）",
+        why: "YouTube 11/6 23:06 上海，约 50:50。Helmholtz Munich / Scanpy；从 mapping→predicting→controlling biology（Nicheformer/scConcept/CellFlow/LabCompass）；foundation model 扰动预测有时仍打不过线性基线。对齐虚拟细胞/生物世界模型。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=3nAV2s4GYbs" },
+        ],
+        image: "/assets/flow/2026-11-09-latent-space-fabian-theis.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "审计残留 1024-bit RSA / PKCS#1 v1.5 签名接口",
+        why: "DeepMind 论文点名遗留面；2048+ 按声明不受影响。",
+      },
+      {
+        title: "盯 ChatGPT Business Hub / 商家可见度（GEO）",
+        why: "未正式上线；验证商家后可拿一手 impression+click。",
+      },
+      {
+        title: "设计：试 MotionSites Studio",
+        why: "今日口味板可动手项。",
+      },
+      {
+        title: "Conductor 云用户：仍须 11/20 前迁出",
+        why: "昨报 Meta 收购后续，续盯。",
+      },
+    ],
+    note: "跳过已报：GPT-6 Cyber、Claude Personal Finance、Cat Wu、FrontierPhysics/SLE、世界模型 AGC、948 LPE、vault、Pierre、Conductor、Images 2.6、昨报口味与 No Priors Vlad。窗前：Gemini Omni 1.2 Flash（11/5）、Cosmos 3 / Frameboy（11/5）、Kimi K3.1 Pro 权重（约 11/4）。世界模型本窗无更高质量新品。Open Design / kookaking / LerSent 本窗无更匹配一手。Hacktron 合伙与 Cyber 同周，未单列以免堆。",
+  },
+  {
     date: "2026-11-06",
     title: "OpenAI 正式发 GPT-6 Cyber；Claude 上个人理财 beta；Cat Wu 转 OpenAI；世界模型要算「可用性」；No Priors×Vlad",
     tldr: "窗口 11/05 08:15 上海之后。OpenAI 官宣 GPT-6 Cyber（ExploitGym 48.5%，对齐 Critical；Daybreak Blue/Red 扩防者；Firefox 81 个高危、昨日 Linux 流水线即此模型）。Anthropic Claude Personal Finance beta：美区 Pro/Max/Ultra 经 Plaid 只读连银行。Cat Wu（Claude Code 产品负责人）加入 OpenAI Core Products。FrontierPhysics / Science's Last Exam：端到端科研 agent 仍难（Opus 5.5 约 27.4%）。北大团队世界模型综述：关键从画得真到「算得值」（AGC）。口味：Viktor MotionSites MCP、MengTo REA-growth skill、Alex SaaS 买家先问 AI、LerSent Image2.6 多角度动作。访谈：No Priors×Robinhood CEO Vlad Tenev（约 54 分）。",
