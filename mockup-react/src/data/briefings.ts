@@ -33,6 +33,150 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-10",
+    title: "Anthropic Fable/Mythos 5.2；Meta Muse Ember；Google TPU 8tx/8i Max；OpenAI Control Room；Seedream 5.5；反事实世界模型；硅谷101×HF0",
+    tldr: "窗口 11/09 08:15 上海之后。Anthropic：Fable 5.2 全量、Mythos 5.2 核验通道。Meta：Muse Ember 廉价执行层（Wonder plans, Ember handles volume）。Google：TPU 8tx 机密计算 + 8i Max 双芯推理。OpenAI：Control Room 研究负载最长 35 秒强制断输出；ChatGPT Enterprise 上 AWS Marketplace 可抵承诺消费。字节 Seedream 5.5：自称可连改 100 轮并原生透明底。世界模型：Balestriero/LeCun 反事实世界模型（Register 独家，arXiv 待上）。口味：Viktor GPT Image 时装站与反 slop 栈；Alex Merchant AI Insights 与 AI 劝退购买。访谈：Latent Space×Handshake；硅谷101 E258 HF0。",
+    intel: [
+      {
+        title: "Anthropic：Claude Fable 5.2 全量上线；Mythos 5.2 限核验组织",
+        why: "anthropic.com 2026-11-09（约 11/10 03:00 上海）。同底层：Fable 对全用户（更强 cyber/biology 护栏），Mythos 走 Cyber/Life Sciences Verification。$8/$40 per MTok（fast $16/$80），输出最多约快 30%。自报：约 1000 agent×30 小时 Fermat Lean 形式化；两道黑洞相关开放物理；三台可工作电子装置；RoboDojo 64.9%；FrontierCode 2.0 Xhigh 49.1%。日常仍建议 Opus 5.5，Fable 留给最长程/最难题。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/claude-fable-and-mythos-5-2" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2" },
+        ],
+        image: "/assets/flow/2026-11-10-anthropic-fable-mythos-5-2.jpg",
+      },
+      {
+        title: "Meta：Muse Ember——最小最便宜的 agent 执行层模型",
+        why: "research.meta.ai 2026-11-09（约 11/10 02:00 上海）。口号 Wonder plans, Ember handles the volume。定位 tool call/编码子任务/routing/抽取；$0.10/$0.50 per MTok（缓存输入 $0.004），1M context、最高 512K output；API `muse-ember-1.0`。自报单位美元智力高于 Haiku 5.5 与 GPT-6 Luna；FrontierCode 2.0 上 27.2% 仍低于 Haiku 34.9%。与昨报 Wonder+Spaces 不同：这是执行层廉价模型。",
+        sources: [
+          { label: "Meta Research", url: "https://research.meta.ai/blog/muse-ember" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/" },
+        ],
+        image: "/assets/flow/2026-11-10-meta-muse-ember.jpg",
+      },
+      {
+        title: "Google：TPU 8tx 机密计算 + TPU 8i Max 双芯高密度推理",
+        why: "blog.google 2026-11-09（广播约 9 a.m. PT = 11/10 01:00 上海）。8tx：8t 硅片 + 第 5 代 EPYC，硬件层机密计算（处理中加密数据与权重），称相对 8t 延迟最高约低 2×。8i Max：两颗 8i 同封装，算力/SRAM/HBM 带宽均为 8i 两倍，瞄超大上下文。同期强调 TorchTPU 等开源软件栈。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/" },
+        ],
+        image: "/assets/flow/2026-11-10-google-tpu-8tx-8i-max.jpg",
+      },
+      {
+        title: "OpenAI Control Room：研究侧工作负载最长 35 秒可强制切断模型输出",
+        why: "openai.com Safety · 2026-11-09。推理引擎出 token 前须向 Control Room 要授权；作业被标停后任何引擎/模型下一请求都拒。从停令到无法再推进最长 35 秒（授权缓存），目标 0。Fail-closed：Control Room 宕机则拒绝全部推理。已覆盖所有前沿模型研究负载。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/control-room/" },
+        ],
+        image: "/assets/flow/2026-11-10-openai-control-room.jpg",
+      },
+      {
+        title: "ChatGPT Enterprise 上架 AWS Marketplace，可抵 AWS 承诺消费",
+        why: "openai.com 2026-11-09。经现有 AWS 采购/账单发现购买管理 Enterprise；合格支出计入 EDP/PPA。含 ChatGPT、Work、Codex、dots；与 Bedrock 上 OpenAI 模型互补。不同于昨报 Business Hub（可见度仪表盘）。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/chatgpt-enterprise-aws-marketplace" },
+        ],
+        image: "/assets/flow/2026-11-10-chatgpt-enterprise-aws-marketplace.jpg",
+      },
+      {
+        title: "字节 Seedream 5.5：自称可连续改图 100 轮并原生透明底",
+        why: "seed.bytedance.com 2026-11-09（TNW 约 11/10 05:44 上海）。多轮未改区像素级保持；原生 RGBA；自报影视/办公可用性相对 5.0 Pro 提高一倍以上，严重文字损坏率 0.4%。对比分数为厂商自测。豆包/即梦/火山逐步上线。",
+        sources: [
+          { label: "ByteDance Seed", url: "https://seed.bytedance.com/en/blog/more-realistic-images-more-stable-editing-across-100-rounds-introducing-seedream-5-5" },
+          { label: "TNW", url: "https://thenextweb.com/news/bytedance-seedream-5-5-image-editing-100-rounds" },
+        ],
+        image: "/assets/flow/2026-11-10-seedream-5-5.jpg",
+      },
+      {
+        title: "反事实世界模型：Balestriero / LeCun 等提出用观测偏差修正备选动作预测",
+        why: "The Register 独家 2026-11-09 17:00 UTC（11/10 01:00 上海）。预印本 Counterfactual World Models: Natura Non Facit Saltus；作者含 Randall Balestriero、Yann LeCun。用实际结果相对预测的偏差估计隐藏扰动，再加到备选动作预测。仿真成功率自报 35–69% vs 忽略观察的 planner 14–23%。稿件发稿时尚未上 arXiv（预计本周）。",
+        sources: [
+          { label: "The Register", url: "https://www.theregister.com/ai-and-ml/2026/11/09/machine-learning-researchers-build-a-better-world-model/5308301" },
+        ],
+        image: "/assets/flow/2026-11-10-counterfactual-world-models.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：GPT Image 2.6 做时装电商站——零实拍零模特一下午",
+        why: "@viktoroddy 11/9 18:38 上海。约 1056 like / 837 bookmark。对齐 Motion Sites / 时装视觉种子。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2119741442012893369" },
+        ],
+        image: "/assets/flow/2026-11-10-viktor-gpt-image-fashion.jpg",
+      },
+      {
+        title: "Viktor：给 vibe coder 的反 slop 超能力清单（3D 滚动站 / MCP / OG）",
+        why: "@viktoroddy 11/9 08:56 上海。motionsites 800+ 3D/MCP、Studio、recent.design OG/图标/发布视频。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2119594830343045490" },
+        ],
+        image: "/assets/flow/2026-11-10-viktor-anti-slop-stack.jpg",
+      },
+      {
+        title: "Alex：Google Merchant Center AI Performance Insights——仪表盘里教电商拿 AI Search",
+        why: "@alexgroberman 11/10 00:24 上海。美/加/澳/印/新 eligible；覆盖 AI Mode/Overviews 英文会话购物；share of voice、三阶段、Top Terms、Popular/Conversational Attributes。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2119828491160174644" },
+          { label: "Google Help", url: "https://support.google.com/merchants/answer/17200695?hl=en" },
+        ],
+        image: "/assets/flow/2026-11-10-alex-merchant-ai-insights.jpg",
+      },
+      {
+        title: "Alex：赢下 Google 还可能输给 ChatGPT——近 60% 称 AI 对话劝退购买",
+        why: "@alexgroberman 11/9 22:22 上海。Semrush Exploding Topics 调查 2338 名美国消费者：57.5% AI 用户称 chatbot 信息让他们决定不买。GEO 转化漏斗互补条。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2119797895021138171" },
+        ],
+        image: "/assets/flow/2026-11-10-alex-ai-dissuade-purchase.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space：What Frontier Labs Buy——Handshake AI 数据深潜（约 164 分钟）",
+        why: "YouTube 2026-11-09，约 2:43:49。Garrett Lord 与 Handshake 团队现场拆 eval/环境：Finance（Atlas/Project Falcon）、Bio（VIALS）、Alignment/safety。昨早报未报。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=v5IJwVnTxzg" },
+          { label: "latent.space", url: "https://latent.space/p/what_frontier_labs_buy_a_data_deep_dive_with_handshake_ai_garrett_lord_team/" },
+        ],
+        image: "/assets/flow/2026-11-10-latent-space-handshake.jpg",
+      },
+      {
+        title: "硅谷101 E258：聊聊创业「修道院」HF0 与 OpenRouter 早期故事（约 54 分钟）",
+        why: "YouTube/Fireside 2026-11-09，约 54:19。嘉宾 ACE Studio 郭靖 Joe；12 周封闭驻地、增长与 OpenRouter Louis 地下室 YOLO。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=3K7IWJAnOE8" },
+          { label: "Fireside", url: "https://sv101.fireside.fm/272" },
+        ],
+        image: "/assets/flow/2026-11-10-sv101-e258-hf0.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "硬核长程任务试 Claude Fable 5.2；日常仍 Opus 5.5",
+        why: "官博明确分层。",
+      },
+      {
+        title: "Agent 高频子任务对比试 Muse Ember 成本",
+        why: "今日廉价执行层新品。",
+      },
+      {
+        title: "电商：打开 Merchant Center AI performance，按高频词/缺失属性改 feed",
+        why: "今日 GEO 可动手项。",
+      },
+      {
+        title: "听 Latent Space×Handshake；硅谷101 E258",
+        why: "今日两部长访谈。",
+      },
+      {
+        title: "Conductor 云用户：仍须 11/20 前迁出",
+        why: "续盯。",
+      },
+    ],
+    note: "跳过已报：DeepMind 1024 RSA、dreaming 记忆、BioBasicsBench、Business Hub、Muse Wonder+Spaces、MUSIC、昨报口味与 Latent Space Mihail/Jamin/Fabian。窗内跳过：WorldParticle（arXiv 5 月旧文新闻稿）、中国梯度电极 BCI（npj 10/31 旧文 SCMP 迟报）、Navier–Stokes 9/8 旧闻复燃。",
+  },
+  {
     date: "2026-11-09",
     title: "DeepMind agent 推进旧版 RSA 密码分析；Claude 用「做梦」整理记忆；BioBasicsBench；ChatGPT 商家可见度仪表盘；Meta 蒸馏 Muse Wonder；Latent Space 三连",
     tldr: "窗口 11/06 08:15 上海之后（含周末）。DeepMind：人类引导的 AI agent 对遗留 1024-bit RSA 做出两项密码分析推进（现代 2048+ 按论文不受影响）。Anthropic：agent memory 工程文，dreaming 离线纠错/建 wiki。OpenAI×Ligo：BioBasicsBench 100 项湿实验判读（Astra xhigh 66.7%）。OpenAI 据报测试 ChatGPT Business Hub：商家 impression/click 图表（GEO 一手数据）。Meta：用 Muse Wonder 训出的 Active Memory/Focus 专用模型下放到 Muse/Meta AI，并上线 Spaces。神经：Science Advances MUSIC 术后硬膜外超声接口。口味：Viktor MotionSites Studio、MengTo three.js 房间、Alex 四家 AI 引用分裂、Viktor 时装 lookbook、Loki IP 跳转坑。访谈：Latent Space×Mihail Eric / Jamin Ball / Fabian Theis。",
