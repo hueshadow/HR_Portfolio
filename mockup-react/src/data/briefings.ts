@@ -33,6 +33,135 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-11",
+    title: "Gemini 4 Carbon 开放；ChatGPT 商家中心正式上线；Claude 白板/表格/数据；开源世界模型 PAN 2",
+    tldr: "窗口 11/10 08:15 上海之后。Google 向开发者/Ultra 开放 Gemini 4 Carbon（长程推理与网络安全，CursorBench 4.0 自称第一），并发布 AlphaProof Code（用 Lean 形式化验证 Signal 协议实现）和 Gemini Robotics 2.5（奔驰产线试跑自报 96%）。OpenAI 正式上线 Businesses in ChatGPT：认领商家、看提及/点击、美国电商可发 Business Agent——相对昨报「据报测试 Business Hub」已是官宣。Anthropic 付费计划上线 Whiteboards / Sheets（beta）并把 Dashboards 更名为 Claude Data 转正式可用。MBZUAI 旗下 IFM 开源世界模型 PAN 2（Apache 2.0）。窗口内无高质量新神经科学论文。口味：Viktor 拆 Fable 5.2 建站全流程、Meng To 的 Lottie AI 落地页与 24 小时 Three.js 循环、Alex 拆解微软官方 AEO/GEO 指南。访谈：Latent Space × Resend 的 Zeno Rocha（约 86 分钟）；Cognitive Revolution × Goodfire 的 Curt Tigges（约 115 分钟）。",
+    intel: [
+      {
+        title: "Gemini 4 Carbon 向开发者与 Ultra 开放：长程推理与网络安全旗舰",
+        why: "@sundarpichai 11/11 00:04 上海；Google 博客同日；@GoogleDeepMind 主帖 11/11 02:17 上海。官方称 Carbon 是目前最强模型，擅长网络安全与长程 agent 工作流（复杂知识工作、软件工程、科学推理）；Argon 仍被定位为大多数工程与知识工作的默认选择，Carbon 会花更多 token 做深探和延长验证循环。自称 CursorBench 4.0、Perplexity WANDR、Zapier AutomationBench 第一，且单位任务成本不到「次佳外部模型」的一半；与 Artificial Analysis 合作的 MKA（多模态知识 agent）排第二，平均任务成本不到第一名的 1/6。Antigravity 预览 /swarm，可把单条 prompt 拆成可追踪的多智能体团队。付费 API（AI Studio / Gemini for business）入门价与 Argon 相同：每百万 token 输入 $2、输出 $10；11/30 后改为 $4 / $20。Google AI Ultra 用户在 Antigravity、Gemini 应用和 Search AI Mode 滚动上线。演示含 Three.js 交互展览与一款鹈鹕骑车逛 Mountain View 园区的浏览器 3D 游戏。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/" },
+          { label: "X · Pichai", url: "https://x.com/sundarpichai/status/2120185896469496180" },
+          { label: "X · DeepMind", url: "https://x.com/GoogleDeepMind/status/2120219371473617099" },
+        ],
+        image: "/assets/flow/2026-11-11-gemini-4-carbon.jpg",
+      },
+      {
+        title: "OpenAI 正式上线 Businesses in ChatGPT：认领商家、看提及与点击，美国电商可发 Business Agent",
+        why: "openai.com 与 @OpenAI 11/11 02:06 上海。相对 11/09 早报「据报测试 ChatGPT Business Hub」，此次是官方 beta。宣称面向每周 12 亿 ChatGPT 用户：经 Business Hub 认领并验证后，可更新资料、上传带价格与库存的商品 feed；聚合洞察包括被提及次数、网站点击，以及站点被引用时的常见主题（discovery topics），不向商家提供用户对话或达阈值以下的数据。符合条件的美国电商与在线服务商可发布 Business Agent，在模型回答里点进商家主页后另开标注对话，与 ChatGPT 独立回答分开；也可赞助该 Agent 作为 ChatGPT Ads 落地。ChatGPT 可用地区的合格商家均可认领；Shopify 商户可从 Hub 或 Shopify 后台连接。待办：有站点/品牌的，先去认领并核对提及与点击。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-businesses-chatgpt" },
+          { label: "Business Hub", url: "https://openai.com/business/businesses-in-chatgpt/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2120216592395174382" },
+        ],
+        image: "/assets/flow/2026-11-11-openai-businesses-chatgpt.jpg",
+      },
+      {
+        title: "Anthropic：付费计划上线 Claude Whiteboards、Sheets（beta），Dashboards 更名 Claude Data 并转正式可用",
+        why: "claude.com 官方文 11/10（「Today」）；The Verge 11/11 01:30 上海跟进。Whiteboards：和 Claude 口述计划，生成带时间线、负责人和日期的共享白板，框选一块即可追问，结束后可转文档/幻灯，或导出到 Lucid、Miro、Zoho Vani。Sheets：按 prompt 生成带标签页、公式、格式和下拉的表格，单元格改动可追踪；功能仍简单，需要完整 Excel 时可导出 xlsx/CSV 或用 Claude for Excel。原 Claude Dashboards（10 月 beta）即日起以 Claude Data 正式提供：支持认证指标查询（certified badge）、数据故事/解说视频、live sharing（观看者只见已批准查询结果）、设计系统、缓存与按看板刷新、变更追踪。付费计划可用，走 web/桌面/手机。Team 三项默认开；Enterprise 上 Whiteboards 与 Sheets 默认关，Claude Data 将在 11/19 默认打开，均可在 Organization settings > Artifacts 改。同文还宣布 interactive connectors 可在对话旁或全屏打开 Adobe、Atlassian、Box、Notion 等完整应用。",
+        sources: [
+          { label: "Claude", url: "https://claude.com/resources/articles/sheets-whiteboards-data" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now" },
+        ],
+        image: "/assets/flow/2026-11-11-claude-whiteboards-sheets-data.jpg",
+      },
+      {
+        title: "DeepMind AlphaProof Code：多智能体用 Lean 形式化验证 Signal 协议的实现代码",
+        why: "DeepMind 博客 11/10；@sundarpichai 11/11 01:28 上海。官方称这是首次用 AI 在这一深度上形式化验证广泛部署的密码协议，也是该实现本身首次被任何方法验证到「编译后设备代码」层，而不只是设计规格。流程：研究者与模型把安全目标写成形式化规格（全部经人工审）；Gemini Carbon 驱动的 agent 生成逾 600 万行 Lean 证明；Lean 自动检查后，约 1% 代码需人工复核。全程约四周，官方对标「专家团队以往要数年」。把两个已修复的真实漏洞重新打回隔离副本，系统都能给出「不安全」的机器检查证明。Signal CTO Ehren Kret 称，用 AI agent 把线上代码译成有效 Lean 定理是重大突破。官方将开源验证产物。与 Carbon 同日发布，但是单独的研究里程碑。",
+        sources: [
+          { label: "DeepMind", url: "https://deepmind.google/blog/introducing-alphaproof-code/" },
+          { label: "X · Pichai", url: "https://x.com/sundarpichai/status/2120207062655549933" },
+        ],
+        image: "/assets/flow/2026-11-11-alphaproof-code-signal.jpg",
+      },
+      {
+        title: "IFM 开源世界模型 PAN 2：先模拟「做了会怎样」，权重与训练代码 Apache 2.0",
+        why: "@IFM_AI 11/11 01:00 上海；IFM 新闻稿 11/10。MBZUAI 旗下 Institute of Foundation Models 发布面向物理智能的通用世界模型：给定起始场景和文字动作，生成后续视频，强调时间、物理与空间约束。架构分两层——概念推理：大语言模型写出带时间戳的事件、动作与镜头描述；感知推理：从零训练的视频扩散模型把描述绘成画面（新闻稿未写参数量）。自称在物理一致性等六维上紧随 MiniMax-H3、优于另外四模型；多步规划完整计划数在其测试中最高；公开榜 Physics-IQ Verified 总第三、开源权重第一。官方也写明长期世界一致性仍是未解问题。放出视频模型权重、完整训练与推理代码及技术博客，Apache 2.0；Hugging Face 模型卡为 IFM/PAN2。",
+        sources: [
+          { label: "IFM", url: "https://ifm.ai/pan2/press-release/" },
+          { label: "X · IFM", url: "https://x.com/IFM_AI/status/2120199814696828942" },
+          { label: "Hugging Face", url: "https://huggingface.co/IFM/PAN2" },
+        ],
+        image: "/assets/flow/2026-11-11-pan2-world-model.jpg",
+      },
+      {
+        title: "Gemini Robotics 2.5：视觉-语言-动作模型上产线；奔驰试跑自报 96%",
+        why: "@GoogleDeepMind 11/10 23:00 上海；DeepMind 博客同日。官方称这是迄今最强的视觉-语言-动作（VLA）模型，在 200 多项任务上评估（夹菜、系蝴蝶结、移液等），相对先前基线成功率按任务类型高 30%–100%，完成速度快 20%–30%。与 Apptronik、Mercedes-Benz 在匈牙利 Kecskemét 与德国 Sindelfingen 的在产线做概念验证：Apollo 2 人形（SharpaWave 五指、22 自由度）做汽车零件配盘（kitting），自报成功率 96%。Gemini 4 Argon 被用来从单路摄像头生成大量模拟练习并回看失败。安全上加了推理时避障引导（绕障碍物安全完成率 +33%，绕附近的人 +43%），并开源机器人越狱基准 ASIMOV-Jailbreak；文中写 Argon 在该基准上 99.5%，高于先前基线 Gemini Robotics ER 2 的 82%。目前向机器人合作伙伴滚动开放，不是面向普通用户的消费级产品。",
+        sources: [
+          { label: "DeepMind", url: "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/" },
+          { label: "X · DeepMind", url: "https://x.com/GoogleDeepMind/status/2120169787896525104" },
+        ],
+        image: "/assets/flow/2026-11-11-gemini-robotics-2-5.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：Fable 5.2 是他眼中最好的网页设计模型，并公开从零到站的全流程",
+        why: "@viktoroddy 11/10 19:31 上海。对应 Motion Sites 种子：称 Fable 5.2 是目前最好的网页/应用设计模型，发完整 workflow 视频（「every prompt, every step」）；约 266 次收藏、147 赞。同线程指向 motionsites.ai 上的设计，以及 studio.motionsites.ai 用 AI 定制。是可照做的成片级工作流，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2120117138816205106" },
+          { label: "Motion Sites", url: "https://motionsites.ai/" },
+          { label: "Studio", url: "https://studio.motionsites.ai/" },
+        ],
+        image: "/assets/flow/2026-11-11-viktor-fable-52-workflow.jpg",
+      },
+      {
+        title: "Meng To：用 Opus 5.5 + Lottie AI 做落地页，卡片/Logo/菜单图标都是可交互 Lottie",
+        why: "@MengTo 11/10 19:00 上海。约 211 赞、229 次收藏。卡片 51 KB，不是视频；环光在 3D 卡片上实时播放。后续帖给出可复用写法：先给循环时长，再给每个元素一个动词（float / shimmer / pulse），并说明哪些必须固定；需要悬停就加 Ambient 与 Focused 状态。对齐 web motion 成品，而不是工具发版新闻。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2120109458638712924" },
+        ],
+        image: "/assets/flow/2026-11-11-mengto-lottie-ai-landing.jpg",
+      },
+      {
+        title: "Meng To：让 Flash 模型空转 24 小时，做出三个 Three.js 落地页，模型账单 $0",
+        why: "@MengTo 11/10 23:00 上海。SenseNova 6.8 Flash 循环写「单文件 HTML + Three.js」页面，浏览器在五个滚动点截图并回收控制台错误，打分后重写，更差的一轮直接丢掉；自称跑出 800+ 个版本。灯塔页第一版 prompt 改了 14 轮，改成「天空/海浪/悬崖/光束各怎么建」后 3 轮就更好。还用 SenseNova U1.5 把页面截图画成章节目标图，再让 Flash 对照着改。提示与循环：sensenova.ai/flash-6-8。对齐 Three.js + agent 循环这条线。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2120169790220468534" },
+          { label: "Prompts", url: "https://www.sensenova.ai/flash-6-8" },
+        ],
+        image: "/assets/flow/2026-11-11-mengto-sensenova-threejs-loop.jpg",
+      },
+      {
+        title: "Alex：拆解微软官方 AEO/GEO 零售指南——竞争从「被找到」变成「被选中」",
+        why: "@alexgroberman 11/11 00:30 上海。指南本身不是今天才发（微软广告 March 2026 博文《From Discovery to Influence》），他是因为「几乎没人盯」而逐页拆。微软把 AEO 定义成 Answer/Agentic Engine Optimization（让助手/代理能找到、理解、摘要、推荐并执行），GEO 是让生成式系统把你当成可引用的可信源。他强调三层数据要对齐：爬取到的品牌认知、你主动提供的商品 feed/API（价格、库存、规格），以及代理实地打开网站时看到的实时页（评价、促销、能否下单）。这是可执行的从业者笔记，不是厂商软文转述。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2120192279323501003" },
+          { label: "Microsoft Advertising", url: "https://about.ads.microsoft.com/en/blog/post/march-2026/all-in-on-ai-discovery-to-influence-in-geo-part-1" },
+        ],
+        image: "/assets/flow/2026-11-11-alex-microsoft-aeo-geo.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space × Zeno Rocha（Resend）：为 Agent 做设计，以及 Claude Code 会推荐哪家邮件服务",
+        why: "YouTube 11/11 03:57 上海上线，时长 1:25:52。Resend 联合创始人兼 CEO 用一个具体例子讲 answer engine optimization：编码 agent 开 PR 时代你选邮件服务商，Claude Code 会推荐谁、不同模型版本怎么变；选中之后，agent 能不能找到价格、完成开户并发出第一封信。对齐 GEO / agent 体验，不是工具发版切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=bdIoODXsu8k" },
+        ],
+        image: "/assets/flow/2026-11-11-latent-space-zeno-rocha.jpg",
+      },
+      {
+        title: "Cognitive Revolution × Curt Tigges（Goodfire）：Agentic 解释性、单语义性与逆向工程",
+        why: "YouTube 11/11 03:08 上海上线，时长 1:55:03。Goodfire 的 Curt Tigges 谈 agentic interpretability、monosemanticity 和反向工程神经元/特征基。窗口内没有高质量新神经科学论文，这是最贴近「机制可解释」的长访谈。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=hqXYtqQq50g" },
+        ],
+        image: "/assets/flow/2026-11-11-cognitive-revolution-tigges.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "有品牌或站点：去 ChatGPT Business Hub 认领，核对自己的提及与点击",
+        why: "官方 beta 已开。合格商家（ChatGPT 可用地区）可认领并更新资料/商品 feed；美国电商与在线服务还可测 Business Agent。洞察是聚合的提及次数、网站点击和被引主题，对话本身不会交给商家。",
+        sources: [
+          { label: "Business Hub", url: "https://openai.com/business/businesses-in-chatgpt/" },
+        ],
+      },
+    ],
+  },
+  {
     date: "2026-11-10",
     title: "Anthropic Fable/Mythos 5.2；Meta Muse Ember；Google TPU 8tx/8i Max；OpenAI Control Room；Seedream 5.5；反事实世界模型；硅谷101×HF0",
     tldr: "窗口 11/09 08:15 上海之后。Anthropic：Fable 5.2 全量、Mythos 5.2 核验通道。Meta：Muse Ember 廉价执行层（Wonder plans, Ember handles volume）。Google：TPU 8tx 机密计算 + 8i Max 双芯推理。OpenAI：Control Room 研究负载最长 35 秒强制断输出；ChatGPT Enterprise 上 AWS Marketplace 可抵承诺消费。字节 Seedream 5.5：自称可连改 100 轮并原生透明底。世界模型：Balestriero/LeCun 反事实世界模型（Register 独家，arXiv 待上）。口味：Viktor GPT Image 时装站与反 slop 栈；Alex Merchant AI Insights 与 AI 劝退购买。访谈：Latent Space×Handshake；硅谷101 E258 HF0。",
