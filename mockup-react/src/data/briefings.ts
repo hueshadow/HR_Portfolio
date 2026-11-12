@@ -33,6 +33,133 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-12",
+    title: "Gemini Decision 1 上线；AlphaGenome 2 做细胞级变异预测；Qwen4-Max 预览开放；Adobe MAX Sneaks",
+    tldr: "窗口 11/11 08:15 上海之后。Google 推出 Gemini Decisions API 与新模型 Gemini Decision 1：不做逐 token 生成，一次前向就可对同一份多模态输入打最多 1000 道封闭选择题，自称端到端 150–250 毫秒、输入每百万 token $0.10、输出不计费。DeepMind 发布 AlphaGenome 2，把变异效应预测从组织均值推进到具体细胞类型与状态，非商业研究可走 API；研究用途，未做临床验证。阿里通义放出 Qwen4-Max 预览：百万上下文，仅 Token Plan，预览期到 11/25 24:00（UTC+8）即退役。Adobe MAX Sneaks 展示 10 项实验，Adobe Labs Playground 首次开放 Deep Brush、Hands On 试玩。窗口内无高质量新世界模型或神经科学论文。口味：Meng To 用 Fable 5.2 在 Blender 里重建自己的 Three.js 公寓、并给 Three.js 游戏做预告片；Viktor 的时装站与代理商站；Alex 拆 ChatGPT 品牌问与品类问 14 倍引用差。访谈：Cognitive Revolution × Cisco Outshift 的 Vijoy Pandey（约 90 分钟）；a16z × Mike Volpi 谈 AI 基建（约 56 分钟）。",
+    intel: [
+      {
+        title: "Gemini Decisions API 上线：新模型 Decision 1 一次前向打最多 1000 道封闭题",
+        why: "@sundarpichai 11/12 02:15 上海官宣；Google 博客同日；@OfficialLoganK 02:16 跟进。官方称这不是逐 token 生成答案，而是由新模型 gemini-decision-1 在一次前向里给候选选项打分，返回概率和 0–1 置信度。共享一份最多 256K token 的多模态输入（文本、图片、音频、视频、PDF），一次最多提 1000 道彼此独立的题，题型可混用：是否（noul）、选择题（2–255 项）、有序量表（score）。官方给出端到端时延 150–250 毫秒、模型计算 50–100 毫秒（上下文至 16K token 时，1 到 100 题几乎持平）。定价为输入每百万 token $0.10、输出 token $0；官方称在其共享基准套件上，单位成本约为 Gemini 3.5 Flash-Lite + Interactions API 的近 1/5。自称在 agent 路由、推理、排序和多模态理解基准上领先，校准误差最低。Google 内部已用于 Notebook 实时路由（日常查询自称最多降低 40% 时延）、Stitch Rapid 几秒内出可玩线框、Labs 产品 CC 从 200 多个表情里选、Search 里 MCP 工具的对抗安全层。Google AI Studio 可领密钥，有免费试用档；OpenRouter、LangChain、Vercel、LiteLLM 等正在接入，Google Cloud 上的 Gemini 即将跟进。适合做工具选择、策略检查、模型分流和上下文打分。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/" },
+          { label: "X · Pichai", url: "https://x.com/sundarpichai/status/2120581155078729728" },
+          { label: "X · Logan", url: "https://x.com/OfficialLoganK/status/2120581433639198885" },
+        ],
+        image: "/assets/flow/2026-11-12-gemini-decision-1.jpg",
+      },
+      {
+        title: "DeepMind AlphaGenome 2：把 DNA 变异效应预测推进到具体细胞类型",
+        why: "DeepMind 博客与 The Verge 均标 11/11 15:00 UTC（23:00 上海）；@GoogleDeepMind 主帖 23:03 上海。官方称这是下一代 DNA 序列模型：同一套基因组在不同细胞类型和状态下读法不同，新模型按「一个条件一次」做条件预测，而不是像第一代那样对许多组织并行输出。训练数据包括超过 1.07 亿个单细胞图谱、覆盖 68 个组织；除基因表达、组蛋白修饰、染色质可及性外，还新增甲基化。官方称在识别会改变表达的变异上，数量接近此前最优模型的两倍；在 TenK10K 的 28 种原代免疫细胞上，因果变异召回为 30% 对 16%，方向性基因效应为 43% 对 23%（对照是在单细胞数据上微调的原版 AlphaGenome 及其他专用工具）。可在不重新训练的情况下接入新的单细胞实验（官方举例只需几十个细胞），并复现过 IBD 相关研究中 ETS2 在肠道巨噬细胞里被远端调控元件推高的发现。非商业研究即日起可通过 AlphaGenome API 和 Colab 教程使用，商业研究为私人预览。官方写明仅供研究、未经临床或诊断验证。后续计划在 Antigravity 提供 AlphaGenome 2 Skills。",
+        sources: [
+          { label: "DeepMind", url: "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model" },
+          { label: "X · DeepMind", url: "https://x.com/GoogleDeepMind/status/2120532824465805749" },
+        ],
+        image: "/assets/flow/2026-11-12-alphagenome-2.jpg",
+      },
+      {
+        title: "Qwen4-Max 预览开放：百万上下文，仅 Token Plan，11/25 截止后退役",
+        why: "@Alibaba_Qwen 11/11 10:01 上海；阿里云 Model Studio 文档写明预览期为 11/11 10:00 至 11/25 24:00（UTC+8），期内不做变更，预览结束后模型退役。目前只走 Token Plan，不支持按量付费；也可在 Qwen 应用、Qoder、QwenWork、QwenStudio 提前用。官方定位是下一代旗舰多模态模型，面向编程、办公、前端设计和复杂 agent 任务：默开启思考（reasoning_effort 默认 xhigh，可选 low/medium），支持图/视频理解、函数调用、联网搜索和结构化输出，并兼容 OpenAI Chat Completions / Responses 与 Anthropic Messages。上下文 100 万 token，最大输出 393,216 token（思考和最终答案共用额度）。文档提醒从该模型起 max_tokens 等价于 max_completion_tokens，思考会占同一预算，按旧习惯只给答案留额度可能会截断。要试用得赶在 11/25 结束前。",
+        sources: [
+          { label: "X · Qwen", url: "https://x.com/Alibaba_Qwen/status/2120335993643684315" },
+          { label: "阿里云文档", url: "https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview" },
+          { label: "Token Plan", url: "https://www.qwencloud.com/pricing/token-plan" },
+        ],
+        image: "/assets/flow/2026-11-12-qwen4-max-preview.jpg",
+      },
+      {
+        title: "Adobe MAX Sneaks：10 项实验，Labs Playground 首次开放试玩",
+        why: "Adobe 官方博客 11/11；Sneaks 场次为美东 11/11 17:30–19:00（上海 11/12 06:30–08:00）。Terry Crews 主持，展示 10 项研究预览，不是即日交付的正式功能。和设计/影像线最贴近的包括：Project Sight Span 把一张图变成可走进去取新机位的环境；Project Screen Test 给虚构角色设定外形、声音和性格，再用自然语言对谈；Project Live Set 可在视频播放中途改主体、环境和镜头；Project On Cue 用可编辑的时间信号控制生成视频里动作何时发生；Project Scene Sweep 把一次修改套到同一场戏的多个镜头。声音侧有 Project Sound Bender；平面和设计侧有会理解形体与光影的 Deep Brush、在画布上直接上手拖动物体的 Hands On、把一处修改复用到另一处且仍是可编辑 Photoshop 步骤的 Rinse Repeat，以及按拖放手势适配透视和风格并输出矢量的 Link Up。今年首次把部分项目放到 Adobe Labs Playground：目前可试 Deep Brush、Hands On，并预览 Photoshop 的 Project Custom Filters。这些仍是实验，反馈入口是 labs@adobe.com。",
+        sources: [
+          { label: "Adobe Blog", url: "https://blog.adobe.com/en/publish/2026/11/11/adobe-max-sneaks" },
+        ],
+        image: "/assets/flow/2026-11-12-adobe-max-sneaks.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Meng To：用 Fable 5.2 在 Blender 里重建自己的 Three.js 公寓",
+        why: "@MengTo 11/11 08:42 上海，约 465 赞、449 次收藏，配约 52 秒视频。原话：「I recreated my three.js apartment in Blender with Fable 5.2. Just mind-blowing. I was already obsessed with Opus 5.5, but this model is something else. Faster, more accurate and token efficient.」这是窗口内新发的成片（不是昨报那条 SenseNova 24 小时循环），对齐 Three.js 成品与可丢给模型的影像工作流。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2120316203738829180" },
+        ],
+        image: "/assets/flow/2026-11-12-mengto-fable-blender-apartment.jpg",
+      },
+      {
+        title: "Viktor Oddy：Fable 5.2 + GPT Image 2.6 做时装站，转戒、选搭配，收据从顶上打印出来",
+        why: "@viktoroddy 11/11 20:35 上海，约 134 赞、108 次收藏，配完整演示视频。对上 Motion Sites 种子，也沾时装/OOTD 这条线：旋转戒指、选一套造型，收据从页面顶部打印下来。后续帖给出可复用 prompt：motionsites.ai/?prompt=look-circle，也可用 studio.motionsites.ai/explore/look-circle 让 AI 改成自己的。是能看、能照做的成片，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2120495578031477070" },
+          { label: "Prompt", url: "https://motionsites.ai/?prompt=look-circle" },
+          { label: "Studio", url: "https://studio.motionsites.ai/explore/look-circle" },
+        ],
+        image: "/assets/flow/2026-11-12-viktor-fashion-look-circle.jpg",
+      },
+      {
+        title: "Viktor Oddy：一条 prompt 做出带视频主视觉和 3D 案例卡的代理商站",
+        why: "@viktoroddy 11/11 10:44 上海，约 91 赞、103 次收藏。自称 Fable 5.2「刚做出的代理商站比多数代理商自己的还好」：视频 hero、滚动时剥开的 3D 案例卡、团队照片在暗色背景里上浮，一条 prompt。11:29 补了完整 prompt：motionsites.ai/?prompt=video-studio。和时装站是同一天两件不同成片。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2120346936368877814" },
+          { label: "Prompt", url: "https://motionsites.ai/?prompt=video-studio" },
+        ],
+        image: "/assets/flow/2026-11-12-viktor-agency-video-studio.jpg",
+      },
+      {
+        title: "Meng To：用 Fable 5.2 把自己的 Three.js 游戏做成预告片",
+        why: "@MengTo 11/11 20:57 上海，约 208 赞、85 次收藏，配视频。他把做了一个月的 Three.js 游戏交给 Fable 5.2 剪成预告片。回复里说镜头大多是模型自己拍的，主要人工在修问题和角色动画（目前最弱）；手和腿仍经常出问题。对齐 Three.js 成品 + 能丢给模型的影像工作流，不是发版新闻。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2120501283304153438" },
+        ],
+        image: "/assets/flow/2026-11-12-mengto-fable-threejs-trailer.jpg",
+      },
+      {
+        title: "Alex：ChatGPT 里品牌问引用率 77.6%，品类问只有 2.2%，差 14 倍",
+        why: "@alexgroberman 11/12 00:47 上海，约 57 赞、45 次收藏。他引用 Foundation Marketing 与 AirOps 2026 年 4 月一项研究：5720 万次 AI 引用、7 个 B2B 垂类里 50 个品牌，品牌词查询时官网被引约 77.6%，问「这个品类谁最好」时只有约 2.2%，约 14 倍差距。他的解释是：点名品牌时模型会专找你的站；品类发现题则要在整个垂类里拼一份权威答案，需要自家有深度专家内容，还要在该垂类受信任的行业媒体里反复出现。他还写 Reddit 约占全部外部 AI 引用的 20.8%，但行业媒体、评测站等加总仍是大头。帖子后半是他自己的服务推销，观点本身值得看，不必按其套餐走。同日稍早他还写了认领 ChatGPT Business Hub 的逐步指南（见待办）。",
+        sources: [
+          { label: "X · 14x 差距", url: "https://x.com/alexgroberman/status/2120558926416822433" },
+          { label: "X · 认领指南", url: "https://x.com/alexgroberman/status/2120522205914431650" },
+        ],
+        image: "/assets/flow/2026-11-12-alex-chatgpt-citation-gap.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Cognitive Revolution × Vijoy Pandey（Cisco Outshift）：多智能体如何对齐语义、谈意图",
+        why: "YouTube 11/11 19:59 上海上线，时长 1:30:25。Cisco Outshift 的 SVP/GM Vijoy Pandey 谈多智能体协作的难题，以及 Cisco 开源协议 Scope、Accord、Concord 如何处理语义错位、意图协商和复杂工作流里的认知失败。对齐「多个 agent 一起干活」这条正在变热的线，不是工具发版切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=lAG4njluIbQ" },
+        ],
+        image: "/assets/flow/2026-11-12-cognitive-revolution-vijoy-pandey.jpg",
+      },
+      {
+        title: "a16z × Mike Volpi：为什么 AI 基建可能比这一轮热潮活得更久",
+        why: "YouTube 11/11 23:30 上海上线，时长 56:06。曾参与塑造 Cisco 互联网基建策略的 Mike Volpi，对谈 a16z 的 Raghu Raghuram 与 Guido Appenzeller：把今天的 GPU、数据中心和电力投入，对照 1990 年代末的光纤热潮，讨论即便市场回调，基础设施为什么仍可能有价值；并谈到 NVIDIA、定制芯片、网络和 GPU 经济的变化。是长访谈，不是工具盘点。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=LI3lxzHfRrU" },
+        ],
+        image: "/assets/flow/2026-11-12-a16z-mike-volpi.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "有品牌或站点：去 ChatGPT Business Hub 认领，并打开 Insights",
+        why: "官方入口 chatgpt.com/business-hub。Alex 11/11 22:21 上海写了逐步指南：先按名称认领（企业邮箱 / 电话 / 域名 DNS TXT / Shopify 等），再走 Persona 身份核验，才能改资料、接商品 feed，并看到过去 28 天的聚合 Insights。他特别提醒：对线上商家，「提及」统计的是 ChatGPT 引用了你的网站，只报品牌名、不带网站链接的不算；另有网站点击和发现主题（discovery topics）。OpenAI 写明认领并不自动提高曝光，也不能控制 ChatGPT 的独立推荐——仪表盘用来测量，不保证被选中。有站点的可以先认领并把仪表盘和下一批真实购买问题对一下。",
+        sources: [
+          { label: "Business Hub", url: "https://chatgpt.com/business-hub" },
+          { label: "X · 指南", url: "https://x.com/alexgroberman/status/2120522205914431650" },
+        ],
+      },
+      {
+        title: "想试 Qwen4-Max：预览只到 11/25 24:00（UTC+8），且仅 Token Plan",
+        why: "官方文档写明预览期 11/11 10:00 至 11/25 24:00（上海时间），结束后退役，也没有按量付费。已有 Token Plan 或打算评前端/agent 任务的，窗口很短。",
+        sources: [
+          { label: "Token Plan", url: "https://www.qwencloud.com/pricing/token-plan" },
+          { label: "文档", url: "https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview" },
+        ],
+      },
+    ],
+  },
+  {
     date: "2026-11-11",
     title: "Gemini 4 Carbon 开放；ChatGPT 商家中心正式上线；Claude 白板/表格/数据；开源世界模型 PAN 2",
     tldr: "窗口 11/10 08:15 上海之后。Google 向开发者/Ultra 开放 Gemini 4 Carbon（长程推理与网络安全，CursorBench 4.0 自称第一），并发布 AlphaProof Code（用 Lean 形式化验证 Signal 协议实现）和 Gemini Robotics 2.5（奔驰产线试跑自报 96%）。OpenAI 正式上线 Businesses in ChatGPT：认领商家、看提及/点击、美国电商可发 Business Agent——相对昨报「据报测试 Business Hub」已是官宣。Anthropic 付费计划上线 Whiteboards / Sheets（beta）并把 Dashboards 更名为 Claude Data 转正式可用。MBZUAI 旗下 IFM 开源世界模型 PAN 2（Apache 2.0）。窗口内无高质量新神经科学论文。口味：Viktor 拆 Fable 5.2 建站全流程、Meng To 的 Lottie AI 落地页与 24 小时 Three.js 循环、Alex 拆解微软官方 AEO/GEO 指南。访谈：Latent Space × Resend 的 Zeno Rocha（约 86 分钟）；Cognitive Revolution × Goodfire 的 Curt Tigges（约 115 分钟）。",
