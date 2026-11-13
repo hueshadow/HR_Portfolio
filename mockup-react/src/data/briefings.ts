@@ -33,6 +33,137 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-13",
+    title: "Gemini 4 Hydrogen 成为日常默认；Claude 可进 Google Meet，也可自托管 Managed Agents；Google 智能眼镜开预售",
+    tldr: "窗口 11/12 08:15 上海之后。Google 发布 Gemini 4 Hydrogen：面向日常编程与 agent 执行。官方称默认 high 思考档在 Artificial Analysis Intelligence Index 上为 51，超过 Argon 的 50，最高 xhigh 档到 54；100 万 token 上下文全窗口统一价，输入每百万 token $1.50、输出 $7.50。相对 Gemini 3.8 Flash，官方称默认 high 档完成任务快 2.5 倍，Terminal-Bench 4.1 从 18.2% 升到 57%，编造声明减少 5 倍以上。同期在 Antigravity 推出 Orchestrator，可在同一会话里调度 Carbon 与 Hydrogen；介绍页写 Terminal-Bench 4.0 上接近 Carbon 成功率、平均少用 24% 配额、快 19%，Antigravity 博客把同一组数字写在 Terminal-Bench 4.1 上。Hydrogen 进入 AI Studio、Gemini API、Gemini 应用、Search（官方称是 Search 迄今最大模型升级）以及付费 Pro/Ultra 的 Antigravity。Anthropic 官方 Release notes 标 11/12：Claude Meetings 开始在 Team/Enterprise 推 beta，可作为可见参与者加入 Google Meet。自托管 Claude Managed Agents 进入私营 beta，控制面可放在自有云或机房，模型请求仍发往所选推理提供商。Google 与 Warby Parker、Gentle Monster、Samsung 合作的智能眼镜开放预售，美国与韩国，门店 12/10，Warby Parker 起 $395。Cyborg and Bionic Systems 于 11/12 在线发表体感皮层微刺激下的功能性神经形态孪生论文。窗口内无新的高质量世界模型项。口味：Viktor 的角色换装购物、Meng To 的 HeyGen 滚动世界落地页、Alex 转述 Mueller 谈 AI 搜索流量、Loki 讲 Gamma /docs/ 寄生 SEO。访谈：硅谷101 数据中心与社区阻力（1:53:56）；a16z 的 Anish Acharya 与 Jonathan Lai 谈 AI 与经典游戏（46:11）。No Priors × Max Jaderberg 约 39 分钟，未达 45 分钟门槛，未收录。",
+    intel: [
+      {
+        title: "Google 发布 Gemini 4 Hydrogen：日常编程与 agent 执行层，并进入 Search",
+        why: "DeepMind 官方账号 11/13 02:02 上海发帖，Google 博客日戳 11/12，作者 Koray Kavukcuoglu。官方定位：Carbon / Argon 负责长程难题，Hydrogen 负责快速执行。默认 high 思考档在 Artificial Analysis Intelligence Index 上为 51（Argon 为 50），最高新增 xhigh 档到 54；思考档为 low / medium / high（默认）/ xhigh。定价在整个 100 万 token 上下文窗口统一为输入每百万 token $1.50、输出 $7.50。相对 Gemini 3.8 Flash，官方称默认 high 档完成任务快 2.5 倍，Terminal-Bench 4.1 为 57% 对 18.2%，编造声明减少 5 倍以上。Antigravity 同期推出 Orchestrator，可在同一会话里动态切换 Carbon 与 Hydrogen；介绍页写在 Terminal-Bench 4.0 上接近 Carbon 成功率、平均少用 24% 配额、快 19%，Antigravity 博客把同一组数字写在 Terminal-Bench 4.1 上，两处基准编号不一致。Antigravity 博客还写：Orchestrator（Carbon）与（Argon）向 Ultra 开放，付费 Pro 为 Orchestrator（Argon）。Hydrogen 已进入所有档位的 AI Studio 与 Gemini API、Gemini 应用、Google Search（Search 博客称是迄今最大模型升级，并升级 query fan-out），以及付费 Pro/Ultra 的 Antigravity；免费应用用户会在自动选模时用到它。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" },
+          { label: "Antigravity", url: "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/" },
+          { label: "Search 升级", url: "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/" },
+          { label: "X · DeepMind", url: "https://x.com/GoogleDeepMind/status/2120940338869055788" },
+        ],
+        image: "/assets/flow/2026-11-13-gemini-4-hydrogen.jpg",
+      },
+      {
+        title: "Claude Meetings 开始在 Team/Enterprise 推 beta：可进 Google Meet 当场写文档和白板",
+        why: "Anthropic 官方 Release notes 标 11/12，产品说明页同步上线（未给精确时刻）。可把 Claude 加进视频会议，作为可见参与者：记笔记、回答问题，并在通话中生成文档、白板、幻灯片等 artifacts。目前先支持 Google Meet，其他会议平台「即将」跟进。Team 默认可邀请，管理员可关闭；Enterprise 需管理员为全部或部分组织打开。Beta 期间不向零数据保留（ZDR）、HIPAA-ready 或客户托管密钥（CMEK）组织开放。笔记和转写在 beta 期间对 Team/Enterprise 免费；通话中的回答也免费，除非调用了已连接的工具（计入套餐用量）；会上生成的文档/白板等 artifacts 免费到 2027-02-10。默认不加入有外部来宾的会议，外部人员中途加入会离开；管理员可允许外部来宾会议，但 Claude 不在会议聊天里回复。官方提醒：加入或打开自动入会前，须确认在场的人接受被转写。保存的是转写、摘要和屏幕描述，不是音频。",
+        sources: [
+          { label: "Claude", url: "https://claude.com/resources/articles/claude-meetings" },
+          { label: "Release notes", url: "https://support.claude.com/en/articles/12138966-release-notes" },
+          { label: "Help Center", url: "https://support.claude.com/en/articles/18325154-use-claude-meetings" },
+        ],
+        image: "/assets/flow/2026-11-13-claude-meetings.jpg",
+      },
+      {
+        title: "自托管 Claude Managed Agents 进入私营 beta：控制面可放在自己的环境里",
+        why: "Anthropic 官方介绍页现已上线；The Next Web 标 11/12 19:06 UTC（13 日 03:06 上海）。此前 Managed Agents 由 Anthropic 托管，客户最多只能自托管 sandbox。私营 beta 起，harness、sandbox、凭证和会话历史都可跑在自有云或机房：你来运维 Managed Agents 服务器、数据库，以及 agent 执行 shell/文件工具的 worker。模型请求仍发往你选择的地方：Anthropic、Amazon Bedrock、Google 的 Agent Platform、Microsoft Foundry，或自建网关——Claude 本身并不在你的内网里跑。若已与 Anthropic 签订零数据保留，它按普通 Messages API 请求同样生效。官方写安全设计包括：harness 与 sandbox 分离、凭证留在 sandbox 外、可限制出站主机、全程记录并经 OpenTelemetry 导出。申请需联系 Anthropic 客户团队，或先看文档。",
+        sources: [
+          { label: "Claude", url: "https://claude.com/resources/articles/self-hosted-claude-managed-agents" },
+          { label: "TNW", url: "https://thenextweb.com/news/anthropic-self-hosted-claude-managed-agents" },
+        ],
+        image: "/assets/flow/2026-11-13-claude-managed-agents-self-hosted.jpg",
+      },
+      {
+        title: "Google 智能眼镜开预售：Warby Parker 起 $395，美国与韩国 12/10 上市",
+        why: "Google 官方博客日戳 11/12，作者 Shahram Izadi（未给精确时刻）。与 Warby Parker、Gentle Monster、Samsung 合作的 Intelligent Eyewear 开始预售，内置 Gemini，可免提导航、翻译、视觉辅助、拍照和日程。Warby Parker 三款（Alden、Reid、Wren）光学或太阳镜起 $395；Gentle Monster 六款设计起 $449，多数可配处方镜片。官方称镜框约 41 克，电池最长约 9 小时，充电盒最多可再充约 7 次。12/10 起在美国与韩国门店和线上销售；目前仅美国与韩国的 18 岁以上 Google 账号可用，并需兼容手机（Pixel 7 系列及以上、部分 Galaxy、iPhone 13 Pro 及以上）。新功能 Guided Vision 提供对话式音频描述，官方写明它不是医疗或助行设备。隐私侧：拍照片/视频时有指示灯，被遮挡或关闭会停止录制；每副都有总开关；Gemini 处理前会尝试涂抹旁观者面部。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order/" },
+        ],
+        image: "/assets/flow/2026-11-13-google-intelligent-eyewear.jpg",
+      },
+      {
+        title: "Cyborg and Bionic Systems：体感皮层微刺激下的功能性神经形态孪生，11/12 在线发表",
+        why: "期刊页与 Crossref 均标 published online 2026-11-12，DOI 10.34133/cbsystems.0767，期刊为 Cyborg and Bionic Systems。标题是《A Functional Neuromorphic Twin of the Somatosensory Cortex under Intracortical Microstimulation》。作者包括 Tianshu Shen、Hector Adrian Ramirez Lara、Wolfger von der Behrens、Natacha Vanattou-Saïfoudine、Charles M. Greenspon、Giacomo Indiveri、Chiara De Luca、Giacomo Valle、Elisa Donati 等。期刊页和 Crossref 均未提供摘要，这里只报发表事实与题目，不补充未核对的实验数字。窗口内没有新的高质量世界模型论文。",
+        sources: [
+          { label: "期刊", url: "https://spj.science.org/doi/10.34133/cbsystems.0767" },
+        ],
+        image: "/assets/flow/2026-11-13-neuromorphic-somatosensory-twin.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：不逛商品流，而是给角色换衣服的购物站",
+        why: "@viktoroddy 11/12 18:33 上海，约 492 赞、490 次收藏，配约 7 秒视频。原话：「this is the future of online shopping. you don't scroll products. you dress a character. click an outfit, a scan line runs down, she's wearing it.」对上 LerSent 的 3D 数字衣橱 / OOTD 种子，也是能直接看的成片，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2120827385079873619" },
+        ],
+        image: "/assets/flow/2026-11-13-viktor-character-shopping.jpg",
+      },
+      {
+        title: "Meng To：用 HeyGen Video 1 做 30 秒 2K 一镜到底的滚动世界落地页",
+        why: "@MengTo 11/12 23:06 上海，约 109 赞、117 次收藏，配约 67 秒视频。原话：整段 hero 是一条 30 秒、2K 的一镜，从平面图到模特、房子、室内再到天空，滚动时反向播放；并说全文工作流、prompt 和免费模板在下面。对上 Viktor 的电影感落地页 / Motion Sites 种子，是能看的成片，不是发版新闻。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2120896116711727557" },
+        ],
+        image: "/assets/flow/2026-11-13-mengto-heygen-scroll-world.jpg",
+      },
+      {
+        title: "Alex 转述 Google John Mueller：靠推荐流量的生意，也该把 AI 搜索算进全景",
+        why: "@alexgroberman 11/12 22:14 上海，约 53 赞、29 次收藏，配 Mueller 回复截图。他引述有人问：只做 SEO 是否还够，还是也要考虑 GEO，因为谷歌排名并不能保证品牌出现在 ChatGPT、Gemini 或 Perplexity。截图里 Mueller 的原话包括：「If you have an online business that makes money from referred traffic, it's definitely a good idea to consider the full picture.» 以及「Thinking about how your site’s value works in a world where AI is available is worth the time.」这里只报这两句原话，不把 Alex 的引申当成 Mueller 的判断。帖子后半是他自己的服务推销，可略过。对上 GEO / AI 搜索可见度这条线。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2120882883070206353" },
+        ],
+        image: "/assets/flow/2026-11-13-alex-mueller-ai-search.jpg",
+      },
+      {
+        title: "Loki Yan：Gamma /docs/ 成了寄生 SEO 目标，UGC 站必须有质量阀门",
+        why: "@loki_yan_seo 11/12 09:07 上海，约 14 赞、13 次收藏，配搜索结果截图。他指出 Gamma 的 /docs/ 页面正在被寄生 SEO 盯上；一旦 UGC 开始排色情、NSFW 和过量 AIGC spam，这些页面很可能被谷歌 K 掉，甚至连累整站。建议大型网站若靠 UGC 做自然流量，一定要做 Quality 和 Spam 阀门。长帖里他写：第一次听到 UGC 质量阀门，是听 @kimuyan 在去年 Google Search Central Live 讲 Ameblo 上的过滤系统，后来在深圳聊天时对方说那套已经做了好几年。这是从业者亲测经验，不是厂商稿。",
+        sources: [
+          { label: "X", url: "https://x.com/loki_yan_seo/status/2120684816115134835" },
+        ],
+        image: "/assets/flow/2026-11-13-loki-gamma-parasite-seo.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "硅谷101：AI 撞上美国「新世界」——暴跌、监管、数据中心何去何从",
+        why: "YouTube 11/13 01:11 上海上线，时长 1:53:56。陈茜与特约研究员 Richard 连线济容投资 CEO/CIO Bruce Liu、前微软数据中心规划与能源战略专家 Ethan Xu（徐熠兴）、硅谷 AI Infra 投资人 Christina Xu，以及纽约 Amant Partners 管理合伙人 Rob Li。从美国中期选举后 AI 板块下跌谈起，讨论数据中心审批、建设成本、社区反对（电费、用水、交通、住房），以及这些变量如何传导到 GPU、光模块和云计算。对齐 AI 基建，是长访谈，不是工具切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=goiVFy4jqPA" },
+        ],
+        image: "/assets/flow/2026-11-13-guigu101-ai-datacenter.jpg",
+      },
+      {
+        title: "a16z × Anish Acharya、Jonathan Lai：AI 如何让 Halo 等经典游戏重新活过来",
+        why: "YouTube 11/12 22:50 上海上线，时长 46:11，刚过 45 分钟门槛。a16z 普通合伙人 Anish Acharya 与 Jonathan Lai 对谈：AI 如何缩短从想法到可玩成片的距离，包括生成美术与代码、直接操作 Blender 和游戏引擎、模组与decompiling 复活停运作品，以及会持续生成角色、能力和剧情的 AI 原生生游戏。对齐 AI 与设计/创作工具线，是对话而不是发版盘点。同日 No Priors × Isomorphic Labs 总裁 Max Jaderberg 约 39 分钟，未达 45 分钟门槛，未收录。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=HDRy6XmE2RQ" },
+        ],
+        image: "/assets/flow/2026-11-13-a16z-ai-classic-games.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "已在用 Gemini 3.8 Flash 或 Antigravity：看一眼 Hydrogen，付费档再试 Orchestrator",
+        why: "官方称 Hydrogen 是 3.8 Flash 的日常执行升级，并已出现在 API、AI Studio、Search 和 Antigravity。Pro/Ultra 可在 Antigravity 里试 Hydrogen；Orchestrator（Carbon）目前写明给 Ultra，Pro 为 Orchestrator（Argon）。定价是统一的 $1.50 / $7.50 每百万 token。若你已经跑大量小请求的 coding agent，值得对一下速度、编造率和账单。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/" },
+          { label: "Antigravity", url: "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/" },
+        ],
+      },
+      {
+        title: "Team/Enterprise 且用 Google Meet：评估要不要开 Claude Meetings，先确认转写同意",
+        why: "11/12 起开始推 beta。会上一边谈一边出文档/白板，但会转写会议内容；官方要求加入或自动入会前先征得在场的人同意。ZDR / HIPAA-ready / CMEK 组织现阶段不可用。artifacts 免费期到 2027-02-10。",
+        sources: [
+          { label: "说明", url: "https://claude.com/resources/articles/claude-meetings" },
+          { label: "设置", url: "https://support.claude.com/en/articles/18325154-use-claude-meetings" },
+        ],
+      },
+      {
+        title: "想试 Qwen4-Max：预览只到 11/25 24:00（UTC+8），且仅 Token Plan",
+        why: "这是昨报待办的延续。官方文档写明预览期到 11/25 24:00（上海时间）即退役，也没有按量付费。窗口只剩不到两周。",
+        sources: [
+          { label: "Token Plan", url: "https://www.qwencloud.com/pricing/token-plan" },
+          { label: "文档", url: "https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview" },
+        ],
+      },
+    ],
+  },
+  {
     date: "2026-11-12",
     title: "Gemini Decision 1 上线；AlphaGenome 2 做细胞级变异预测；Qwen4-Max 预览开放；Adobe MAX Sneaks",
     tldr: "窗口 11/11 08:15 上海之后。Google 推出 Gemini Decisions API 与新模型 Gemini Decision 1：不做逐 token 生成，一次前向就可对同一份多模态输入打最多 1000 道封闭选择题，自称端到端 150–250 毫秒、输入每百万 token $0.10、输出不计费。DeepMind 发布 AlphaGenome 2，把变异效应预测从组织均值推进到具体细胞类型与状态，非商业研究可走 API；研究用途，未做临床验证。阿里通义放出 Qwen4-Max 预览：百万上下文，仅 Token Plan，预览期到 11/25 24:00（UTC+8）即退役。Adobe MAX Sneaks 展示 10 项实验，Adobe Labs Playground 首次开放 Deep Brush、Hands On 试玩。窗口内无高质量新世界模型或神经科学论文。口味：Meng To 用 Fable 5.2 在 Blender 里重建自己的 Three.js 公寓、并给 Three.js 游戏做预告片；Viktor 的时装站与代理商站；Alex 拆 ChatGPT 品牌问与品类问 14 倍引用差。访谈：Cognitive Revolution × Cisco Outshift 的 Vijoy Pandey（约 90 分钟）；a16z × Mike Volpi 谈 AI 基建（约 56 分钟）。",
