@@ -33,6 +33,267 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-16",
+    title: "ChatGPT Wallet 让代理替你付款；DeepSeek 把 App 能力搬进 API；Anthropic IPO 本周定价",
+    tldr: "窗口 11/13 08:15 上海之后，含周末。OpenAI 推出 ChatGPT Wallet：与 Amex、Mastercard、Visa 合作，美国 Pro 用户的 dots 代理可用支付 token 付款，每笔需生物验证。DeepSeek 把 App 的联网搜索、文件、读链接、安全检查和 OCR/ASR/TTS 开放到 API。Anthropic IPO 进入最后一周，预计 11/18 定价、11/19 以 ANT 上市。补报上期漏掉的两条：黄仁勋 11/11 辞去 Nvidia CEO，CFO Colette Kress 暂代；World Labs Atlas 11/13 凌晨对所有人开放。世界模型另有蚂蚁 inclusionAI 的全双工 Duo；DeepMind 开放 WeatherNext 3 背后的 SatWeave 与 PARDIG 数据（CC BY 4.0）。窗口内无高质量新神经科学论文。口味：Meng To 的 6 个 demo skill 与樱花谷 FPS、Viktor 的 3D 书店、Loki 审 Chrome modern-web-guidance、Alex 拆 ChatGPT 引用位置研究。访谈：a16z × Wiz CTO Ami Luttwak（46 分钟）；Dwarkesh × Paul Christiano 预计 11/17 上线。",
+    intel: [
+      {
+        title: "OpenAI 推出 ChatGPT Wallet：dots 代理可以替你付款，但拿不到真实卡号",
+        why: "OpenAI 官方页日戳 11/13；@gdb 11/14 01:32 上海转发。与 American Express、Mastercard、Visa 合作，先给美国 ChatGPT Pro 用户、通过 dots 使用。每次购买前用户要看商品、总价和所选卡，再用 Face ID 或指纹之类的安全验证批准；批准后由卡组织发放支付 token（替代卡号、安全码和有效期），代理拿不到真实卡信息，原卡积分与合规争议保障保留。OpenAI 同时给商家发了工具与指引：网站不要误拦代理，支付风控要能识别合法的代理购买。官方称 ChatGPT 每周 12 亿人使用。为什么重要：代理购物第一次有了卡组织级的支付通道，商家侧的反爬与风控规则要跟着改。",
+        sources: [
+          {
+            label: "OpenAI",
+            url: "https://openai.com/index/introducing-chatgpt-wallet/"
+          },
+          {
+            label: "帮助中心",
+            url: "https://help.openai.com/en/articles/20001654-making-purchases-with-chatgpt-wallet"
+          },
+          {
+            label: "X · gdb",
+            url: "https://x.com/gdb/status/2121295213025194172"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-chatgpt-wallet.jpg"
+      },
+      {
+        title: "DeepSeek 把 App 能力搬进 API：联网搜索、文件、读链接、安全检查和语音",
+        why: "@deepseek_ai 11/13 22:24 上海发布，约 1.2 万赞；API 文档同日上新。V4.1-Flash（deepseek-flash）在 Messages、Responses、Chat Completions 三套接口里支持：带引用的网页/图片搜索（非思考模式）、多步推理中的深度思考搜索、PDF/Office/图片文件解析、自动读取用户消息里的链接、输入输出安全检查；工具调用和上下文拼装由服务端完成。用 deepseek_web_search、deepseek_read_url 开启。搜索、抓取、OCR、ASR、TTS 也作为独立 API 提供；扩展能力在 token 费之外另收工具费。官方要求面向公众的应用必须开启安全检查，内容审核、模型备案与 AI 生成内容标识仍由开发者负责。同时开源了可导入 DeepSeek 历史对话的前端 demo。",
+        sources: [
+          {
+            label: "DeepSeek 文档",
+            url: "https://api-docs.deepseek.com/news/news261113/"
+          },
+          {
+            label: "chat-demo",
+            url: "https://github.com/deepseek-ai/chat-demo"
+          },
+          {
+            label: "X · DeepSeek",
+            url: "https://x.com/deepseek_ai/status/2121247896918253875"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-deepseek-api-app.jpg"
+      },
+      {
+        title: "Anthropic IPO 进入最后一周：预计 11/18 定价、11/19 在纳斯达克以 ANT 上市",
+        why: "Anthropic 11/10 启动路演：拟发行 8.25 亿股 A 类股（公司发 801,351,354 股，老股东卖 23,648,646 股），区间每股 $70–$78，申请在 Nasdaq Global Select Market 以 ANT 挂牌，Goldman Sachs 与 Morgan Stanley 领衔。窗口内的新动作：AI Tech Daily 11/13 援引 Anthropic 向 SEC 提交的自由书写招股材料，称预计 11/18 定价、11/19 开始交易（以监管放行为准），CNBC 援引知情人报道同一日期；最新注册文件仍是 11/10 的 S-1 第 2 号修订，区间未变。@AnthropicAI 11/14 00:00 上海预告当天 12 PM ET（11/14 01:00 上海）Jamie Dimon 与 Dario Amodei 炉边对话直播。认购倍数目前只有彭博援引知情人的二手报道，未写入。",
+        sources: [
+          {
+            label: "Anthropic",
+            url: "https://www.anthropic.com/news/roadshow-launch"
+          },
+          {
+            label: "SEC S-1/A",
+            url: "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm"
+          },
+          {
+            label: "AI Tech Daily",
+            url: "https://www.aitechdaily.com/anthropic-ipo-terms-ant-nasdaq/"
+          },
+          {
+            label: "X · Anthropic",
+            url: "https://x.com/AnthropicAI/status/2121272083863011714"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-anthropic-ipo.jpg"
+      },
+      {
+        title: "【补报】黄仁勋辞去 Nvidia CEO，CFO Colette Kress 暂代",
+        why: "上期漏报，补上。Nvidia 新闻稿日戳 11/12；TechCrunch 11/12 06:10 PST（11/12 22:10 上海）报道。董事会 11/11（周三）接受黄仁勋辞去总裁、CEO 和董事职务，立即生效；CFO Colette Kress 任临时 CEO 并继续兼任 CFO，Harvey C. Jones 出任公司首位董事会主席，董事会在找正式继任者。TechCrunch 称起因是他几天前承认与一名被指为中国间谍的人有婚外关系，引发美国国家安全争议；周四早盘股价跌近 12%，自上周五以来最多跌 19%，市值蒸发超 8550 亿美元。为什么重要：AI 算力头号供应商的创始人兼 CEO 突然离任，对芯片供给、出口管制和 AI 基建预期都有连带影响。",
+        sources: [
+          {
+            label: "NVIDIA 新闻稿",
+            url: "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition"
+          },
+          {
+            label: "SEC 8-K",
+            url: "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm"
+          },
+          {
+            label: "TechCrunch",
+            url: "https://techcrunch.com/2026/11/12/nvidias-jensen-huang-resigns-chipmaker-names-cfo-colette-kress-as-interim-ceo/"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-nvidia-ceo-transition.jpg"
+      },
+      {
+        title: "世界模型：World Labs Atlas 全面开放（补报）；蚂蚁 inclusionAI 发全双工世界模型 Duo",
+        why: "@theworldlabs 11/13 02:09 上海宣布 Atlas 对所有人开放（上期漏报）：两个网页应用 Viewfinder（从单张图生成整个世界，或用最多 64 张照片重建真实场景）和 Chisel（从白模几何出发），并开放驱动它们的 API 端点，可让 agent 直接调用；输出关键帧、视频片段或 3D 高斯泼溅。Genativity 11/13 指出仍没有公开价格和模型卡，9 月宣称的 75%–94% 人类偏好仍是公司自报。inclusionAI 的 Duo 技术报告 arXiv:2611.15131 于 11/11 提交，窗口内在 X 上发酵，Hugging Face 已有 Duo-1.0 / 1.2 causal-base 权重：提出「互惠世界模型」，把意图（推理与决策）和物理现实一并放进世界里，Duo v1 能持续接收用户的视频、音频与文本并实时回应、可被打断；目前预览只支持基础音视频对话，视觉交互留给 v2。",
+        sources: [
+          {
+            label: "X · World Labs",
+            url: "https://x.com/theworldlabs/status/2120942033401717108"
+          },
+          {
+            label: "Genativity",
+            url: "https://genativity.com/news/world-labs-atlas-public-access-no-published-price"
+          },
+          {
+            label: "arXiv · Duo",
+            url: "https://arxiv.org/abs/2611.15131"
+          },
+          {
+            label: "HF · Duo",
+            url: "https://huggingface.co/collections/inclusionAI/duo-v1"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-world-models-atlas-duo.jpg"
+      },
+      {
+        title: "DeepMind 开放 WeatherNext 3 背后的两套数据：SatWeave 与 PARDIG",
+        why: "DeepMind 博客日戳 11/13；@GoogleDeepMind 11/13 21:12 上海发帖。SatWeave 把 GOES-East/West、Meteosat 0 与印度洋、Himawari 五个静止卫星位拼成全球逐小时影像，17 个光谱通道、约 10 公里分辨率；PARDIG 是用 NASA/JAXA GPM 雷达观测训练的 AI 全球降水数据，每 15 分钟一帧、约 10 公里。两者都是 WeatherNext 3 的训练与输入基础，提供历史档案与实时数据流，CC BY 4.0，放在 Google Cloud Storage，PARDIG 另有 Earth Engine 档案。",
+        sources: [
+          {
+            label: "DeepMind",
+            url: "https://deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models/"
+          },
+          {
+            label: "SatWeave 文档",
+            url: "https://developers.google.com/weathernext/guides/satweave"
+          },
+          {
+            label: "PARDIG 文档",
+            url: "https://developers.google.com/weathernext/guides/pardig"
+          },
+          {
+            label: "X · DeepMind",
+            url: "https://x.com/GoogleDeepMind/status/2121229774865527097"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-deepmind-pardig-satweave.jpg"
+      }
+    ],
+    taste: [
+      {
+        title: "Meng To：做「惊艳 demo」常用的 6 个 skill 清单",
+        why: "@MengTo 11/13 23:30 上海，约 1800 赞、3800 次收藏，配约 11 秒视频。清单：dream-loop（Blender + 生图 + 评审子代理出 3D 视觉）、Hairline（33 个跟随指针的等距线稿，SVG 无依赖）、Emil Kowalski 的设计工程 skill、他自己给设计师的 skills、REA（逆向任意 app/网站如何运作）、HTML Demo（把 app 做成能跑的 HTML）。对上 Open Design / ThreeUI 那条线：能直接丢给 agent 的设计与 3D 组件包。",
+        sources: [
+          {
+            label: "X",
+            url: "https://x.com/MengTo/status/2121264403530293624"
+          },
+          {
+            label: "dream-loop",
+            url: "https://github.com/achimala/dream-loop"
+          },
+          {
+            label: "Hairline",
+            url: "https://hairline.lucasmarkes.com"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-mengto-demo-skills.jpg"
+      },
+      {
+        title: "Viktor Oddy：桌上 12 本书的 3D 书店，悬停转身、点开有真实书脊铰链",
+        why: "@viktoroddy 11/13 21:22 上海，配约 8 秒视频。原话：「12 books on a wooden table. hover and one turns to face you. click and it opens on a real hinge. then flip the switch and the whole room goes from day to night.」对上 Viktor 种子的电影感交互落地页，也接上他最近的角色换装购物站那条「不刷商品流」的电商形态。",
+        sources: [
+          {
+            label: "X",
+            url: "https://x.com/viktoroddy/status/2121232310662312271"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-viktor-3d-bookstore.jpg"
+      },
+      {
+        title: "Meng To：Fable 5.2 在樱花谷场景上写出日式 FPS，整份 HTML 不到 10MB",
+        why: "@MengTo 11/13 15:12 上海，约 520 赞，配约 53 秒 4K 视频。他说游戏用 three.js 写在自己的 sakura valley 场景上，不到 10MB 的 HTML，不带任何图片或模型文件。对上 ThreeUI / 网页 3D motion：纯代码程序化场景，复制给 agent 就能改。",
+        sources: [
+          {
+            label: "X",
+            url: "https://x.com/MengTo/status/2121139143615074501"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-mengto-sakura-fps.jpg"
+      },
+      {
+        title: "Loki Yan：审了 Google Chrome 的 modern-web-guidance，最多覆盖 1/4 技术 SEO",
+        why: "@loki_yan_seo 11/13 09:58 上海，约 28 赞、34 次收藏。对象是 GoogleChrome/modern-web-guidance（给 coding agent 喂最新 web 最佳实践的仓库）。原话：「按照我的SEO要求的话，他最最最多可以cover到1/4 的Techinical SEO 的部分吧。Use with caution。小心用这个做网站SEO掉坑里。」他打算基于它做一个 SEO 友好版。典型的从业者亲测提醒：让 agent 建站时别以为接了官方指南就等于做好了技术 SEO。",
+        sources: [
+          {
+            label: "X",
+            url: "https://x.com/loki_yan_seo/status/2121060002064744918"
+          },
+          {
+            label: "GitHub",
+            url: "https://github.com/googlechrome/modern-web-guidance"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-loki-modern-web-guidance.jpg"
+      },
+      {
+        title: "Alex Groberman 拆 Kevin Indig 研究：ChatGPT 引用 44.2% 来自正文前三分之一",
+        why: "@alexgroberman 11/15 22:12 上海，约 50 赞。转述 Kevin Indig 分析 300 万条 ChatGPT 回答、3000 万次引用：44.2% 引用来自正文前 1/3，31.1% 来自中段，24.7% 来自后 1/3（标题写「约 50%」，正文数字是 44.2%）。被引段落的共性：「X 是…」式定义句；含问号的概率约高一倍；问题类引用 78.4% 来自标题（H2 像 prompt，下一段就是答案）；专有名词密度约 20.6%，普通文本约 5%–8%；语气偏中性分析。可直接拿来改页面：结论和实体前置。帖子里夹了他自家审计服务链接。",
+        sources: [
+          {
+            label: "X",
+            url: "https://x.com/alexgroberman/status/2121969504687182009"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-alex-chatgpt-citation-position.jpg"
+      }
+    ],
+    interviews: [
+      {
+        title: "a16z × Ami Luttwak（Wiz 联合创始人兼 CTO）：网络攻击从几个月缩到几分钟",
+        why: "YouTube 11/13 23:30 上海上线，时长 46:06。@a16z 同日摘要：Luttwak 认为 AI 现在能在 20 分钟内完成过去熟练攻击者要花数周到数月的攻击，企业需要用最新模型持续攻击自己的系统。一线安全公司 CTO 谈 AI 时代攻防，不是工具回顾。",
+        sources: [
+          {
+            label: "YouTube",
+            url: "https://www.youtube.com/watch?v=PbD9pVXxsYM"
+          },
+          {
+            label: "X · a16z",
+            url: "https://x.com/a16z/status/2121269950816145544"
+          }
+        ],
+        image: "/assets/flow/2026-11-16-a16z-ami-luttwak.jpg"
+      }
+    ],
+    todos: [
+      {
+        title: "关注 Anthropic IPO：11/18 定价、11/19 上市（以监管放行为准）",
+        why: "区间仍是 $70–$78、8.25 亿股、代码 ANT。若有参与或持仓相关决策，留意 11/18 是否调整区间。",
+        sources: [
+          {
+            label: "AI Tech Daily",
+            url: "https://www.aitechdaily.com/anthropic-ipo-terms-ant-nasdaq/"
+          }
+        ]
+      },
+      {
+        title: "做电商/独立站：检查是否误拦 AI 代理，为 ChatGPT Wallet 这类代理付款做准备",
+        why: "OpenAI 明说要接受 ChatGPT Wallet 付款，网站不能误拦代理、风控要能识别合法代理购买；目前仅美国 Pro 用户，先了解即可。",
+        sources: [
+          {
+            label: "OpenAI",
+            url: "https://openai.com/index/introducing-chatgpt-wallet/"
+          }
+        ]
+      },
+      {
+        title: "Dwarkesh × Paul Christiano 预计 11/17 上线",
+        why: "@dwarkesh_sp 11/16 04:31 上海预告「明天」发布；Christiano 认为在不放缓的情况下一年内出现极端超级智能的概率约 1/3。上线后下期早报再收。",
+        sources: [
+          {
+            label: "X · Dwarkesh",
+            url: "https://x.com/dwarkesh_sp/status/2122064955545686119"
+          }
+        ]
+      },
+      {
+        title: "想试 Qwen4-Max：预览只到 11/25 24:00（UTC+8）",
+        why: "延续前几期待办，仅 Token Plan，到期退役。",
+        sources: [
+          {
+            label: "文档",
+            url: "https://www.alibabacloud.com/help/en/model-studio/qwen4-max-preview"
+          }
+        ]
+      }
+    ]
+  },
+  {
     date: "2026-11-13",
     title: "Gemini 4 Hydrogen 成为日常默认；Claude 可进 Google Meet，也可自托管 Managed Agents；Google 智能眼镜开预售",
     tldr: "窗口 11/12 08:15 上海之后。Google 发布 Gemini 4 Hydrogen：面向日常编程与 agent 执行。官方称默认 high 思考档在 Artificial Analysis Intelligence Index 上为 51，超过 Argon 的 50，最高 xhigh 档到 54；100 万 token 上下文全窗口统一价，输入每百万 token $1.50、输出 $7.50。相对 Gemini 3.8 Flash，官方称默认 high 档完成任务快 2.5 倍，Terminal-Bench 4.1 从 18.2% 升到 57%，编造声明减少 5 倍以上。同期在 Antigravity 推出 Orchestrator，可在同一会话里调度 Carbon 与 Hydrogen；介绍页写 Terminal-Bench 4.0 上接近 Carbon 成功率、平均少用 24% 配额、快 19%，Antigravity 博客把同一组数字写在 Terminal-Bench 4.1 上。Hydrogen 进入 AI Studio、Gemini API、Gemini 应用、Search（官方称是 Search 迄今最大模型升级）以及付费 Pro/Ultra 的 Antigravity。Anthropic 官方 Release notes 标 11/12：Claude Meetings 开始在 Team/Enterprise 推 beta，可作为可见参与者加入 Google Meet。自托管 Claude Managed Agents 进入私营 beta，控制面可放在自有云或机房，模型请求仍发往所选推理提供商。Google 与 Warby Parker、Gentle Monster、Samsung 合作的智能眼镜开放预售，美国与韩国，门店 12/10，Warby Parker 起 $395。Cyborg and Bionic Systems 于 11/12 在线发表体感皮层微刺激下的功能性神经形态孪生论文。窗口内无新的高质量世界模型项。口味：Viktor 的角色换装购物、Meng To 的 HeyGen 滚动世界落地页、Alex 转述 Mueller 谈 AI 搜索流量、Loki 讲 Gamma /docs/ 寄生 SEO。访谈：硅谷101 数据中心与社区阻力（1:53:56）；a16z 的 Anish Acharya 与 Jonathan Lai 谈 AI 与经典游戏（46:11）。No Priors × Max Jaderberg 约 39 分钟，未达 45 分钟门槛，未收录。",
