@@ -33,6 +33,168 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-17",
+    title: "通义 Qwen4-Max 正式上线；腾讯发 Hy4 flash；OpenAI 把电脑使用代理推进医疗",
+    tldr: "窗口 11/16 08:15 上海之后。通义正式发布 Qwen4-Max：新 MoE、原生视觉、1M 上下文，国际 API 定价输入/输出每百万 token $1.5/$4.5，已在 QwenCloud 上线（相对 11/12 仅 Token Plan、11/25 退役的预览是实质进展）。腾讯发布面向日常办公的 Hy4 flash，官网称内部盲测满意度接近 Claude Haiku 5.5、单任务成本在被测模型里最低。OpenAI 为医疗团队推出更强的电脑使用代理，并把科学家免费名额扩到最多 20 万（11/23 起申请）；NVIDIA 在 SC26 开源 Nemotron for Science。Gemini Notebook 可用一句 “make me a site” 把资料做成交互网站。窗口内无高质量新世界模型，也没有已确认钟点的高优先级神经科学新文。口味：Viktor 一句话做出 3D 试衣间、Alex 跟进仍在推送的 Google 11 月核心更新与 GSC 生成式 AI 报表记录误差、一份可粘贴的 3D 立体书 prompt、开源地球组件，以及一条虚拟试衣店周末作品。访谈：昨预报的 Dwarkesh × Paul Christiano 已上线（约 99 分钟）；另有 Latent Space × Black Forest Labs 谈 FLUX 3（约 98 分钟）。",
+    intel: [
+      {
+        title: "通义正式发布 Qwen4-Max：新 MoE、原生视觉、1M 上下文，API 已上线",
+        why: "@Alibaba_Qwen 11/16 10:01 上海官宣；阿里云社区稿同日。相对 11/12 已报的 Token Plan 预览（预览期至 11/25 24:00 上海后退役），这次是正式产品与定价。官方称新 MoE 架构、原生视觉、百万 token 上下文；阿里云稿写总参 2.4T、每 token 激活 71B，同 2.4T 规模比 Qwen3.8-Max 少 25% 激活。内部 Work360（721 个专业领域）上整体超过上代，High 档约少 35% token、任务均费约降 60%；官方 X 写内部评估最多约少 50% token、任务均费下降超 60%。Code Arena 排第 6。QwenCloud 国际价：输入/输出每百万 token $1.5/$4.5，隐式缓存读取 $0.075（官方称比上代更低，隐式缓存降 70%）。API 已在 QwenCloud 上线，也可在 Qwen Studio、QwenWork、Qoder 使用；并称较小规模的 Qwen4 开源权重随后放出。为什么重要：日常选模型可以从「限时预览」转到有公开定价的正式档，11/25 前用过预览的需要迁。",
+        sources: [
+          { label: "阿里云社区", url: "https://www.alibabacloud.com/blog/alibaba-unveils-qwen4-max-new-ai-teammate-for-work-creativity-and-discovery_603783" },
+          { label: "QwenCloud 定价", url: "https://www.qwencloud.com/models/qwen4-max" },
+          { label: "X · Qwen", url: "https://x.com/Alibaba_Qwen/status/2122148127520289151" },
+        ],
+        image: "/assets/flow/2026-11-17-qwen4-max.jpg",
+      },
+      {
+        title: "腾讯发布 Hy4 flash：日常办公向的低成本多模态模型",
+        why: "腾讯官网稿标 11/16；@TencentHunyuan 11/16 14:38 上海发帖。总参 2240 亿（含 640 亿 Engram），激活 120 亿；多模态、最长 1M 上下文；价约每百万 token 输入 $0.070、输出 $0.281、缓存 $0.003。官网称解码超过 150 tok/s。内部 WorkIndex 上略优于更大的 Hy4 Preview（7700 亿总参 / 490 亿激活），单任务成本约为 Preview 的 1/13、Hy4 的 1/20、DeepSeek-V4.1-Flash-1017（Max、高峰价）的 1/8。85 名内部 WorkBuddy 用户、259 项、27 类盲测中，满意度接近 Claude Haiku 5.5，且在被测模型里单任务成本最低、完成最快。官方 X 写 “Matches Claude Haiku 5.5… 18x task cost reduction”，终稿以官网更谨慎的「接近」为准。已上 TokenHub、WorkBuddy、元宝、企微、QQ、ima、Marvis，OpenRouter 即将接入；即日起至 11/30，WorkBuddy 免费、TokenHub 标准价五折。团队建议日常任务用 flash，长程软件工程仍用 Hy4，并计划开源 Hy4 flash。",
+        sources: [
+          { label: "腾讯", url: "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/" },
+          { label: "研究页", url: "https://hy.tencent.ai/research/hy4-flash" },
+          { label: "X · Tencent Hy", url: "https://x.com/TencentHunyuan/status/2122217770314301469" },
+        ],
+        image: "/assets/flow/2026-11-17-hy4-flash.jpg",
+      },
+      {
+        title: "OpenAI：ChatGPT for Healthcare 推出电脑使用代理，并加 20+ 医疗插件",
+        why: "两篇官方博客均标 11/16；@OpenAI 11/17 07:03 上海发帖。电脑使用代理可在团队已有的 EHR、付款方门户等软件里点击、输入、跨应用完成多步流程（如从病历准备 MRI 医嘱和事先授权），经审批与审计日志后，可通过 API、ChatGPT for Healthcare、ChatGPT for Clinicians 使用。评测：GPT-6 Astra 在 325 项医师评审的 EHR 收件箱任务中 99% 被评为安全；646 次「有帮助」评估里 93% 为 very/extremely helpful。行政基准 HealthAdminBench（斯坦福研究团队）上，Astra 得 94.3% 量规分，Luna 91.8%，且 Luna 每任务 8.5 美分、成本低 98%（均在最大推理力度下）。点名 Abridge、Ambience、Cigna、CVS Health；称 CVS 一个代理曾在一个周末清掉积压数月的发件，并开源基于 Agents SDK 的 Agent Kit。产品稿同时改进可信临床搜索，并引入 20 多个新医疗插件。为什么重要：电脑使用代理从演示走进真实医疗行政流程，并给出了安全与成本数字。",
+        sources: [
+          { label: "OpenAI · 电脑使用", url: "https://openai.com/index/advancing-computer-use-for-healthcare-teams/" },
+          { label: "OpenAI · 产品", url: "https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2122465625109090646" },
+        ],
+        image: "/assets/flow/2026-11-17-openai-healthcare-cua.jpg",
+      },
+      {
+        title: "OpenAI 扩大科学家免费名额，并发布《Science at the Frontier》",
+        why: "官方博客标 11/16；扩容帖 11/17 01:13 上海。ChatGPT for Academic Researchers 目标扩至最多 20 万名研究者；11/23（周一）开放申请，先到先得再发 5 万份资助，每份让申请人加最多 2 名合作者免费使用 ChatGPT Plus。已在候补且符合条件的人会在开放前收到激活说明。默认不用项目数据训练。试点自 7 月起已有 2 万名研究者、33 个国家加入。同期经济研究团队发布报告：分析 1819 名科学家、超过 58 万条科学消息，并调查 251 人；受访者估计同等质量工作若无 AI 约需 1.9 倍时间；回答发现时间线的人中 98% 预期 AI 会加快其领域发现。文中写明：生产率为自陈、发现结果为预期，不构成因果。待办：做科研的可赶 11/23 申请。",
+        sources: [
+          { label: "OpenAI · 扩容", url: "https://openai.com/index/expanding-chatgpt-for-academic-researchers/" },
+          { label: "Science at the Frontier", url: "https://openai.com/index/science-at-the-frontier/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2122377585523126615" },
+        ],
+        image: "/assets/flow/2026-11-17-openai-scientists.jpg",
+      },
+      {
+        title: "NVIDIA 在 SC26 发布 Nemotron for Science：开源科学智能体栈",
+        why: "新闻稿标 11/16；@NVIDIAAI 11/17 07:59 上海发帖，Ian Buck 在 SC26 宣布。以开源 Nemotron 3.5 Super VL 为主，配新开放化学数据集 LitmusBench v0.2（近 5 万道化学推理题）和后训练配方，帮助研究者按领域改出科学智能体。官方称模型与数据集已在 Hugging Face 上线，并针对 128GB DGX Spark 做了本地优化。点名 Terray、Lila Sciences、Therna 以及 Argonne、于利希超算中心等。新闻稿转述 Lila：实验室反馈后训练后，量子点准确率几乎翻倍至 61%，超过 GPT-6 Astra 的 54%，推理成本为其 1/10–1/20——这是合作方数字，不是独立复现。为什么重要：把开源模型、化学数据和后训练配方捆在一起，方便做科学发现代理。",
+        sources: [
+          { label: "NVIDIA", url: "https://nvidianews.nvidia.com/news/nvidia-introduces-nemotron-for-science-to-accelerate-discoveries-with-agents" },
+          { label: "技术博文", url: "https://developer.nvidia.com/blog/post-training-nvidia-nemotron-to-increase-accuracy-in-your-scientific-domain/" },
+          { label: "X · NVIDIA AI", url: "https://x.com/NVIDIAAI/status/2122479807858680178" },
+        ],
+        image: "/assets/flow/2026-11-17-nemotron-for-science.jpg",
+      },
+      {
+        title: "Gemini Notebook 可把资料生成可交互网站",
+        why: "Google 博客标 11/16；@Google 11/17 06:00 上海发帖。在 Gemini Notebook 聊天里输入 “make me a site” 并描述需求，即可把已有资料做成可视化讲解（如交互周期表、历史时间线）、数据仪表盘或项目追踪；完成后可「在新标签打开」或分享。即日起在网页端全球向 18 岁以上的 Gemini Notebook 用户推出（含 Google Workspace），移动端即将到来。对做讲解页和资料可视化的人，是一条可立刻试的产品能力。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/products/gemini-notebook/interactive-sites/" },
+          { label: "X · Google", url: "https://x.com/Google/status/2122449668613579018" },
+        ],
+        image: "/assets/flow/2026-11-17-gemini-notebook-sites.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：一句话做出完整 3D 试衣间，流程拍成 11 分钟",
+        why: "@viktoroddy 11/16 19:26 上海。种子 Motion Sites 线，也叠到 LerSent 的 3D 试衣/衣橱：自称一句 prompt 做出完整 3D 试衣间，同样方法也能做 3D landing；不用 Blender 或 Spline。主帖是约 11 分 12 秒的逐步录像，跟帖给出 prompt 与 MotionSites Studio，并写「one-person AI design agency with Claude Fable 5.2」、不走 Figma。可看的成品级流程，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2122290276077338975" },
+          { label: "跟帖", url: "https://x.com/viktoroddy/status/2122290499860259293" },
+          { label: "MotionSites Studio", url: "https://studio.motionsites.ai" },
+        ],
+        image: "/assets/flow/2026-11-17-viktor-3d-fitting-room.jpg",
+      },
+      {
+        title: "Alex：Google 11 月核心更新还在推，GSC 生成式 AI 报表 11/9–11/11 曝光有记录误差",
+        why: "@alexgroberman 11/16 22:09 上海。GEO / GSC 生成式 AI 报表种子续。Google 搜索状态页：11 月核心更新于 11/10 10:07 PST（11/11 02:07 上海）开始，全球、所有语言，可能需要最多两周，大约落到 11/24、黑色星期五前。这是广度核心更新，不是 8/9 月那种垃圾内容更新。Alex 建议别在 rollout 中大改站，等结束后再做前后对比；先对照新进排名页是否答得更直接、是否有原图、对比和第一手细节。另：Google 已确认 Search Console 生成式 AI 表现报表在 11/9–11/11 因记录错误少计了曝光，只影响报表、不影响实际 AI 搜索可见度——看那几天 AI 展示时不要当成核心更新砸了流量。官方宣布本身在窗口前，本期是补上这条仍在进行、且带报表陷阱的操作提示。",
+        sources: [
+          { label: "X · Alex", url: "https://x.com/alexgroberman/status/2122331304024998079" },
+          { label: "Google 状态页", url: "https://status.search.google.com/incidents/WLxcJyC6jMWMfryxsKMc" },
+          { label: "Search Engine Land · 核心更新", url: "https://searchengineland.com/google-november-2026-core-update-rolling-out-now-501348" },
+          { label: "Search Engine Land · GSC 报表", url: "https://searchengineland.com/google-search-console-performance-report-data-bug-nov-9-11-501899" },
+        ],
+        image: "/assets/flow/2026-11-17-alex-nov-core-update.jpg",
+      },
+      {
+        title: "Cold Takes Bear：别再让 Claude Code 做 landing，让它做会跑的 3D 立体书",
+        why: "@coldtakesbear 11/17 06:50 上海。对应 vibe-coded 3D / 反套模板 landing：用一个 HTML 文件、不引入图片或模型插件，约 5 分钟做出解释发动机原理的 3D 立体书；帖内有可粘贴的 Claude Code prompt（5 个跨页、预测翻板、自动动画、开始/停止/加速），并给出可打开的 Claude artifact。是能立刻拿去改的交互件，不是又一个英雄区模板。",
+        sources: [
+          { label: "X", url: "https://x.com/coldtakesbear/status/2122462255900213482" },
+          { label: "Artifact", url: "https://claude.ai/artifact/THPawa6yxH8M8fHi6JBp8T" },
+        ],
+        image: "/assets/flow/2026-11-17-coldtakes-popup-textbook.jpg",
+      },
+      {
+        title: "Lachlan Campbell：开源 15kb 可分国界的地球组件 chlobe",
+        why: "@lachlanjc 11/17 06:47 上海。对应 kookaking / ThreeUI 的可扔给 agent 的 3D 组件线：15 秒演示 chlobe——在 Shu Ding 的 cobe 地球（约 5kb、无国界）上分出国家并可视化国家数据，体积约 15kb。仓库 github.com/lachlanjc/chlobe，演示 chlobe.vercel.app。注意：npm 0.0.1 日期看起来是 2026-10-06，库本身早于本窗口；窗口内新的是这条演示/介绍帖。",
+        sources: [
+          { label: "X", url: "https://x.com/lachlanjc/status/2122461709638283462" },
+          { label: "GitHub", url: "https://github.com/lachlanjc/chlobe" },
+          { label: "演示", url: "https://chlobe.vercel.app/" },
+        ],
+        image: "/assets/flow/2026-11-17-lachlan-chlobe.jpg",
+      },
+      {
+        title: "Khulan Dav：用 Claude + Higgsfield + Nano Banana 做虚拟试衣店",
+        why: "@khulandav 11/16 23:49 上海。精确对上 LerSent 的 3D 数字衣橱 / 虚拟试衣产品线：周末做出一个可看见自己穿上衣服的店铺演示，技术栈是 Claude + Higgsfield + Nano Banana，附约 32 秒录像。曝光还很低，但窗口内这条线上几乎没有别的可看作品（LerSent 本窗无原发），值得当作产品交互参考，而不是已经验证过的流量案例。",
+        sources: [
+          { label: "X", url: "https://x.com/khulandav/status/2122356425187840253" },
+        ],
+        image: "/assets/flow/2026-11-17-khulan-virtual-tryon.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Dwarkesh × Paul Christiano：他认为当前轨迹下约 1/3 概率一年内出现能推翻政府的超智能（约 99 分钟）",
+        why: "YouTube 上传时间 2026-11-16T10:08:23-08:00（11/17 02:08 上海），时长 1:38:45。这是昨报预告「预计 11/17」的那期，现已上线。Christiano 现为 Alignment Research Center 负责人，近期加入 OpenAI 董事会，节目说明他以私人身份发言。他给出当前轨迹、若无放缓的情况下，约 1/3 概率一年内出现强到足以推翻政府的超级智能，并主张实验室在能保住权重与研究机密前暂停进一步算法进展。官网有文稿。深度对齐访谈，不是工具切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=SyHM5hNPAEo" },
+          { label: "文稿", url: "https://www.dwarkesh.com/p/paul-christiano-2" },
+        ],
+        image: "/assets/flow/2026-11-17-dwarkesh-christiano.jpg",
+      },
+      {
+        title: "Latent Space × Black Forest Labs：FLUX 3 为何把图像、视频和声音训在同一主干上（约 98 分钟）",
+        why: "YouTube 上传时间 2026-11-16T13:26:27-08:00（11/17 05:26 上海），时长 1:38:23。嘉宾 Andreas Blattmann（Stable Diffusion / latent diffusion 共同作者）、Dustin Podell（SDXL、FLUX Kontext）。讨论 FLUX 3 用同一主干同时训练静帧、视频与声音，以及运动学习、Kontext 编辑和 world action models，章节里还有 Robotics in 2027。对齐设计与世界模型，长对谈不是短切片。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=8cGfJOU3AlQ" },
+        ],
+        image: "/assets/flow/2026-11-17-latent-space-flux3.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "用过 Qwen4-Max 预览的：11/25 24:00 上海前迁到正式 API / Token Plan",
+        why: "11/12 预览将在 11/25 24:00（UTC+8）退役；正式版已在 QwenCloud 上线，国际价输入/输出 $1.5/$4.5 /百万 token。",
+      },
+      {
+        title: "做科研的：11/23 申请 OpenAI ChatGPT for Academic Researchers",
+        why: "先到先得再发 5 万份，每份含本人加最多 2 名合作者的 ChatGPT Plus；默认不用项目数据训练。",
+      },
+      {
+        title: "Gemini Notebook 用户（18+，网页端）：可试 “make me a site”",
+        why: "今日起把已有资料生成交互讲解页或仪表盘，移动端还没到。",
+      },
+      {
+        title: "看 GSC 生成式 AI 报表：11/9–11/11 的曝光下降先当记录误差",
+        why: "Google 已确认这三天是 logging error，不影响实际 AI 搜索可见度。11 月核心更新仍可能推到约 11/24，建议等结束后再做前后对比，不要在 rollout 中大改站。",
+      },
+      {
+        title: "Anthropic IPO：11/18 定价、11/19 以 ANT 上市（昨报续）",
+        why: "进入定价日前一天，以监管放行为准；不是本窗新事实。",
+      },
+      {
+        title: "想试低价办公模型：Hy4 flash 在 WorkBuddy 用到 11/30 免费，TokenHub 五折",
+        why: "腾讯官网写明的限期优惠；长程工程任务他们仍建议用 Hy4。",
+      },
+    ],
+    note: "跳过已报：ChatGPT Wallet、DeepSeek App 能力进 API、Anthropic IPO 条款、黄仁勋辞 Nvidia CEO、World Labs Atlas、inclusionAI Duo、DeepMind SatWeave/PARDIG，以及昨报口味与 a16z Ami Luttwak。世界模型本窗无高质量新论文或实验室发布。神经科学：Nature 系多篇标 11/16，元数据时间为 11/16 08:00 上海、早于窗口 15 分钟，精确上线钟点未核实，故不报。也跳过 Liquid AI d1.2、Noeri 1.1 亿美元种子轮、Anthropic 缩短漏洞披露时限、OpenAI 驻场评估（Apollo/METR/Transluce/Goodfire）、OpenAI 科学博客首篇（博客日期 11/15，卡在窗口边）。口味未选：BrightLocal 本地 AI 引用研究原文是 2026-09-16，只是今日被转发；MengTo 只转了窗口外作品；Loki 本窗没有够格的方法帖；Open Design 无新演示。另有 a16z × Tyler Cowen / Alex Imas（约 63 分钟，https://www.youtube.com/watch?v=g_67TmQ8lGY）窗口内上线，偏增长与就业，本期未列入。",
+  },
+  {
     date: "2026-11-16",
     title: "ChatGPT Wallet 让代理替你付款；DeepSeek 把 App 能力搬进 API；Anthropic IPO 本周定价",
     tldr: "窗口 11/13 08:15 上海之后，含周末。OpenAI 推出 ChatGPT Wallet：与 Amex、Mastercard、Visa 合作，美国 Pro 用户的 dots 代理可用支付 token 付款，每笔需生物验证。DeepSeek 把 App 的联网搜索、文件、读链接、安全检查和 OCR/ASR/TTS 开放到 API。Anthropic IPO 进入最后一周，预计 11/18 定价、11/19 以 ANT 上市。补报上期漏掉的两条：黄仁勋 11/11 辞去 Nvidia CEO，CFO Colette Kress 暂代；World Labs Atlas 11/13 凌晨对所有人开放。世界模型另有蚂蚁 inclusionAI 的全双工 Duo；DeepMind 开放 WeatherNext 3 背后的 SatWeave 与 PARDIG 数据（CC BY 4.0）。窗口内无高质量新神经科学论文。口味：Meng To 的 6 个 demo skill 与樱花谷 FPS、Viktor 的 3D 书店、Loki 审 Chrome modern-web-guidance、Alex 拆 ChatGPT 引用位置研究。访谈：a16z × Wiz CTO Ami Luttwak（46 分钟）；Dwarkesh × Paul Christiano 预计 11/17 上线。",
