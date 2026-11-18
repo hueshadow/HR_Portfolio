@@ -33,6 +33,154 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-18",
+    title: "OpenAI 发布 GPT-6.2 Astra 与 Sol；Gemini Tasks 免费扩到六国；补报 AMD 收购 World Labs",
+    tldr: "窗口 11/17 08:15 上海之后。OpenAI 发布 GPT-6.2 Astra（旗舰）与 Sol（日常工作）：官方称 Astra 在 Agents’ Last Exam 上比 GPT-6 Astra 高 5.2 分、每任务成本不到三分之一，比 Claude Fable 5.2 高 5.5 分、成本约 5%（Fable 榜去掉了 9 道用了兜底模型的题）。Astra API 价为输入/缓存输入/输出每百万 token $8 / $0.40 / $40（输入与输出较 GPT-6 Astra 低 20%，缓存输入折扣 60%）；Sol 维持 GPT-6.1 Sol 的 $2 / $0.10 / $10。Plus、Pro、Enterprise、Edu 已可在 ChatGPT Work 与 Codex 使用，API 同步上线。官方还称这是首个达到准备框架「AI Self-improvement」High 阈值的对外模型。Gemini Tasks 即日起在美、日、韩、加、澳、印对免费用户开放，美国另推电话预约与代购；DeepMind 为 Antigravity 上线 Robotics 插件，用 Hydrogen 做仿真和真机控制。补报：AMD 于 11/16 22:05 上海宣布已完成对 World Labs 的收购（交割日 11/13，8-K/A 写对价约 82 亿美元、全股票，发行 14,978,322 股），李飞飞任执行副总裁兼首席科学家——本属昨报窗口，昨日未收。Anthropic IPO 今晚美东定价，CNBC 消息源称可能高于 $70–$78，最终价尚未公布；11/19 以 ANT 开盘。智源等发布 PhysCapBench（arXiv 2611.16424），用 1,500 条人工核验视频、七个物理维度衡量视频描述对物理信息的保真。窗口内无已核实钟点的高质量神经科学新文。口味：Viktor 称 Fable 5.2「有品味了」并公开 8 条 Motion Sites prompt；一条巧克力/蛋白棒站；Meng To 的纯代码新宿夜景 Three.js 可漫游站；Alex 转述 Shero 电商研究：流量几乎持平，归因订单近 3 倍。访谈补报周末错过的晚点聊 188 与十字路口×赵晨阳。",
+    intel: [
+      {
+        title: "OpenAI 发布 GPT-6.2 Astra 与 Sol：专业工作新旗舰，API 已上线",
+        why: "@OpenAI 11/18 01:54 上海发帖；官方博客写 Starting today。GPT-6.2 Astra 定位最难项目的旗舰，官方称幻灯片、表格和文档更贴近行业惯例，代码与前端（尤其网站、游戏、3D）更好。Agents’ Last Exam（多步专业工作流）上，Astra 比 GPT-6 Astra 高 5.2 分、每任务成本不到三分之一，比 Claude Fable 5.2 高 5.5 分、成本约 5%；脚注写 Fable 5.2 的榜去掉了 9 道用了兜底模型的题。Terminal-Bench-Science 0.1 比 GPT-6 Astra 高 9 个百分点，成本不到三分之一，并称在 Vals Science Index 创新高。官方还说这是首个达到准备框架「AI Self-improvement」High 阈值的对外发布模型（他们把 High 解释为：相对 2024 年基线，相当于给每位 OpenAI 研究员多一位很能干的研究工程师助手）。API 价：Astra 输入/缓存输入/输出每百万 token $8 / $0.40 / $40，输入与输出较 GPT-6 Astra 低 20%，缓存输入折扣 60%；Sol 维持 GPT-6.1 Sol 的 $2 / $0.10 / $10。Sol 被定位为日常工作默认；在 Cognition FrontierCode 2.0 上（均 max）距 Astra 0.5 分、成本约五分之一；在 LifeVal 上超过 GPT-6 Astra，成本约七分之一。即日起 Plus、Pro、Enterprise、Edu 可在 ChatGPT Work 与 Codex 使用（Enterprise/Edu 需管理员打开）；API 模型名 gpt-6.2-astra 与 gpt-6.2-sol，两者上线即提供 Ultrafast。Pro 500 两个模型都可用 Ultrafast；首次把 Ultrafast 给到 Pro 200，先从 Sol 开始。两模型均达网络安全 Critical、生化与化学 High；因能力上升，对高风险网络安全协助收紧了防护，可能限制部分正当漏洞研究。同日更新的 Astra for Law（GPT-6.2 Astra 的法律配置）向所有 ChatGPT Enterprise 开放申请（Trusted Access，含 API）。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-gpt-6-2-astra-sol/" },
+          { label: "Astra for Law", url: "https://openai.com/index/astra-law-6-2/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2122750124543926515" },
+        ],
+        image: "/assets/flow/2026-11-18-gpt-6-2-astra-sol.jpg",
+      },
+      {
+        title: "Gemini Tasks 对美、日、韩、加、澳、印免费用户开放，美国先上电话与代购",
+        why: "Google 博客日戳 11/17，作者 Josh Woodward；@Google 11/18 01:16 上海发帖。即日起在美国、日本、韩国、加拿大、澳大利亚、印度向数亿用户免费开放，并使用 Gemini 4 Hydrogen。在 Gemini 应用把「Chat」拨到「Task」，即可把较长事项交给后台处理。美国先推一组进阶能力：可替用户给本地商家打电话并排队等候预约，再写入 Google 日历（印第安纳、路易斯安那、明尼苏达、蒙大拿、内布拉斯加暂不可用）；可用 RCS/短信把购物清单交给 Gemini 并加到 Instacart（需美国手机号且运营商符合条件）；也可把邮件转发到 gemini@google.com 建任务或日历。结账走 Agent Payments Protocol（AP2），官方写与 Mastercard、Visa 合作，American Express「即将」接入；可预设消费上限，买之前会确认，积分和保障仍留在卡上；收据进 Google Wallet，钱包即日起扩展到 iOS。官方提醒任务仍会失败，或做到一半把屏幕交还给你。",
+        sources: [
+          { label: "Google Blog", url: "https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/" },
+          { label: "X · Google", url: "https://x.com/Google/status/2122740715633426666" },
+        ],
+        image: "/assets/flow/2026-11-18-gemini-tasks.jpg",
+      },
+      {
+        title: "Gemini 4 Hydrogen 加 Antigravity Robotics 插件：对话里做仿真和真机控制",
+        why: "Google Developers Blog 日戳 11/17；@GoogleDeepMind 11/18 03:03 上海发帖。Hydrogen 把 Gemini Robotics ER 2 的具身推理收进 Gemini 4 主系列，官方称在公开 ERQA 上超过 ER 2；Artificial Analysis Robotics 0.1（真实 6 轴臂、8 项桌面任务）上得 58 分，与更大的 Argon 相近、token 成本更低。同期在 Antigravity 上线 Robotics 插件：从 USB 做机器人接入与校准，MuJoCo 仿真可在 Antigravity 里创建和预览，再做感知与闭环控制。官方示例：I2RT YAM 臂从插上 USB 到校准约 10 分钟；白板草图到零食分拣传送带约 1 小时。在 Antigravity 的 Customizations 里，于 Build With Google 货架搜索 Robotics 安装；需付费 Google AI Pro 或 Ultra，并选用 gemini-4-hydrogen。也可在 Gemini API 的 Interactions API 和 AI Studio 里调用。这与 11/11 已报的 Gemini Robotics 2.5（VLA 产线）不是同一件事。",
+        sources: [
+          { label: "Google Developers", url: "https://developers.googleblog.com/en/gemini-hydrogen-for-robotics/" },
+          { label: "X · DeepMind", url: "https://x.com/GoogleDeepMind/status/2122767521925230896" },
+        ],
+        image: "/assets/flow/2026-11-18-hydrogen-robotics-plugin.jpg",
+      },
+      {
+        title: "补报：AMD 宣布完成收购 World Labs，李飞飞任副总裁兼首席科学家",
+        why: "本应属于昨报窗口（11/16 08:15 上海之后），昨日未收，今日补报。AMD 新闻稿时间 11/16 9:05 am EST（22:05 上海），宣布已完成对 World Labs 的收购。官方定位：World Labs 做可创建和模拟交互 3D 环境的模型，以及机器人学习与仿真；团队将继续基础模型研究，并与 AMD 工程师合作，把模型侧洞察用于未来的开放 AI 基础设施。李飞飞加入 AMD，任执行副总裁兼首席科学家，直接向 CEO 苏姿丰汇报。交割本身在 11/13：AMD 11/16 提交的 8-K/A 写明，2026-09-26 签署并购协议，对价约 82 亿美元、以 AMD 普通股支付，交割日发行合计 14,978,322 股给 World Labs 前股东。11/16 早报已写过 World Labs Atlas 开放，但当时还没有这条交割与人事官宣。",
+        sources: [
+          { label: "AMD IR", url: "https://ir.amd.com/news-events/press-releases/detail/1306/amd-completes-acquisition-of-world-labs" },
+          { label: "AMD Newsroom", url: "https://newsroom.amd.com/news/amd-completes-acquisition-world-labs/" },
+          { label: "8-K/A", url: "https://ir.amd.com/financial-information/sec-filings/content/0001193125-26-462340/d105780d8ka.htm" },
+        ],
+        image: "/assets/flow/2026-11-18-amd-world-labs.jpg",
+      },
+      {
+        title: "Anthropic IPO 今晚美东定价；CNBC 消息源称可能高于 $70–$78，最终价尚未公布",
+        why: "11/16 已报区间 $70–$78、8.25 亿股、11/18 定价、11/19 以 ANT 上市。新事实：CNBC 11/17 9:13 AM EST（22:13 上海）引多名未授权具名的消息源称，定价可能高于现有区间；并称计划在周二下午 4 点（美东）关闭订单簿、锁定总需求。截至今日上午（上海），最终发行价尚未公布，应以今晚定价公告为准，不要把「可能高于区间」当成已定价。",
+        sources: [
+          { label: "CNBC", url: "https://www.cnbc.com/2026/11/17/anthropic-ipo-price.html" },
+          { label: "CNBC 指南", url: "https://www.cnbc.com/2026/11/16/anthropic-ipo-date-price-range.html" },
+        ],
+        image: "/assets/flow/2026-11-18-anthropic-ipo.jpg",
+      },
+      {
+        title: "智源等发布 PhysCapBench：跨领域衡量视频描述对物理信息的保真",
+        why: "@BAAIBeijing 11/17 22:00 上海官宣；论文为 arXiv 2611.16424。自称首个同时覆盖第三人称场景、第一人称操作、手持夹爪示范的物理字幕基准；1,500 条经人工核验的视频序列，从七个物理维度评估描述的准确与覆盖。论文写，相对元数据字幕，物理描述把第三人称视频重建的 LPIPS 降 8.6%–9.5%、第一人称降 26.9%–30.9%；用它丰富训练指令会同时提高基准分和策略成功率，其中 π0.5 在 RoboTwin 2.0 的一个子任务上提高 7.5 个百分点。项目页、评测代码和数据集已开源。对世界模型预训练来说，这是一把可检查语言监督里物理信息的尺子，不是新的生成模型。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2611.16424" },
+          { label: "项目页", url: "https://hfwang2001.github.io/physcapbench-site/" },
+          { label: "X · 智源", url: "https://x.com/BAAIBeijing/status/2122691229028630955" },
+        ],
+        image: "/assets/flow/2026-11-18-physcapbench.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：Fable 5.2「有品味了」，并公开 8 条可偷的 Motion Sites prompt",
+        why: "@viktoroddy 11/17 23:22 上海主帖（约 6 秒成片），23:23 跟帖给出 8 条 prompt：Smoothie Slider、Penthouse Rain、Tattoo Studio、Protein Bars、Eyewear Store、Particle Self、Noodle Twirl、Style Studio，均可在 MotionSites 打开。对上 Claude + 电影感落地页 / Motion Sites 种子：可看的成品短循环，不是工具发版。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2122711903877358056" },
+          { label: "跟帖", url: "https://x.com/viktoroddy/status/2122712192642666830" },
+          { label: "MotionSites", url: "https://motionsites.ai/?prompt=penthouse-rain" },
+        ],
+        image: "/assets/flow/2026-11-18-viktor-fable-taste.jpg",
+      },
+      {
+        title: "Viktor Oddy：Claude + GPT Image 2.6 做巧克力/蛋白棒站点",
+        why: "@viktoroddy 11/17 09:09 上海，约 7 秒成片；跟帖把完整 prompt 放在 MotionSites 的 Protein Bars。同一条 Motion Sites 线，可看的产品站动效。",
+        sources: [
+          { label: "X", url: "https://x.com/viktoroddy/status/2122497368625184947" },
+          { label: "跟帖", url: "https://x.com/viktoroddy/status/2122497496392126731" },
+          { label: "MotionSites", url: "https://motionsites.ai/?prompt=protein-bars" },
+        ],
+        image: "/assets/flow/2026-11-18-viktor-protein-bars.jpg",
+      },
+      {
+        title: "Meng To：用纯代码 Three.js 做可漫游的新宿夜景，一个 HTML 文件、没有 3D 模型",
+        why: "@MengTo 11/18 00:35 上海。键盘 WASD 走动，可改一天中的时间和季节。灵感来自 bricelab.dev。对上可丢给 Agent 的高质量网页 3D/motion 线，是可看的作品，不是组件库发版。帖内未给出单独的成品站链接，目前只能看他的演示视频。",
+        sources: [
+          { label: "X", url: "https://x.com/MengTo/status/2122730333682778289" },
+          { label: "灵感", url: "https://bricelab.dev" },
+        ],
+        image: "/assets/flow/2026-11-18-mengto-shinjuku.jpg",
+      },
+      {
+        title: "Alex：73 家电商店一年流量几乎没涨，归因到该流量的订单却近 3 倍",
+        why: "@alexgroberman 11/17 22:05 上海，转述 Shero 对 73 家电商（Shopify、Magento、BigCommerce、WooCommerce）共 9640 万次会话、976,668 笔订单的 GA4 分析。2025 年 9 月约 896 次访问/日，一年后 917 次，约 2%；同期归因订单从每天 5.9 笔升到 16.1 笔，接近 3 倍。61 家 2026 年至少有 200 次 AI 访问的店里，41 家的 AI 访客转化好于 Google 自然搜索；中位数店 AI 流量转化高 25%，单次访问收入高 23%——对比的 Google 自然搜索包含了品牌词搜索。51% 的 AI 访问直接落在产品页；在至少 500 次 AI 访问的店里，产品页占比 ≥50% 的中位转化 1.62%，低于该阈值的是 1.06%。作者写这并不能证明落地页类型导致转化更高，但说明 AI 可能改变路径：问题 → 推荐 → 产品页 → 购买，产品页越来越需要承担落地页的说明义务。对上 GEO / AI 搜索可见度线，是带数字的从业观察；文中也推广他自己的工具，数字以 Shero 研究为准。",
+        sources: [
+          { label: "X", url: "https://x.com/alexgroberman/status/2122692592886501537" },
+        ],
+        image: "/assets/flow/2026-11-18-alex-shero-ai-search.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "补报：晚点聊 188《黄仁勋闪电离职之后：英伟达、AI 基建、中美竞争和算力江湖》（1:16:13）",
+        why: "官网日戳 2026-11-15，时长 1 小时 16 分 13 秒，落在 11/16 早报的周末窗口，当时未收，今日补报。主播程曼祺，嘉宾为《晚点》刘伊伦与买方机构策略师 Todd，讨论黄仁勋 11/12 辞职后对英伟达、AI 基建融资和中美算力格局的影响。对齐 AI 基建长访谈，不是工具切片。未找到官方 YouTube，以官网音频为准。",
+        sources: [
+          { label: "晚点聊", url: "https://podcast.latepost.com/188" },
+        ],
+        image: "/assets/flow/2026-11-18-latetalk-188.jpg",
+      },
+      {
+        title: "补报：十字路口 × 赵晨阳：用 Kimi 加速 Kimi，RSI 前夜的 10 个 Aha Moments（1:06:25）",
+        why: "YouTube 上传日 2026-11-15，时长 1:06:25，同样落在 11/16 周末窗口，当时未收，今日补报。Koji 杨远骋对话 RadixArk / SGLang 的赵晨阳，讲递归自我改进、评估、开源治理、Computer Use 与交互式 AI，不是工具发版回顾。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=IaoYLdvibNU" },
+        ],
+        image: "/assets/flow/2026-11-18-crossing-zhao-chenyang.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "Plus / Pro / Enterprise / Edu：在 ChatGPT Work 或 Codex 试 GPT-6.2 Astra 与 Sol",
+        why: "即日起可用；API 模型名 gpt-6.2-astra、gpt-6.2-sol。Pro 200 首次有 Ultrafast，先从 Sol 开始；Enterprise/Edu 需管理员打开。",
+      },
+      {
+        title: "在美、日、韩、加、澳、印的 Gemini 用户：可把应用拨到 Task 试试免费任务",
+        why: "美国另有电话预约和代购等进阶能力；打电话在印第安纳、路易斯安那、明尼苏达、蒙大拿、内布拉斯加暂不可用，短信需美国手机号且运营商符合条件。官方说任务仍可能失败。",
+      },
+      {
+        title: "今晚看 Anthropic IPO 定价，明日 ANT 开盘（以公告为准）",
+        why: "CNBC 消息源称可能高于 $70–$78，但最终价尚未公布；不要把「可能高于区间」当成已定价。",
+      },
+      {
+        title: "付费 Google AI Pro / Ultra：可在 Antigravity 安装 Robotics 插件试 Hydrogen",
+        why: "Customizations → Build With Google 货架搜索 Robotics；需选用 gemini-4-hydrogen。",
+      },
+      {
+        title: "用过 Qwen4-Max 预览的：11/25 24:00 上海前迁到正式 API / Token Plan",
+        why: "延续昨报：预览将在 11/25 24:00（UTC+8）退役；正式版已在 QwenCloud 上线。",
+      },
+      {
+        title: "做科研的：11/23 申请 OpenAI ChatGPT for Academic Researchers",
+        why: "延续昨报：先到先得再发 5 万份，每份含本人加最多 2 名合作者的 ChatGPT Plus。",
+      },
+    ],
+    note: "跳过已报：Gemini 4 Hydrogen 进入 Search（11/13 已写，Google 今日只是再发）；Qwen4-Max 正式版、Hy4 flash、OpenAI 医疗电脑使用代理、科学家计划、Nemotron for Science、Gemini Notebook sites。华为云 11/16 宣布 CloudRobo-WM1.2「发布并开源」，但该新闻稿未给出仓库、权重或许可证，故未单列。Loki「活捉谷歌官方 GEO 产品」实际是设计师加入 Search AI Mode 的自我介绍，不是新产品。神经科学：言语 BCI 25 个月稳定性论文刊于 11/14，URCNet 中文稿早于本窗，不报。本窗默认访谈名单无新的 45 分钟以上节目；Dwarkesh × Christiano 与 Latent Space × BFL 已在昨报。Astra for Law 的细节并入 GPT-6.2 条，不单列。",
+  },
+  {
     date: "2026-11-17",
     title: "通义 Qwen4-Max 正式上线；腾讯发 Hy4 flash；OpenAI 把电脑使用代理推进医疗",
     tldr: "窗口 11/16 08:15 上海之后。通义正式发布 Qwen4-Max：新 MoE、原生视觉、1M 上下文，国际 API 定价输入/输出每百万 token $1.5/$4.5，已在 QwenCloud 上线（相对 11/12 仅 Token Plan、11/25 退役的预览是实质进展）。腾讯发布面向日常办公的 Hy4 flash，官网称内部盲测满意度接近 Claude Haiku 5.5、单任务成本在被测模型里最低。OpenAI 为医疗团队推出更强的电脑使用代理，并把科学家免费名额扩到最多 20 万（11/23 起申请）；NVIDIA 在 SC26 开源 Nemotron for Science。Gemini Notebook 可用一句 “make me a site” 把资料做成交互网站。窗口内无高质量新世界模型，也没有已确认钟点的高优先级神经科学新文。口味：Viktor 一句话做出 3D 试衣间、Alex 跟进仍在推送的 Google 11 月核心更新与 GSC 生成式 AI 报表记录误差、一份可粘贴的 3D 立体书 prompt、开源地球组件，以及一条虚拟试衣店周末作品。访谈：昨预报的 Dwarkesh × Paul Christiano 已上线（约 99 分钟）；另有 Latent Space × Black Forest Labs 谈 FLUX 3（约 98 分钟）。",
