@@ -33,6 +33,153 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-20",
+    title: "Anthropic 以 $83 定价并上市，ANT 首日收于 $97.17；Google 发布 Gemini 4 Neon 与 Genie 4",
+    tldr: "因 11/19 例行扫描未跑成，窗口为 11/18 08:15 上海之后。Anthropic 11/18 将 Class A 发行价定为 $83，共 9.80 亿股；定价函记载募资规模 $813.4 亿，另有同期 Class N 私募 $260 亿。ANT 于 11/19 22:30 上海在纳斯达克开盘 $111.50，11/20 05:00 收于 $97.17，较发行价涨 17%。CNBC 称按完全稀释计算收盘市值约 1.8 万亿美元。Google 11/18 发布 Gemini 4 Neon（API 输入/缓存/输出每百万 token $3 / $0.15 / $15，100 万上下文），并在 Project Genie 向合格 Ultra 用户开放世界模型 Genie 4；11/19 起 Genie 4 进入 Gemini API（720p、24fps、同步原生音频）。TechCrunch 转述路透：Meta 员工称 Muse 在内部测试中串了对话、可能暴露隐私数据，公司称员工使用的是与公众不同的版本。Nature Neuroscience 11/18 发表小鼠实验：扩增未成熟成年新生齿状回颗粒细胞可增强社交记忆巩固。口味：Viktor 把 Claude Code 接到 Motionsites MCP；时装试衣/虚拟店四条 prompt；Meng To 的 6 个 UI skill 清单；Kimi 做成可剖楼的 3D 网站；Alex 转述 Seeably：6,682 家本地商家中 85.6% 从未被四个 AI 助手点名。访谈：晚点聊 189、张小珺 157、Brain Inspired BI 250。",
+    intel: [
+      {
+        title: "Anthropic 以每股 $83 定价，ANT 首日收于 $97.17",
+        why: "官方博客日期 11/18：Anthropic, PBC 将 Class A 普通股发行价定为每股 $83.00，共 980,000,000 股，其中公司出售 956,351,354 股，出售股东出售 23,648,646 股，股东出售部分公司不获款。向 SEC 提交的定价函记载本次发行规模（不含加售选择权）为 $81,340,000,000，另有同期 Class N 普通股私募 $26.0 亿（313,253,007 股，价格与公开发行相同）。股票预计 11/19 在纳斯达克全球精选市场以代码 ANT 上市，并预计 11/20 交割，仍取决于惯常交割条件；承销商另有 30 天内加购最多 147,000,000 股的选择权。据 CNBC 直播页（更新至 11/19 美东 19:04，约 11/20 08:04 上海）：ANT 于美东 11/19 开盘 $111.50（上海 11/19 22:30），收于 $97.17（上海 11/20 05:00），较发行价上涨 17%；CNBC 称按完全稀释计算收盘市值约 1.8 万亿美元，当日成交超过 8.46 亿股。开盘与收盘价、市值来自 CNBC，不是公司官方新闻稿。",
+        sources: [
+          { label: "Anthropic", url: "https://www.anthropic.com/news/anthropic-prices-initial-public-offering" },
+          { label: "SEC FWP", url: "https://www.sec.gov/Archives/edgar/data/2130357/000162828026074937/anthropicpbc-fwppricing.htm" },
+          { label: "CNBC", url: "https://www.cnbc.com/2026/11/19/anthropic-ipo-ant-live-updates.html" },
+        ],
+        image: "/assets/flow/2026-11-20-anthropic-ipo-ant.jpg",
+      },
+      {
+        title: "Google 发布 Gemini 4 Neon：介于 Carbon 与 Hydrogen 之间的快速旗舰",
+        why: "官方博客日期 11/18。Neon 被定位为在复杂软件工程、知识工作与科学工作流里，既要旗舰级能力，也要更快做完端到端任务。API 价为每百万 token 输入 $3、缓存输入 $0.15（官方称 95% 折扣）、输出 $15，上下文 100 万。官方转述：Artificial Analysis Intelligence Index 在 xhigh 思考档得分 61、总榜第 3；Vals Index 第 2（70.9%）。这些是官方引用的第三方或内部评测，不是本报独立复现。Antigravity 同日说明称，默认 High 档每任务成本比 Carbon 低 32%，并可用 Neon 做规划、把 Hydrogen 当执行层；若 Hydrogen 受阻再交回 Neon。已在 Gemini API、Google AI Studio、Gemini for business，以及付费 Google AI Pro/Ultra 的 Antigravity 和 Gemini 应用上线。",
+        sources: [
+          { label: "Google", url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/" },
+          { label: "Antigravity", url: "https://antigravity.google/blog/gemini-4-neon-in-google-antigravity/" },
+        ],
+        image: "/assets/flow/2026-11-20-gemini-4-neon.jpg",
+      },
+      {
+        title: "Genie 4 对 Google AI Ultra 开放，次日进入 Gemini API",
+        why: "DeepMind / Google Labs 官方博客日期 11/18：合格的 Google AI Ultra 订阅者可在新版 Project Genie 里首次使用 Genie 4。官方称可在探索过程中输入新提示，实时改天气、加入角色或改剧情，并首次配上随场景变化的实时原生音频。同日 Genie 3 仍可选用：单次时长从 60 秒提高到最多 3 分钟，并支持用 360° 全景图作为世界起点，也可在探索中用自然语言触发事件。11/19 的开发者博客写，Genie 4 已通过 Gemini Interactions API 和 Google AI Studio 开放；可从文本、参考图或两者生成 720p、24fps、带同步原生音频的连续世界，输出带不可感知的 SynthID 水印。",
+        sources: [
+          { label: "Project Genie", url: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/" },
+          { label: "Gemini API", url: "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/" },
+        ],
+        image: "/assets/flow/2026-11-20-genie-4.jpg",
+      },
+      {
+        title: "路透：Meta 员工称 Muse 在测试中串了对话、可能暴露隐私数据",
+        why: "TechCrunch 11/20 01:38 上海（11/19 09:38 美西）转述路透对内部帖文的报道。员工称 Muse 会提到他们并未提出的托儿请求、职业建议、商品订单，以及不属于自己的银行余额；有人还说它提醒回复姐姐在 Signal 上的消息，但自己不记得授权过其他应用。Meta 向 TechCrunch 表示，员工测试是产品开发的核心环节，目的是收集反馈以改进安全与隐私；并强调员工使用的 Muse 版本与公众版不同，常含尚未对外的功能。这是内部测试中的员工报告，不是已确认的大规模对外泄露。",
+        sources: [
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/11/19/metas-ai-agent-muse-is-mixing-up-conversations-and-exposing-private-data-report-says/" },
+        ],
+        image: "/assets/flow/2026-11-20-meta-muse-privacy.jpg",
+      },
+      {
+        title: "Nature Neuroscience：扩增未成熟成年新生齿状回颗粒细胞可增强小鼠社交记忆巩固",
+        why: "期刊页标明发表于 11/18。Ain Chung、Jason Bondoc Alipio、Amar Sahay 等报告：在小鼠中选择性、同步地扩增 4 周龄未成熟（而非 8 周龄已成熟）的成年新生齿状回颗粒细胞，会募集海马 CA3 与 CA2 中快速放电的 PV 中间神经元，增强前馈抑制，减少社交记忆干扰并加强巩固；体内记录还看到锐波涟漪的功率、幅度和持续时间上升。中间神经元的化学遗传操纵表明，背侧 CA3/CA2 的抑制性神经元对这一巩固效应既必要也充分。这是小鼠实验，不是人脑结论，也不是产品发布。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02503-w" },
+        ],
+        image: "/assets/flow/2026-11-20-nature-neuro-abdgc.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：把 Claude Code 接到 Motionsites MCP，用自己的 900+ 站点库压 slop",
+        why: "11/20 00:45 上海。Viktor 称可用 Fable 5.2 加上他自己的 MCP 设计库（900+ 网站），并把 Claude Code 直接连到 Motionsites；他强调要引导它，而不是放任生成 AI slop。入口：https://studio.motionsites.ai/mcp",
+        sources: [
+          { label: "X · Viktor Oddy", url: "https://x.com/viktoroddy/status/2123457763175268599" },
+          { label: "Motionsites MCP", url: "https://studio.motionsites.ai/mcp" },
+        ],
+        image: "/assets/flow/2026-11-20-viktor-motionsites-mcp.jpg",
+      },
+      {
+        title: "Viktor Oddy：时装 lookbook / 试衣 / 虚拟店，公开 4 条可复用 prompt",
+        why: "11/18 09:26 上海发了一条 Claude 做时装电商站的演示，9:37 公开四条可偷的 prompt：Obverse Lookbook、Jacket Try-On、Virtual Store、Boutique Rail，分别在 motionsites.ai/?prompt=lookbook、jacket-try-on、virtual-store、boutique-rail。",
+        sources: [
+          { label: "X · 演示", url: "https://x.com/viktoroddy/status/2122863997095743888" },
+          { label: "X · 四条 prompt", url: "https://x.com/viktoroddy/status/2122866737737769365" },
+        ],
+        image: "/assets/flow/2026-11-20-viktor-fashion-prompts.jpg",
+      },
+      {
+        title: "Meng To：给 Agent 真实品味的 6 个 UI design skill（含 Open Design）",
+        why: "11/18 17:24 上海，约 3800 次收藏。清单是：Impeccable（审核并去掉泛 UI，反 slop 页被他点名）；Emil Kowalski 的 UI/动效 skills（aiforui.dev/skills）；他自己的 ui/web/illustration skills（github.com/MengTo/skills）；Benji Taylor 的 Stageshow；本地优先的开源 AI 设计工作室 Open Design（github.com/nexu-io/open-design）；以及介于扁平与 liquid glass 之间的 Solid Glass（github.com/deeplethe/solid-glass）。这与 11/16 那份做 demo 用的 6 个 skill 不是同一份清单。",
+        sources: [
+          { label: "X · Meng To", url: "https://x.com/MengTo/status/2122984275566076395" },
+          { label: "Impeccable", url: "https://impeccable.style" },
+          { label: "Open Design", url: "https://github.com/nexu-io/open-design" },
+        ],
+        image: "/assets/flow/2026-11-20-mengto-ui-skills.jpg",
+      },
+      {
+        title: "Meng To：Kimi K3.1 Pro 把概念图做成可漫游、可剖楼的 3D 网站，源文件已公开",
+        why: "11/19 12:09 上海。他给 Kimi K3.1 Pro 五张房子概念图，模型搭建了 Blender 模型、材质和灯光，再做成客户可走进去、按层剖开的滚动驱动 3D 网站。完整流程和源文件在 YouTube：https://youtu.be/mKpwAwg90Vc",
+        sources: [
+          { label: "X · Meng To", url: "https://x.com/MengTo/status/2123267343988248810" },
+          { label: "YouTube", url: "https://youtu.be/mKpwAwg90Vc" },
+        ],
+        image: "/assets/flow/2026-11-20-mengto-kimi-house.jpg",
+      },
+      {
+        title: "Alex：Seeably 抽查 6,682 家本地商家，85.6% 从未被四个 AI 助手点名",
+        why: "11/20 00:39 上海，Alex 转述 Seeably 研究：在 25 个美国市场抽查 6,682 家本地商家（牙医、人身伤害律师、水管工、屋顶和医美等），用本地推荐问题测试 ChatGPT、Gemini、Claude 与 Perplexity。其中 5,721 家（85.6%）从未被任何一个助手点名；即使同时拥有 4.5 星以上和 100 条以上 Google 评论，仍有 1,611 家从未出现；评论超过 1,000 条的商家里，仍有 47% 从未被点名。有网站的被点名率为 17.5%，没有网站的为 4.4%。被点名的商家里，70.7% 只出现在四个助手中的一个，四个都提到的只有 4%。这是观察性数据，且经由转述，不能直接推断某个改站动作必然提高推荐率。",
+        sources: [
+          { label: "X · Alex Groberman", url: "https://x.com/alexgroberman/status/2123456106907480337" },
+        ],
+        image: "/assets/flow/2026-11-20-alex-seeably-local.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "晚点聊 189：Geodesic 顾全全谈把 scaling 带进 AI 制药（1 小时 36 分）",
+        why: "11/19 上线，1 小时 36 分。程曼祺对话 Geodesic Intelligence 创始人顾全全，从他离开字节谈起，拆预训练组织与 scaling，以及为何要把大模型上验证过的 scaling 方法带进 AI 制药，并坚持自建湿实验室。未找到官方 YouTube。",
+        sources: [
+          { label: "晚点聊", url: "https://podcast.latepost.com/189" },
+        ],
+        image: "/assets/flow/2026-11-20-latetalk-189.jpg",
+      },
+      {
+        title: "张小珺 157：和蚂蚁灵光蔡伟复盘 Personal Agent 为何此刻集体诞生（164 分钟）",
+        why: "11/18 上线，164 分钟。嘉宾是蚂蚁灵光负责人蔡伟，讨论 Personal Agent 为何在 Muse 之后集中出现、需求是真是行业想象，以及它会不会成为下一个入口。官方页面写视频版在 Bilibili、小红书、视频号、抖音等播出；本窗未核对到稳定的 YouTube 链接。",
+        sources: [
+          { label: "小宇宙", url: "https://www.xiaoyuzhoufm.com/episode/6afd12c6a4a79edf137afd61" },
+        ],
+        image: "/assets/flow/2026-11-20-zhang-xiaojun-157.jpg",
+      },
+      {
+        title: "Brain Inspired BI 250：Nima Dehghani 谈大脑如何计算（1 小时 47 分）",
+        why: "官方页写录制于 11/18，时长 1:47:54；The Transmitter 同日页亦标注 18 November 2026、108 min watch。嘉宾是 MIT 计算/理论神经科学家 Nima Dehghani，围绕他所谓的 N4 框架（neurophysics、neurocomputation、neurodynamics、neuro-AI），讨论大脑以及物理系统里的计算究竟如何发生。",
+        sources: [
+          { label: "Brain Inspired", url: "https://braininspired.co/podcast/250/" },
+          { label: "The Transmitter", url: "https://www.thetransmitter.org/brain-inspired/what-makes-computation-possible-in-brains/" },
+        ],
+        image: "/assets/flow/2026-11-20-brain-inspired-bi250.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "Anthropic 发行预计今日（11/20）交割，以惯常条件为准",
+        why: "官方新闻稿写预计 11/20 交割，但仍取决于惯常交割条件。",
+      },
+      {
+        title: "Qwen4-Max 旧预览用户须在 11/25 24:00 前迁移",
+        why: "11/17 已报：正式版已上线，旧 Token Plan 预览将到期。",
+      },
+      {
+        title: "OpenAI 科学家免费项目 11/23 再开放 5 万份申请",
+        why: "11/17 已报的时间点，每份含本人及最多两名合作者的 Plus。",
+      },
+      {
+        title: "腾讯 Hy4 flash 的 WorkBuddy 免费期至 11/30",
+        why: "11/17 已报的时间点。",
+      },
+      {
+        title: "做本地商家或本地站：高星和大量 Google 评论不足以保证被 ChatGPT / Claude 等推荐",
+        why: "见本期 Alex 转述的 Seeably 观察：4.5 星加 100+ 评论仍可能完全不被四个助手点名。",
+      },
+    ],
+  },
+  {
     date: "2026-11-18",
     title: "OpenAI 发布 GPT-6.2 Astra 与 Sol；Gemini Tasks 免费扩到六国；补报 AMD 收购 World Labs",
     tldr: "窗口 11/17 08:15 上海之后。OpenAI 发布 GPT-6.2 Astra（旗舰）与 Sol（日常工作）：官方称 Astra 在 Agents’ Last Exam 上比 GPT-6 Astra 高 5.2 分、每任务成本不到三分之一，比 Claude Fable 5.2 高 5.5 分、成本约 5%（Fable 榜去掉了 9 道用了兜底模型的题）。Astra API 价为输入/缓存输入/输出每百万 token $8 / $0.40 / $40（输入与输出较 GPT-6 Astra 低 20%，缓存输入折扣 60%）；Sol 维持 GPT-6.1 Sol 的 $2 / $0.10 / $10。Plus、Pro、Enterprise、Edu 已可在 ChatGPT Work 与 Codex 使用，API 同步上线。官方还称这是首个达到准备框架「AI Self-improvement」High 阈值的对外模型。Gemini Tasks 即日起在美、日、韩、加、澳、印对免费用户开放，美国另推电话预约与代购；DeepMind 为 Antigravity 上线 Robotics 插件，用 Hydrogen 做仿真和真机控制。补报：AMD 于 11/16 22:05 上海宣布已完成对 World Labs 的收购（交割日 11/13，8-K/A 写对价约 82 亿美元、全股票，发行 14,978,322 股），李飞飞任执行副总裁兼首席科学家——本属昨报窗口，昨日未收。Anthropic IPO 今晚美东定价，CNBC 消息源称可能高于 $70–$78，最终价尚未公布；11/19 以 ANT 开盘。智源等发布 PhysCapBench（arXiv 2611.16424），用 1,500 条人工核验视频、七个物理维度衡量视频描述对物理信息的保真。窗口内无已核实钟点的高质量神经科学新文。口味：Viktor 称 Fable 5.2「有品味了」并公开 8 条 Motion Sites prompt；一条巧克力/蛋白棒站；Meng To 的纯代码新宿夜景 Three.js 可漫游站；Alex 转述 Shero 电商研究：流量几乎持平，归因订单近 3 倍。访谈补报周末错过的晚点聊 188 与十字路口×赵晨阳。",
