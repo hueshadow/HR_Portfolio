@@ -33,6 +33,144 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-23",
+    title: "Alpöge 与 Claude 的 Lean 证明通过社区核验；OpenAI 建议用困惑度设定行业安全上限",
+    tldr: "窗口为 11/20 08:15 上海之后，含周末。Anthropic 数学家 Levent Alpöge 于 11/20 在 alpo.ge/remark.pdf 宣布与 Claude 发现黎曼猜想（并称方法可推广到广义黎曼猜想）的证明，并以约 1,700 万行 Lean 库形式发布；11/21 Lean 与 Mathlib 社区联合声明核验了命题与证明，MIT 的 Andrew Sutherland 页更新至 11/22 16:20 UTC。Clay 千禧年奖尚未受理，需正式发表并经至少两年审查。OpenAI 首席科学家 Jakub Pachocki 11/22 公开内部预训练 log-perplexity，并建议以此作为跨实验室的共同安全上限指标。按 11/16 预告，ChatGPT 学术研究者计划今日再开放 5 万份先到先得的 Plus 名额。补报 11/18 17:24 UTC 的 Counterfactual World Models（Balestriero、LeCun、Varaku）。OpenAI 11/20 介绍对抗性蒸馏防护；Anthropic 同日把 Computer Use 测试版扩到 Team / Enterprise。窗口内无新的高质量神经科学论文。口味：Viktor 的 Astra+Three.js 与可点座位的餐厅站；Meng To 的可交互书桌；Alex 读 Muse 推荐指令；Loki 讲原创实拍电商站。访谈：Cognitive Revolution 11/21 对话 Buchanan 与 Collins（1 小时 48 分）。",
+    intel: [
+      {
+        title: "Alpöge 与 Claude 给出黎曼猜想的 Lean 证明，社区已核验形式化结果",
+        why: "Alpöge 于 11/20 在 alpo.ge/remark.pdf 写道：I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis；并称方法很容易进一步解决 Generalized Riemann Hypothesis，且已把论证形式化、不附加额外假设。证明以 lean.tar.gz.part01–14 发布。The Verge 于 11/20 16:34 UTC（11/21 00:34 上海）报道此事。Lean 与 Mathlib 社区 11/21 联合声明（博客时间 13:55）称，对该 Lean 证明的正确性有充分信心，并核验了四条标准：命题即 Mathlib 中的 RiemannHypothesis、库可编译、所证命题与挑战命题一致、导出证明通过多个独立检验器（含 Lean 内核、con-leche、con-ron）。声明写该库约 1,700 万行。MIT 的 Andrew Sutherland 核对页写宣布于 20 November 2026，页更新至 2026-11-22 16:20 UTC（11/23 00:20 上海）：175,187 个模块编译通过，五个标题定理只依赖三条标准公理，nanoda 与 con-leche 接受完整导出；文中仍注明 Lean 内核对导出文件的单线程复查与 lake comparator 有部分步骤进行中。SciAm 11/21 更新称独立研究者已编译通过。这是形式化核验，不是 Clay 千禧年奖的授奖：The Verge 写明，提出的解答须发表，并在全球数学共同体中获得普遍接受，且至少经过两年审查，Clay 尚未公开接受该证明。Alpöge 也写论证目前极长，他打算继续理解并写成可读文本。",
+        sources: [
+          { label: "Alpöge 声明", url: "https://alpo.ge/remark.pdf" },
+          { label: "Lean / Mathlib", url: "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/" },
+          { label: "Sutherland 核对页", url: "https://math.mit.edu/~drew/grh/" },
+          { label: "Scientific American", url: "https://www.scientificamerican.com/article/the-ai-riemann-hypothesis-proof-is-almost-certainly-true-independent-mathematicians-attest/" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1010051/anthropic-riemann-hypothesis-millennium-prize-problem" },
+        ],
+        image: "/assets/flow/2026-11-23-alpoege-riemann-lean.jpg",
+      },
+      {
+        title: "OpenAI 首席科学家提议用困惑度作为跨实验室的共同安全上限指标",
+        why: "Jakub Pachocki 11/22 在官方博客《Perplexity and Intelligence》公开 OpenAI 内部预训练 log-perplexity：在当前主评估集上，GPT-3.5 约 0.99，GPT-4 约 0.91；当损失降到 0.8 以下时，他们观察到网络安全与数学领域出现变革性能力。他写，升到约 0.76 的模型后，开始在数学开放问题上产出突破性结果。他估计进入约 0.68–0.7 窗口时，还应预期新的变革性能力，同时现有为主的对齐审计方式会进一步失效。他建议把困惑度（或等价的交叉熵损失）作为实验室之间可比较的指标，并提议在监控能力达到某一具体里程碑（例如思维链监控器的后继）之前，行业共同约定不得越过基于困惑度等测量的发展上限。文中没有给出第一个上限的具体数值，也没有写出执行机制。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/perplexity-and-intelligence/" },
+        ],
+        image: "/assets/flow/2026-11-23-openai-perplexity-intelligence.jpg",
+      },
+      {
+        title: "ChatGPT 学术研究者计划按预告于今日再开放 5 万份 Plus 资助",
+        why: "OpenAI 11/16 官方文：下一轮申请于周一 11/23 开放，将按先到先得发放 5 万份新资助；每份包含申请人及最多两名同机构合作者 12 个月的 ChatGPT Plus，官方称本轮最多覆盖 15 万人，项目整体目标 20 万。资格为符合条件的研究教职与博士后，领域含生科、化学材料、计算机、地球行星、工程、数学与物理。对比页写适用地区为除中国和香港以外的所有地区；本轮不含 API 额度。试点阶段提供的是 Pro，官方称多数人用量落在 Plus 限额内，故本轮改为 Plus。默认不把项目中分享的数据用于训练。截至今日早间，Help Center 仍写 New applications are currently closed（约 4 天前更新），申请入口以官网当日页面为准。这是 11/17 已预告的时间点落地，不是新项目。",
+        sources: [
+          { label: "OpenAI 11/16", url: "https://openai.com/index/expanding-chatgpt-for-academic-researchers/" },
+          { label: "研究者方案对比", url: "https://openai.com/science/researcher-access/" },
+          { label: "Help Center", url: "https://help.openai.com/en/articles/20001406-chatgpt-for-academic-researchers" },
+        ],
+        image: "/assets/flow/2026-11-23-openai-academic-researchers.jpg",
+      },
+      {
+        title: "补报：Balestriero、LeCun、Varaku 提出无需反事实数据的 Counterfactual World Models",
+        why: "arXiv:2611.24778 提交于 11/18 17:24 UTC（11/19 01:24 上海），落在 11/20 扫描窗口内但当时未报。作者是 Randall Balestriero、Yann LeCun、Kerda Varaku。论文证明：只在事实转移上训练的世界模型，无论数据或容量如何，都无法单独回答“在同一未观测扰动下，若采取另一动作会怎样”。对许多物理系统，他们给出一阶修正：反事实结果约等于已观测结果，加上世界模型在替代动作与事实动作下预测之差，无需反事实数据、额外参数或重训。在四个渲染仿真器上，用冻结 DINOv2 与 MAE 编码器的 JEPA 世界模型，反事实 R² 从 38–46% 升至 86–96%；在第五个水下航行器上，用 16 倍事实数据达到 90–94%。事后规划中，找到本可到达目标的动作的比例为 35–69%，对照不知道结果的 oracle planner 为 14–23%。代码与演示：github.com/galilai-group/counterfactual-WM、huggingface.co/spaces/galilai-group/cwm_demo。这是预印本，不是已发表期刊结论。",
+        sources: [
+          { label: "arXiv 2611.24778", url: "https://arxiv.org/abs/2611.24778" },
+          { label: "GitHub", url: "https://github.com/galilai-group/counterfactual-WM" },
+        ],
+        image: "/assets/flow/2026-11-23-counterfactual-world-models.jpg",
+      },
+      {
+        title: "OpenAI 公布对抗性蒸馏防护：受保护推理提取成功率称从 54.0% 降至 0.2%",
+        why: "官方博客日期 11/20，官方账号于 11/20 19:33 UTC（11/21 03:33 上海）推送，已过上一次早报窗口。文章讨论未经授权的对抗性蒸馏会把前沿能力转移到缺少相应防护的模型上，尤其是受保护的思维链。在内部自适应黑盒红队评估中，从先前请求里提取受保护推理的平均攻击成功率，在原防护的 GPT-6 Astra 上为 54.0%，在更新防护的 GPT-6.2 Astra 上为 0.2%；从当前请求提取则从 22.9% 降到 0.9%。新防护把受保护推理与产生它的对话历史绑定：若改写先前消息，API 会丢弃随后的推理；也不让防护较弱的旧模型家族读取 GPT-6.2 Astra / Sol 的受保护推理。这些数字来自 OpenAI 内部评估，不是第三方复现。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/combatting-adversarial-distillation/" },
+          { label: "X · OpenAI", url: "https://x.com/OpenAI/status/2123862344422088794" },
+        ],
+        image: "/assets/flow/2026-11-23-openai-adversarial-distillation.jpg",
+      },
+      {
+        title: "Claude Computer Use 测试版扩到 Team 与 Enterprise，默认关闭",
+        why: "Claude 帮助中心更新说明日期 11/20：Computer use 让 Claude 看见用户屏幕，并在用户允许的桌面应用里操作；可在新版 Claude Desktop 体验中使用，也可在已打开 Computer access 的网页版与 Mobile 使用。现已对 Team 与 Enterprise 以测试版提供，并向各组织逐步推送。配套说明写它默认关闭，由管理员在 Organization settings > Capabilities 中启用，并可通过自定义角色限制。这是产品范围扩大，不是新模型。",
+        sources: [
+          { label: "Claude 更新说明", url: "https://support.claude.com/en/articles/12138966-release-notes" },
+          { label: "Team / Enterprise 设置", url: "https://support.claude.com/en/articles/18483812-set-up-computer-use-for-team-and-enterprise-plans" },
+        ],
+        image: "/assets/flow/2026-11-23-claude-computer-use-team.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：GPT-6.2 Astra + Three.js 电影感落地页",
+        why: "11/21 08:12 上海，约 2245 次赞。Viktor 发了一段 Astra 加 Three.js 的网页动效演示，是他这条 Motion Sites 线上最直观的一条新作品，不是工具发版。",
+        sources: [
+          { label: "X · Viktor Oddy", url: "https://x.com/viktoroddy/status/2123932620212072581" },
+        ],
+        image: "/assets/flow/2026-11-23-viktor-astra-threejs.jpg",
+      },
+      {
+        title: "Viktor Oddy：屋顶餐厅站，滚屋顶会打开，点椅子能看到那个座位的视野",
+        why: "11/22 08:58 上海，约 535 次赞。他写餐厅为这样的站点常付 1 万美元；页面可滚动打开屋顶，选区域、点椅子后从该座位看出去。完整 prompt 在 motionsites.ai/?prompt=rooftop-dining。",
+        sources: [
+          { label: "X · Viktor Oddy", url: "https://x.com/viktoroddy/status/2124306534670983524" },
+          { label: "MotionSites prompt", url: "https://motionsites.ai/?prompt=rooftop-dining" },
+        ],
+        image: "/assets/flow/2026-11-23-viktor-rooftop-dining.jpg",
+      },
+      {
+        title: "Meng To：Astra 把书桌做成可交互 Three.js 房间，并开源 3 个 skill",
+        why: "11/22 17:16 上海，约 742 次赞。他说 GPT-6.2 Astra 在 three.js 里重建了这张书桌，每个物件都可交互，连笔也是；在 Liquid Glass 界面点 sunset，整间屋子会暖起来。站点：https://threeui.com/studio-glass。开源 skills：refract-liquid-glass、shade-glass-button-press、light-a-threejs-workspace。",
+        sources: [
+          { label: "X · Meng To", url: "https://x.com/MengTo/status/2124431846859813234" },
+          { label: "studio-glass", url: "https://threeui.com/studio-glass" },
+          { label: "liquid glass skill", url: "https://github.com/MengTo/Skills/tree/main/agent-skills/ui/refract-liquid-glass" },
+        ],
+        image: "/assets/flow/2026-11-23-mengto-studio-glass.jpg",
+      },
+      {
+        title: "Alex Groberman：从 Muse 操作指令看它如何检索并推荐本地与商品",
+        why: "11/23 00:50 上海。Alex 写，研究者经普通聊天界面取出了 Muse 的操作指令与内部文件；他转述 Meta 称这些文件本就打算可访问，公司不认为这是泄露。按他的阅读：Muse 既可搜开放网页，也可对 Instagram、Facebook、Threads 做语义内容检索；对餐厅、咖啡、店铺、健身房、沙龙、时尚美妆、公众意见、商品推荐等，指令要求使用社交检索；若同时符合网页与 Meta 内容条件，则两者都用。社交检索工具有 Informational、Engagement、Recency 三种排序模式；在评测、对比、推荐和 best X 查询里，engagement 模式可用点赞、转发、作者关注等信号。工具还写索引用到字幕、视觉分析和转写，不只是关键词匹配。这是对被捕获指令的从业者解读，不是 Meta 官方排序文档。",
+        sources: [
+          { label: "X · Alex Groberman", url: "https://x.com/alexgroberman/status/2124545965709459698" },
+        ],
+        image: "/assets/flow/2026-11-23-alex-muse-recommendations.jpg",
+      },
+      {
+        title: "Loki Yan：客户问“AI 图是否也能排到沃尔玛前面”，他用原创实拍站作答",
+        why: "11/21 20:30 上海。Loki 对客户说：他有一个电商站，照片全是老板自己拍的，image alt 都是手写，而且没做任何外链，排名仍高于 Walmart、Amazon、Home Depot。客户接着问：那我们用 AI 做图片，稍微做好一点是不是也可以？这是一条很短的一线经验，不是可复现的排名实验，但对“生成图能不能直接换原创实拍”这个问题给了一个具体反例。",
+        sources: [
+          { label: "X · Loki Yan", url: "https://x.com/loki_yan_seo/status/2124118173951947093" },
+        ],
+        image: "/assets/flow/2026-11-23-loki-original-photos-seo.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Cognitive Revolution：Biden 白宫 AI 顾问 Buchanan 与 Collins 谈把领先优势花在安全上（1 小时 48 分）",
+        why: "11/21 上线，YouTube 时长 6508 秒（1:48:28）。Nathan Labenz 对话前白宫 AI 特别顾问 Ben Buchanan，以及曾任国安会科技与国家安全主任、现运营 Inherent 的 Tantum（Teddy）Collins，围绕新书 The Bitter Struggle。核心主张是：美国及其盟友控制先进芯片供应链，应先形成算力领先，再把这领先优势花在安全上（spend the lead on safety）。Buchanan 估计在算力生产上仍大约有 100 比 1 的优势，在获取上大约 15 比 1。对谈还涉及出口管制、与中方接触，以及个人选择在结构力量之外仍起作用。这是 45 分钟以上的长访谈，不是工具综述。",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=6bSzdXKkE2M" },
+          { label: "节目页", url: "https://www.cognitiverevolution.ai/spend-the-lead-on-safety-biden-ai-advisors-ben-buchanan-tantum-collins-on-the-fate-of-the-world/" },
+        ],
+        image: "/assets/flow/2026-11-23-cognitive-revolution-buchanan-collins.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "若符合资格：ChatGPT 学术研究者 Plus 资助今日起先到先得，共 5 万份",
+        why: "11/16 官方预告 11/23 开放。每份含本人及最多两名同机构合作者 12 个月 Plus；不含 API。Help Center 早间仍可能显示 closed，以申请页当日状态为准。不适用中国和香港。",
+      },
+      {
+        title: "Qwen4-Max 旧预览用户须在 11/25 24:00 前迁移",
+        why: "11/17 已报：正式版已上线，旧 Token Plan 预览将到期。",
+      },
+      {
+        title: "腾讯 Hy4 flash 的 WorkBuddy 免费期至 11/30",
+        why: "11/17 已报的时间点。",
+      },
+      {
+        title: "关注 Alpöge 证明的可读文本与 Clay 进程，不要把社区 Lean 核验当成已颁奖",
+        why: "形式化核验已经由 Lean/Mathlib 社区声明；千禧年奖仍需发表并经至少两年审查。",
+      },
+    ],
+  },
+  {
     date: "2026-11-20",
     title: "Anthropic 以 $83 定价并上市，ANT 首日收于 $97.17；Google 发布 Gemini 4 Neon 与 Genie 4",
     tldr: "因 11/19 例行扫描未跑成，窗口为 11/18 08:15 上海之后。Anthropic 11/18 将 Class A 发行价定为 $83，共 9.80 亿股；定价函记载募资规模 $813.4 亿，另有同期 Class N 私募 $260 亿。ANT 于 11/19 22:30 上海在纳斯达克开盘 $111.50，11/20 05:00 收于 $97.17，较发行价涨 17%。CNBC 称按完全稀释计算收盘市值约 1.8 万亿美元。Google 11/18 发布 Gemini 4 Neon（API 输入/缓存/输出每百万 token $3 / $0.15 / $15，100 万上下文），并在 Project Genie 向合格 Ultra 用户开放世界模型 Genie 4；11/19 起 Genie 4 进入 Gemini API（720p、24fps、同步原生音频）。TechCrunch 转述路透：Meta 员工称 Muse 在内部测试中串了对话、可能暴露隐私数据，公司称员工使用的是与公众不同的版本。Nature Neuroscience 11/18 发表小鼠实验：扩增未成熟成年新生齿状回颗粒细胞可增强社交记忆巩固。口味：Viktor 把 Claude Code 接到 Motionsites MCP；时装试衣/虚拟店四条 prompt；Meng To 的 6 个 UI skill 清单；Kimi 做成可剖楼的 3D 网站；Alex 转述 Seeably：6,682 家本地商家中 85.6% 从未被四个 AI 助手点名。访谈：晚点聊 189、张小珺 157、Brain Inspired BI 250。",
