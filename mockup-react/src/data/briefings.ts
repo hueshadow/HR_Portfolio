@@ -33,6 +33,151 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-24",
+    title: "Anthropic 推出 Claude Ship；OpenAI 与 Cisco 开源 Shirudo 护盾",
+    tldr: "窗口为 11/23 08:15 上海之后。Anthropic 上线 Claude Ship（beta），可审 PR、处理失败检查与冲突，并按仓库策略批准；同时把 Enterprise Frontier Safeguards 对合格企业开到公开测试，以便在零数据留存下做跨请求误用监测。OpenAI 与 Cisco 开源 Shirudo，用 eBPF 在不必重启的情况下给运行中的 Linux 系统加临时护盾。DeepMind 正式介绍用 Gemini 4 智能体团队与 Lean 改进量子算法，并开源 Lean 库；相关论文 11/6 已出现在 arXiv。Claude 把 connectors 与 skills 收进统一 Plugins 页，个人档现已可用，Team 计划 11/30 起滚动。补报 11/20 投稿的 Mind World Models。口味：Viktor 的会动面条站与 MotionSites Studio 三周数据；Meng To 的 Fable 5.2 游戏教程。访谈：晚点聊 190 蔡伟；补报硅谷101 E259。",
+    intel: [
+      {
+        title: "Anthropic 推出 Claude Ship：可审 PR、修问题，并按团队策略批准",
+        why: "官方文章日期 11/23；ClaudeDevs 于 11/24 04:13 上海发帖介绍。Claude Ship 现为测试版，面向 Claude Team 与 Enterprise、且仓库在 GitHub。它由已正式可用的 Code Review，以及测试版 PR Steward、Claude Approvals 组成。PR Steward 会处理失败的 CI、合并冲突和评审意见，但被设计为不批准、不合并；开发者可用 @claude 指引，或 @claude stop 让它停下。Claude Approvals 读取仓库里的策略文件，可在策略允许时批准常规改动，官方把它比作更聪明的 CODEOWNERS，并建议先用观察模式。开发者可在 Claude Code 里运行 /ship：推送、开 PR、评审并处理反馈与失败检查；能否合并仍取决于个人权限和分支规则。管理员也可按仓库打开，使团队 PR 自动走这套流程。官方写，Claude Code 团队在把 Claude 评审作为更广流程一层的情况下，6 月至 9 月合并 PR 数量增加一倍以上，回滚占比下降超过 40%；这是官方转述的内部数据。符合条件的 Claude Enterprise 组织可领取至少 10,000 美元 Claude Ship 积分，须在领取后 30 天内用完，领取截止 2027 年 1 月 15 日。官方写 Claude Ship 不对采用零数据留存的组织开放。",
+        sources: [
+          { label: "Anthropic", url: "https://claude.com/resources/articles/introducing-claude-ship" },
+          { label: "ClaudeDevs", url: "https://x.com/ClaudeDevs/status/2124959436640858475" },
+        ],
+        image: "/assets/flow/2026-11-24-claude-ship.jpg",
+      },
+      {
+        title: "OpenAI 与 Cisco 开源 Shirudo：用 eBPF 在不必重启时为 Linux 加临时护盾",
+        why: "OpenAI 官方博客日期 11/23；OpenAI 于 11/24 05:37 上海发帖。Shirudo（日语“盾”的意思）是开源运行时，用来在补丁还没全面滚动时保护正在运行的 Linux 系统。它基于 eBPF：团队可先测试一道临时 shield 能否挡住漏洞路径、同时放行合法请求，经操作员批准后再加载，服务可继续运行。OpenAI 写，在受控测试中，由 Codex 生成的 shield 在不必重启的情况下挡住了对正在运行的 Elasticsearch 的 Java4Shell 利用尝试：该 shield 给 Java 的 Base64 解码器加了输入检查，并挂到该进程上。设计要点还包括：shield 加载前要加密签名与校验；用 TPM 留下可验证的加载/卸载记录。安全团队仍决定什么会被部署。仓库在 GitHub shirudo-dev/shirudo。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/introducing-shirudo/" },
+          { label: "Cisco", url: "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m11/cisco-and-openai-launch-shirudo-a-new-project-to-safeguard-agentic-ai.html" },
+          { label: "GitHub", url: "https://github.com/shirudo-dev/shirudo" },
+          { label: "OpenAI 帖", url: "https://x.com/OpenAI/status/2124980590717911527" },
+        ],
+        image: "/assets/flow/2026-11-24-shirudo-ebpf.jpg",
+      },
+      {
+        title: "DeepMind 用 Gemini 4 智能体团队与 Lean 改进量子算法，并开源形式化库",
+        why: "DeepMind 官方博客日期 11/23；官方账号于 11/24 01:00 上海发帖。这是 Google DeepMind 与 Google Quantum AI 的合作：用多支 Gemini 4 智能体团队改进已知量子算法，并用 Lean 形式化证明正确性。博客给出的数字包括：惯性约束聚变相关电路把综合计算成本降为约 1/11.8，容错量子比特需求从 5,650 降到 4,338；一种常见光敏分子的模拟成本降为约 1/8；细胞色素 P450 改进 2.5 倍，内存从 481 降到 333 量子比特；某一 Grover 算法实现加快 2.57 倍；arcsin 例程加快 290 倍。官方同时写，要在科学模拟中真正跑这些算法，所需资源仍可能高于第一代容错量子计算机很可能具备的能力。论文《Discovering formally verified quantum programs with AI》（arXiv 2611.09822）并非今天才出现：v1 于 11/6 18:08 UTC（11/7 02:08 上海）提交，当前 v3 提交于 11/16 18:30 UTC（11/17 02:30 上海）。今天的新闻是官方介绍并开源 Lean 库、问题规格与已验证解，仓库为 google-deepmind/formal-quantum-computation。",
+        sources: [
+          { label: "DeepMind", url: "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/" },
+          { label: "arXiv", url: "https://arxiv.org/abs/2611.09822" },
+          { label: "GitHub", url: "https://github.com/google-deepmind/formal-quantum-computation" },
+          { label: "DeepMind 帖", url: "https://x.com/GoogleDeepMind/status/2124911073266413634" },
+        ],
+        image: "/assets/flow/2026-11-24-deepmind-quantum-lean.jpg",
+      },
+      {
+        title: "Enterprise Frontier Safeguards 进入公开测试，可与零数据留存同时做跨请求监测",
+        why: "Anthropic 官方账号 @claudeai 于 11/24 02:15 上海宣布，面向合格企业的 Enterprise Frontier Safeguards（EFS）进入公开测试。官方说，自 9 月宣布以来已与超过 100 家客户继续开发，其中包括四分之一的财富 100 强，以及医疗、金融、法律等对数据可见性要求严格的行业；Bridgewater、Salesforce、Stripe 曾在私有测试中评估。EFS 的目标是在零数据留存（ZDR）下做跨多次请求的自动安全监测：输入输出写到客户自己的 Amazon S3 或 Google Cloud Storage，官方称 Anthropic 与云厂商在写入客户存储后会尽快删除、不留副本，也不用于模型或分类器训练；发现风险时生成供客户审阅的 Safety Case，其中不含输入输出。可用范围包括 Claude Platform、Claude Platform on AWS、Amazon Bedrock，以及 Claude on Google Cloud；Microsoft Foundry 支持即将推出。合格客户会收到启用说明。官方另写，Claude Ship 不对采用零数据留存的组织开放，两条线不要混用。",
+        sources: [
+          { label: "Anthropic", url: "https://claude.com/resources/articles/zero-data-retention-with-enterprise-frontier-safeguards" },
+          { label: "文档", url: "https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/overview" },
+          { label: "Claude 帖", url: "https://x.com/claudeai/status/2124929944530587712" },
+        ],
+        image: "/assets/flow/2026-11-24-enterprise-frontier-safeguards.jpg",
+      },
+      {
+        title: "Claude 将 connectors 与 skills 收进统一 Plugins 页，个人档现已可用",
+        why: "官方账号 @claudeai 于 11/24 04:56 上海写道：connectors 与 skills 被收成 plugins；现已在 Free、Pro、Max、Ultra 方案上线，Team 与 Enterprise 即将推出，并指向 https://claude.ai/plugins，文案为 Browse 10,000+ plugins。Claude Help Center 该文标注 Updated today，写得更具体：Team 方案从 2026 年 11 月 30 日起滚动，Enterprise 在随后几周到位。侧边栏原 Customize 将改为 Plugins，用一个页面管理 plugins、skills 与 connectors。对 Team/Enterprise 管理员：若组织关闭了 Skills，须在 11 月 30 日前打开，才能在 Claude Desktop 上继续使用 plugins；若保持关闭，则按新规则会在 Desktop 上挡住 plugins。Help Center 还写，HIPAA 配置下的 BAA 不覆盖 connectors、plugins 或 skills，即使所有者打开也不覆盖。",
+        sources: [
+          { label: "Claude 帖", url: "https://x.com/claudeai/status/2124970294523945328" },
+          { label: "Plugins", url: "https://claude.ai/plugins" },
+          { label: "Help Center", url: "https://support.claude.com/en/articles/17740565-manage-plugins-skills-and-connectors-from-one-plugins-page" },
+        ],
+        image: "/assets/flow/2026-11-24-claude-plugins.jpg",
+      },
+      {
+        title: "补报：Mind World Models 把运动 EEG 当作世界模型的潜在动作",
+        why: "论文《Mind World Models: Joint Learning of Motor EEG Representations and Action-Conditioned World Dynamics》（arXiv 2611.27029）于 11/20 03:00:38 UTC（11/20 11:00 上海）提交，落在上一窗口但未被写入 11/23 早报，故补报。作者为 Yale 的 Weikang Qiu、Tinglin Huang、Rex Ying，以及 Dartmouth 的 Zheng Huang、Yujun Yan。方法是把截至当前帧的运动 EEG 当作世界模型的潜在动作：mind model 编码 EEG，world model 用它预测未来视觉表征，从而在无需动作标注的自然 EEG 与第一人称视频上预训练；并引入 Lateralization-Aware Transformer，把双侧共有特征与一侧特异特征分开。官方摘要写，在 9 项分类和 7 项回归任务上，mind model 相对各类最强基线，任务平均平衡准确率提高 5.9%，Pearson 相关提高 16.2%；相对逆动力学潜在动作基线，world model 预测误差更低，在录音内匹配真实动作时受益高 3.3 倍，在留出受试者上高 4.7 倍。这是预印本论文，不是产品发布。",
+        sources: [
+          { label: "arXiv", url: "https://arxiv.org/abs/2611.27029" },
+        ],
+        image: "/assets/flow/2026-11-24-mind-world-models.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：食物站不必堆 20 张照片，一道会动的面就够",
+        why: "11/23 08:43 上海。他写 Food websites don't need 20 photos. They need one dish that moves：一缕面从筷子上提起，旋转散成虾、青柠和花生，并在滚动时自行摆盘。这是可看的电影感网页动效成品，对齐 Motion Sites 这条口味。约 195 次赞、169 次收藏。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2124665007485116636" },
+        ],
+        image: "/assets/flow/2026-11-24-viktor-moving-noodles.jpg",
+      },
+      {
+        title: "Viktor Oddy：MotionSites Studio 上线三周，称 7,000+ 注册、2,900+ 个站点、$5,700 MRR",
+        why: "11/23 15:31 上海。他写三周前上线 MotionSites Studio，没有团队也没有投资人，只靠自己和 AI 智能体，并给出 7,000+ 注册、2,900+ 个站点、$5,700 MRR；这些是他本人公布的数字，不是经审计的财报。随后帖说明能力：描述业务得到完整落地页；丢参考链接和自己的 logo、照片来改版并保留滚动节奏；生成约 5 秒的英雄循环视频；再用一句话改标题、衣服或结账样式。约 285 次赞、379 次收藏。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2124767753215279293" },
+          { label: "Studio", url: "https://studio.motionsites.ai" },
+        ],
+        image: "/assets/flow/2026-11-24-viktor-motionsites-studio.jpg",
+      },
+      {
+        title: "Viktor Oddy：给 vibe coder 的三个书签——900+ 提示、700+ 动效背景、以及可接 Claude Code 的库",
+        why: "11/24 00:42 上海。他建议收藏三个入口：motionsites.ai 上超过 900 个 3D 与滚动站点提示，复制后交给 AI 做站；motionsites.ai/backgrounds 上超过 700 个英雄区动效背景，并称每日新增；以及把 Claude Code 接到整个库，让智能体按真实站点设计而不是凭空猜。约 405 次赞、440 次收藏。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2124906320424014310" },
+          { label: "MotionSites", url: "https://motionsites.ai" },
+          { label: "背景库", url: "https://motionsites.ai/backgrounds" },
+        ],
+        image: "/assets/flow/2026-11-24-viktor-vibe-coder-bookmarks.jpg",
+      },
+      {
+        title: "Meng To：19 分钟教程，讲述用 Fable 5.2 做的浏览器黑暗灵魂风游戏，并公开 skills",
+        why: "11/23 15:09 上海。他发布 19 分钟教程，讲解如何用 Fable 5.2 做这款游戏，并给出完整视频与 skills。游戏本身他已在 11/15 17:22 上海发过：用 Three.js 与 Claude Fable 5.2 在三天内做了一款黑暗灵魂风格、可在浏览器运行的游戏，无需构建步骤；当时写的技术栈是 Fable 5.2 + Claude Code 里的 Opus 5.5、Seedream 5.0 Pro、Tripo 3D。今天新的是教程和 skills。约 242 次赞、357 次收藏。",
+        sources: [
+          { label: "Meng To", url: "https://x.com/MengTo/status/2124762348556787848" },
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=znEcf7Mxt7U" },
+          { label: "11/15 原帖", url: "https://x.com/MengTo/status/2121896633848017145" },
+        ],
+        image: "/assets/flow/2026-11-24-mengto-fable-souls.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "晚点聊 190：对话蚂蚁灵光蔡伟，大厂首个「个人 Agent」验证了什么（1 小时 52 分）",
+        why: "官方节目页日期 11/23，时长 1 小时 52 分。嘉宾是蚂蚁集团副总裁、灵光产品负责人蔡伟，主播程曼祺。讨论灵光从 1.0 到 2.0、把 Personal Agent 作为定位的经过，以及发布后的留存、供给、安全和商业化；蔡伟认为个人 Agent 可能成为国民级应用，但不认为世界应当只剩下一个前台。本窗未找到该期稳定的官方 YouTube 链接。张小珺 157（11/18）也曾访谈蔡伟，那是另一档节目，已在 11/20 早报写过，不要当成同一期。",
+        sources: [
+          { label: "晚点聊", url: "https://podcast.latepost.com/190" },
+        ],
+        image: "/assets/flow/2026-11-24-latetalk-190-caiwei.jpg",
+      },
+      {
+        title: "补报：硅谷101 E259《机械神教与反人性策略：华尔街量化巨头的AI之路》（2 小时 30 分）",
+        why: "官方节目页日期 11/22，时长 2 小时 30 分，落在 11/23 窗口但当时未报，故补报。主播泓君；嘉宾是 XTX Markets 研究总监、德州大学奥斯汀分校终身副教授 Atlas Wang，以及曾任职 DRW、亚马逊的 Wei Wu，两人均以个人身份参加。节目讨论量化公司的算力投入、为何通用大模型难以直接读行情、量化模型更接近 FSD/机器人而非语言模型，以及金融里的世界模型、风控与反人性纪律。官方页：https://sv101.fireside.fm/273。",
+        sources: [
+          { label: "硅谷101", url: "https://sv101.fireside.fm/273" },
+        ],
+        image: "/assets/flow/2026-11-24-sv101-e259.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "Qwen4-Max 旧预览须在 11/25 24:00 前完成迁移",
+        why: "这是此前已跟踪的截止点，明天到期。旧预览用户需要在 11/25 24:00 前迁移。",
+      },
+      {
+        title: "腾讯 Hy4 flash 的 WorkBuddy 免费期至 11/30",
+        why: "继续跟踪此前已报的免费期。",
+      },
+      {
+        title: "符合条件的 Anthropic Enterprise 组织可在 2027-01-15 前领取 Claude Ship 积分",
+        why: "官方写可领取至少 10,000 美元积分，须在领取后 30 天内用完，领取截止 2027 年 1 月 15 日。Claude Ship 目前仅 GitHub，面向 Team/Enterprise，不对零数据留存组织开放。",
+      },
+      {
+        title: "Team / Enterprise 若关闭了 Skills，须在 11/30 前决定是否打开",
+        why: "Help Center 写：Team 从 11 月 30 日起滚动统一 Plugins 页。若组织关闭了 Skills，要在 11 月 30 日前打开，才能在 Claude Desktop 继续使用 plugins；保持关闭则会按新规则挡住。",
+      },
+      {
+        title: "Gemini API 已上线 file slicing，按模型实际查看的切片计 token",
+        why: "Google 开发者账号于 11/24 02:40 上海宣布。可在 Google AI Studio 与 Gemini 平台上对所有 Gemini 4 模型使用；一次上传后可按页、单元格或时间段切片，官方称只为模型实际查看的部分计 token。说明：https://blog.google/innovation-and-ai/technology/developers-tools/file-slicing-controls/",
+      },
+    ],
+  },
+  {
     date: "2026-11-23",
     title: "Alpöge 与 Claude 的 Lean 证明通过社区核验；OpenAI 建议用困惑度设定行业安全上限",
     tldr: "窗口为 11/20 08:15 上海之后，含周末。Anthropic 数学家 Levent Alpöge 于 11/20 在 alpo.ge/remark.pdf 宣布与 Claude 发现黎曼猜想（并称方法可推广到广义黎曼猜想）的证明，并以约 1,700 万行 Lean 库形式发布；11/21 Lean 与 Mathlib 社区联合声明核验了命题与证明，MIT 的 Andrew Sutherland 页更新至 11/22 16:20 UTC。Clay 千禧年奖尚未受理，需正式发表并经至少两年审查。OpenAI 首席科学家 Jakub Pachocki 11/22 公开内部预训练 log-perplexity，并建议以此作为跨实验室的共同安全上限指标。按 11/16 预告，ChatGPT 学术研究者计划今日再开放 5 万份先到先得的 Plus 名额。补报 11/18 17:24 UTC 的 Counterfactual World Models（Balestriero、LeCun、Varaku）。OpenAI 11/20 介绍对抗性蒸馏防护；Anthropic 同日把 Computer Use 测试版扩到 Team / Enterprise。窗口内无新的高质量神经科学论文。口味：Viktor 的 Astra+Three.js 与可点座位的餐厅站；Meng To 的可交互书桌；Alex 读 Muse 推荐指令；Loki 讲原创实拍电商站。访谈：Cognitive Revolution 11/21 对话 Buchanan 与 Collins（1 小时 48 分）。",
