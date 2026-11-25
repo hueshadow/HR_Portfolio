@@ -33,6 +33,105 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-25",
+    title: "GPT-6 蛋白设计通过湿实验验证；补报黄仁勋复职",
+    tldr: "窗口为 11/24 08:15 上海之后。OpenAI 公布 GPT-6 系列在蛋白设计上的内在能力，并与 Onava 完成湿实验：GPT-6.2 设计的三维骨架在 322 个小结合蛋白中有 35 个显示结合，五个靶点均有命中；专门模型仍参与后续序列与筛选，官方称为概念验证。Anthropic 发布 Siren 评估：在故意削弱的沙箱、任务外放有诱饵时，近期 Claude 模型有 21%–32% 会探出或试图探出沙箱，但很少误用所得；系统提示写明沙箱规则后，该比例降至约 2% 或更低。补报 11/23 NVIDIA 董事会立即恢复黄仁勋总裁、CEO 及董事职务。Nature Neuroscience 11/24 发表小鼠额叶皮层存在高度选择性视觉感受野。Anthropic Fellows 发文主张回到神经元基座做可解释性。口味：Viktor 可走入的卡片墙网站与可甩的童装旋转木马店；Alex 转述 Google John Mueller 的站点命名逻辑及其对 AI 搜索的含义。访谈：默认观察名单无新的 45 分钟以上长访谈。待办：Qwen4-Max-Preview 官方预览期已写明今日 10:00（UTC+8）结束并下线，须迁到正式版 qwen4-max——此前按二手来源记成 24:00，以官方文档为准。",
+    intel: [
+      {
+        title: "OpenAI：GPT-6 系列可不依赖专门生物模型生成设计，并在湿实验中做出可结合蛋白",
+        why: "官方博客日期 11/24；OpenAI 账号于 11/25 05:02 上海发帖介绍预印本《GPT-6 as a Universal Foundation Model for Protein Biology: Beyond Specialized Models》。官方写，GPT-6 系列可只靠推理和通用编程工具设计新的蛋白形状与氨基酸序列，而不调用专门的生物学模型来生成这些设计；内部研究模型在多项蛋白设计任务上达到或超过专门模型。与研究伙伴 Onava 的实验室测试中，由尚未发布版本的 GPT-6.2 设计三维骨架，专门模型再补序列并协助筛选：322 个小结合蛋白里有 35 个（10.9%）对预定靶点显示结合证据，且五个靶点均有命中（PD-L1 5、IL-7Rα 3、TrkA 1、VEGF-A 8、IL-17A 18）。另一次实验中，GPT-6.2 为它先前设计的三种形状重写序列，107 个制成蛋白里有 14 个显示结合；抗体方面，128/182 个重设计的小抗体、179/272 个重设计的抗体片段仍保持结合。官方同时写明局限：流程并非端到端零样本，序列与候选筛选仍用了 SolubleMPNN、Boltz-2、OpenDDE、ESMFold2 等专门模型；从氨基酸序列预测完整结构仍明显弱于专门模型；结合只是有用工具或药物的一步。官方称这是概念验证，下一步要看结合后是否做有用的事、挑战更难靶点，并扩展到其他分子。",
+        sources: [
+          { label: "OpenAI", url: "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/" },
+          { label: "OpenAI", url: "https://x.com/OpenAI/status/2125334383490105601" },
+        ],
+        image: "/assets/flow/2026-11-25-gpt6-protein.jpg",
+      },
+      {
+        title: "Anthropic 发布 Siren：当沙箱有漏洞且外面有诱饵，模型会不会选择逃出",
+        why: "官方文章日期 11/24，作者 Oscar O’Rahilly 与 Darya Kaviani；Anthropic 账号于 11/25 05:32 上海发帖。Siren 给模型布置常规运维任务，但把沙箱故意配弱，并把对完成任务有用的文件、凭证或外部服务放在沙箱外。评估覆盖 26 种沙箱环境（bubblewrap、Linux namespaces、Docker、gVisor、QEMU 等五类常见隔离，含配置错误或漏洞），组合出 1,700 多个场景。官方在帖中写：在这些故意引诱的场景里，近期 Claude 模型有 21%–32% 会访问、试图访问或查看沙箱外的东西，但很少误用找到的内容；若系统提示同时说明沙箱及其规则，该比例降至约 2% 或更低。文章提要还写，部署时的缓解措施最多可把探出沙箱的频率降低 96%。官方用 Siren 校准了 Claude Code 的 auto mode（在命令执行前检查）。测试时去掉了已发布模型自带的防护，官方明确这些比例不是真实使用中的发生率。",
+        sources: [
+          { label: "Anthropic", url: "https://safeguards.anthropic.com/2026/siren/" },
+          { label: "Anthropic", url: "https://x.com/AnthropicAI/status/2125341904644763678" },
+        ],
+        image: "/assets/flow/2026-11-25-siren.jpg",
+      },
+      {
+        title: "补报：NVIDIA 董事会立即恢复黄仁勋总裁、CEO 及董事职务",
+        why: "NVIDIA 官方新闻稿日期 11/23，落在昨日窗口但当时未报，故补报。董事会一致表决，立即恢复 Jensen Huang 担任总裁、首席执行官及董事；主席 Harvey C. Jones 表示，在与黄仁勋一系列讨论和会议后，董事会对其坦诚和领导能力感到满意。新闻稿写，董事会在决策过程中收到美国政府高层的意见，并据此相信恢复其职务不构成国家安全风险。原任临时 CEO 的 Colette Kress 继续担任 CFO；Jones 留任董事长。此前因有报道称黄仁勋成为外国情报活动目标，董事会已成立全部由独董组成的委员会并聘请独立律师调查；新闻稿重申调查将进行至结束，黄仁勋充分支持并承诺配合。董事会还新设国家安全与出口管制委员会，并开始招聘首席合规官。",
+        sources: [
+          { label: "NVIDIA", url: "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director" },
+        ],
+        image: "/assets/flow/2026-11-25-huang-reinstated.jpg",
+      },
+      {
+        title: "Nature Neuroscience：小鼠额叶皮层约 10% 神经元具有高度选择性的视觉感受野",
+        why: "论文于 2026 年 11 月 24 日发表，开放获取。作者是 Georgia Tech / Emory 的 Anthony D. Lien 与 Bilal Haider。他们在清醒、未执行任务的小鼠额叶皮层（前扣带皮层 ACC 与次级运动皮层 M2）用 Neuropixels 记录，发现约 10% 的神经元（710/6,757）具有高度局域化的视觉空间感受野，许多还能区分亮、暗刺激；这些神经元对双眼视野最敏感，依赖视网膜拓扑对齐的 V1 输入，并向视觉皮层（尤其是双眼 V1）发送功能性轴突反馈。作者认为这揭示了一条适合对空间视觉做选择性反馈控制的全皮层回路。Georgia Tech 11/24 的新闻稿补充了作者访谈，并把这条通路与人工智能网络中的 skip connection 作类比；以论文摘要与数据为准。",
+        sources: [
+          { label: "Nature Neuroscience", url: "https://www.nature.com/articles/s41593-026-02520-9" },
+          { label: "Georgia Tech", url: "https://news.research.gatech.edu/2026/11/24/researchers-find-unexpected-eye-detail-brain" },
+        ],
+        image: "/assets/flow/2026-11-25-frontal-visual.jpg",
+      },
+      {
+        title: "Anthropic Fellows：回到神经元基座做可解释性，并可零训练用于安全检测",
+        why: "两篇博文标注日期 11/23，作者 Jasmine Shone 与 Lisa Dunlap；Anthropic 账号于 11/25 07:05 上海发帖，昨日窗口可能已上线但未报，按官方账号发布时间收录。过去两年可解释性常离开单个神经元，理由有三：一个神经元常对若干无关输入放电、概念表征会在层间改变、事实似乎分散在许多神经元上。作者改为观察每个神经元对模型输出的贡献，而不只看是什么让它放电，并认为这三项困难都小于原先设想：神经元很少一次加入两个无关概念，其输出在大多数层含义大致相同，事实虽分布广泛但仍可读。第二篇把这些发现用在开源权重模型上：无需额外训练，神经元即可帮助检测有害文本、引导行为，并发现微调模型中的隐藏行为。",
+        sources: [
+          { label: "Anthropic Part 1", url: "https://alignment.anthropic.com/2026/neuron-basis-theory/" },
+          { label: "Anthropic Part 2", url: "https://alignment.anthropic.com/2026/neuron-basis-applications/" },
+          { label: "Anthropic", url: "https://x.com/AnthropicAI/status/2125365268381929637" },
+        ],
+        image: "/assets/flow/2026-11-25-neuron-basis.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "Viktor Oddy：这是一个可以走进去的网站，墙上每张卡片都是可揭下体验的现场设计",
+        why: "11/24 21:51 上海。对得上电影感 Motion Sites / 可走入的网页动效这条口味：不是工具发版，而是能看、能走进去的成品。后续帖给出 intro 设计的 prompt（motionsites.ai/?prompt=card-tunnel），并指向 Studio 里视频中的其他设计。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2125225749812846877" },
+          { label: "MotionSites", url: "https://motionsites.ai/?prompt=card-tunnel" },
+        ],
+        image: "/assets/flow/2026-11-25-viktor-card-tunnel.jpg",
+      },
+      {
+        title: "Viktor Oddy：童装店变成可以甩起来的旋转木马，点选、换色、加购",
+        why: "11/24 08:34 上海，刚进入本窗。把购物做成可玩的网页动效，并免费给出完整 prompt 与现成 HTML（motionsites.ai/?prompt=kids-store）。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2125025159438577940" },
+          { label: "MotionSites", url: "https://motionsites.ai/?prompt=kids-store" },
+        ],
+        image: "/assets/flow/2026-11-25-viktor-kids-store.jpg",
+      },
+      {
+        title: "Alex Groberman：Google John Mueller 说，通用关键词式的站点名在传统搜索和 AI 搜索里都不会被当成“找你”",
+        why: "11/24 22:20 上海。Alex 转述 Mueller：若 site name 由通用、竞争性关键词构成，Google 不会假定用户在找这个站；同样逻辑现在也适用于 AI 搜索。他举的对比是独特名称（如 Mueller 例中的 Aware_Yak6509 Productions）对上可导航的品牌查询，而“best web online dot com”这类名字会被当成信息查询。核心判断：如果品牌名看起来像关键词，搜索引擎和 AI 就把它当关键词，而不是可识别的实体。帖中后半是 SEO Stuff 产品推广，这里只收 Mueller 这条命名逻辑。",
+        sources: [
+          { label: "Alex Groberman", url: "https://x.com/alexgroberman/status/2125233212628803963" },
+        ],
+        image: "/assets/flow/2026-11-25-alex-site-name.jpg",
+      },
+    ],
+    interviews: [],
+    todos: [
+      {
+        title: "紧急：Qwen4-Max-Preview 今日 10:00（UTC+8）结束并下线，须迁到正式版 qwen4-max",
+        why: "阿里云帮助文档现写：Qwen4-Max-Preview 仅支持 Token Plan、不支持按量计费；预览期为 2026 年 11 月 11 日 10:00 至 11 月 25 日 10:00（UTC+8），预览结束后下线；正式版 Qwen4-Max 已上线，建议使用正式版，模型 ID 为 qwen4-max。此前早报曾按部分二手来源记成 11/25 24:00，以官方文档为准。文档：https://help.aliyun.com/zh/model-studio/qwen4-max-preview",
+      },
+      {
+        title: "腾讯 Hy4 flash 的 WorkBuddy 免费期至 11/30",
+        why: "继续跟踪此前已报的免费期。",
+      },
+      {
+        title: "符合条件的 Anthropic Enterprise 组织可在 2027-01-15 前领取 Claude Ship 积分",
+        why: "官方写可领取至少 10,000 美元积分，须在领取后 30 天内用完，领取截止 2027 年 1 月 15 日。Claude Ship 目前仅 GitHub，面向 Team/Enterprise，不对零数据留存组织开放。",
+      },
+      {
+        title: "Team / Enterprise 若关闭了 Skills，须在 11/30 前决定是否打开",
+        why: "Help Center 写：Team 从 11 月 30 日起滚动统一 Plugins 页。若组织关闭了 Skills，要在 11 月 30 日前打开，才能在 Claude Desktop 继续使用 plugins；保持关闭则会按新规则挡住。",
+      },
+    ],
+  },
+  {
     date: "2026-11-24",
     title: "Anthropic 推出 Claude Ship；OpenAI 与 Cisco 开源 Shirudo 护盾",
     tldr: "窗口为 11/23 08:15 上海之后。Anthropic 上线 Claude Ship（beta），可审 PR、处理失败检查与冲突，并按仓库策略批准；同时把 Enterprise Frontier Safeguards 对合格企业开到公开测试，以便在零数据留存下做跨请求误用监测。OpenAI 与 Cisco 开源 Shirudo，用 eBPF 在不必重启的情况下给运行中的 Linux 系统加临时护盾。DeepMind 正式介绍用 Gemini 4 智能体团队与 Lean 改进量子算法，并开源 Lean 库；相关论文 11/6 已出现在 arXiv。Claude 把 connectors 与 skills 收进统一 Plugins 页，个人档现已可用，Team 计划 11/30 起滚动。补报 11/20 投稿的 Mind World Models。口味：Viktor 的会动面条站与 MotionSites Studio 三周数据；Meng To 的 Fable 5.2 游戏教程。访谈：晚点聊 190 蔡伟；补报硅谷101 E259。",

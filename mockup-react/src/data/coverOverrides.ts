@@ -646,4 +646,12 @@ export const coverOverrides: Record<string, string> = {
   "2026-11-24::晚点聊 190：对话蚂蚁灵光蔡伟，大厂首个「个人 Agent」验证了什么（1 小时 52 分）": "/assets/flow-og/2026-11-24-interviews-01-190-agent-1-52.jpg",
   "2026-11-24::补报：Mind World Models 把运动 EEG 当作世界模型的潜在动作": "/assets/flow-og/2026-11-24-intel-06-mind-world-models-eeg.jpg",
   "2026-11-24::补报：硅谷101 E259《机械神教与反人性策略：华尔街量化巨头的AI之路》（2 小时 30 分）": "/assets/flow-og/2026-11-24-interviews-02-101-e259-ai-2-30.jpg",
+  "2026-11-25::Alex Groberman：Google John Mueller 说，通用关键词式的站点名在传统搜索和 AI 搜索里都不会被当成“找你”": "/assets/flow-og/2026-11-25-taste-03-alex-groberman-google-john-mueller-ai.jpg",
+  "2026-11-25::Anthropic Fellows：回到神经元基座做可解释性，并可零训练用于安全检测": "/assets/flow-og/2026-11-25-intel-05-anthropic-fellows.jpg",
+  "2026-11-25::Anthropic 发布 Siren：当沙箱有漏洞且外面有诱饵，模型会不会选择逃出": "/assets/flow-og/2026-11-25-intel-02-anthropic-siren.jpg",
+  "2026-11-25::Nature Neuroscience：小鼠额叶皮层约 10% 神经元具有高度选择性的视觉感受野": "/assets/flow-og/2026-11-25-intel-04-nature-neuroscience-10.jpg",
+  "2026-11-25::OpenAI：GPT-6 系列可不依赖专门生物模型生成设计，并在湿实验中做出可结合蛋白": "/assets/flow-og/2026-11-25-intel-01-openai-gpt-6.jpg",
+  "2026-11-25::Viktor Oddy：童装店变成可以甩起来的旋转木马，点选、换色、加购": "/assets/flow-og/2026-11-25-taste-02-viktor-oddy.jpg",
+  "2026-11-25::Viktor Oddy：这是一个可以走进去的网站，墙上每张卡片都是可揭下体验的现场设计": "/assets/flow-og/2026-11-25-taste-01-viktor-oddy.jpg",
+  "2026-11-25::补报：NVIDIA 董事会立即恢复黄仁勋总裁、CEO 及董事职务": "/assets/flow-og/2026-11-25-intel-03-nvidia-ceo.jpg",
 }
