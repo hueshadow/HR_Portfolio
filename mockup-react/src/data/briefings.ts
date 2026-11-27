@@ -33,6 +33,147 @@ export type SectionKey = (typeof SECTION_META)[number]['key']
 
 export const briefings: Briefing[] = [
   {
+    date: "2026-11-27",
+    title: "Private Inference 小范围测试；补报 Claude 桌面安装与 Google 12 月核心更新预告",
+    tldr: "窗口为 11/25 08:15 上海之后（11/26 周四未成报，本窗覆盖约两日）。Sam Altman 宣布 OpenAI 正与一小群客户测试 Private Inference（Private Intelligence 的一部分，产品页写明为 Alpha，用机密计算和可验证控制保护提示词在推理时的隐私）。官方帮助中心确认 Plus、Pro、Business 将从 12 月起让 ChatGPT 与 Codex 共用额度，Instant 对话不计入；TechCrunch 引述发言人称，最重度的一小部分用户可能会更早碰到上限。补报三件落在昨日窗口但未收录的事：Claude 工件可安装为 Mac/Windows 桌面应用；MCP 服务器可随工具分发 Skills，Tasks 与 Elicitation 已正式可用；Google 搜索状态页于 11/24 23:03 上海首次预先宣布 12 月核心更新，目前尚未上线。世界模型方面，UPenn 等提交 NFWM（arXiv 2611.33872）。口味：MengTo 开源了一段走不完的 Three.js 摩托骑行技能；Viktor 有相机店转环浏览和院子门廊镜头滚动两件新站；Loki 跟进核心更新预告与排名原则里的 utility。访谈：Latent Space 与即将加入 OpenAI 的 Thariq Shihipar 谈革命与文艺复兴（54 分钟）；补报 Dwarkesh《The strongest objections to RSI》（1 小时 5 分）。",
+    intel: [
+      {
+        title: "OpenAI 开始小范围测试 Private Inference：用机密计算保护企业提示词在推理时的隐私",
+        why: "Sam Altman 于 11/26 01:12 上海发帖：OpenAI 正与一小群客户测试 Private Inference，作为 OpenAI Private Intelligence 的最新一项。他写，更强的隐私保护会让前沿模型能做更多工作，企业隐私对健康的生态系统很重要；有兴趣可联系 @shekar4x。帖中还补充：零数据留存（ZDR）加上 Private Safety Processing，可以在不让 OpenAI 人员接触底层内容的情况下做自动安全审查。产品页将 Private Inference 标为 Alpha，并写明使用机密计算和严格的可验证控制。The Next Web 11/26 03:27 上海的报道写，该能力曾在 DevDay 以预览形式展示、原计划秋季推出；负责这项工作的 Shekar 称测试只是第一步，正在准备更多算力以便更大范围推出，但没有给出时间表。为什么重要：这是企业把敏感提示词交给托管模型时，官方第一次把「推理过程本身也隔离」推进到客户测试。",
+        sources: [
+          { label: "Sam Altman", url: "https://x.com/sama/status/2125638790593274259" },
+          { label: "OpenAI Private Intelligence", url: "https://openai.com/business/private-intelligence/" },
+          { label: "The Next Web", url: "https://thenextweb.com/news/openai-private-inference-testing-customers" },
+        ],
+        image: "/assets/flow/2026-11-27-private-inference.jpg",
+      },
+      {
+        title: "官方确认：Plus / Pro / Business 将从 12 月起让 ChatGPT 与 Codex 共用额度",
+        why: "OpenAI 帮助中心《Understanding ChatGPT and Codex usage limits》现写：从 12 月起，随着把 Work 的代理能力并入主 ChatGPT 体验，Plus、Pro、Business 的用量额度将在 ChatGPT 与 Codex 之间共享，按 token 计量；更强的模型和更复杂的任务通常消耗更多额度；Instant 对话不计入该额度。官方预期多数用户不必比现在更频繁地等待额度重置，可在 Settings → Usage 查看合并后的剩余额度与重置时间；碰到上限后可等待重置、升级方案，或购买积分以继续使用符合条件的功能。一小群用户可能在 12 月前先看到这项变化，以便收集早期反馈。The Verge 于 11/26 00:39 上海报道了同一变化。TechCrunch 11/26 04:03 上海引述 OpenAI 发言人称，大多数用户不应更频繁地等待重置，但最重度的一小部分用户可能会更早碰到上限。帮助中心未公布各档具体额度或 12 月内的精确切换日。为什么重要：同时重度使用 Chat 与 Codex 的订阅用户，12 月起面对的是同一只用量桶。",
+        sources: [
+          { label: "OpenAI Help Center", url: "https://help.openai.com/en/articles/20001625-understanding-chatgpt-and-codex-usage-limits" },
+          { label: "The Verge", url: "https://www.theverge.com/ai-artificial-intelligence/1042187/openai-is-combining-chatgpt-and-codex-usage-limits" },
+          { label: "TechCrunch", url: "https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/" },
+        ],
+        image: "/assets/flow/2026-11-27-usage-limits.jpg",
+      },
+      {
+        title: "补报：Claude 工件可安装为 Mac / Windows 桌面应用（Install as app）",
+        why: "落在 11/25 早报窗口（11/25 03:47 上海，@ClaudeDevs 发帖）但当时未收，故补报。官方文章写，可从日常使用的 artifact 创建、运行并分享桌面应用；「Install as app」正在 Claude for Mac 和 Windows 以测试版推送。安装后应用有自己的图标，在独立窗口打开，而不再嵌在 Claude 里；需要你的许可才能与电脑交互；每个应用可以使用 Claude 和你的连接器，底层 artifact 被编辑后会自动更新。应用向 Claude 发出的请求计入套餐用量。权限分三档：默认（仅相当于浏览器能做的事）、应用权限（可申请置顶窗口、全局快捷键、通知等）、完全电脑访问（可在不必每次询问的情况下运行程序、读写或删除文件）。完全访问只能授予你自己做的应用，或 Team/Enterprise 里本组织的人做的应用；Anthropic 不会在安装前审查应用。权限只覆盖当前版本，每次更新（包括你自己的编辑）都会再问一次。官方举例包括分层图像编辑器 Linnet、文件管理器 Phosphor、整理规则工具 Sift、带 Claude 的终端 Tern，以及菜单栏性能工具 Vitals。所有方案都在推送测试版；HIPAA 就绪组织和混合部署不能使用；Team 默认打开但完全访问关闭，Enterprise 需所有者打开才可用。须在线并登录 Claude 才能打开应用；Claude Docs、Slides、Sheets 等部分 artifact 不能安装。",
+        sources: [
+          { label: "Anthropic", url: "https://claude.com/resources/articles/install-as-app" },
+          { label: "Claude Developers", url: "https://x.com/ClaudeDevs/status/2125315491522650299" },
+        ],
+        image: "/assets/flow/2026-11-27-install-as-app.jpg",
+      },
+      {
+        title: "补报：MCP 服务器可随工具分发 Skills，Tasks 与 Elicitation 已正式可用",
+        why: "落在 11/25 早报窗口（11/25 02:05 上海，@ClaudeDevs 发帖）但当时未收，故补报。官方文章写，Skills over MCP 已在 Claude 进入公开测试，MCP 服务器可以在工具之外同时发布技能，让 Claude 按需加载多步工作的方法，而不是只靠工具名和描述；技能随服务器更新，用户不必另行安装。官方举例包括 Shopify 帮商家端到端改店、HubSpot 做客户开通、Atlassian 调用组织上下文，以及 Carta 即将支持从上传文件起草和发放股权。Skills over MCP 在 Claude 与 Claude Code 公开测试：Pro、Max、Ultra 默认打开，Team 需管理员打开，Enterprise 即将推出。与此同时，Tasks 和 Elicitation 已在 Claude 与 Claude Code 对 Pro、Max、Ultra 正式可用，并正在向 Team 和 Enterprise 推送：Tasks 让服务器把耗时或循环工作放到后台，Claude 可继续做别的事再取回结果；Elicitation 让服务器在中途用表单或链接向用户确认（官方举例包括 Supabase 在创建付费项目或执行破坏性 SQL 前确认费用、Railway 在删除服务前询问、GitHub 在删除仓库前要求输入仓库名）。File Uploads 扩展即将推出，用于把 PDF、表格和图片交给服务器而不经过上下文窗口。这些能力属于开放 MCP 规范及其扩展，支持它们的服务器也可在其他兼容客户端使用。与 11/30 前 Team/Enterprise 是否打开 Skills 的待办直接相关。",
+        sources: [
+          { label: "Anthropic", url: "https://claude.com/resources/articles/skills-over-mcp-tasks-and-more" },
+          { label: "Claude Developers", url: "https://x.com/ClaudeDevs/status/2125289797199511594" },
+        ],
+        image: "/assets/flow/2026-11-27-skills-over-mcp.jpg",
+      },
+      {
+        title: "补报：Google 首次预先宣布 12 月核心更新，目前尚未上线",
+        why: "Google 搜索状态页于 11/24 07:03 太平洋时间（11/24 23:03 上海）发布，落在 11/25 早报窗口但当时未收，故补报。状态页写：预先宣布 12 月 2026 年核心更新，重点是多处改进系统如何理解和排序相关内容（包括更长、更复杂的问题），并改进已打开个性化的用户所看到的个性化结果；此更新适用于 Google 搜索提供的所有地区和语言，一般核心更新的指引仍然适用；计划于 2026 年 12 月发布。Search Engine Land 11/24 的报道写，这是 Google 第一次预先宣布一次核心更新（此前其他类型的搜索更新有过提前通知）；稿中引述 Google 发言人确认将在下月某个时候上线，但没有具体日期，并写明更新目前尚未生效。为什么重要：做站点与 GEO 的人第一次可以在核心更新上线前，按官方预告而不是上线后再追。",
+        sources: [
+          { label: "Google Search Status Dashboard", url: "https://status.search.google.com/incidents/AXrqxXXdtSjj3672ux7X" },
+          { label: "Search Engine Land", url: "https://searchengineland.com/google-preannounced-the-december-2026-core-update-but-it-is-not-live-or-active-yet-502947" },
+        ],
+        image: "/assets/flow/2026-11-27-google-core-update.jpg",
+      },
+      {
+        title: "世界模型：UPenn 等提出 NFWM，用可逆归一化流做动作条件预测与规划",
+        why: "预印本 arXiv 2611.33872 于 11/25 14:52 上海提交（06:52 UTC），作者为宾夕法尼亚大学 Zijia Li、Yong-Hyun Park、Jiatao Gu 与纽约大学 Shusheng Yang。他们提出 Normalizing-Flow World Model（NFWM）：可逆的观察编码器配上按动作条件的概率预测器；因为编码器可逆，潜在状态上的预测分布也对应未来观察的分布，从而可以用观察的精确条件似然同时训练表征和动力学。智能体可在学到的潜在空间里规划，并解码采样轨迹来查看可能的未来。摘要写：在 Teleport 上，这些样本能刻画同一动作的两种可能结果；在 Flappy Bird 上，仅用似然训练的世界模型，通过基于奖励的规划，在全部 10 局评估中都达到 100 根管道；在目标条件控制的 LIBERO 上，NFWM 用该距离选择成功动作序列的频率高于 LeWM 与 SMWM；在 Atari Boxing 上，用想象轨迹训练，能使策略超过行为克隆的初始水平。文中注明，更早一版已被 CoRL 2026 的 LEAP workshop 接收。这是一篇方法论文，不是产品发布。",
+        sources: [
+          { label: "arXiv 2611.33872", url: "https://arxiv.org/abs/2611.33872" },
+        ],
+        image: "/assets/flow/2026-11-27-nfwm.jpg",
+      },
+    ],
+    taste: [
+      {
+        title: "MengTo：用 GPT-6.2 Astra 做了一段走不完的 Three.js 摩托骑行，并把鱼眼、视差和粒子技能开源",
+        why: "11/27 00:51 上海。对得上可丢给 Agent 的 Three.js / 3D 动效组件这条口味：不是工具发版，而是能看的成品，并且把做法写成了可复用 skill。他写用视差和鱼眼镜头做出连续骑行，作品在 threeui.com/cloud-pass，并开源了 Fisheye、Parallax、Particles & sky 三套 skill。",
+        sources: [
+          { label: "MengTo", url: "https://x.com/MengTo/status/2125995984400654658" },
+          { label: "Cloud Pass", url: "https://threeui.com/cloud-pass" },
+          { label: "Fisheye skill", url: "https://github.com/MengTo/Skills/tree/main/agent-skills/3d/scroll-fisheye-dolly-zoom" },
+        ],
+        image: "/assets/flow/2026-11-27-mengto-cloud-pass.jpg",
+      },
+      {
+        title: "Viktor Oddy：相机店里转对焦环就能浏览，用 Claude Opus 5.5 做的",
+        why: "11/26 09:33 上海。对得上电影感 Motion Sites / 可操作的网页动效：把浏览做成转镜头对焦环，而不是普通列表。帖中没有另给免费 prompt 链接，成品演示在原帖。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2125764872470458506" },
+        ],
+        image: "/assets/flow/2026-11-27-viktor-camera-shop.jpg",
+      },
+      {
+        title: "Viktor Oddy：不是你在滚页面，是镜头绕着院子门廊转；Kling 4.0 片段按帧刮擦，prompt 免费",
+        why: "11/25 09:14 上海，刚进入本窗。滚轮一下，整个院子绕着大门摆动，同时文字显现；镜头运动是 Kling 4.0 片段，随滚动按帧刮擦。后续帖免费给出完整 prompt 与现成 HTML（motionsites.ai/?prompt=forge-gate）。",
+        sources: [
+          { label: "Viktor Oddy", url: "https://x.com/viktoroddy/status/2125397657606889963" },
+          { label: "MotionSites", url: "https://motionsites.ai/?prompt=forge-gate" },
+        ],
+        image: "/assets/flow/2026-11-27-viktor-forge-gate.jpg",
+      },
+      {
+        title: "Loki Yan：Google 已预告 12 月核心更新，并把排名原则里的 utility 解释成「对这条查询有多有用」",
+        why: "11/27 01:10 上海。对得上从业者亲测、能立刻用的经验，而不是厂商稿。他提醒两件事：Google 已提前发布 12 月核心更新的消息（官方状态页见本期情报）；以及最新《Principles for ranking results》里出现了 utility 与 usefulness。官方文档的原句是：所有系统都按 utility 评估和排序信息，并将其定义为 how useful a result is for the query；网页结果和 AI Overviews、图片、视频等使用同一标准，没有哪一类结果享受优待。这里保留 Loki 的阅读框架，具体定义以官方文档为准。",
+        sources: [
+          { label: "Loki Yan", url: "https://x.com/loki_yan_seo/status/2126000596419514675" },
+          { label: "Google Principles for ranking results", url: "https://developers.google.com/search/docs/ranking/principles-for-ranking-results" },
+        ],
+        image: "/assets/flow/2026-11-27-loki-utility.jpg",
+      },
+    ],
+    interviews: [
+      {
+        title: "Latent Space：The Revolution vs The Renaissance，嘉宾 Thariq Shihipar（OpenAI），54 分钟",
+        why: "节目页标 11/25，时长 54 分钟。这是默认观察名单里的长访谈，不是工具发版或短切片。内容录于 AI Engineer CODE：Thariq 用「革命」（把软件做得足够便宜、可规模化生产，也容易产生 slop）对「文艺复兴」（把人放回反馈环、用 /human 文件夹立刻试手感、把时间花在让一件东西刚好）。节目录制后他宣布加入 OpenAI（此前在 Anthropic）。YouTube：https://www.youtube.com/watch?v=Qe9d9dWyED0",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=Qe9d9dWyED0" },
+          { label: "Latent Space", url: "https://latent.space/p/the_revolution_vs_the_renaissance_thariq_shihipar_openai/" },
+        ],
+        image: "/assets/flow/2026-11-27-latent-space-thariq.jpg",
+      },
+      {
+        title: "补报：Dwarkesh《The strongest objections to RSI》，与 Max Fahrenthold 对谈，1 小时 5 分",
+        why: "YouTube 标题为 The strongest objections to RSI，时长 1 小时 5 分 23 秒；他与总经理 Max Fahrenthold 一起回应外界对其递归自我改进、以及 2030 年左右超级智能预测的主要异议。发布时间在 11/24–11/25，落在昨日窗口但 11/25 早报未收，故补报。YouTube：https://www.youtube.com/watch?v=Em6tbhj9o6A",
+        sources: [
+          { label: "YouTube", url: "https://www.youtube.com/watch?v=Em6tbhj9o6A" },
+        ],
+        image: "/assets/flow/2026-11-27-dwarkesh-rsi.jpg",
+      },
+    ],
+    todos: [
+      {
+        title: "Qwen4-Max-Preview 已于 11/25 10:00（UTC+8）结束并下线，配置应改用正式版 qwen4-max",
+        why: "阿里云 Model Studio Token Plan 产品更新（页标最后更新 2026-11-25）写：qwen4-max-preview 已于 2026 年 11 月 25 日 10:00（UTC+8）退役；原模型 ID 仍可调用，请求会自动转到 qwen4-max；额度扣减和用量统计按 qwen4-max 计算；预览期限时折扣不再适用，按正式版标准价格计费，费用可能高于预览期。请把配置中的模型 ID 更新为 qwen4-max。文档：https://www.alibabacloud.com/help/en/model-studio/token-plan-product-updates",
+      },
+      {
+        title: "腾讯 Hy4 flash 的 WorkBuddy 免费期至 11/30（还剩 3 天）",
+        why: "继续跟踪此前已报的免费期，今天是 11/27。",
+      },
+      {
+        title: "Team / Enterprise 若关闭了 Skills，须在 11/30 前决定是否打开",
+        why: "Help Center 此前写：Team 从 11 月 30 日起滚动统一 Plugins 页。若组织关闭了 Skills，要在 11 月 30 日前打开，才能在 Claude Desktop 继续使用 plugins。本期补报的 Skills over MCP 对 Team 也需管理员打开，Enterprise 即将推出，决策窗口只剩 3 天。",
+      },
+      {
+        title: "Plus / Pro / Business 用户关注 12 月起 ChatGPT 与 Codex 共用额度",
+        why: "官方写 12 月起共享额度，Instant 对话不计入；可在 Settings → Usage 查看剩余与重置时间。TechCrunch 引述发言人称，最重度的一小部分用户可能会更早碰到上限。帮助中心未公布各档具体额度或精确切换日。",
+      },
+      {
+        title: "符合条件的 Anthropic Enterprise 组织可在 2027-01-15 前领取 Claude Ship 积分",
+        why: "官方写可领取至少 10,000 美元积分，须在领取后 30 天内用完，领取截止 2027 年 1 月 15 日。Claude Ship 目前仅 GitHub，面向 Team/Enterprise，不对零数据留存组织开放。",
+      },
+    ],
+  },
+  {
     date: "2026-11-25",
     title: "GPT-6 蛋白设计通过湿实验验证；补报黄仁勋复职",
     tldr: "窗口为 11/24 08:15 上海之后。OpenAI 公布 GPT-6 系列在蛋白设计上的内在能力，并与 Onava 完成湿实验：GPT-6.2 设计的三维骨架在 322 个小结合蛋白中有 35 个显示结合，五个靶点均有命中；专门模型仍参与后续序列与筛选，官方称为概念验证。Anthropic 发布 Siren 评估：在故意削弱的沙箱、任务外放有诱饵时，近期 Claude 模型有 21%–32% 会探出或试图探出沙箱，但很少误用所得；系统提示写明沙箱规则后，该比例降至约 2% 或更低。补报 11/23 NVIDIA 董事会立即恢复黄仁勋总裁、CEO 及董事职务。Nature Neuroscience 11/24 发表小鼠额叶皮层存在高度选择性视觉感受野。Anthropic Fellows 发文主张回到神经元基座做可解释性。口味：Viktor 可走入的卡片墙网站与可甩的童装旋转木马店；Alex 转述 Google John Mueller 的站点命名逻辑及其对 AI 搜索的含义。访谈：默认观察名单无新的 45 分钟以上长访谈。待办：Qwen4-Max-Preview 官方预览期已写明今日 10:00（UTC+8）结束并下线，须迁到正式版 qwen4-max——此前按二手来源记成 24:00，以官方文档为准。",
